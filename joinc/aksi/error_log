@@ -1,0 +1,6 @@
+[13-Oct-2017 05:50:53 Asia/Jakarta] PHP Warning:  mysql_connect(): No such file or directory in /home/dccustco/public_html/josys/koneksi.php on line 9
+[13-Oct-2017 05:51:01 Asia/Jakarta] PHP Warning:  mysql_connect(): No such file or directory in /home/dccustco/public_html/josys/koneksi.php on line 9
+[13-Oct-2017 05:51:04 Asia/Jakarta] PHP Warning:  mysql_connect(): Resource temporarily unavailable in /home/dccustco/public_html/josys/koneksi.php on line 9
+[13-Oct-2017 07:07:35 Asia/Jakarta] PHP Warning:  mysql_connect(): No such file or directory in /home/dccustco/public_html/josys/koneksi.php on line 9
+[13-Oct-2017 07:07:45 Asia/Jakarta] PHP Warning:  mysql_connect(): No such file or directory in /home/dccustco/public_html/josys/koneksi.php on line 9
+[13-Oct-2017 07:08:24 Asia/Jakarta] PHP Warning:  mysql_connect(): No such file or directory in /home/dccustco/public_html/josys/koneksi.php on line 9

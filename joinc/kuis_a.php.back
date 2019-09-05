@@ -1,0 +1,151 @@
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#a8ln").hide();
+        $("#a9ln").hide();
+    });
+    $("#show").click(function(){
+        $("#a8ln").show();
+        $("#a9ln").show();
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $("#negara").change(function() {
+        var negara =$(this).val();
+        var dataString = 'negara='+negara;
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/9_SEPT_2016/tracerust/joinc/getkota.php",
+            data: dataString,
+            cache: false,
+            success: function(html) {
+                $("#kota").html(html);
+            }
+        });
+    });
+});
+</script>
+<section id="featured">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+			  <div class="row" style="margin-bottom: 46px;">
+				<div class="bawah">
+					<center><h3><span style="color: #009a54;;" data-mce-mark="1">Kuesioner</span></h3></center>
+				</div>
+                <div class="bawah">
+                    <center><h3><span style="color: #009a54;;" data-mce-mark="1">
+                    <?php 
+                    $cek = mysql_query("SELECT * FROM tb_a WHERE id_alumni = '$_SESSION[idnya]'");
+                    if (mysql_num_rows($cek)>0) { ?>
+                      A
+
+                    <?php }else{ ?>
+                      <a href="kuis_a.html">A</a>  
+
+                    <?php } ?>
+                     |
+
+                    <?php $cek = mysql_query("SELECT * FROM tb_b WHERE id_alumni = '$_SESSION[idnya]'");
+                    if (mysql_num_rows($cek)>0) { ?>
+                      B
+
+                    <?php }else{ ?>
+                       <a href="kuis_b.html">B</a> 
+
+                    <?php } ?>
+                     | 
+
+                    <?php $cek = mysql_query("SELECT * FROM tb_c WHERE id_alumni = '$_SESSION[idnya]'");
+                    if (mysql_num_rows($cek)>0) { ?>
+                      C
+
+                    <?php
+                    }else{ ?>
+                       <a href="kuis_c.html">C</a>  
+
+                    <?php } ?>
+                     | 
+
+                    <?php $cek = mysql_query("SELECT * FROM tb_d WHERE id_alumni = '$_SESSION[idnya]'");
+                    if (mysql_num_rows($cek)>0) { ?>
+                      D
+
+                    <?php
+                    }else{
+                      ?>
+                       <a href="kuis_d.html">D</a>  
+                      <?php
+                    }
+                    ?> | 
+                    <?php 
+                    $cek = mysql_query("SELECT * FROM tb_e WHERE id_alumni = '$_SESSION[idnya]'");
+                    if (mysql_num_rows($cek)>0) {
+                      ?>
+                      E
+                      <?php
+                    }else{
+                      ?>
+                       <a href="kuis_e.html">E</a>  
+                      <?php
+                    }
+                    ?></span></h3></center>
+                </div>
+                <div class="bawah">
+                  <h5><span style="color: #009a54;;" data-mce-mark="1">A. SOSIO-BIOGRAFI</span></h5>
+                </div>
+	              <form method="post" action="aksi_kuis_a.html" id="contactfrm" role="form">
+                  <div class="col-sm-6 col-lg-6">
+                    <div class="form-group">
+                      <label for="name">A1. Nama lengkap </label>
+                      <input type="text" class="form-control" name="a1" required="" placeholder="Isikan nama lengkap anda">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">A2. Jenis kelamin </label>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="a2" id="a2" value="Perempuan" >
+                         Perempuan
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="a2" id="a2" value="Laki-laki" >
+                         Laki-Laki
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">A3. Alamat asal (Termasuk kota dan provinsi)</label>
+                        <textarea name="a3" required="" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">A4. Alamat saat ini (Termasuk kota dan provinsi)</label>
+                        <textarea name="a4" required="" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">A5. Nomor handphone</label>
+                        <input type="text" class="form-control" name="a5" required="" placeholder="Nomor handphone" maxlength="15">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">A6. Alamat E-Mail</label>
+                        <input type="email" class="form-control" name="a6" required="" placeholder="Email anda">
+                    </div>
+
+                    <button name="submit" type="submit" class="btn btn-lg btn-primary" id="submit">Lanjutkan</button>
+
+                  </div>
+                </form>
+                
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

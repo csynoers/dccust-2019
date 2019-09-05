@@ -1,0 +1,318 @@
+<?php
+include "../../../josys/koneksi.php";
+
+# MENGAMBIL DATA DARI DATABASE MYSQL
+if (isset($_GET['prodi'])) {
+    $kuisc = mysql_query("SELECT *
+                            FROM
+                                `alumni_daftar`
+                                INNER JOIN `prodi` 
+                                    ON (`alumni_daftar`.`prodi` = `prodi`.`id_prodi`)
+                                INNER JOIN `tb_e` 
+                                    ON (`tb_e`.`id_alumni` = `alumni_daftar`.`id_alumni`)
+                            WHERE alumni_daftar.prodi = '$_GET[prodi]' ORDER BY alumni_daftar.nim ASC");
+}else{
+    $kuisc = mysql_query("SELECT *
+                            FROM
+                                `alumni_daftar`
+                                INNER JOIN `prodi` 
+                                    ON (`alumni_daftar`.`prodi` = `prodi`.`id_prodi`)
+                                INNER JOIN `tb_e` 
+                                    ON (`tb_e`.`id_alumni` = `alumni_daftar`.`id_alumni`)
+                            ORDER BY alumni_daftar.nim ASC");
+}
+
+
+
+/** Include PHPExcel */
+require_once dirname(__FILE__) . '../../../../PHPExcel/Classes/PHPExcel.php';
+
+$objPHPExcel = new PHPExcel();
+
+$row = 2;
+
+$objPHPExcel->createSheet(0);
+$sheet1 = $objPHPExcel->getSheet(0)->setTitle('Hasil Tracer E');
+$objPHPExcel->createSheet(1);
+$sheet2 = $objPHPExcel->getSheet(1)->setTitle('Hasil Tracer E8');
+// Tulis judul tabel
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A'.$row, 'No.')
+            ->setCellValue('B'.$row, 'NIM')
+            ->setCellValue('C'.$row, 'Nama Alumni')
+            ->setCellValue('D'.$row, 'A1')
+            ->setCellValue('E'.$row, 'A2')
+            ->setCellValue('F'.$row, 'A3')
+            ->setCellValue('G'.$row, 'A4')
+            ->setCellValue('H'.$row, 'A5')
+            ->setCellValue('I'.$row, 'A6')
+            ->setCellValue('J'.$row, 'A7')
+            ->setCellValue('K'.$row, 'A8')
+            ->setCellValue('L'.$row, 'A9')
+            ->setCellValue('M'.$row, 'A10')
+            ->setCellValue('N'.$row, 'A11')
+            ->setCellValue('O'.$row, 'A12')
+            ->setCellValue('P'.$row, 'A13')
+            ->setCellValue('Q'.$row, 'A14')
+            ->setCellValue('R'.$row, 'A15')
+            ->setCellValue('R'.$row, 'A16')
+            ->setCellValue('S'.$row, 'A17')
+            ->setCellValue('T'.$row, 'A18')
+            ->setCellValue('U'.$row, 'A19')
+            ->setCellValue('V'.$row, 'A20')
+            ->setCellValue('W'.$row, 'A21')
+            ->setCellValue('X'.$row, 'A22')
+            ->setCellValue('Y'.$row, 'A23')
+            ->setCellValue('Z'.$row, 'A24')
+            ->setCellValue('AA'.$row, 'A25')
+            ->setCellValue('AB'.$row, 'A26')
+            ->setCellValue('AC'.$row, 'A27')
+            ->setCellValue('AD'.$row, 'B1')
+            ->setCellValue('AE'.$row, 'B2')
+            ->setCellValue('AF'.$row, 'B3')
+            ->setCellValue('AG'.$row, 'B4')
+            ->setCellValue('AH'.$row, 'B5')
+            ->setCellValue('AI'.$row, 'B6')
+            ->setCellValue('AJ'.$row, 'B7')
+            ->setCellValue('AK'.$row, 'B8')
+            ->setCellValue('AL'.$row, 'B9')
+            ->setCellValue('AM'.$row, 'B10')
+            ->setCellValue('AN'.$row, 'B11')
+            ->setCellValue('AO'.$row, 'B12')
+            ->setCellValue('AP'.$row, 'B13')
+            ->setCellValue('AQ'.$row, 'B14')
+            ->setCellValue('AR'.$row, 'B15')
+            ->setCellValue('AS'.$row, 'B16')
+            ->setCellValue('AT'.$row, 'B17')
+            ->setCellValue('AU'.$row, 'B18')
+            ->setCellValue('AV'.$row, 'B19')
+            ->setCellValue('AW'.$row, 'B20')
+            ->setCellValue('AX'.$row, 'B21')
+            ->setCellValue('AY'.$row, 'B22')
+            ->setCellValue('AZ'.$row, 'B23')
+            ->setCellValue('BA'.$row, 'B24')
+            ->setCellValue('BB'.$row, 'B25')
+            ->setCellValue('BC'.$row, 'B26')
+            ->setCellValue('BD'.$row, 'B27')
+            ->setCellValue('BE'.$row, 'E2')
+            ->setCellValue('BF'.$row, 'E3')
+            ->setCellValue('BG'.$row, 'E41')
+            ->setCellValue('BH'.$row, 'E42')
+            ->setCellValue('BI'.$row, 'E43')
+            ->setCellValue('BJ'.$row, 'E44')
+            ->setCellValue('BK'.$row, 'E45')
+            ->setCellValue('BL'.$row, 'E46')
+            ->setCellValue('BM'.$row, 'E51')
+            ->setCellValue('BN'.$row, 'E52')
+            ->setCellValue('BO'.$row, 'E53')
+            ->setCellValue('BP'.$row, 'E54')
+            ->setCellValue('BQ'.$row, 'E55')
+            ->setCellValue('BR'.$row, 'E56')
+            ->setCellValue('BS'.$row, 'E57')
+            ->setCellValue('BT'.$row, 'E58')
+            ->setCellValue('BU'.$row, 'E59')
+            ->setCellValue('BV'.$row, 'E510')
+            ->setCellValue('BW'.$row, 'E511')
+            ->setCellValue('BX'.$row, 'E512')
+            ->setCellValue('BY'.$row, 'E513')
+            ->setCellValue('BZ'.$row, 'E514')
+            ->setCellValue('CA'.$row, 'E515')
+            ->setCellValue('CB'.$row, 'E516')
+            ->setCellValue('CC'.$row, 'E517')
+            ->setCellValue('CD'.$row, 'E518')
+            ->setCellValue('CE'.$row, 'E519')
+            ->setCellValue('CF'.$row, 'E520')
+            ->setCellValue('CG'.$row, 'E521')
+            ->setCellValue('CH'.$row, 'E522')
+            ->setCellValue('CI'.$row, 'E523')
+            ->setCellValue('CJ'.$row, 'E524')
+            ->setCellValue('CK'.$row, 'E525')
+            ->setCellValue('CL'.$row, 'E526')
+            ->setCellValue('CM'.$row, 'E527')
+            ->setCellValue('CN'.$row, 'E6')
+            ->setCellValue('CO'.$row, 'E7');
+
+$nomor  = 1; // set nomor urut = 1;
+
+$row++; // pindah ke row bawahnya. (ke row 2)
+
+// lakukan perulangan untuk menuliskan data kuisc
+while( $data = mysql_fetch_array($kuisc)){
+
+    $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A'.$row,  $nomor )
+            ->setCellValue('B'.$row, $data['nim'] )
+            ->setCellValue('C'.$row, $data['nama_alumni'] )
+            ->setCellValue('D'.$row, $data['a1'])
+            ->setCellValue('E'.$row, $data['a2'])
+            ->setCellValue('F'.$row, $data['a3'])
+            ->setCellValue('G'.$row, $data['a4'])
+            ->setCellValue('H'.$row, $data['a5'])
+            ->setCellValue('I'.$row, $data['a6'])
+            ->setCellValue('J'.$row, $data['a7'])
+            ->setCellValue('K'.$row, $data['a8'])
+            ->setCellValue('L'.$row, $data['a9'])
+            ->setCellValue('M'.$row, $data['a10'])
+            ->setCellValue('N'.$row, $data['a11'])
+            ->setCellValue('O'.$row, $data['a12'])
+            ->setCellValue('P'.$row, $data['a13'])
+            ->setCellValue('Q'.$row, $data['a14'])
+            ->setCellValue('R'.$row, $data['a15'])
+            ->setCellValue('R'.$row, $data['a16'])
+            ->setCellValue('S'.$row, $data['a17'])
+            ->setCellValue('T'.$row, $data['a18'])
+            ->setCellValue('U'.$row, $data['a19'])
+            ->setCellValue('V'.$row, $data['a20'])
+            ->setCellValue('W'.$row, $data['a21'])
+            ->setCellValue('X'.$row, $data['a22'])
+            ->setCellValue('Y'.$row, $data['a23'])
+            ->setCellValue('Z'.$row, $data['a24'])
+            ->setCellValue('AA'.$row, $data['a25'])
+            ->setCellValue('AB'.$row, $data['a26'])
+            ->setCellValue('AC'.$row, $data['a27'])
+            ->setCellValue('AD'.$row, $data['b1'])
+            ->setCellValue('AE'.$row, $data['b2'])
+            ->setCellValue('AF'.$row, $data['b3'])
+            ->setCellValue('AG'.$row, $data['b4'])
+            ->setCellValue('AH'.$row, $data['b5'])
+            ->setCellValue('AI'.$row, $data['b6'])
+            ->setCellValue('AJ'.$row, $data['b7'])
+            ->setCellValue('AK'.$row, $data['b8'])
+            ->setCellValue('AL'.$row, $data['b9'])
+            ->setCellValue('AM'.$row, $data['b10'])
+            ->setCellValue('AN'.$row, $data['b11'])
+            ->setCellValue('AO'.$row, $data['b12'])
+            ->setCellValue('AP'.$row, $data['b13'])
+            ->setCellValue('AQ'.$row, $data['b14'])
+            ->setCellValue('AR'.$row, $data['b15'])
+            ->setCellValue('AS'.$row, $data['b16'])
+            ->setCellValue('AT'.$row, $data['b17'])
+            ->setCellValue('AU'.$row, $data['b18'])
+            ->setCellValue('AV'.$row, $data['b19'])
+            ->setCellValue('AW'.$row, $data['b20'])
+            ->setCellValue('AX'.$row, $data['b21'])
+            ->setCellValue('AY'.$row, $data['b22'])
+            ->setCellValue('AZ'.$row, $data['b23'])
+            ->setCellValue('BA'.$row, $data['b24'])
+            ->setCellValue('BB'.$row, $data['b25'])
+            ->setCellValue('BC'.$row, $data['b26'])
+            ->setCellValue('BD'.$row, $data['b27'])
+            ->setCellValue('BE'.$row, $data['e2'])
+            ->setCellValue('BF'.$row, $data['e3'])
+            ->setCellValue('BG'.$row, $data['e41'])
+            ->setCellValue('BH'.$row, $data['e42'])
+            ->setCellValue('BI'.$row, $data['e43'])
+            ->setCellValue('BJ'.$row, $data['e44'])
+            ->setCellValue('BK'.$row, $data['e45'])
+            ->setCellValue('BL'.$row, $data['e46'])
+            ->setCellValue('BM'.$row, $data['e51'])
+            ->setCellValue('BN'.$row, $data['e52'])
+            ->setCellValue('BO'.$row, $data['e53'])
+            ->setCellValue('BP'.$row, $data['e54'])
+            ->setCellValue('BQ'.$row, $data['e55'])
+            ->setCellValue('BR'.$row, $data['e56'])
+            ->setCellValue('BS'.$row, $data['e57'])
+            ->setCellValue('BT'.$row, $data['e58'])
+            ->setCellValue('BU'.$row, $data['e59'])
+            ->setCellValue('BV'.$row, $data['e510'])
+            ->setCellValue('BW'.$row, $data['e511'])
+            ->setCellValue('BX'.$row, $data['e512'])
+            ->setCellValue('BY'.$row, $data['e513'])
+            ->setCellValue('BZ'.$row, $data['e514'])
+            ->setCellValue('CA'.$row, $data['e515'])
+            ->setCellValue('CB'.$row, $data['e516'])
+            ->setCellValue('CC'.$row, $data['e517'])
+            ->setCellValue('CD'.$row, $data['e518'])
+            ->setCellValue('CE'.$row, $data['e519'])
+            ->setCellValue('CF'.$row, $data['e520'])
+            ->setCellValue('CG'.$row, $data['e521'])
+            ->setCellValue('CH'.$row, $data['e522'])
+            ->setCellValue('CI'.$row, $data['e523'])
+            ->setCellValue('CJ'.$row, $data['e524'])
+            ->setCellValue('CK'.$row, $data['e525'])
+            ->setCellValue('CL'.$row, $data['e526'])
+            ->setCellValue('CM'.$row, $data['e527'])
+            ->setCellValue('CN'.$row, $data['e6'])
+            ->setCellValue('CO'.$row, $data['e7']);
+
+    $row++; // pindah ke row bawahnya ($row + 1)
+    $nomor++;
+}
+
+$rowe8 = 2;
+// Tulis judul tabel
+$objPHPExcel->setActiveSheetIndex(1)
+            ->setCellValue('A'.$rowe8, 'No.')
+            ->setCellValue('B'.$rowe8, 'NIM')
+            ->setCellValue('C'.$rowe8, 'Nama Alumni')
+            ->setCellValue('D'.$rowe8, 'Pilihan');
+
+$nomore8  = 1; // set nomor urut = 1;
+
+$rowe8++; // pindah ke row bawahnya. (ke row 2)
+
+$e8 = mysql_query("SELECT *
+FROM
+    `tb_e8`
+    INNER JOIN `alumni_daftar` 
+        ON (`tb_e8`.`id_alumni` = `alumni_daftar`.`id_alumni`) ORDER BY alumni_daftar.nim ASC");
+
+// lakukan perulangan untuk menuliskan data kuisc
+while( $datad2 = mysql_fetch_array($e8)){
+
+    $objPHPExcel->setActiveSheetIndex(1)
+            ->setCellValue('A'.$rowe8,  $nomore8 )
+            ->setCellValue('B'.$rowe8, $datad2['nim'] )
+            ->setCellValue('C'.$rowe8, $datad2['nama_alumni'] )
+            ->setCellValue('D'.$rowe8, $datad2['detail_e8'] );
+
+    $rowe8++; // pindah ke row bawahnya ($row + 1)
+    $nomore8++;
+}
+
+
+$objPHPExcel->createSheet(2);
+$sheet6 = $objPHPExcel->getSheet(2)->setTitle('Keterangan Kode');
+$rowjwb = 2;
+$objPHPExcel->setActiveSheetIndex(2)
+            ->setCellValue('A'.$rowjwb, 'No.')
+            ->setCellValue('B'.$rowjwb, 'Kode')
+            ->setCellValue('C'.$rowjwb, 'Keterangan');
+
+$nomorjwb  = 1;
+$rowjwb++;
+$jwb = mysql_query("SELECT * FROM jwb ORDER BY id_jwb ASC");
+
+while( $datajwb = mysql_fetch_array($jwb)){
+
+    $objPHPExcel->setActiveSheetIndex(2)
+            ->setCellValue('A'.$rowjwb,  $nomorjwb )
+            ->setCellValue('B'.$rowjwb, $datajwb['judul'] )
+            ->setCellValue('C'.$rowjwb, $datajwb['jwb'] );
+
+    $rowjwb++;
+    $nomorjwb++;
+}
+
+$objPHPExcel->setActiveSheetIndex(0);
+
+
+
+// Download (Excel2007)
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="data.xlsx"');
+header('Cache-Control: max-age=0');
+// If you're serving to IE 9, then the following may be needed
+header('Cache-Control: max-age=1');
+// If you're serving to IE over SSL, then the following may be needed
+header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+header ('Pragma: public'); // HTTP/1.0
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007'); 
+
+$objWriter->save('php://output');
+/*header('location:javascript:history.go(-1)');*/
+exit;
+
+?>

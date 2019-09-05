@@ -1,0 +1,12 @@
+Ukuran image header 
+/****** 1024 x 370px *******/
+
+Pada database
+--------------------------
+event = agenda
+our client= sajian
+our partner= kaos
+materi publication = berita
+services group = kegiatan
+service pelatihan = proyek
+fasilitator = fasilitator

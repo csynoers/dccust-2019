@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /cek_login/awal/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /img/
+Disallow: /joimg/
+Disallow: /joinc/
+Disallow: /josys/
+Disallow: /js/
+Disallow: /modal_login/
+Disallow: /PHPExcel/
+Disallow: /PHPMailer/
+Disallow: /service_drop/
+Disallow: /skins/
+Disallow: /tinymce/
