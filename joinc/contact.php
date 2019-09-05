@@ -9,10 +9,9 @@
             <ul class="slides">
               <li>
 				<?php
-					$album=mysql_query("SELECT * FROM modul WHERE id_modul='7'");
-					$g=mysql_fetch_array($album);
+					$row= $db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'][0];
 				?>
-                <img src="joimg/statik/<?php echo "$g[gambar]"; ?>" alt="" />
+                <img src="joimg/statik/<?php echo $row->gambar ?>" alt="" />
                 <div class="flex-caption">
                     <h3 style="margin-top:-36px;">Kontak kami</h3> 
 					<p>Untuk informasi lebih lanjut mengenai detail program kami dan event-event program lainnya, silahkan menghubungi kami di:</p> <hr>		
@@ -31,12 +30,9 @@
 			<div class="col-lg-12 col-md-12">		
 				<div class="col-lg-6 col-md-6">
 				<?php
-				$sql2 					= mysql_query("SELECT * FROM modul WHERE id_modul='7'");
-				$m						= mysql_fetch_array($sql2);
-				$time_in_12_hour_format = date("l, d/m/Y ||H:i:s" , strtotime($m['tanggal']));
+				$m						= $db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'][0];
+				$time_in_12_hour_format = date("l, d/m/Y ||H:i:s" , strtotime($m->tanggal));
 				$jam					= strtoupper($time_in_12_hour_format);
-				$nama_modul	 			= "nama_modul_ina";
-				$statik	 				= "static_content_ina";
 				?>
 				<div class="bawah">
 					<center><h5><span style="color: #009a54;" data-mce-mark="1">Alamat</span></h3></center>
@@ -55,9 +51,9 @@
 														<div class="wpb_accordion wpb_content_element  not-column-inherit" data-collapsible=no data-active-tab="1">
 															<div class="wpb_wrapper wpb_accordion_wrapper ui-accordion">
 															<div class="wpb_accordion_section group">
-																<h3 class="wpb_accordion_header ui-accordion-header"><a href="#consultation"><?php echo"$m[$nama_modul]"; ?></a></h3>
+																<h3 class="wpb_accordion_header ui-accordion-header"><a href="#consultation"><?php echo $m->nama_modul_ina ?></a></h3>
 																<div class="wpb_accordion_content ui-accordion-content clearfix">
-																<?php echo"$m[$statik]"; ?>
+																<?php echo $m->static_content_ina ?>
 																</div>
 															</div>
 															</div>
@@ -93,7 +89,7 @@
 															<div class="wpb_accordion_section group">
 																<h3 class="wpb_accordion_header ui-accordion-header"><a href="#consultation">Maps</a></h3>
 																<div class="wpb_accordion_content ui-accordion-content clearfix">
-																<?php echo"$m[extra]"; ?>
+																<?php echo $m->extra ?>
 																</div>
 															</div>
 															</div>
