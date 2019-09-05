@@ -1,33 +1,33 @@
 <!-- end header -->
 	<section id="featured">
-	<!-- start slider -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-	<!-- Slider -->
-        <div id="main-slider" class="flexslider">
-             <ul class="slides">
-              <li>
-				<?php
-					$slide=mysql_query("SELECT * FROM header where id_header='9'");
-					$s=mysql_fetch_array($slide);
-					$nama	 	= $_SESSION['bahasa'] 	== "en" ? "nama_header_".$_SESSION[bahasa] : "nama_header_ina";
-					$isi	 	= $_SESSION['bahasa'] 	== "en" ? "isi_header_".$_SESSION[bahasa] : "isi_header_ina";
-				?>
-                <img src="joimg/header_image/<?php echo"$s[gambar]"; ?>" alt="" />
-                <div class="flex-caption">
-					
-                    <h3><?php echo"$s[$nama]"; ?></h3> 
-					<?php echo"$s[$isi]"; ?>
-                </div>
-              </li>
-            </ul>
-        </div>
-	<!-- end slider -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="main-slider" class="flexslider">
+						<ul class="slides">
+							<li>
+							<?php
+								$row= $db->get_select("SELECT * FROM header where id_header='9'")['data'][0];
+								echo '
+									<img src="joimg/header_image/'.$row->gambar.'" alt="" />
+									<div class="flex-caption">
+										<h3>'.$row->nama_header_ina.'</h3> 
+										'.$row->isi_header_ina.'
+									</div>
+								';
+							?>
+							</li>
+						</ul>
+					</div>
+					<!-- /.flexslider -->
+				</div>
+				<!-- /.col -->
 			</div>
+			<!-- /.row -->
 		</div>
-	</div>	
+		<!-- /.container -->	
 	</section>
+
 	<section id="featured">
 	<div class="container">
 		<div class="row">
@@ -38,27 +38,29 @@
 				</div>	
 				<div class="row" style="margin-top: 19px;">
 					<section id="projects">
-					<ul id="thumbss" class="portfolio">
-					<?php
-						$galeri=mysql_query("SELECT * FROM galeri WHERE id_album = '$_GET[id]' order by id_album DESC");
-						while($g=mysql_fetch_array($galeri)){
-					?>
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbss col-lg-3 design" data-id="id-0" data-type="web">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="<?php echo "$g[nama]"; ?>" href="joimg/galeri/<?php echo"$g[gambar]"; ?>">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img style="height:170px;  box-shadow: 0 0 9px #000;" src="joimg/galeri/<?php echo"$g[gambar]"; ?>" alt="<?php echo "$g[deskripsi]"; ?>">
-						<div class="judul">
-							<center><h5><a href="#"><?php echo "$g[nama]"; ?></a></h5></center>
-						</div>
-						</li>
-						<!-- End Item Project -->
-						<?php } ?>
-					</ul>
+						<ul id="thumbss" class="portfolio">
+						<?php
+							$rows= $db->get_select("SELECT * FROM galeri WHERE id_album = '$_GET[id]' order by id_album DESC");
+							foreach ($rows['data'] as $key => $value) {
+								echo '
+									<!-- Item Project and Filter Name -->
+									<li class="item-thumbss col-lg-3 design" data-id="id-0" data-type="web">
+										<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+										<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="'.$value->nama.'" href="joimg/galeri/'.$value->gambar.'">
+											<span class="overlay-img"></span>
+											<span class="overlay-img-thumb font-icon-plus"></span>
+										</a>
+										<!-- Thumb Image and Description -->
+										<img style="height:170px;  box-shadow: 0 0 9px #000;" src="joimg/galeri/'.$value->gambar.'" alt="'.$value->deskripsi.'">
+										<div class="judul">
+											<center><h5><a href="#">'.$value->nama.'</a></h5></center>
+										</div>
+									</li>
+									<!-- End Item Project -->
+								';
+							}
+						?>
+						</ul>
 					</section>
 				</div>
 			</div>
