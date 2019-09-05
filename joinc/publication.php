@@ -1,31 +1,33 @@
 <!-- end header -->
 	<section id="featured">
-	<!-- start slider -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-	<!-- Slider -->
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-              <li>
-				<?php
-					$slide=mysql_query("SELECT * FROM header where id_header='6'");
-					$s=mysql_fetch_assoc($slide);
-				?>
-                <img src="joimg/header_image/<?php echo"$s[gambar]"; ?>" alt="" />
-                <div class="flex-caption">
-					
-                    <h3><?php echo $s['nama_header_ina']; ?></h3> 
-					<?php echo $s['isi_header_ina']; ?>
-                </div>
-              </li>
-            </ul>
-        </div>
-	<!-- end slider -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="main-slider" class="flexslider">
+						<ul class="slides">
+							<li>
+								<?php
+									$row= $db->get_select("SELECT * FROM header where id_header='6'")['data'][0];
+									echo '
+										<img src="joimg/header_image/'.$row->gambar.'" alt="" />
+										<div class="flex-caption">
+											<h3>'.$row->nama_header_ina.'</h3> 
+											'.$row->isi_header_ina.'
+										</div>
+									';
+								?>
+							</li>
+						</ul>
+					</div>
+					<!-- end slider -->
+				</div>
+				<!-- /.col -->
 			</div>
+			<!-- /.row -->
 		</div>
-	</div>	
+		<!-- /.container -->	
 	</section>
+
 	<section id="featured">
 		<div class="container">
 			<div class="row">
@@ -40,22 +42,22 @@
 							<div>
 								<ul class="wpb_thumbnails wpb_thumbnails-fluid clearfix" data-layout-mode="fitRows">
 									<?php
-										$publikasi=mysql_query("SELECT * FROM artikel order by id_artikel DESC");
-										while($p=mysql_fetch_assoc($publikasi)){
-										$isi 		= htmlentities(strip_tags(preg_replace("/&#?[a-z0-9]+;/i","",$p["isi_artikel"])));			
-										$isi		= substr($isi,0,strrpos(substr($isi,0,300)," "));										
+										$rows= $db->get_select("SELECT * FROM artikel order by id_artikel DESC");
+										foreach ($rows['data'] as $key => $value) {
+											echo '
+												<li class="col-lg-4">
+													<div class="post-thumb">
+														<a href="detailpublikasi-'.$value->id_artikel.'.html" class="link_image" title="'.$value->nama_artikel.'"><img src="joimg/artikel/'.$value->gambar.'" width="282" height="94" alt="'.$value->nama_artikel.'" /></a>
+													</div>
+													<h5 class="post-title">
+														<a href="detailpublikasi-'.$value->id_artikel.'.html" class="link_title text-info" title="'.$value->nama_artikel.'" >'.$value->nama_artikel.'</a></h5>
+													<div class="entry-content">
+														<p align="justify">'.substr(htmlentities(strip_tags(preg_replace("/&#?[a-z0-9]+;/i","",$value->isi_artikel))), 0, strrpos(substr(htmlentities(strip_tags(preg_replace("/&#?[a-z0-9]+;/i","",$value->isi_artikel))), 0, 300)," ")).'&nbsp <a class="text-info" href="detailpublikasi-'.$value->id_artikel.'-'.$value->seo_artikel.'.html">[..]</a></p>
+													</div>
+												</li>
+											';
+										}
 									?>
-									<li class="col-lg-4">
-										<div class="post-thumb">
-											<a href="detailpublikasi-<?php echo $p['id_artikel']?>.html" class="link_image" title="<?php echo "$p[nama_artikel]";?>"><img src="joimg/artikel/<?php echo "$p[gambar]";?>" width="282" height="94" alt="<?php echo "$p[nama_artikel]";?>" /></a>
-										</div>
-										<h5 class="post-title">
-											<a href="detailpublikasi-<?php echo $p['id_artikel']?>.html" class="link_title" title="<?php echo "$p[nama_artikel]";?>"><?php echo "$p[nama_artikel]";?></a></h5>
-										<div class="entry-content">
-											<p align="justify"><?php echo "$isi";?>&nbsp <a href="detailpublikasi-<?php echo"$p[id_artikel]-$p[seo_artikel]"; ?>.html">[..]</a></p>
-										</div>
-									</li>
-									<?php } ?>
 								</ul>
 							</div>
 							</article>
