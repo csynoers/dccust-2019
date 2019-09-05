@@ -55,11 +55,11 @@
 		<div style="margin-left:10px;">
 			<h5 class="widgetheading">Social media</h5>
 			<?php
-					$sosial=mysql_query("SELECT * FROM sosial order by nama DESC");
-					while($s=mysql_fetch_array($sosial)){
+				$rows= $db->get_select("SELECT * FROM sosial order by nama DESC");
+				foreach ($rows['data'] as $key => $value) {
+					echo '<a href="'.$value->link.'"><img style="width: auto !important;" id="left_banner" src="joimg/sosial/'.$value->gambar.'"></a>';
+				}
 			?>
-				<a href="<?php echo "$s[link]"; ?>"><img id="left_banner" src="joimg/sosial/<?php echo"$s[gambar]"; ?>"></a>
-			<?php } ?>
 				
 				
 		</div>
