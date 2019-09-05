@@ -12,8 +12,8 @@ class Buku_tamu extends dbHelper
 	{
 		// parent::__construct();
 		// $this->config= $db_config;
-		print_r(parent::get_select("SELECT * FROM guest_book")['data']);
-		// print_r(parent::);
+		// print_r(parent::get_select("SELECT * FROM guest_book"));
+		parent::tes();
 	}
 	
 	// public function get_header($id){

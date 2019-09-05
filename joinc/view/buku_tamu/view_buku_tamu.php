@@ -7,11 +7,11 @@
 			<div id="main-slider" class="flexslider">
 			    <ul class="slides">
 			      <li>
-			        <img src="joimg/header_image/<?php echo $data_header->gambar ?>" alt="" />
+			        <img src="joimg/header_image/<?php echo $row->gambar ?>" alt="" />
 			        <div class="flex-caption">
 						
-			            <h3><?php echo $data_header->nama_header_ina ?></h3> 
-						<?php echo $data_header->isi_header_ina ?>
+			            <h3><?php echo $row->nama_header_ina ?></h3> 
+						<?php echo $row->isi_header_ina ?>
 			        </div>
 			      </li>
 			    </ul>
