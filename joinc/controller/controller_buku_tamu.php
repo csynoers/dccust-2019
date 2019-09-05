@@ -1,6 +1,4 @@
 <?php
-	// load model dbhelper
-	require 'josys/dbHelper.php';
 	
 	// load model buku tamu
 	require 'joinc/model/model_buku_tamu.php';
@@ -10,16 +8,17 @@
 
 	// membuat model buku tamu baru dalam variabel $bk
 	$buku_tamu= new Buku_tamu();
+	// $buku_tamu= new Buku_tamu($db_config);
 
 	if ($_GET['mod']=='buku_tamu'){
 		// get data header
-		$header= $buku_tamu->get_header('16');
-		$data_header= $header[0];
+		// $header= $buku_tamu->get_header('16');
+		// $data_header= $header[0];
 
-		$get_buku_tamu= $buku_tamu->get_buku_tamu();
+		// $get_buku_tamu= $buku_tamu->get_buku_tamu();
 
 		// load view buku tamu
-		require 'joinc/view/buku_tamu/view_buku_tamu.php';
+		// require 'joinc/view/buku_tamu/view_buku_tamu.php';
 	}elseif($_GET['mod']=='send_buku_tamu'){
 		$data= array(
 					'name'=> htmlspecialchars($_POST['name']),

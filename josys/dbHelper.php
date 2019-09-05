@@ -1,9 +1,10 @@
 <?php
 class dbHelper {
-    private $db;
+    private $config;
+    public $db;
     private $err;
     function __construct($db_config){
-		$this->config= $db_config; 
+        $this->config= $db_config;
 		try {
 			$this->db = new PDO("mysql:host={$this->config['host']};dbname={$this->config['dbname']};charset=utf8", $this->config['user'], $this->config['pass']);
 			// set the PDO error mode to exception
