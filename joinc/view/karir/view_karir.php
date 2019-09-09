@@ -11,9 +11,9 @@ $(document).ready(function(){
 			    <div id="main-slider" class="flexslider">
 			        <ul class="slides">
 						<li>
-							<img src="joimg/header_image/<?php echo $slide['img_src'] ?>" alt="" />
+							<img src="joimg/header_image/<?php echo $slide->img_src ?>" alt="" />
 							<div class="flex-caption">
-							    <h3><?php echo $slide['name_header_ina']; ?></h3> 
+							    <h3><?php echo $slide->name_header_ina; ?></h3> 
 							</div>
 						</li>
 			        </ul>
@@ -80,9 +80,9 @@ $(document).ready(function(){
 									foreach ($jabatan as $key) {
 										?>
 											<div class="col-lg-4">
-												<label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="<?php echo $key['name'] ?>">
-													<input class="jb" type="checkbox" value="<?php echo $key['id'] ?>" name="jabatan">
-													<?php echo substr($key['name'],0,32); echo strlen($key['name'])>32?'...':'' ?>
+												<label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="<?php echo $key->name ?>">
+													<input class="jb" type="checkbox" value="<?php echo $key->id ?>" name="jabatan">
+													<?php echo substr($key->name,0,32); echo strlen($key->name) > 32 ? '...':'' ?>
 												</label>
 											</div>
 										<?php
@@ -110,9 +110,9 @@ $(document).ready(function(){
 										?>
 											<div class="col-lg-4">
 												<div class="form-group">
-													<label class="radio-inline" data-toggle="tooltip" data-placement="bottom" title="<?php echo $key['nama_spes'] ?>">
-														<input type="radio" name="spesialis" value="<?php echo $key['id_spes'] ?>">
-														<?php echo $key['nama_spes'] ?>
+													<label class="radio-inline" data-toggle="tooltip" data-placement="bottom" title="<?php echo $key->nama_spes ?>">
+														<input type="radio" name="spesialis" value="<?php echo $key->id_spes ?>">
+														<?php echo $key->nama_spes ?>
 													</label>
 												</div>
 											</div>
@@ -146,8 +146,8 @@ $(document).ready(function(){
 											<div class="col-lg-3">
 												<div class="form-group">
 													<label class="radio-inline">
-														<input data-jenis="<?php echo $key['name'] ?>" type="radio" name="jenis" value="<?php echo $key['id'] ?>">
-														<?php echo $key['name'] ?>
+														<input data-jenis="<?php echo $key->name ?>" type="radio" name="jenis" value="<?php echo $key->id ?>">
+														<?php echo $key->name ?>
 													</label>
 												</div>
 											</div>
@@ -176,7 +176,7 @@ $(document).ready(function(){
 											<?php
 											foreach ($penempatan as $key) {
 												?>
-													<option data-penempatan="<?php echo $key['propinsi_name'] ?>" value="<?php echo $key['propinsi_id'] ?>"><?php echo $key['propinsi_name'] ?></option>
+													<option data-penempatan="<?php echo $key->propinsi_name ?>" value="<?php echo $key->propinsi_id ?>"><?php echo $key->propinsi_name ?></option>
 												<?php
 											}
 											?>
@@ -205,26 +205,26 @@ $(document).ready(function(){
 								foreach ($karir as $key) {
 									?>
 										<div class="col-lg-12" style="border: 1px solid #ddd">
-											<a href="detailkarir-<?php echo $key['id_karir'].'-'.$key['seo_ina'] ?>.html">
-												<h3 style="color: #009a54"><i class="fa fa-location-arrow" aria-hidden="true"></i> <?php echo $key['judul_karir'] ?></h3>
+											<a href="detailkarir-<?php echo $key->id_karir.'-'.$key->seo_ina ?>.html">
+												<h3 style="color: #009a54"><i class="fa fa-location-arrow" aria-hidden="true"></i> <?php echo $key->judul_karir ?></h3>
 											</a>
 											<div class="col-lg-2">
-												<img class="img-responsive" src="joimg/karir/<?php echo $key['gambar'] ?>">
+												<img class="img-responsive" src="joimg/karir/<?php echo $key->gambar ?>">
 											</div>
 
 											<div class="col-lg-10">
-												<?php echo substr($key['isi_karir'], 0,400) ?>
-												<a class="data-page" data-page="<?php echo $key['id_karir'] ?>" href="detailkarir-<?php echo $key['id_karir'].'-'.$key['seo_ina'] ?>.html">... Read More</a>
+												<?php echo substr($key->isi_karir, 0,400) ?>
+												<a class="data-page" data-page="<?php echo $key->id_karir ?>" href="detailkarir-<?php echo $key->id_karir.'-'.$key->seo_ina ?>.html">... Read More</a>
 
 												<div class="alert alert-info">
-												<strong>Deadline :</strong> <?php echo tanggal_indo($key['deadline'],TRUE) ?>
+												<strong>Deadline :</strong> <?php echo tanggal_indo($key->deadline,TRUE) ?>
 												</div>
 												
 											</div>
 										</div>
 										<p class="clear-fix"></p>
 									<?php
-								$data_paging= ($key['id_karir']); 
+									$data_paging= ($key->id_karir); 
 								}
 							?>
 						</div>
