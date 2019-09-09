@@ -1,24 +1,18 @@
 <?php
 
-	// load function tanggal indo
-	// require_once 'josys/fungsi_indotgl.php';
-
-	// membuat model buku tamu baru dalam variabel $bk
-	// $buku_tamu= new Buku_tamu();
-	// $buku_tamu= new Buku_tamu($db_config);
-
 	if ($_GET['mod']=='buku_tamu'){
-		$row= $db->get_select("SELECT * FROM header WHERE id_header=16 ")['data'][0];
+		$row= $db->select('header',array('id_header'=> '16'))['data'][0];
+		$get_buku_tamu= $db->select('guest_book',array('status'=> '1'))['data'];
 		// load view buku tamu
 		require 'joinc/view/buku_tamu/view_buku_tamu.php';
 	}elseif($_GET['mod']=='send_buku_tamu'){
 		$data= array(
 					'name'=> htmlspecialchars($_POST['name']),
 					'email'=> strip_tags($_POST['email']),
-					'message_fill'=> htmlspecialchars($_POST['message_fill'])
+					'message_fill'=> htmlspecialchars($_POST['message_fill']),
+					'status' => '0'
 					);
-		
-		$status= $buku_tamu->insert_buku_tamu($data);
+		$status = $db->insert("guest_book",$data, array('name', 'email', 'message_fill', 'status'))['status'];
 		if ($status=='success') {
 			echo "<script>confirm('Data Berhasil Dikirim')</script>";
 
