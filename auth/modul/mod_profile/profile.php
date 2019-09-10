@@ -19,7 +19,6 @@ $(document).ready( function () {
 <?php
 	$aksi="modul/mod_profile/aksi_profile.php";
 	$module="profile";
-	$db = new dbHelper();
 
 	isset($_GET['act'])? $act=$_GET['act'] : $act='';
 
