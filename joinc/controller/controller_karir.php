@@ -1,11 +1,4 @@
 <?php
-	// load model karir
-	// require 'joinc/model/model_karir.php';
-	require_once 'josys/fungsi_indotgl.php';
-
-	// membuat model karir baru dalam variabel $karir
-	// $karir= new Karir();
-
 	// get data slide
 	$slide= $db->get_select("SELECT nama_header_ina AS name_header_ina,gambar AS img_src FROM header where id_header='7'")['data'][0];
 
@@ -22,7 +15,7 @@
 	$penempatan= $db->get_select("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC")['data'];
 
 	//get data karir
-	$karir= $db->get_select("SELECT * FROM karir ORDER BY id_karir DESC LIMIT 5")['data'];
+	$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir ORDER BY id_karir DESC LIMIT 5")['data'];
 
 	// echo "<pre>";
 	// print_r($slide);

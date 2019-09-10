@@ -1,16 +1,12 @@
 <?php
-	require '../model/model_karir.php';
-	$karir= new Karir();
+	require_once '../../josys/koneksi.php';
+	require_once '../../josys/dbHelper.php';
+	$db = new dbHelper($db_config);
 
 	if (isset($_POST['id_jabatan'])) {
-		$id_jabatan= $_POST['id_jabatan'];
-		// print_r($id_jabatan);
-
-		// $arr = array('Hello','World!','Beautiful','Day!');
-		// echo implode(",",$id_jabatan);
-
-		$karir= $karir->get_karir_jabatan(implode(",",$id_jabatan));
-		// var_dump($jabatan);
+		$caption = empty($_POST['caption'])? NULL : $_POST['caption'] ;
+		$id_jabatan= implode(",",$_POST['id_jabatan']);
+		$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir WHERE tingkat_jabatan IN ({$id_jabatan}) ORDER BY id_karir DESC");
 
 		if ($karir===NULL) {
 			// load error view
@@ -26,10 +22,8 @@
 
 	// get id spesialis
 	if (isset($_POST['id_spesialis'])) {
-		$id_spesialis=$_POST['id_spesialis'];
-
-		$karir= $karir->get_karir_spesialis($id_spesialis);
-		// var_dump($spesialis);
+		$caption = empty($_POST['caption'])? NULL : $_POST['caption'] ;
+		$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir WHERE id_spes='{$_POST['id_spesialis']}' ORDER BY id_karir DESC");
 
 		if ($karir===NULL) {
 			// load error view
@@ -43,10 +37,13 @@
 
 	// get  id jenis lowongan
 	if (isset($_POST['id_jenis'])) {
+		$caption = empty($_POST['caption'])? NULL : $_POST['caption'] ;
 		$id_jenis=$_POST['id_jenis'];
-
-		$karir= $karir->get_karir_jenis($id_jenis);
-		// var_dump($jenis);
+		if ($id_jenis=='zero') {
+			$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir ORDER BY id_karir DESC");			
+		}else{
+			$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir WHERE jenis_lowongan='{$id_jenis}' ORDER BY id_karir DESC");
+		}
 
 		if ($karir===NULL) {
 			// load error view
@@ -61,9 +58,13 @@
 
 	// get id penempatan
 	if (isset($_POST['id'])) {
+		$caption = empty($_POST['caption'])? NULL : $_POST['caption'] ;
 		$id_penempatan= $_POST['id'];
-		$karir= $karir->get_karir_penempatan($id_penempatan);
-		// var_dump($penempatan);
+		if ($id_penempatan=='00') {
+			$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir");
+		}else{
+			$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir WHERE lokasi='{$id_penempatan}'");
+		}
 
 		if ($karir===NULL) {
 			// load error view
@@ -104,14 +105,7 @@
 
 	// paging
 	if (isset($_POST['id_page'])) {
-		$id_page= $_POST['id_page'];
-		$karir= $karir->get_karir_page($id_page);
-
-			// load view karir filter by penempatan
-		// echo "$id_page";
-		// echo "<pre>";
-		// print_r($karir);
-		// echo "</pre>";
+		$karir= $db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir WHERE id_karir <= {$_POST['id_page']} ORDER BY id_karir DESC LIMIT 1");
 		// load view karir filter by penempatan
 		require '../view/karir/view_karir_paging.php';
 	}

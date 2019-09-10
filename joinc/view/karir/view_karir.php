@@ -213,11 +213,11 @@ $(document).ready(function(){
 											</div>
 
 											<div class="col-lg-10">
-												<?php echo substr($key->isi_karir, 0,400) ?>
+												<?php echo substr(strip_tags($key->isi_karir), 0,400) ?>
 												<a class="data-page" data-page="<?php echo $key->id_karir ?>" href="detailkarir-<?php echo $key->id_karir.'-'.$key->seo_ina ?>.html">... Read More</a>
 
 												<div class="alert alert-info">
-												<strong>Deadline :</strong> <?php echo tanggal_indo($key->deadline,TRUE) ?>
+												<strong>Deadline :</strong> <?php echo $key->deadline_mod ?>
 												</div>
 												
 											</div>
