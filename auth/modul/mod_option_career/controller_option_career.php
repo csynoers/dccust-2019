@@ -9,7 +9,7 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
 	require 'model_option_career.php';
 
 	// initialize model option career
-	$career= new Career();
+	$career= new Career($db_config);
 
 	isset($_GET['act'])? $act=$_GET['act']: $act='';
 	switch ($act) {

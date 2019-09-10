@@ -52,12 +52,12 @@ $(document).ready(function(){
 										?>
 										<tr>  
 						    				<td align="center"><?php echo $no; ?></td> 
-						    				<td align="center"><?php echo $key['name']; ?></td>
+						    				<td align="center"><?php echo $key->name; ?></td>
 						    				<td align="center">
-						    					<a href="<?php echo"?module=option_career&act=edit&opt=jenis&id=$key[id]&saving=0";?>">
+						    					<a href="<?php echo"?module=option_career&act=edit&opt=jenis&id=$key->id&saving=0";?>">
 						    						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						    					</a> &nbsp;&nbsp;&nbsp;&nbsp;
-						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=jenis&id=$key[id]";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
+						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=jenis&id=$key->id";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
 						    						<i class="fa fa-trash-o" aria-hidden="true"></i>
 						    					</a>
 											</td> 
@@ -104,12 +104,12 @@ $(document).ready(function(){
 										?>
 										<tr>  
 						    				<td align="center"><?php echo $no; ?></td> 
-						    				<td align="center"><?php echo $key['nama_spes']; ?></td>
+						    				<td align="center"><?php echo $key->nama_spes ?></td>
 						    				<td align="center">
-						    					<a href="<?php echo"?module=option_career&act=edit&opt=spesialis&id=$key[id_spes]&saving=0";?>">
+						    					<a href="<?php echo"?module=option_career&act=edit&opt=spesialis&id=$key->id_spes&saving=0";?>">
 						    						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						    					</a> &nbsp;&nbsp;&nbsp;&nbsp;
-						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=spesialis&id=$key[id_spes]";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
+						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=spesialis&id=$key->id_spes";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
 						    						<i class="fa fa-trash-o" aria-hidden="true"></i>
 						    					</a>
 											</td> 
@@ -162,12 +162,12 @@ $(document).ready(function(){
 										?>
 										<tr>  
 						    				<td align="center"><?php echo $no; ?></td> 
-						    				<td align="center"><?php echo $key['name']; ?></td>
+						    				<td align="center"><?php echo $key->name ?></td>
 						    				<td align="center">
-						    					<a href="<?php echo"?module=option_career&act=edit&opt=jabatan&id=$key[id]&saving=0";?>">
+						    					<a href="<?php echo"?module=option_career&act=edit&opt=jabatan&id=$key->id&saving=0";?>">
 						    						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						    					</a> &nbsp;&nbsp;&nbsp;&nbsp;
-						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=jabatan&id=$key[id]";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
+						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=jabatan&id=$key->id";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
 						    						<i class="fa fa-trash-o" aria-hidden="true"></i>
 						    					</a>
 											</td> 
@@ -215,12 +215,12 @@ $(document).ready(function(){
 										?>
 										<tr>  
 						    				<td align="center"><?php echo $no; ?></td> 
-						    				<td align="center"><?php echo $key['propinsi_name']; ?></td>
+						    				<td align="center"><?php echo $key->propinsi_name ?></td>
 						    				<td align="center">
-						    					<a href="<?php echo"?module=option_career&act=edit&opt=penempatan&id=$key[propinsi_id]&saving=0";?>">
+						    					<a href="<?php echo"?module=option_career&act=edit&opt=penempatan&id=$key->propinsi_id&saving=0";?>">
 						    						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						    					</a> &nbsp;&nbsp;&nbsp;&nbsp;
-						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=penempatan&id=$key[propinsi_id]";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
+						    					<a href="<?php echo"$aksi?module=option_career&act=delete&opt=penempatan&id=$key->propinsi_id";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');">
 						    						<i class="fa fa-trash-o" aria-hidden="true"></i>
 						    					</a>
 											</td> 

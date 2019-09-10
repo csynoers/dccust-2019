@@ -2,55 +2,30 @@
 	/**
 	* create modal for career
 	*/
-	class Career
+	class Career extends dbHelper
 	{
-
-		//call function connect mysql
-		function connectMysql()
-		{
-			//load config mysql connect
-			// include '../../../josys/koneksi.php';
-
-		}
-
 		//get data jenis lowongans
 		function get_jenis_lowongan(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id,name FROM jenis_lowongan ORDER BY name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id,name FROM jenis_lowongan ORDER BY name ASC");
+			return $rows['data'];
 		}
 
 		//get data spesialisasi pekerjaan
 		function get_spesialis(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id_spes,nama_spes FROM spesialis ORDER BY nama_spes ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id_spes,nama_spes FROM spesialis ORDER BY nama_spes ASC");
+			return $rows['data'];
 		}
 
 		//get data tingkat jabatan
 		function get_jabatan(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id,name FROM tingkat_jabatan ORDER BY name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id,name FROM tingkat_jabatan ORDER BY name ASC");
+			return $rows['data'];
 		}
 
 		//get data penempatan
 		function get_penempatan(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC");
+			return $rows['data'];
 		}
 
 		// create model insert new jenis
@@ -111,42 +86,26 @@
 
 		//get data jenis lowongan where
 		function get_jenis_where($field,$id){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT $field FROM jenis_lowongan WHERE id='{$id}'");
-			$row= mysql_fetch_object($sql);
-			$data= $row->$field;
-			return $data;
+			$rows= $this->get_select("SELECT $field FROM jenis_lowongan WHERE id='{$id}'");
+			return $rows['data'];
 		}
 
 		//get data spesialisasi pekerjaan where
 		function get_spesialis_where($field,$id){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT $field FROM spesialis WHERE id_spes='{$id}'");
-			$row= mysql_fetch_object($sql);
-			$data= $row->$field;
-			return $data;
+			$rows= $this->get_select("SELECT $field FROM spesialis WHERE id_spes='{$id}'");
+			return $rows['data'];
 		}
 
 		//get data tingkat jabatan where
 		function get_jabatan_where($field,$id){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT $field FROM tingkat_jabatan WHERE id='{$id}'");
-			$row= mysql_fetch_object($sql);
-			$data= $row->$field;
-			return $data;
+			$rows= $this->get_select("SELECT $field FROM tingkat_jabatan WHERE id='{$id}'");
+			return $rows['data'];
 		}
 
 		//get data penempatan where
 		function get_penempatan_where($field,$id){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT $field FROM propinsi WHERE propinsi_id='{$id}'");
-			$row= mysql_fetch_object($sql);
-			$data= $row->$field;
-			return $data;
+			$rows= $this->get_select("SELECT $field FROM propinsi WHERE propinsi_id='{$id}'");
+			return $rows['data'];
 		}
 
 		// create model update jenis lowongan
