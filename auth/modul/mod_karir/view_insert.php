@@ -23,7 +23,7 @@
 						<?php
 						foreach ($jenis_lowongan as $key) {
 							?>
-							<option value="<?php echo $key['id'] ?>"> <?php echo $key['name'] ?></option>
+							<option value="<?php echo $key->id ?>"> <?php echo $key->name ?></option>
 							<?php
 						}
 
@@ -38,7 +38,7 @@
 						<?php
 						foreach ($spesialisasi as $key) {
 							?>
-							<option value="<?php echo $key['id_spes'] ?>"> <?php echo $key['nama_spes'] ?></option>
+							<option value="<?php echo $key->id_spes ?>"> <?php echo $key->nama_spes ?></option>
 							<?php
 						}
 
@@ -53,7 +53,7 @@
 						<?php
 						foreach ($tingkat_jabatan as $key) {
 							?>
-							<option value="<?php echo $key['id'] ?>"> <?php echo $key['name'] ?></option>
+							<option value="<?php echo $key->id ?>"> <?php echo $key->name ?></option>
 							<?php
 						}
 
@@ -68,7 +68,7 @@
 						<?php
 						foreach ($kota as $key) {
 							?>
-							<option value="<?php echo $key['propinsi_id'] ?>"> <?php echo $key['propinsi_name'] ?></option>
+							<option value="<?php echo $key->propinsi_id ?>"> <?php echo $key->propinsi_name ?></option>
 							<?php
 						}
 

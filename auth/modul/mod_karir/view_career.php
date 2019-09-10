@@ -48,7 +48,7 @@ $(document).ready( function () {
 				<thead> 
 					<tr>  
 	    				<th>No</th> 
-	    				<th>Thumbnail</th> 
+	    				<!-- <th>Thumbnail</th>  -->
 	    				<th>Tittle</th>
 	    				<th>Spesialisasi kerja</th>
 	    				<th>Perusahaan</th>  
@@ -66,7 +66,7 @@ $(document).ready( function () {
 					?>
 					<tr>  
 	    				<td align="center"><?php echo"$no" ?></td> 
-	    				<td align="center"><img height="70px" src="../joimg/karir/<?php echo"$value->gambar" ?>"></td> 
+	    				<!-- <td align="center"><img height="70px" src="../joimg/karir/<?php echo"$value->gambar" ?>"></td>  -->
 	    				<td><?php echo"$value->judul_karir" ?></td>
 	    				<td><?php echo"$value->nama_spes" ?></td>
 	    				<td><?php echo"$value->perusahaan_karir" ?></td>

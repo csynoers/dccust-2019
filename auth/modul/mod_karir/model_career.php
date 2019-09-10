@@ -7,15 +7,6 @@
 	 */
 	class Career extends dbHelper
 	{
-
-		//call function connect mysql
-		function connectMysql()
-		{
-			//load config mysql connect
-			// include '../../../josys/koneksi.php';
-
-		}
-
 		//get data career
 		function get_career(){
 			//load connection
@@ -96,12 +87,8 @@
 
 		//get data jenis lowongtan
 		function get_jenis_lowongan(){
-			// load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id,name FROM jenis_lowongan ORDER BY name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id,name FROM jenis_lowongan ORDER BY name ASC");
+			return $rows['data'];
 		}
 
 		//get data jenis lowongan where id
@@ -116,12 +103,8 @@
 
 		//get data spesialisasi
 		function get_spesialisasi(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id_spes,nama_spes FROM spesialis ORDER BY id_spes ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id_spes,nama_spes FROM spesialis ORDER BY id_spes ASC");
+			return $rows['data'];
 		}
 
 		//get data spesialisasi where id
@@ -136,12 +119,8 @@
 
 		//get data tingkat_jabatan
 		function get_tingkat_jabatan(){
-			//load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT id,name FROM tingkat_jabatan ORDER BY name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
+			$rows= $this->get_select("SELECT id,name FROM tingkat_jabatan ORDER BY name ASC");
+			return $rows['data'];
 		}
 
 		//get data tingkat_jabatan where id
@@ -156,13 +135,8 @@
 
 		// get data kota
 		function get_kota(){
-			// load connection
-			$this->connectMysql();
-			$sql=mysql_query("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC");
-			while ($row= mysql_fetch_assoc($sql))
-				$data[]= $row;
-				return $data;
-			
+			$rows= $this->get_select("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC");
+			return $rows['data'];			
 		}
 
 		// get data kota where id

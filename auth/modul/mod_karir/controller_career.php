@@ -9,7 +9,7 @@
 	require 'model_career.php';
 
 	//initialize model career
-	$career= new Career();
+	$career= new Career($db_config);
 
 	isset($_GET['act'])? $act=$_GET['act'] : $act='';
 	switch ($act) {
