@@ -36,8 +36,7 @@ $(document).ready( function () {
 		}
 		switch($act){
 			default:
-			$view = mysql_query("SELECT * FROM modul WHERE id_modul='94'");
-				$g=mysql_fetch_array($view);
+				$g= $db->get_select(" SELECT * FROM modul WHERE id_modul='94' ")['data'][0];
 		
 		?>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -48,9 +47,9 @@ $(document).ready( function () {
 
 		<div class="panel-body">
 			<form method='POST' enctype='multipart/form-data' action='modul/mod_home/aksi_home.php?module=halaman_home&act=update'>
-				<input type="hidden" name="id" value="<?php echo"$g[id_modul]" ?>">
+				<input type="hidden" name="id" value="<?php echo $g->id_modul ?>">
 				<div class="form-group">
-					<textarea class="form-control" name="isi" rows="13"><?php echo"$g[static_content_ina]" ?></textarea>
+					<textarea class="form-control" name="isi" rows="13"><?php echo $g->static_content_ina ?></textarea>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Update</button>

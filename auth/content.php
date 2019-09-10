@@ -1,5 +1,5 @@
 <?php
-include "../josys/koneksi.php";
+// include "../josys/koneksi.php";
 include "../josys/library.php";
 include "../josys/fungsi_combobox.php";
 // include "../josys/fungsi_amerikatgl.php";

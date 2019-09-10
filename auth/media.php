@@ -7,18 +7,12 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
   echo "<a href=index.php><b>LOGIN</b></a></center>";
 }
 else{
-	// require_once('../josys/koneksi.php');
-	// load model dbhelper
+	require_once "../josys/koneksi.php";
 	require_once "../josys/dbHelper.php";
-	$db= new dbHelper();
-	//load format tanggal indonesia
-	// require_once "../josys/fungsi_indotgl.php";
+	$db = new dbHelper($db_config);
 
 	//load model navbar
-	require_once('model_navbar.php');
-
-	$navbar= new Navbar();
-	$navbar_grafik= $navbar->navbar_prodi();
+	$navbar_grafik= $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
 ?>
 
 <!doctype html>
