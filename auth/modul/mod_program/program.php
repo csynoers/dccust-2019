@@ -51,7 +51,7 @@ $(document).ready( function () {
 			<thead> 
 				<tr>  
     				<th width="4%">No</th> 
-    				<th width="16%">Thumbnail</th> 
+    				<!-- <th width="16%">Thumbnail</th>  -->
     				<th width="40%">Tittle</th> 
     				<th width="20%">Date</th> 
     				<th width="20%">Action</th> 
@@ -69,7 +69,7 @@ $(document).ready( function () {
 				?>
 				<tr>  
     				<td align="center"><?php echo"$no" ?></td> 
-    				<td align="center"><img class="img-responsive" src="../joimg/program/<?php echo"$b->gambar" ?>"></td> 
+    				<!-- <td align="center"><img class="img-responsive" src="../joimg/program/<?php echo"$b->gambar" ?>"></td>  -->
     				<td><?php echo"$b->nama_program" ?></td> 
     				<td><?php echo $tanggal; ?></td> 
     				<td align="center"><a href="<?php echo"?module=$module&act=edit&id=$b->id_program";?>"><input type="image" src="images/icn_edit.png" title="Edit"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="<?php echo"$aksi?module=$module&act=hapus&id=$b->id_program";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>

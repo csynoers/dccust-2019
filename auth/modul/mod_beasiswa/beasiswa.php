@@ -21,7 +21,6 @@ $(document).ready( function () {
 <?php
 	$aksi="modul/mod_beasiswa/aksi_beasiswa.php";
 	$module="beasiswa";
-	$db = new dbHelper();
 	isset($_GET['act'])? $act=$_GET['act'] : $act='';
 
 	switch($act){
@@ -53,7 +52,7 @@ $(document).ready( function () {
 			<thead> 
 				<tr>  
     				<th width="4%">No</th> 
-    				<th width="16%">Thumbnail</th> 
+    				<!-- <th width="16%">Thumbnail</th> --> 
     				<th width="40%">Tittle</th> 
     				<th width="20%">Date</th> 
     				<th width="20%">Action</th> 
@@ -71,7 +70,7 @@ $(document).ready( function () {
 				?>
 				<tr>  
     				<td align="center"><?php echo"$no" ?></td> 
-    				<td align="center"><img height="70px" src="../joimg/beasiswa/<?php echo"$b->gambar" ?>"></td> 
+    				<!-- <td align="center"><img height="70px" src="../joimg/beasiswa/<?php echo"$b->gambar" ?>"></td>  -->
     				<td><?php echo"$b->nama_beasiswa" ?></td> 
     				<td><?php echo $tanggal; ?></td> 
     				<td align="center"><a href="<?php echo"?module=$module&act=edit&id=$b->id_beasiswa";?>"><input type="image" src="images/icn_edit.png" title="Edit"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="<?php echo"$aksi?module=$module&act=hapus&id=$b->id_beasiswa";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>
