@@ -37,21 +37,6 @@ elseif ($module=='alumni' AND $act=='insertnew'){
   // Apabila ada gambar yang diupload
   if (!empty($lokasi_file)){
     UploadAlumni($nama_file_unik);
-   /* mysql_query("INSERT INTO alumni_daftar(
-									 nama,
-									 username,
-									 password,
-									 isi_alumni_ina,
-									 isi_alumni_en,
-									 tanggal,
-									 gambar)
-                            VALUES('$_POST[nama]',
-									'$_POST[username]',
-									'$_POST[password]',
-									'".mysql_real_escape_string($_POST[isi_ina])."',
-									'".mysql_real_escape_string($_POST[isi_en])."',
-									now(),
-									'$nama_file_unik')");*/
 	$aryo=new Akun_User;
 	$_POST['gambar'] = $nama_file_unik;
 	$_POST['tanggal'] = date('Y-m-d H:i:s');
@@ -59,23 +44,10 @@ elseif ($module=='alumni' AND $act=='insertnew'){
 	$hasil=$aryo->registerUser();
   }
   else{
-    /*mysql_query("INSERT INTO alumni_daftar(nama,
-									 username,
-									 password,
-									 isi_alumni_ina,
-									 isi_alumni_en,
-									 tanggal)
-                            VALUES('$_POST[nama]',
-									'$_POST[username]',
-									'$_POST[password]',
-									'".mysql_real_escape_string($_POST[isi_ina])."',
-									'".mysql_real_escape_string($_POST[isi_en])."',
-									now())");*/
 	$aryo=new Akun_User;
 	$_POST['gambar'] = "";
 	$_POST['tanggal'] = date('Y-m-d H:i:s');
 	$aryo->simpanNilai($_POST);
-	//echo $aryo->password;echo $aryo->isi_alumni_en;echo $aryo->isi_alumni_ina;echo $aryo->tanggal;exit();
 	$hasil=$aryo->registerUser();
 
   }
@@ -129,41 +101,6 @@ elseif ($module=='alumni' AND $act=='update'){
 
 	header('location:../../media.php?module=alumni&j=1');
 
-
- /* $lokasi_file    = $_FILES['fupload']['tmp_name'];
-  $tipe_file      = $_FILES['fupload']['type'];
-  $nama_file      = $_FILES['fupload']['name'];
-  $acak           = rand(000000,999999);
-  $nama_file_unik = $acak.$nama_file;
-
-	if(!empty($lokasi_file)){
-
-	$tampil=mysql_query("SELECT * FROM alumni_daftar WHERE id_alumni='$_POST[id]'");
-	$ex=mysql_fetch_array($tampil);
-		if($ex['gambar'] != ''){
-		unlink("../../../joimg/alumni/$ex[gambar]");
-		}
-
-	UploadAlumni($nama_file_unik);*/
-
-    // mysql_query("UPDATE alumni_daftar SET   email 			= '$_POST[email]' WHERE id_alumni = '$_POST[id_alumni]'");
-	/*$aryo=new Akun_User;
-	$_POST['gambar'] = $nama_file_unik;
-	$_POST['tanggal'] = date('Y-m-d');
-	$aryo->simpanNilai($_POST);
-	$hasil=$aryo->suntingAkun();
-	}
-	else{
-	mysql_query("UPDATE alumni_daftar SET
-									email 			= '$_POST[email]'
-									WHERE id_alumni = '$_POST[id]'");
-	$aryo=new Akun_User;
-	$_POST['gambar'] = "";
-	$_POST['tanggal'] = date('Y-m-d');
-	$aryo->simpanNilai($_POST);
-	$hasil=$aryo->suntingAkun();
-	}*/
-  // header('location:../../media.php?module='.$module.'&j='.$_GET['j']);
 }
 // Update header
 if ($module=='alumni' AND $act=='update_header'){

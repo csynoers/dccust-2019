@@ -1,6 +1,7 @@
 <?php
+	include_once '../../../josys/koneksi.php';
 	include_once '../../../josys/dbHelper.php';
-	$db            = new dbHelper();
+	$db            = new dbHelper($db_config);
 
 	$aksi          ="modul/mod_alumni/aksi_alumni.php";
 	$module        ="alumni";

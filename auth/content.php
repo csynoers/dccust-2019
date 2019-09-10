@@ -9,6 +9,41 @@ include "../josys/fungsi_rupiah.php";
 
 switch ($_GET['module']) {
   case 'home':
+	class Statistik extends dbHelper
+	{
+		# Statistik user
+		public $ip; // Mendapatkan IP komputer user
+		public $tanggal; // Mendapatkan tanggal sekarang
+		public $waktu; //
+		
+		# stats Overview
+		public $pengunjung;
+		public $hits;
+		public $totalpengunjung;
+		public $totalhits;
+		
+		public function __construct(){
+			$this->ip       = $_SERVER['REMOTE_ADDR'];
+			$this->tanggal  = date("Ymd");
+			$this->waktu    = time();
+
+			$this->pengunjung = $this->pengunjung();
+		}
+
+		protected function pengunjung()
+		{
+			$rows= $this->get_select("SELECT * FROM statistik WHERE tanggal='{$this->tanggal}' GROUP BY ip");
+			// return $rows;
+			return $this->tanggal;
+		}
+		
+	}
+
+	$statistik= new Statistik($db_config);
+	echo '<pre>';
+    print_r($statistik);
+	echo '</pre>';
+    
     # code...
   if ($_SESSION['leveluser']=='admin'){
   ?>
@@ -27,19 +62,6 @@ switch ($_GET['module']) {
         <div class="panel-body">
       				
     			<?php
-    				  error_reporting(0);
-    				  // Statistik user
-    				  $ip      = $_SERVER['REMOTE_ADDR']; // Mendapatkan IP komputer user
-    				  $tanggal = date("Ymd"); // Mendapatkan tanggal sekarang
-    				  $waktu   = time(); // 
-
-    				  // Mencek berdasarkan IPnya, apakah user sudah pernah mengakses hari ini 
-    				  $s = mysql_query("SELECT * FROM statistik WHERE ip='$ip' AND tanggal='$tanggal'");
-    				  // Kalau belum ada, simpan data user tersebut ke database
-    				  if(mysql_num_rows($s) == 0){
-    				  } 
-    				  else{
-    				  }
 
     				  $pengunjung       = mysql_num_rows(mysql_query("SELECT * FROM statistik WHERE tanggal='$tanggal' GROUP BY ip"));
     				  $totalpengunjung  = mysql_result(mysql_query("SELECT COUNT(hits) FROM statistik"), 0); 

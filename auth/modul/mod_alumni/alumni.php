@@ -42,7 +42,6 @@
 
 
 		<?php
-		$db= new dbHelper();
 		$aksi="modul/mod_alumni/aksi_alumni.php";
 		$module="alumni";
 		$jenjang = isset($_GET['j'])? "S".$_GET['j'] : '';

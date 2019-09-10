@@ -8,12 +8,12 @@
 </script>
 
 <script>
-$(document).ready( function () {
-     var oTable = $('#agenda').dataTable( {
-                    "bJQueryUI": true,
-                    "sPaginationType": "full_numbers",
-				} );		
-} );
+	$(document).ready( function () {
+		var oTable = $('#agenda').dataTable( {
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers",
+		} );		
+	} );
 </script>
 <style>.ui-widget-header{background:none;border:none;}</style>
 
