@@ -19,30 +19,53 @@ switch ($_GET['module']) {
 		# stats Overview
 		public $pengunjung;
 		public $hits;
-		public $totalpengunjung;
-		public $totalhits;
+		public $total_pengunjung;
+		public $total_hits;
+		public $pengunjung_online;
 		
-		public function __construct(){
+		public function __construct($db_config){
+			parent::__construct($db_config);
 			$this->ip       = $_SERVER['REMOTE_ADDR'];
-			$this->tanggal  = date("Ymd");
+			$this->tanggal  = date("Y-m-d");
 			$this->waktu    = time();
 
-			$this->pengunjung = $this->pengunjung();
+			$this->pengunjung 		= $this->pengunjung();
+			$this->hits 			= $this->hits();
+			$this->total_pengunjung = $this->total_pengunjung();
+			$this->total_hits 		= $this->total_hits();
+			$this->pengunjung_online= $this->pengunjung_online();
 		}
 
-		protected function pengunjung()
+		public function pengunjung()
 		{
 			$rows= $this->get_select("SELECT * FROM statistik WHERE tanggal='{$this->tanggal}' GROUP BY ip");
-			// return $rows;
-			return $this->tanggal;
+			return count($rows['data']);
+		}
+
+		public function hits()
+		{
+			return $this->get_select("SELECT SUM(hits) AS hits_count FROM statistik WHERE tanggal='{$this->tanggal}'")['data'][0]->hits_count;
+		}
+
+		public function total_pengunjung()
+		{
+			return $this->get_select("SELECT COUNT(hits) AS total_pengunjung FROM statistik")['data'][0]->total_pengunjung;
+		}
+
+		public function total_hits()
+		{
+			return $this->get_select("SELECT SUM(hits) AS hits_count FROM statistik")['data'][0]->hits_count;
+		}
+		
+		public function pengunjung_online()
+		{
+			$rows = $this->get_select("SELECT * FROM statistik WHERE online > ".($this->waktu - 300)."");
+			return count($rows['data']);
 		}
 		
 	}
 
 	$statistik= new Statistik($db_config);
-	echo '<pre>';
-    print_r($statistik);
-	echo '</pre>';
     
     # code...
   if ($_SESSION['leveluser']=='admin'){
@@ -54,53 +77,32 @@ switch ($_GET['module']) {
         <strong>Info!</strong> Selamat Datang Di DCC UST JOGJA admin panel.
       </div>
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h4><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats</h4>
-        </div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4><i class="fa fa-bar-chart" aria-hidden="true"></i> Stats</h4>
+			</div>
 
-        <div class="panel-body">
-      				
-    			<?php
-
-    				  $pengunjung       = mysql_num_rows(mysql_query("SELECT * FROM statistik WHERE tanggal='$tanggal' GROUP BY ip"));
-    				  $totalpengunjung  = mysql_result(mysql_query("SELECT COUNT(hits) FROM statistik"), 0); 
-    				  $hits             = mysql_result(mysql_query("SELECT SUM(hits) FROM statistik WHERE tanggal='$tanggal'"), 0); 
-    				  $totalhits        = mysql_result(mysql_query("SELECT SUM(hits) FROM statistik"), 0); 
-    				  $tothitsgbr       = mysql_result(mysql_query("SELECT SUM(hits) FROM statistik"), 0); 
-    				  $bataswaktu       = time() - 300;
-    				  $pengunjungonline = mysql_num_rows(mysql_query("SELECT * FROM statistik WHERE online > '$bataswaktu'"));
-
-    				  $path = "joinc/counter/";
-    				  $ext = ".png";
-
-    				  $tothitsgbr = sprintf("%06d", $tothitsgbr);
-    				  for ( $i = 0; $i <= 9; $i++ ){
-    					   $tothitsgbr = str_replace($i, "<img src='$path$i$ext' alt='$i'>", $tothitsgbr);
-    				  }
-
-    			?>
-        				
-    			<article class="stats_overview">
-    				<div class="overview_today">
-    					<p class="overview_day">Today</p>
-    					<p class="overview_count"><?php echo"$pengunjung"; ?></p>
-    					<p class="overview_type">Visits</p>
-    					<p class="overview_count"><?php echo"$hits"; ?></p>
-    					<p class="overview_type">Views</p>
-    				</div>
-    				<div class="overview_previous">
-    					<p class="overview_day">All Time</p>
-    					<p class="overview_count"><?php echo"$totalpengunjung"; ?></p>
-    					<p class="overview_type">Visits</p>
-    					<p class="overview_count"><?php echo"$totalhits"; ?></p>
-    					<p class="overview_type">Views</p>
-    				</div>
-    			</article>
-
-        </div>
-
-      </div>
+			<div class="panel-body">        				
+				<article class="stats_overview">
+					<div class="overview_today">
+						<p class="overview_day">Today</p>
+						<p class="overview_count"><?php echo $statistik->pengunjung ?></p>
+						<p class="overview_type">Visits</p>
+						<p class="overview_count"><?php echo $statistik->hits ?></p>
+						<p class="overview_type">Views</p>
+					</div>
+					<div class="overview_previous">
+						<p class="overview_day">All Time</p>
+						<p class="overview_count"><?php echo $statistik->total_pengunjung ?></p>
+						<p class="overview_type">Visits</p>
+						<p class="overview_count"><?php echo $statistik->total_hits ?></p>
+						<p class="overview_type">Views</p>
+					</div>
+				</article>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel .panel-primary -->
     </div>
       
   <?php

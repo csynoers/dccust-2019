@@ -17,7 +17,7 @@ class dbHelper {
             $response["data"] = null;
             exit;
 		}
-    }
+    } 
 
     function select($table, $where){
         try{
