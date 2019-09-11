@@ -1,8 +1,6 @@
 <?php
-// include "../josys/koneksi.php";
 include "../josys/library.php";
 include "../josys/fungsi_combobox.php";
-// include "../josys/fungsi_amerikatgl.php";
 include "../josys/fungsi_indotgl.php";
 include "../josys/class_paging.php";
 include "../josys/fungsi_rupiah.php";
@@ -56,7 +54,7 @@ switch ($_GET['module']) {
 		{
 			return $this->get_select("SELECT SUM(hits) AS hits_count FROM statistik")['data'][0]->hits_count;
 		}
-		
+
 		public function pengunjung_online()
 		{
 			$rows = $this->get_select("SELECT * FROM statistik WHERE online > ".($this->waktu - 300)."");

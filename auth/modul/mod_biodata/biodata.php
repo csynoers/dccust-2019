@@ -40,10 +40,10 @@
 							<select class="form-control" name="prodi" onchange="this.form.submit()">
 								<option value=""> -- Pilih Prodi -- </option>
 								<?php
-								$prodi = mysql_query("SELECT id_prodi,prodi FROM prodi");
-								while ($dprodi = mysql_fetch_assoc($prodi)) {
+								$rows = $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
+								foreach ($rows as $key => $dprodi) {
 									?>
-									<option value="<?php echo $dprodi['id_prodi'] ?>"><?php echo $dprodi['prodi'] ?></option>
+									<option value="<?php echo $dprodi->id_prodi ?>"><?php echo $dprodi->prodi ?></option>
 									<?php
 								}
 								?>
@@ -91,7 +91,7 @@
 						<?php 	
 							$no=1;
 							if (isset($_POST['prodi'])) {
-								$biodata = mysql_query("
+								$biodata = $db->get_select("
 												SELECT
 														biodata.id_alumni,
 														biodata.nim,
@@ -109,7 +109,7 @@
 												ORDER BY biodata.nim ASC
 												");
 							}else{
-								$biodata = mysql_query("
+								$biodata = $db->get_select("
 													SELECT
 														biodata.id_alumni,
 														biodata.nim,
@@ -128,20 +128,20 @@
 													");
 							}
 							
-							while($b=mysql_fetch_assoc($biodata)){
+							foreach ($biodata['data'] as $key => $b) {
 							?>
 							<tr>  
 			    				<td align="center"><?php echo "$no" ?></td> 
-			    				<td align="center"><?php echo "$b[nim]" ?></td> 
-			    				<td><?php echo "$b[nama]" ?></td>
-			    				<td><?php echo "$b[prodi]" ?></td> 
-								<td><?php echo "$b[th_lulus]" ?></td>
-								<td><?php echo "$b[no_hp]" ?></td>
-								<td><?php echo "$b[email]" ?></td>
-								<td><?php echo "$b[almt_domisili]" ?></td>
-								<td><?php echo "$b[almt_ktp]" ?></td>
+			    				<td align="center"><?php echo "$b->nim" ?></td> 
+			    				<td><?php echo "$b->nama" ?></td>
+			    				<td><?php echo "$b->prodi" ?></td> 
+								<td><?php echo "$b->th_lulus" ?></td>
+								<td><?php echo "$b->no_hp" ?></td>
+								<td><?php echo "$b->email" ?></td>
+								<td><?php echo "$b->almt_domisili" ?></td>
+								<td><?php echo "$b->almt_ktp" ?></td>
 			    				<td align="center">
-			    					<a href="<?php echo "$aksi?module=$module&act=hapus&id=$b[id_alumni]";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>
+			    					<a href="<?php echo "$aksi?module=$module&act=hapus&id=$b->id_alumni";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>
 								</td> 
 							</tr>
 
