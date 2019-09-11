@@ -177,29 +177,32 @@
         </div>
 	</header>
 	<section id="featured">
-	<!-- start slider -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-			<?php
-				$slidehome= $db->get_select("SELECT * FROM slide order by id DESC");
-				foreach ($slidehome['data'] as $key => $sh){
-				$nama_1		= "judul_ina" ;
-				$isi_1		= "isi_ina" ;
-			?>
-              <li>
-              	<a href="<?php echo $sh->link ?>" target="_blank">
-                <img src="joimg/slide/<?php echo "$sh->gambar"; ?>" alt="slider"/>
-              	</a>
-              </li>
-             <?php } ?>
-            </ul>
-        </div>
+		<!-- start slider -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="main-slider" class="flexslider">
+						<ul class="slides">
+						<?php
+							$rows= $db->get_select("SELECT * FROM slide order by id DESC");
+							foreach ($rows['data'] as $key => $sh){
+								echo "
+									<li>
+										<a href='{$sh->link}' target='_blank'>
+											<img src='https://via.placeholder.com/1200x300.png?text={$sh->judul_ina}'  data-src='joimg/slide/{$sh->gambar}' alt='{$sh->judul_ina}'/>
+										</a>
+									</li>
+								";
+							}
+						?>
+						</ul>
+					</div>
+				</div>
+				<!-- /.col -->
 			</div>
+			<!-- /.row -->
 		</div>
-	</div>	
+		<!-- /.container -->	
 	</section>
 	<section id="featured">
 	<div class="container">
@@ -239,7 +242,7 @@
 										</span>
 										</div> 
 										<div class="">
-											<p><img class="" alt="executive_development_program_thumb" src="joimg/karir/<?php echo $k->gambar ?>" style="width:100%;height: auto" /></p>
+											<p><img src="<?php echo "https://via.placeholder.com/512x256.png?text={$k->judul_karir}" ?>" class="" alt="executive_development_program_thumb" data-src="joimg/karir/<?php echo $k->gambar ?>" style="width:100%;height: auto" /></p>
 											<!-- <p>&nbsp;</p> -->
 											<div class="alert alert-info">
 												<ul class="marginX">
@@ -283,7 +286,7 @@
 								</div> 
 								<div class="">
 									
-									<p><img class="" alt="executive_development_program_thumb" src="joimg/event/<?php echo"$s->gambar"; ?>" style="width: 100%;height: auto;" /></p>
+									<p><img src="<?php echo "https://via.placeholder.com/512x256.png?text={$s->nama_agenda_ina}" ?>" class="" alt="executive_development_program_thumb" data-src="joimg/event/<?php echo"$s->gambar"; ?>" style="width: 100%;height: auto;" /></p>
 									<div class="alert alert-info">
 										<ul class="marginX">
 											<li><strong>Tema :  </strong><?php echo $s->tema_agenda_ina ?></li>
@@ -314,7 +317,7 @@
 							foreach ($rows['data'] as $key => $value) {
 						?>
 							<li class="item-thumbss col-lg-3 design" data-id="id-0" data-type="web">
-								<img style="max-height:150px;max-width: 200px;  box-shadow: 0 0 2px #009a54;" src="joimg/ourclient/<?php echo $value->gambar ?>" alt="<?php echo $value->nama_sajian_ina ?>">
+								<img src="<?php echo "https://via.placeholder.com/256x128.png?text={$value->nama_sajian_ina}" ?>" style="max-height:150px;max-width: 200px;  box-shadow: 0 0 2px #009a54;" data-src="joimg/ourclient/<?php echo $value->gambar ?>" alt="<?php echo $value->nama_sajian_ina ?>">
 							</li>
 							<?php } ?>
 						</ul>
@@ -447,6 +450,12 @@
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
-
+<script>
+$(window).load(function () {
+    $('img').each(function(){
+        $(this).attr('src',$(this).data('src'));
+    });
+});
+</script>
 </body>
 </html>
