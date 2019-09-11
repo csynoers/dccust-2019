@@ -59,9 +59,9 @@
 				<?php
 					$rows= $db->get_select("SELECT * FROM banner order by id DESC");
 					foreach ($rows['data'] as $key => $value) {
+						echo '<a href="'.$value->link.'"><img src="https://via.placeholder.com/300x100.png?text='.$value->judul.'" style="width:100%; margin-top: -19px;" data-src="joimg/banner/'.$value->gambar.'"></a>';
+					}
 				?>
-					<a href="<?php echo $value->link ?>"><img src="<?php echo "https://via.placeholder.com/300x100.png?text={}" ?>" style="width:100%; margin-top: -19px;" data-src="joimg/banner/<?php echo $value->gambar ?>"></a>
-				<?php } ?>
 		</div>
 	</div>
 	<div class="thum">

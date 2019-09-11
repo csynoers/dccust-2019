@@ -42,8 +42,8 @@
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                  <a class="navbar-brand" href="home-dccustjogja.html"><img src="img/logo.png" style="max-width:100px"></a>
-                  <a class="navbar-brand" href="home-dccustjogja.html"><img src="img/LOGO UST1.png" style="max-width:75px"></a>
+                  <a class="navbar-brand" href="home-dccustjogja.html"><img src='https://via.placeholder.com/100x100.png?text=Logo' data-src="img/logo.png" style="max-width:100px"></a>
+                  <a class="navbar-brand" href="home-dccustjogja.html"><img src='https://via.placeholder.com/100x100.png?text=Logo' data-src="img/LOGO UST1.png" style="max-width:75px"></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -299,5 +299,12 @@
 <script type='text/javascript' src='service_drop/js_drop/2.js'></script>
 <script type='text/javascript' src='service_drop/js_drop/3.js'></script>
 <script type='text/javascript' src='service_drop/js_drop/4.js'></script>
+<script>
+$(window).load(function () {
+    $('img').each(function(){
+        $(this).attr('src',$(this).data('src'));
+    });
+});
+</script>
 </body>
 </html>
