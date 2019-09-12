@@ -1,9 +1,9 @@
 <?php
-include "../josys/library.php";
-include "../josys/fungsi_combobox.php";
-include "../josys/fungsi_indotgl.php";
-include "../josys/class_paging.php";
-include "../josys/fungsi_rupiah.php";
+include_once "../josys/library.php";
+include_once "../josys/fungsi_combobox.php";
+include_once "../josys/fungsi_indotgl.php";
+include_once "../josys/class_paging.php";
+include_once "../josys/fungsi_rupiah.php";
 
 switch ($_GET['module']) {
   case 'home':
@@ -110,7 +110,7 @@ switch ($_GET['module']) {
   // Bagian Home
   case 'halaman_home':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_home/home.php";
+      include_once "modul/mod_home/home.php";
     }
     break;
 
@@ -118,7 +118,7 @@ switch ($_GET['module']) {
   // Bagian profile
   case 'profile':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_profile/profile.php";
+      include_once "modul/mod_profile/profile.php";
     }
     break;
 
@@ -126,7 +126,7 @@ switch ($_GET['module']) {
   // Bagian profile
   case 'program':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_program/program.php";
+      include_once "modul/mod_program/program.php";
     }
     break;
 
@@ -134,7 +134,7 @@ switch ($_GET['module']) {
   // Bagian profile
   case 'beasiswa':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_beasiswa/beasiswa.php";
+      include_once "modul/mod_beasiswa/beasiswa.php";
     }
     break;
 
@@ -143,14 +143,14 @@ switch ($_GET['module']) {
   // Bagian profile
   case 'proyek':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_service_proyek/service_proyek.php";
+      include_once "modul/mod_service_proyek/service_proyek.php";
     }
     break;
 
 
   case 'spes':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_spesialis/spesialis.php";
+      include_once "modul/mod_spesialis/spesialis.php";
     }
     break;
 
@@ -159,189 +159,190 @@ switch ($_GET['module']) {
   //Grafik
   case 'statis_respon':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/statis_respon.php";
+      include_once "modul/mod_grafik/statis_respon.php";
     }
     break;
 
   case 'respon_rate':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/respon_rate.php";
+      include_once "modul/mod_grafik/respon_rate.php";
     }
     break;
 
   case 'respon_perempuan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/respon_perempuan.php";
+      include_once "modul/mod_grafik/respon_perempuan.php";
     }
     break;
 
   case 'respon_laki':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/respon_laki.php";
+      include_once "modul/mod_grafik/respon_laki.php";
     }
     break;
 
   case 'aspek_pembelajaran':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/aspek_pembelajaran.php";
+      include_once "modul/mod_grafik/aspek_pembelajaran.php";
     }
     break;
 
   case 'pengalaman_belajar':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/pengalaman_belajar.php";
+      include_once "modul/mod_grafik/pengalaman_belajar.php";
     }
     break;
 
   case 'sarana_belajar':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/sarana_belajar.php";
+      include_once "modul/mod_grafik/sarana_belajar.php";
     }
     break;
 
   case 'cari_kerja_pertamas1':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/cari_kerja_pertamas1.php";
+      include_once "modul/mod_grafik/cari_kerja_pertamas1.php";
     }
     break;
 
   case 'cari_kerja_pertamas2':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/cari_kerja_pertamas2.php";
+      include_once "modul/mod_grafik/cari_kerja_pertamas2.php";
     }
     break;
 
   case 'cari_kerja_pertamas3':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/cari_kerja_pertamas3.php";
+      include_once "modul/mod_grafik/cari_kerja_pertamas3.php";
     }
     break;
 
   case 'dapat_kerja_pertamas1':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/dapat_kerja_pertamas1.php";
+      include_once "modul/mod_grafik/dapat_kerja_pertamas1.php";
     }
     break;
 
   case 'dapat_kerja_pertamas2':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/dapat_kerja_pertamas2.php";
+      include_once "modul/mod_grafik/dapat_kerja_pertamas2.php";
     }
     break;
 
   case 'dapat_kerja_pertamas3':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/dapat_kerja_pertamas3.php";
+      include_once "modul/mod_grafik/dapat_kerja_pertamas3.php";
     }
     break;
 
   case 'jumlah_perusahaan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/jumlah_perusahaan.php";
+      include_once "modul/mod_grafik/jumlah_perusahaan.php";
     }
     break;
 
   case 'jumlah_perusahaans2':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/jumlah_perusahaans2.php";
+      include_once "modul/mod_grafik/jumlah_perusahaans2.php";
     }
     break;
 
   case 'jumlah_perusahaans1s2':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/jumlah_perusahaans1s2.php";
+      include_once "modul/mod_grafik/jumlah_perusahaans1s2.php";
     }
     break;
 
   case 'status_kerjas1':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/status_kerjas1.php";
+      include_once "modul/mod_grafik/status_kerjas1.php";
     }
     break;
 
   case 'status_kerjas2':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/status_kerjas2.php";
+      include_once "modul/mod_grafik/status_kerjas2.php";
     }
     break;
 
   case 'status_kerjasemua':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/status_kerjasemua.php";
+      include_once "modul/mod_grafik/status_kerjasemua.php";
     }
     break;
 
   case 'jenis_pekerjaan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/jenis_pekerjaan.php";
+      include_once "modul/mod_grafik/jenis_pekerjaan.php";
     }
     break;
 
   case 'pendapatan_alumni':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/pendapatan_alumni.php";
+      include_once "modul/mod_grafik/pendapatan_alumni.php";
     }
     break;
 
   case 'tingkat_pendidikan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/tingkat_pendidikan.php";
+      include_once "modul/mod_grafik/tingkat_pendidikan.php";
     }
     break;
 
   case 'hubungan_studi_pekerjaan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/hubungan_studi_pekerjaan.php";
+      include_once "modul/mod_grafik/hubungan_studi_pekerjaan.php";
     }
     break;
 
   case 'kompetensi':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/kompetensi.php";
+      include_once "modul/mod_grafik/kompetensi.php";
     }
     break;
 
   case 'alasan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_grafik/alasan.php";
+      include_once "modul/mod_grafik/alasan.php";
     }
     break;
 
 
   case 'biodata':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_biodata/biodata.php";
+		include_once "modul/mod_biodata/biodata.php";
+
     }
     break;
 
 
   case 'kuisa':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kuisa/kuisa.php";
+      include_once "modul/mod_kuisa/kuisa.php";
     }
     break;
 
   case 'kuisb':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kuisb/kuisb.php";
+      include_once "modul/mod_kuisb/kuisb.php";
     }
     break;
 
   case 'kuisc':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kuisc/kuisc.php";
+      include_once "modul/mod_kuisc/kuisc.php";
     }
     break;
 
   case 'kuisd':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kuisd/kuisd.php";
+      include_once "modul/mod_kuisd/kuisd.php";
     }
     break;
 
   case 'kuise':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kuise/kuise.php";
+      include_once "modul/mod_kuise/kuise.php";
     }
     break;
 
@@ -349,13 +350,13 @@ switch ($_GET['module']) {
   // Bagian Tracer Pengguna
   case 'tracer-pengguna':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_tracer_pengguna/tracer_pengguna.php";
+      include_once "modul/mod_tracer_pengguna/tracer_pengguna.php";
     }
     break;
   // Users Tracer Pengguna
   case 'users-tracer-pengguna':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_users_tracer_pengguna/users_tracer_pengguna.php";
+      include_once "modul/mod_users_tracer_pengguna/users_tracer_pengguna.php";
     }
     break;
 
@@ -363,7 +364,7 @@ switch ($_GET['module']) {
   // Bagian kategori album
   case 'katalbum':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_katalbum/katalbum.php";
+      include_once "modul/mod_katalbum/katalbum.php";
     }
     break;
 
@@ -373,7 +374,7 @@ switch ($_GET['module']) {
   // Bagian review
   case 'review':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_review/review.php";
+      include_once "modul/mod_review/review.php";
     }
     break;
 
@@ -381,7 +382,7 @@ switch ($_GET['module']) {
   // Bagian subcategory
   case 'subcategory':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_subcategory/subcategory.php";
+      include_once "modul/mod_subcategory/subcategory.php";
     }
     break;
 
@@ -389,7 +390,7 @@ switch ($_GET['module']) {
   // Bagian karir
   // case 'karir'){
   //   if ($_SESSION['leveluser']=='admin'){
-  //     include "modul/mod_karir/karir.php";
+  //     include_once "modul/mod_karir/karir.php";
   //   }
   // break;
   // 
@@ -397,7 +398,7 @@ switch ($_GET['module']) {
   // Bagian karir
   case 'karir':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_karir/controller_career.php";
+      include_once "modul/mod_karir/controller_career.php";
 
   break;
     
@@ -406,7 +407,7 @@ switch ($_GET['module']) {
   // Bagian Option Career
   case 'option_career':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_option_career/controller_option_career.php";
+      include_once "modul/mod_option_career/controller_option_career.php";
 
   break;
     
@@ -415,7 +416,7 @@ switch ($_GET['module']) {
   // Bagian jaii
   case 'artikel':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_artikel/artikel.php";
+      include_once "modul/mod_artikel/artikel.php";
     }
     break;
 
@@ -423,7 +424,7 @@ switch ($_GET['module']) {
   // Bagian jaringan
   case 'jaringan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_jaringan/jaringan.php";
+      include_once "modul/mod_jaringan/jaringan.php";
     }
     break;
 
@@ -431,7 +432,7 @@ switch ($_GET['module']) {
   // Bagian provinsi
   case 'provinsi':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_provinsi/provinsi.php";
+      include_once "modul/mod_provinsi/provinsi.php";
     }
     break;
 
@@ -439,7 +440,7 @@ switch ($_GET['module']) {
   // Bagian Sektor kegiatan jaringan
   case 'sektor_kegiatan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_sektor_kegiatan/sektor.php";
+      include_once "modul/mod_sektor_kegiatan/sektor.php";
     }
     break;
 
@@ -447,7 +448,7 @@ switch ($_GET['module']) {
   // Bagian kegiatan
   case 'kegiatan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kegiatan/kegiatan.php";
+      include_once "modul/mod_kegiatan/kegiatan.php";
     }
     break;
 
@@ -455,7 +456,7 @@ switch ($_GET['module']) {
   // Bagian Agenda
   case 'agenda':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_agenda/agenda.php";
+      include_once "modul/mod_agenda/agenda.php";
     }
     break;
 
@@ -463,7 +464,7 @@ switch ($_GET['module']) {
   // Bagian Newsletter
   case 'newsletter':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_newsletter/newsletter.php";
+      include_once "modul/mod_newsletter/newsletter.php";
     }
     break;
 
@@ -471,7 +472,7 @@ switch ($_GET['module']) {
   // Bagian Guru merdeka
   case 'merdeka':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_gurumerdeka/merdeka.php";
+      include_once "modul/mod_gurumerdeka/merdeka.php";
     }
     break;
 
@@ -479,7 +480,7 @@ switch ($_GET['module']) {
   // Bagian comment
   case 'comment':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_comment/comment.php";
+      include_once "modul/mod_comment/comment.php";
     }
     break;
 
@@ -487,7 +488,7 @@ switch ($_GET['module']) {
   // Bagian Alumni
   case 'alumni':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_alumni/alumni.php";
+      include_once "modul/mod_alumni/alumni.php";
     }
     break;
 
@@ -495,7 +496,7 @@ switch ($_GET['module']) {
   // Bagian File Alumni
   case 'file_alumni':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_file_alumni/file_alumni.php";
+      include_once "modul/mod_file_alumni/file_alumni.php";
     }
     break;
 
@@ -504,28 +505,28 @@ switch ($_GET['module']) {
   // Jasa ongkos kirim
   case 'jasa':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_jasa/jasa.php";
+      include_once "modul/mod_jasa/jasa.php";
     }
     break;
 
 
   case 'negara':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_negara/negara.php";
+      include_once "modul/mod_negara/negara.php";
     }
     break;
 
 
   case 'fakultas':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_fakultas/fakultas.php";
+      include_once "modul/mod_fakultas/fakultas.php";
     }
     break;
 
 
   case 'prodi':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_prodi/prodi.php";
+      include_once "modul/mod_prodi/prodi.php";
     }
     break;
 
@@ -533,14 +534,14 @@ switch ($_GET['module']) {
 
   case 'kota':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kota/kota.php";
+      include_once "modul/mod_kota/kota.php";
     }
     break;
 
   // Bagian ongkos
   case 'ongkir':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_ongkir/ongkir.php";
+      include_once "modul/mod_ongkir/ongkir.php";
     }
     break;
 
@@ -548,7 +549,7 @@ switch ($_GET['module']) {
   // Bagian subcribe
   case 'subcribe':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_subcribe/subcribe.php";
+      include_once "modul/mod_subcribe/subcribe.php";
     }
     break;
 
@@ -557,7 +558,7 @@ switch ($_GET['module']) {
   // Bagian slideshow
   case 'slideshow':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_slideshow/slideshow.php";
+      include_once "modul/mod_slideshow/slideshow.php";
     }
     break;
 
@@ -565,7 +566,7 @@ switch ($_GET['module']) {
   // Bagian Album
   case 'album':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_album/album.php";
+      include_once "modul/mod_album/album.php";
     }
     break;
 
@@ -573,7 +574,7 @@ switch ($_GET['module']) {
   // Bagian Galeri
   case 'galeri':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_galeri/galeri.php";
+      include_once "modul/mod_galeri/galeri.php";
     }
     break;
 
@@ -581,7 +582,7 @@ switch ($_GET['module']) {
   // Bagian kaos
   case 'kaos':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_kaos/kaos.php";
+      include_once "modul/mod_kaos/kaos.php";
     }
     break;
 
@@ -589,7 +590,7 @@ switch ($_GET['module']) {
   // Bagian video
   case 'video':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_video/video.php";
+      include_once "modul/mod_video/video.php";
     }
     break;
 
@@ -598,7 +599,7 @@ switch ($_GET['module']) {
   // Bagian confirmation
   case 'confirmation':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_confirmation/confirmation.php";
+      include_once "modul/mod_confirmation/confirmation.php";
     }
     break;
 
@@ -606,7 +607,7 @@ switch ($_GET['module']) {
   // Bagian banner
   case 'banner':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_banner/banner.php";
+      include_once "modul/mod_banner/banner.php";
     }
     break;
 
@@ -614,7 +615,7 @@ switch ($_GET['module']) {
   // Bagian buku tamu
   case 'buku_tamu':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_buku_tamu/controller_buku_tamu.php";
+      include_once "modul/mod_buku_tamu/controller_buku_tamu.php";
     }
     break;
 
@@ -622,7 +623,7 @@ switch ($_GET['module']) {
   // Bagian Sajian utama
   case 'sajian':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_sajian/sajian.php";
+      include_once "modul/mod_sajian/sajian.php";
     }
     break;
 
@@ -630,7 +631,7 @@ switch ($_GET['module']) {
   // Bagian subimages
   case 'subimages':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_subimages/subimages.php";
+      include_once "modul/mod_subimages/subimages.php";
     }
     break;
 
@@ -640,7 +641,7 @@ switch ($_GET['module']) {
   // Bagian Title
   case 'title':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_title/title.php";
+      include_once "modul/mod_title/title.php";
     }
     break;
 
@@ -648,7 +649,7 @@ switch ($_GET['module']) {
   // Bagian Description
   case 'description':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_description/description.php";
+      include_once "modul/mod_description/description.php";
     }
     break;
 
@@ -656,7 +657,7 @@ switch ($_GET['module']) {
   // Bagian Keyword
   case 'keyword':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_keyword/keyword.php";
+      include_once "modul/mod_keyword/keyword.php";
     }
     break;
 
@@ -664,7 +665,7 @@ switch ($_GET['module']) {
   // Bagian User
   case 'user':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_user/user.php";
+      include_once "modul/mod_user/user.php";
     }
     break;
 
@@ -672,7 +673,7 @@ switch ($_GET['module']) {
   // Bagian static_content
   case 'static_content':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_static_content/static_content.php";
+      include_once "modul/mod_static_content/static_content.php";
     }
     break;
 
@@ -680,7 +681,7 @@ switch ($_GET['module']) {
   // Bagian download
   case 'download':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_download/download.php";
+      include_once "modul/mod_download/download.php";
     }
     break;
 
@@ -688,7 +689,7 @@ switch ($_GET['module']) {
   // Bagian pesan
   case 'pesan':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_pesan/pesan.php";
+      include_once "modul/mod_pesan/pesan.php";
     }
     break;
 
@@ -696,7 +697,7 @@ switch ($_GET['module']) {
   // Bagian sosial
   case 'sosial':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_sosial/sosial.php";
+      include_once "modul/mod_sosial/sosial.php";
     }
     break;
 
@@ -704,7 +705,7 @@ switch ($_GET['module']) {
   // Bagian overview
   case 'overview':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_overview/overview.php";
+      include_once "modul/mod_overview/overview.php";
     }
     break;
 
@@ -713,7 +714,7 @@ switch ($_GET['module']) {
   // Bagian order
   case 'member':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_member/member.php";
+      include_once "modul/mod_member/member.php";
     }
     break;
 
@@ -721,7 +722,7 @@ switch ($_GET['module']) {
   // Bagian Testimoni
   case 'testimoni':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_testimoni/testimoni.php";
+      include_once "modul/mod_testimoni/testimoni.php";
     }
     break;
 
@@ -730,7 +731,7 @@ switch ($_GET['module']) {
   // Bagian Partner
   case 'partner':
     if ($_SESSION['leveluser']=='admin'){
-      include "modul/mod_partner/partner.php";
+      include_once "modul/mod_partner/partner.php";
     }
     break;
   

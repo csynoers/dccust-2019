@@ -1,6 +1,7 @@
 <?php
-$cek = mysql_query("SELECT nim FROM alumni_daftar WHERE nim = '$_POST[nim]'");
-if (mysql_num_rows($cek)>0) {
+print_r($db);
+$rows = $db->get_select("SELECT nim FROM alumni_daftar WHERE nim = '$_POST[nim]'");
+if ( count($rows['data']) > 0) {
 	$nim = $_POST['nim'];
 	header('Location:kirim-pass-'.$nim.'.html');
 }else{

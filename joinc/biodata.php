@@ -2,14 +2,11 @@
   // check last kuis
   // get id alumni
   $id_alumni= $_SESSION['idnya'];
-  // cek data from last fill kuisioner
-  function check_data($fill,$key){
-    $data   = mysql_query("SELECT id_alumni FROM $fill WHERE id_alumni='$key'");
-    $result = mysql_num_rows($data);
-    return $result;
-  }
 
-  if (check_data('biodata',$id_alumni) > 0) {
+  # cek data from last fill kuisioner
+  $rows= $db->get_select("SELECT id_alumni FROM biodata WHERE id_alumni='{$id_alumni}'");
+
+  if ( count($rows['data']) > 0) {
     # code...
     header('Location:kuis_a.html');
 
@@ -58,8 +55,8 @@ $(document).ready(function() {
             <center><h4><span style="color: #009a54;;" data-mce-mark="1">
                 <?php
                   // bidata
-                  $cek = mysql_query("SELECT * FROM biodata WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek) >0) {
+                  $cek = $db->get_select("SELECT * FROM biodata WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data']) >0) {
                       echo "Biodata";
                   }else{
                       echo "<a href='kuesioner.html'>Biodata</a>";
@@ -68,8 +65,8 @@ $(document).ready(function() {
                   echo "|";
 
                   // A
-                  $cek = mysql_query("SELECT * FROM tb_a WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_a WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Metode Pembelajaran";
                   }else{
                       // echo "<a href='kuis_a.html'>Metode Pembelajaran</a>";
@@ -78,8 +75,8 @@ $(document).ready(function() {
                   echo "|";
 
                   // B
-                  $cek = mysql_query("SELECT * FROM tb_b WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_b WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Masa Transisi";
                   }else{
                      // echo "<a href='kuis_b.html'>Masa Transisi</a>";
@@ -88,8 +85,8 @@ $(document).ready(function() {
                   echo "|";
 
                   // C
-                  $cek = mysql_query("SELECT * FROM tb_c WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_c WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Pekerjaan Sekarang";
                   }else{
                      // echo "<a href='kuis_c.html'>Pekerjaan Sekarang</a>";
@@ -98,8 +95,8 @@ $(document).ready(function() {
                   echo "|";
 
                   // D
-                  $cek = mysql_query("SELECT * FROM tb_d WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_d WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Keselarasan Vertikal & Horizontal";
                   }else{
                      // echo "<a href='kuis_d.html'>Keselarasan Vertikal & Horizontal</a>";
@@ -108,8 +105,8 @@ $(document).ready(function() {
                   echo "|";
 
                   // E
-                  $cek = mysql_query("SELECT * FROM tb_e WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_e WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Kompetensi";
                   }else{
                      // echo "<a href='kuis_e.html'>Kompetensi</a>";
@@ -123,10 +120,10 @@ $(document).ready(function() {
           <h5><span style="color: #009a54;;" data-mce-mark="1">BIODATA</span></h5>
         </div>
         <?php
-          $a = mysql_fetch_object(mysql_query("SELECT a.nama_alumni, a.nim, a.tahun_lulus, a.email, p.prodi,p.id_prodi
+          $a = $db->get_select("SELECT a.nama_alumni, a.nim, a.tahun_lulus, a.email, p.prodi,p.id_prodi
                                                     FROM alumni_daftar a LEFT JOIN prodi p
                                                     ON  a.prodi = p.id_prodi
-                                                    WHERE a.id_alumni = '$_SESSION[idnya]'"));
+                                                    WHERE a.id_alumni = '$_SESSION[idnya]'")['data'][0];
          ?>
         <form method="post" action="aksi_biodata.html" id="contactfrm" role="form">
           <input type="hidden" name="prodi_id" value="<?php echo $a->id_prodi?>">
@@ -143,12 +140,12 @@ $(document).ready(function() {
 
             <div class="form-group">
               <label for="name">5. Nomor HP</label>
-              <input type="number" class="form-control" name="no_hp" required>
+              <input type="telp" maxlength="15" class="form-control" name="no_hp" placeholder="081234567890" required>
             </div>
 
             <div class="form-group">
               <label for="name">7. Alamat Domisili</label>
-              <textarea name="almt_domisili" class="form-control" rows="4" cols="30" required></textarea>
+              <textarea name="almt_domisili" class="form-control" rows="4" cols="30" placeholder="Masukan alamat domisili ..." required></textarea>
             </div>
           </div>
           <div class="col-sm-6 col-lg-6">
@@ -166,7 +163,7 @@ $(document).ready(function() {
               </div>
               <div class="form-group">
                 <label for="name">8. Alamat KTP</label>
-                <textarea name="almt_ktp" class="form-control" rows="4" cols="30" required></textarea>
+                <textarea name="almt_ktp" class="form-control" rows="4" cols="30" placeholder="Masukan alamat sesuai ktp ..." required></textarea>
               </div>
               <button name="submit" type="submit" class="btn btn-lg btn-primary pull-right" id="submit">Lanjutkan</button>
           </div>

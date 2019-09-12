@@ -1,33 +1,44 @@
 <?php
-include "../../josys/koneksi.php";
+include_once "../../josys/koneksi.php";
+include_once "../../josys/dbHelper.php";
+
+$db = new dbHelper($db_config);
+
 function anti_injection($data){
-  $filter = mysql_real_escape_string(stripslashes(strip_tags(htmlspecialchars($data,ENT_QUOTES))));
-  return $filter;
+	$filter = stripslashes(strip_tags(htmlspecialchars($data,ENT_QUOTES)));
+	return $filter;
 }
 
 $email = anti_injection($_POST['username']);
 $pass   = anti_injection(md5($_POST['password']));
 
-
-$login=mysql_query("SELECT * FROM alumni_daftar WHERE email='$email' AND password='$pass'");
-$ketemu=mysql_num_rows($login);
-$r=mysql_fetch_array($login);
+$rows= $db->get_select("SELECT * FROM alumni_daftar WHERE email='$email' AND password='$pass'");
 
 // Apabila username dan password ditemukan
-if ($ketemu > 0){
+if ( count($rows['data']) > 0){
 	session_start();
-	$sid  = session_id();
-  $_SESSION['idnya']=$r['id_alumni'];
-  mysql_query("UPDATE alumni_daftar SET id_session='$sid' WHERE email='$email'");
-  header('location:home-dccustjogja.html');
+	$_SESSION['idnya']= $rows['data'][0]->id_alumni;
+
+	# initialize parameters update 
+	$table="alumni_daftar";
+	$columnsArray=[
+		"id_session" => session_id()
+	];
+	$where=[
+		"email"=>$email
+	];
+	$requiredColumnsArray=["id_session"];
+
+	# update session id
+	$db->update($table, $columnsArray, $where, $requiredColumnsArray);
+	header('location:home-dccustjogja.html');
 }
 else{
-  ?>
-  <script type="text/javascript">
-    alert("Login gagal mohon masukkan username dan password yg benar");
-  </script>
-  <meta http-equiv="refresh" content="0; url=home-dccustjogja.html">
-  <?php
+	?>
+		<script type="text/javascript">
+			alert("Login gagal mohon masukkan username dan password yg benar");
+		</script>
+		<meta http-equiv="refresh" content="0; url=home-dccustjogja.html">
+	<?php
   
-  }
-?>
+}

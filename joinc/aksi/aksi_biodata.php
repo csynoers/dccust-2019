@@ -2,7 +2,7 @@
 	// create validation if string there a single quote
 	$string			= ($_POST['nama']);
 	$cek 			= strpos($string, '\'');
-	if ($cek!='') {
+	if ( $cek != '' ) {
 		$nama_alumni= str_replace('\'', "\'", $string);
 	}else{
 		$nama_alumni= $string;
@@ -12,10 +12,24 @@
 	$ktp		= htmlentities($_POST['almt_ktp']);
 	// echo "";
 
+	# initialize parameter insert biodata
+	$table = 'biodata';
+	$columnsArray = [
+		'id_alumni' => $_SESSION['idnya'],
+		'nama' => $nama_alumni,
+		'nim' => $_POST['nim'],
+		'th_lulus' => $_POST['th_lulus'],
+		'prodi' => $_POST['prodi_id'],
+		'no_hp' => $_POST['no_hp'],
+		'email' => $_POST['email'],
+		'almt_domisili' => $domisili,
+		'almt_ktp' => $ktp,
+	];
+	$requiredColumnsArray= array_keys($columnsArray);
 
-	mysql_query("INSERT INTO biodata (id_alumni, nama, nim, th_lulus, prodi, no_hp, email, almt_domisili, almt_ktp)
-			 VALUES
-			 ('$_SESSION[idnya]', '$nama_alumni', '$_POST[nim]', '$_POST[th_lulus]', '$_POST[prodi_id]', '$_POST[no_hp]', '$_POST[email]', '$domisili', '$ktp')");
+	# insert
+	$db->insert($table, $columnsArray, $requiredColumnsArray);
+	
 	// die();
 	header('Location:kuis_a.html');
 ?>

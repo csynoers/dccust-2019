@@ -3,9 +3,11 @@
   // check last kuis
   // get id alumni
   $id_alumni= $_SESSION['idnya'];
-  // cek data from last fill kuisioner
 
-  if (check_data('tb_a',$id_alumni) > 0) {
+  // cek data from last fill kuisioner
+  $rows= $db->get_select("SELECT id_alumni FROM tb_a WHERE id_alumni='{$id_alumni}' ");
+
+  if ( count($rows['data']) > 0) {
     # code...
     header('Location:kuis_b.html');
 
@@ -24,8 +26,8 @@
               <center><h4><span style="color: #009a54;;" data-mce-mark="1">
                   <?php
                   // bidata
-                  $cek = mysql_query("SELECT * FROM biodata WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek) >0) {
+                  $cek = $db->get_select("SELECT * FROM biodata WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data']) >0) {
                       echo "Biodata";
                   }else{
                       // echo "<a href='kuesioner.html'>Biodata</a>";
@@ -34,8 +36,8 @@
                   echo "|";
 
                   // A
-                  $cek = mysql_query("SELECT * FROM tb_a WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_a WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Metode Pembelajaran";
                   }else{
                       echo "<a href='kuis_a.html'>Metode Pembelajaran</a>";
@@ -44,8 +46,8 @@
                   echo "|";
 
                   // B
-                  $cek = mysql_query("SELECT * FROM tb_b WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_b WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Masa Transisi";
                   }else{
                      // echo "<a href='kuis_b.html'>Masa Transisi</a>";
@@ -54,8 +56,8 @@
                   echo "|";
 
                   // C
-                  $cek = mysql_query("SELECT * FROM tb_c WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_c WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Pekerjaan Sekarang";
                   }else{
                      // echo "<a href='kuis_c.html'>Pekerjaan Sekarang</a>";
@@ -64,8 +66,8 @@
                   echo "|";
 
                   // D
-                  $cek = mysql_query("SELECT * FROM tb_d WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_d WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Keselarasan Vertikal & Horizontal";
                   }else{
                      // echo "<a href='kuis_d.html'>Keselarasan Vertikal & Horizontal</a>";
@@ -74,8 +76,8 @@
                   echo "|";
 
                   // E
-                  $cek = mysql_query("SELECT * FROM tb_e WHERE id_alumni = '$_SESSION[idnya]'");
-                  if (mysql_num_rows($cek)>0) {
+                  $cek = $db->get_select("SELECT * FROM tb_e WHERE id_alumni = '$_SESSION[idnya]'");
+                  if ( count($cek['data'])>0) {
                       echo "Kompetensi";
                   }else{
                      // echo "<a href='kuis_e.html'>Kompetensi</a>";

@@ -1,7 +1,9 @@
 <?php 
+	require_once "../../../josys/koneksi.php";
 	require_once "../../../josys/dbHelper.php";
 	include "../../../josys/fungsi_input.php";
-	$db= new dbHelper();
+	
+	$db= new dbHelper($db_config);
 	$data=array();
 	$data['post']=['users_id'=>input('id')];
 	$data['users']= $db->select($table='user',$where=$data['post']);
