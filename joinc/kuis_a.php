@@ -95,7 +95,7 @@
             <!-- A1 -->
             <div class="col-sm-12 col-lg-12">
               <div class="form-group" id="a1">
-                <label for="name">A1. Menurut Anda seberapa besar penggunaan metode pembelajaran di bawah ini pada program studi anda?</label>
+                <label for="name">1. Menurut Anda seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di program studi Anda?</label>
                 <table class="table table-striped table-condensed table-hover">
                   <thead>
                     <tr>
@@ -115,7 +115,7 @@
                     </tr>
                     <?php
                       $data_a1= array(
-                                '1' => 'Perkuliahan',
+                                '1' => 'Perkuliahan tatap muka',
                                 '2' => 'Demonstrasi (Peragaan)',
                                 '3' => 'Partisipasi dalam proyek riset', 
                                 '4' => 'Magang', 

@@ -39,10 +39,10 @@
 								<select class="form-control" name="prodi" onchange="this.form.submit()">
 									<option value=""> -- Pilih Prodi -- </option>
 									<?php
-									$prodi = mysql_query("SELECT id_prodi,prodi FROM prodi");
-									while ($dprodi = mysql_fetch_assoc($prodi)) {
+									$rows = $db->get_select("SELECT id_prodi,prodi FROM prodi");
+									foreach ($rows['data'] as $key => $value) {
 										?>
-										<option value="<?php echo $dprodi['id_prodi'] ?>"><?php echo $dprodi['prodi'] ?></option>
+										<option value="<?php echo $value->id_prodi ?>"><?php echo $value->prodi ?></option>
 										<?php
 									}
 									?>

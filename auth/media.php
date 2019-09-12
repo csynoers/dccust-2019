@@ -210,6 +210,9 @@ $(function () {
 		'tracer-pengguna'=> 'Hasil Tracer Pengguna',
 		'users-tracer-pengguna'=> 'Informasi Users Tracer Pengguna',
 		// tracer-pengguna
+		
+		// tracer-studi
+		'tracer-study-category'=> 'Informasi Kategori Tracer Studi',
 
 	);
 ?>
@@ -469,6 +472,38 @@ $(function () {
 											}
 										?>
 										</ul>
+									</div>
+								</div>
+							</li>
+
+							<li class="panel panel-default" id="dropdown">
+								<a data-toggle="collapse" href="#dropdown-tracer-study">
+									<i class="fa fa-list-ul" aria-hidden="true"></i> Tracer Studi <span class="caret"></span>
+								</a>
+
+								<!-- Dropdown level 2 -->
+								<div id="dropdown-tracer-study" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="?module=tracer-study-category">Kategori</a></li>
+											<li><a href="?module=tracer-study">Users</a></li>
+											
+
+											<!-- Dropdown level 21 -->
+											<!-- <li class="panel panel-default" id="dropdown">
+												<a data-toggle="collapse" href="#dropdown-lvl21">Lowongan <span class="caret"></span>
+												</a>
+												<div id="dropdown-lvl21" class="panel-collapse collapse">
+													<div class="panel-body">
+														<ul class="nav navbar-nav">
+															<li><a href="?module=karir">Lowongan</a></li>
+															<li><a href="?module=option_career">Setting Option Lowongan</a></li>
+														</ul>
+													</div>
+												</div>
+											</li>
+											<li><a href="?module=sajian">Kerjasama</a></li>
+ -->									</ul>
 									</div>
 								</div>
 							</li>
