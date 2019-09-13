@@ -1,57 +1,76 @@
 <?php
-    class ControllerTracerStudyCategory extends ModelTracerStudyCategory
+    class ControllerTracerStudyCategory
     {
         public function __construct($db_config){
-			parent::__construct($db_config);
+			$this->Model 	= new ModelTracerStudyCategory($db_config);
+			$this->aksi		= 'modul/mod_tracer_study_category/ControllerTracerStudyCategory.php';
+			$this->module 	= 'tracer-study-category';
+
+			# get parameter $_GET['act']
+			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
+				case 'add':
+					# view add form
+					include_once("modul/mod_tracer_study_category/view_add.php");
+					break;
+
+				case 'edit':
+					# view edit form
+					$rows= $this->Model->get_tracer_studies($_GET['id']);
+					include_once("modul/mod_tracer_study_category/view_edit.php");
+					break;
+
+				case 'store':
+					if ( $_POST['operation']=='insert' ) {
+						# insert
+						$this->Model->post= $_POST;
+						if ( $this->Model->insert_tracer_studies() ) {
+							# TRUE
+							# location header
+							echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
+							
+						} else {
+							# FALSE
+							# location header
+							echo "<script>alert('Data gagal ditambahkan'); window.history.back();</script>";
+						}
+
+					} else {
+						# update
+						$this->Model->post= $_POST;
+						if ( $this->Model->update_tracer_studies() ) {
+							# TRUE
+							# location header
+							echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
+							
+						} else {
+							# FALSE
+							# location header
+							echo "<script>alert('Data gagal diubah'); window.history.back();</script>";
+						}
+
+					}
+					
+					break;
+
+				case 'delete':
+					# code...
+					break;
+				
+				default:
+					# if action is null load view index
+					$rows= $this->Model->get_tracer_studies();
+					include_once("modul/mod_tracer_study_category/view_index.php");
+					break;
+			}
+		}
+
+		// fake "extends C" using magic function
+		public function __call($method, $args)
+		{
+		  $this->c->$method($args[0]);
 		}
 	}
 	
 	$load= new ControllerTracerStudyCategory($db_config);
     
 ?>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="panel panel-primary">
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-					  <a class="navbar-brand" href="#">Daftar Informasi Kategori Tracer Studi</a>
-					</div>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="#" onclick="location.href='?module=<?php echo $module;?>&act=update_header'">
-								<button type="button" class="btn btn-primary">Update Header</button>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-			<div class="panel-body">
-				<table id="alumni" class="display" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-		    				<th>No</th>
-		    				<th>NIM</th>
-		    				<th>Nama alumni</th>
-		    				<th>Tahun Lulus</th>
-		    				<th>Program Studi</th>
-		    				<th>Action</th>
-						</tr>
-					</thead>
-
-					<tbody></tbody>
-
-					<tfoot>
-						<tr>
-		    				<th>No</th>
-		    				<th>NIM</th>
-		    				<th>Nama alumni</th>
-		    				<th>Tahun Lulus</th>
-		    				<th>Program Studi</th>
-		    				<th>Action</th>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
-            <!-- /.panel-body -->
-		</div>
-	</div>
