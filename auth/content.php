@@ -346,11 +346,19 @@ switch ($_GET['module']) {
     }
 	break;
 	
-	# Tracer Studi
+	# Tracer Studi Category
 	case 'tracer-study-category':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "modul/mod_tracer_study_category/ModelTracerStudyCategory.php";
 			include_once "modul/mod_tracer_study_category/ControllerTracerStudyCategory.php";
+		}
+	break;
+	
+	# Tracer Studi Detail
+	case 'tracer-study-detail':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
+			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
 		}
 	break;
 

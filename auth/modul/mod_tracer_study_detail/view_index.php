@@ -8,7 +8,7 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Kategori Tracer Studi</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Detail Tracer Studi</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
@@ -34,7 +34,7 @@
                             echo "
                                 <tr>
                                     <td>{$no}</td>
-                                    <td>{$value->tracer_study_title}</td>
+                                    <td>{$value->tracer_study_detail_title}</td>
                                     <td>
                                         <a href='?module={$this->module}&act=edit&id={$value->tracer_study_id}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>

@@ -213,6 +213,7 @@ $(function () {
 		
 		// tracer-studi
 		'tracer-study-category'=> 'Informasi Kategori Tracer Studi',
+		'tracer-study-detail'=> 'Informasi Detail Tracer Studi',
 
 	);
 ?>
@@ -486,7 +487,7 @@ $(function () {
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
 											<li><a href="?module=tracer-study-category">Kategori</a></li>
-											<li><a href="?module=tracer-study">Users</a></li>
+											<li><a href="?module=tracer-study-detail">Detail</a></li>
 											
 
 											<!-- Dropdown level 21 -->
