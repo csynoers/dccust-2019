@@ -36,7 +36,7 @@
         {
             $table                  = 'tracer_studies_detail';
             $columnsArray           = [
-                'tracer_study_title'=> $this->post['tracer_study_detail_title'],
+                'tracer_study_detail_title'=> $this->post['tracer_study_detail_title'],
                 'tracer_study_id'=> $this->post['tracer_study_id'],
             ];
             $where                  = [
