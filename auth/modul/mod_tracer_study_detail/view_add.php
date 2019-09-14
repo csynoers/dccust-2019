@@ -1,7 +1,7 @@
 <?php
     $option_kategori= '';
     foreach ($kategori as $key => $value) {
-        $option_kategori .= "<option value='{$value->tracer_study_id}'>{$value->tracer_study_sort} {$value->tracer_study_title}</option>";
+        $option_kategori .= "<option value='{$value->tracer_study_id}'>{$value->tracer_study_title}</option>";
     }
 
 echo "

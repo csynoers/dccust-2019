@@ -59,7 +59,8 @@
         public function get_tracer_studies($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT * FROM tracer_studies ORDER BY tracer_study_sort")['data'];
+                return $this->db->get_select("SELECT *FROM tracer_studies ORDER BY tracer_study_sort")['data'];
+                // return $this->db->get_select("SELECT *,(SELECT COUNT(tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS childs FROM tracer_studies AS t HAVING childs=0 ORDER BY t.tracer_study_sort")['data'];
                 
             } else {
                 return $this->db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_id='{$id}' ")['data'];

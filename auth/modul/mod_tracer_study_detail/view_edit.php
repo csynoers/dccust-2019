@@ -1,10 +1,8 @@
 <?php
     foreach ($rows as $key => $value) {
         $option_kategori= '';
-        $no=1;
         foreach ($kategori as $key_sub => $value_sub) {
-            $option_kategori .= "<option value='{$value_sub->tracer_study_id}' ".($value_sub->tracer_study_id==$value->tracer_study_id ? 'selected disabled' : NULL ).">{$no}. {$value_sub->tracer_study_title}</option>";
-            $no++;
+            $option_kategori .= "<option value='{$value_sub->tracer_study_id}' ".($value_sub->tracer_study_id==$value->tracer_study_id ? 'selected disabled' : NULL ).">{$value_sub->tracer_study_title}</option>";
         }
 
         echo "
