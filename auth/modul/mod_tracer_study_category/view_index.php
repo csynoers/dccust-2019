@@ -21,7 +21,7 @@
             <table class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Sort</th>
                         <th>Title</th>
                         <th>Childs</th>
                         <th>Actions</th>
@@ -52,7 +52,7 @@
 
                 <tfoot>
                     <tr>
-                        <th>No</th>
+                        <th>Sort</th>
                         <th>Title</th>
                         <th>Childs</th>
                         <th>Actions</th>

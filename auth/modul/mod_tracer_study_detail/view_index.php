@@ -23,6 +23,7 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Parents</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@
                                 <tr>
                                     <td>{$no}</td>
                                     <td>{$value->tracer_study_detail_title}</td>
+                                    <td>{$value->tracer_study_sort}</td>
                                     <td>
                                         <a href='?module={$this->module}&act=edit&id={$value->tracer_study_detail_id}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
@@ -54,6 +56,7 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Parents</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>

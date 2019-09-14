@@ -1,9 +1,7 @@
 <?php
     $option_kategori= '';
-    $no= 1;
     foreach ($kategori as $key => $value) {
-        $option_kategori .= "<option value='{$value->tracer_study_id}'>{$no}. {$value->tracer_study_title}</option>";
-        $no++;
+        $option_kategori .= "<option value='{$value->tracer_study_id}'>{$value->tracer_study_sort} {$value->tracer_study_title}</option>";
     }
 
 echo "

@@ -8,7 +8,7 @@
         public function get_tracer_studies_detail($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT * FROM tracer_studies_detail")['data'];
+                return $this->db->get_select("SELECT * FROM tracer_studies_detail AS td LEFT JOIN tracer_studies AS t ON t.tracer_study_id=td.tracer_study_id ORDER BY t.tracer_study_sort")['data'];
                 
             } else {
                 return $this->db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_detail_id='{$id}' ")['data'];
@@ -59,7 +59,7 @@
         public function get_tracer_studies($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT * FROM tracer_studies")['data'];
+                return $this->db->get_select("SELECT * FROM tracer_studies ORDER BY tracer_study_sort")['data'];
                 
             } else {
                 return $this->db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_id='{$id}' ")['data'];

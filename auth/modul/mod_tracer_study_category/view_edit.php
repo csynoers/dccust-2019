@@ -13,7 +13,7 @@
                             <div class='container-fluid'>
                                 <div class='form-group'>
                                     <label for='sort'>Sort :</label>
-                                    <input value='{$value->tracer_study_sort}' name='tracer_study_sort' class='form-control' placeholder='Digunakan untuk mengurutkan bisa number(0-9) atau text(a-z) ' required>
+                                    <input type='number' value='{$value->tracer_study_sort}' name='tracer_study_sort' class='form-control' placeholder='Digunakan untuk mengurutkan bisa number(0-9) atau decimal' required>
                                 </div>
                                 <div class='form-group'>
                                     <label for='judul'>Title :</label>

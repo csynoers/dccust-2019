@@ -12,7 +12,7 @@ echo "
                     <div class='container-fluid'>
                         <div class='form-group'>
                             <label for='sort'>Sort :</label>
-                            <input name='tracer_study_sort' class='form-control' placeholder='Digunakan untuk mengurutkan bisa number(0-9) atau text(a-z) ' required>
+                            <input type='number' name='tracer_study_sort' class='form-control' placeholder='Digunakan untuk mengurutkan bisa number(0-9) atau decimal ' required>
                         </div>
                         <div class='form-group'>
                             <label for='judul'>Title :</label>
