@@ -36,7 +36,7 @@
                                     <td>{$no}</td>
                                     <td>{$value->tracer_study_detail_title}</td>
                                     <td>
-                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_id}'>
+                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_detail_id}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <!--<a href='?module={$this->module}&act=hapus&id={$value->tracer_study_id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
