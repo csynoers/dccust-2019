@@ -11,7 +11,7 @@
                     <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Kategori Tracer Studi</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                    <li><a href="?module=<?php echo $this->module ?>&act=add&parent=<?php echo $this->parent ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
                 </ul>
             </div>
         </nav>
@@ -23,20 +23,21 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Childs</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php
-                        $no= 1;
                         foreach ($rows as $key => $value) {
                             echo "
                                 <tr>
-                                    <td>{$no}</td>
+                                    <td>{$value->tracer_study_sort}</td>
                                     <td>{$value->tracer_study_title}</td>
+                                    <td><a href='?module={$this->module}&parent={$value->tracer_study_id}' title='View childs of this title'>{$value->childs}</a></td>
                                     <td>
-                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_id}'>
+                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_id}&parent={$this->parent}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <!--<a href='?module={$this->module}&act=hapus&id={$value->tracer_study_id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
@@ -45,7 +46,6 @@
                                     </td>
                                 </tr>
                             ";
-                            $no++;
                         }
                     ?>
                 </tbody>
@@ -54,6 +54,7 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Childs</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>

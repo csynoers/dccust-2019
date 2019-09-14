@@ -12,6 +12,10 @@
                         <div class='panel-body'>
                             <div class='container-fluid'>
                                 <div class='form-group'>
+                                    <label for='sort'>Sort :</label>
+                                    <input value='{$value->tracer_study_sort}' name='tracer_study_sort' class='form-control' placeholder='Digunakan untuk mengurutkan bisa number(0-9) atau text(a-z) ' required>
+                                </div>
+                                <div class='form-group'>
                                     <label for='judul'>Title :</label>
                                     <textarea name='tracer_study_title' class='form-control'>{$value->tracer_study_title}</textarea>
                                 </div>
@@ -25,6 +29,7 @@
 
                         <div class='panel-footer'>
                             <input type='hidden' name='tracer_study_id' value='{$value->tracer_study_id}'>
+                            <input type='hidden' name='tracer_study_parent' value='{$this->parent}'>
                             <input type='hidden' name='operation' value='update'>
                             <button type='submit' class='btn btn-primary'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
                             <button type='button' onclick='self.history.back()' class='btn btn-info'><i class='fa fa-backward' aria-hidden='true'></i> Back</button>

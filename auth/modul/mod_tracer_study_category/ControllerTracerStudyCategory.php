@@ -10,11 +10,13 @@
 			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
 				case 'add':
 					# view add form
+					$this->parent 			= empty($_GET['parent']) ? 0 : $_GET['parent'] ;
 					include_once("modul/mod_tracer_study_category/view_add.php");
 					break;
 
 				case 'edit':
 					# view edit form
+					$this->parent 			= empty($_GET['parent']) ? 0 : $_GET['parent'] ;
 					$rows= $this->Model->get_tracer_studies($_GET['id']);
 					include_once("modul/mod_tracer_study_category/view_edit.php");
 					break;
@@ -58,6 +60,8 @@
 				
 				default:
 					# if action is null load view index
+					$this->parent 			= empty($_GET['parent']) ? 0 : $_GET['parent'] ; 
+					$this->Model->parent_id = $this->parent;
 					$rows= $this->Model->get_tracer_studies();
 					include_once("modul/mod_tracer_study_category/view_index.php");
 					break;
