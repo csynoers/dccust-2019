@@ -25,13 +25,13 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width: 45px;"></td>
+					<td style="width: 45px;">No</td>
 					<td style="width: 45px;">1</td>
 					<td style="width: 45px;">2</td>
 					<td style="width: 45px;">3</td>
 					<td style="width: 45px;">4</td>
 					<td style="width: 45px;">5</td>
-					<td></td>
+					<td>Pertanyaan</td>
 				</tr>';
 
 				foreach ($rows as $key => $value) {
@@ -53,6 +53,49 @@
 		';
 		return $html;
 	}
+
+	function single_radio_button($rows){
+		$html= '';
+		
+		$html .= '
+		<table class="table table-striped table-condensed table-hover">
+			<tbody>
+				<tr>
+					<td style="width: 45px;">No</td>
+					<td style="width: 45px;">&nbsp;</td>
+					<td><strong>Pertanyaan</strong></td>
+				</tr>';
+
+				foreach ($rows as $key => $value) {
+					$html .= '
+					<div class="col-sm-12">
+						<div class="radio">
+							<label>
+								<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
+								'.strip_tags($value->tracer_study_detail_title).'
+							</label>
+						</div>
+					</div>
+					';
+
+					// $html .= '<tr>';
+					// 	$html .= '<td>'.($key+1).'</td>';
+					// 		$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
+					// 	$html .= '<td>'.strip_tags($value->tracer_study_detail_title).'</td>';
+					// $html .= '</tr>';
+				}
+
+		$html .= '
+			</tbody>
+		</table>
+		';
+		return $html;
+	}
+	function none($rows)
+	{
+		// return print_r($rows);
+		return NULL;
+	}
 ?>
 <section id="featured">
 	<div class="container">
@@ -71,14 +114,16 @@
 							$sub_html = strip_tags($value->tracer_study_desc).'<br>';
 							if ( $value->child_count == 0 ) {
 								$rows_sub= $db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value->tracer_study_id}' ")['data'];
-								$sub_html .= multiple_radio_button($rows_sub);
+								$varFunction = $value->tracer_study_form_type;
+								$sub_html .= $varFunction($rows_sub);
 
 							} else {
 								$rows_child= $db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_parent='{$value->tracer_study_id}' ")['data'];
 								foreach ($rows_child as $key_rows_child => $value_rows_child) {
 									$rows_sub_child_html = strip_tags($value_rows_child->tracer_study_desc).'<br>';
 									$rows_child_sub = $db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value_rows_child->tracer_study_id}' ")['data'];
-									$rows_sub_child_html .= multiple_radio_button($rows_child_sub);
+									$varFunction = $value_rows_child->tracer_study_form_type;
+									$rows_sub_child_html .= $varFunction($rows_child_sub);
 									$sub_html .= '
 									<div class="col-sm-12">
 										<div class="panel panel-default">
