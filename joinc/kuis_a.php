@@ -25,25 +25,25 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width: 45px;">No</td>
-					<td style="width: 45px;">1</td>
-					<td style="width: 45px;">2</td>
-					<td style="width: 45px;">3</td>
-					<td style="width: 45px;">4</td>
-					<td style="width: 45px;">5</td>
-					<td>Pertanyaan</td>
+					<td style="width: 45px;padding:1em">No</td>
+					<td style="width: 45px;padding:1em 0.5em">1</td>
+					<td style="width: 45px;padding:1em 0.5em">2</td>
+					<td style="width: 45px;padding:1em 0.5em">3</td>
+					<td style="width: 45px;padding:1em 0.5em">4</td>
+					<td style="width: 45px;padding:1em 0.5em">5</td>
+					<td style="padding:1em 0em">Pertanyaan</td>
 				</tr>';
 
 				foreach ($rows as $key => $value) {
 					// print_r($value);
 					$html .= '<tr>';
-						$html .= '<td>'.($key+1).'</td>';
+						$html .= '<td style="padding:1em">'.($key+1).'</td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="2" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="3" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="4" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="5" required=""></label></div></td>';
-						$html .= '<td>'.strip_tags($value->tracer_study_detail_title).'</td>';
+						$html .= '<td style="padding:1em 0em">'.strip_tags($value->tracer_study_detail_title).'</td>';
 					$html .= '</tr>';
 				}
 
@@ -56,39 +56,35 @@
 
 	function single_radio_button($rows){
 		$html= '';
-		
-		$html .= '
-		<table class="table table-striped table-condensed table-hover">
-			<tbody>
-				<tr>
-					<td style="width: 45px;">No</td>
-					<td style="width: 45px;">&nbsp;</td>
-					<td><strong>Pertanyaan</strong></td>
-				</tr>';
+		foreach ($rows as $key => $value) {
+			$html .= '
+			<div class="col-sm-12">
+				<div class="radio">
+					<label>
+						<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
+						'.strip_tags($value->tracer_study_detail_title).'
+					</label>
+				</div>
+			</div>
+			';
+		}
+		return $html;
+	}
+	function checkbox($rows){
+		$html= '';
 
 				foreach ($rows as $key => $value) {
 					$html .= '
 					<div class="col-sm-12">
-						<div class="radio">
+						<div class="checkbox">
 							<label>
-								<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
+								<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'">
 								'.strip_tags($value->tracer_study_detail_title).'
 							</label>
 						</div>
 					</div>
 					';
-
-					// $html .= '<tr>';
-					// 	$html .= '<td>'.($key+1).'</td>';
-					// 		$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
-					// 	$html .= '<td>'.strip_tags($value->tracer_study_detail_title).'</td>';
-					// $html .= '</tr>';
 				}
-
-		$html .= '
-			</tbody>
-		</table>
-		';
 		return $html;
 	}
 	function none($rows)

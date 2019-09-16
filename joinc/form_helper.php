@@ -28,16 +28,16 @@
 		return $text;
 	}
 
-	function checkbox($name,$id,$value,$label){
-		$checkbox= "
-					<div class='checkbox'>
-						<label>
-							<input type='checkbox' name='$name' id='$id' value='$value'>
-							$label
-						</label>
-					</div>";
-		return $checkbox;
-	}
+	// function checkbox($name,$id,$value,$label){
+	// 	$checkbox= "
+	// 				<div class='checkbox'>
+	// 					<label>
+	// 						<input type='checkbox' name='$name' id='$id' value='$value'>
+	// 						$label
+	// 					</label>
+	// 				</div>";
+	// 	return $checkbox;
+	// }
 
 	function select_option($name,$id,$loop,$label){
 		echo 	"
