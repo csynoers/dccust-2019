@@ -36,6 +36,7 @@
 
 				foreach ($rows as $key => $value) {
 					// print_r($value);
+					$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
 					$html .= '<tr>';
 						$html .= '<td style="padding:1em">'.($key+1).'</td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
@@ -43,7 +44,7 @@
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="3" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="4" required=""></label></div></td>';
 							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_detail_id.']" value="5" required=""></label></div></td>';
-						$html .= '<td style="padding:1em 0em">'.strip_tags($value->tracer_study_detail_title).'</td>';
+						$html .= '<td style="padding:1em 0em">'.strip_tags($value->tracer_study_detail_title).$add_input_text.'</td>';
 					$html .= '</tr>';
 				}
 
@@ -57,12 +58,14 @@
 	function single_radio_button($rows){
 		$html= '';
 		foreach ($rows as $key => $value) {
+			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
 			$html .= '
 			<div class="col-sm-12">
 				<div class="radio">
 					<label>
 						<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
 						'.strip_tags($value->tracer_study_detail_title).'
+						'.$add_input_text.'
 					</label>
 				</div>
 			</div>
@@ -74,12 +77,14 @@
 		$html= '';
 
 				foreach ($rows as $key => $value) {
+					$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
 					$html .= '
 					<div class="col-sm-12">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'">
 								'.strip_tags($value->tracer_study_detail_title).'
+								'.$add_input_text.'
 							</label>
 						</div>
 					</div>
@@ -91,6 +96,10 @@
 	{
 		// return print_r($rows);
 		return NULL;
+	}
+	function input_text($row)
+	{
+		return '<input type="text" class="form-control" placeholder="Masukan lainnya ..." >';
 	}
 ?>
 <section id="featured">

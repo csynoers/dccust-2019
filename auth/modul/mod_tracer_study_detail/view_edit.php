@@ -2,7 +2,7 @@
     foreach ($rows as $key => $value) {
         $option_kategori= '';
         foreach ($kategori as $key_sub => $value_sub) {
-            $option_kategori .= "<option value='{$value_sub->tracer_study_id}' ".($value_sub->tracer_study_id==$value->tracer_study_id ? 'selected disabled' : NULL ).">{$value_sub->tracer_study_title}</option>";
+            $option_kategori .= "<option value='{$value_sub->tracer_study_id}' ".($value_sub->tracer_study_id==$value->tracer_study_id ? 'selected' : NULL ).">{$value_sub->tracer_study_title}</option>";
         }
 
         echo "
