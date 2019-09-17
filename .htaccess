@@ -96,9 +96,9 @@ RewriteRule ^Merapi-Merbabu-Hotel-Downloads$ media.php?mod=download [QSA,L]
 RewriteRule ^Merapi-Merbabu-Hotel-Room-Type\.html$ media.php?mod=roomtype [QSA,L]
 RewriteRule ^Merapi-Merbabu-Hotel-Room-Reservation-Person\.html$ media.php?mod=reservationperson [QSA,L]
 
-RewriteCond %{HTTP_HOST} ^mmhotel\.co\.id$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.mmhotel\.co\.id$
-RewriteRule ^/?$ "https\:\/\/www\.mmhotel\-resorts\.com" [R=301,L]
+#RewriteCond %{HTTP_HOST} ^mmhotel\.co\.id$ [OR]
+#RewriteCond %{HTTP_HOST} ^www\.mmhotel\.co\.id$
+#RewriteRule ^/?$ "https\:\/\/www\.mmhotel\-resorts\.com" [R=301,L]
 
 #ErrorDocument 404 joinc/view/error/404.php
 
