@@ -289,12 +289,12 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 1 -->
-								<div id="dropdown-lvl1" class="panel-collapse collapse">
+								<div id="dropdown-lvl1" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content') ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="?module=halaman_home">Home</a></li>
-											<li><a href="?module=profile">Profile</a></li>
-											<li><a href="?module=static_content&id=7">Contact Us</a></li>
+											<li><a href="?module=halaman_home" <?php echo ($_GET['module']=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
+											<li><a href="?module=profile" <?php echo ($_GET['module']=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
+											<li><a href="?module=static_content&id=7" <?php echo ($_GET['module']=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
 										</ul>
 									</div>
 								</div>
@@ -306,24 +306,24 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='sajian' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="?module=artikel">Artikel</a></li>
-											<li><a href="?module=program">Program</a></li>
-											<li><a href="?module=beasiswa">Beasiswa</a></li>
-											<li><a href="?module=agenda">Agenda</a></li>
+											<li><a href="?module=artikel" <?php echo ($_GET['module']=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
+											<li><a href="?module=program" <?php echo ($_GET['module']=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
+											<li><a href="?module=beasiswa" <?php echo ($_GET['module']=='beasiswa') ? 'class="bg-info"' : NULL ; ?> >Beasiswa</a></li>
+											<li><a href="?module=agenda" <?php echo ($_GET['module']=='agenda') ? 'class="bg-info"' : NULL ; ?> >Agenda</a></li>
 											
 
 											<!-- Dropdown level 21 -->
 											<li class="panel panel-default" id="dropdown">
 												<a data-toggle="collapse" href="#dropdown-lvl21">Lowongan <span class="caret"></span>
 												</a>
-												<div id="dropdown-lvl21" class="panel-collapse collapse">
+												<div id="dropdown-lvl21" class="panel-collapse collapse <?php echo ($_GET['module']=='karir' || $_GET['module']=='option_career') ? 'in' : NULL ; ?>">
 													<div class="panel-body">
 														<ul class="nav navbar-nav">
-															<li><a href="?module=karir">Lowongan</a></li>
-															<li><a href="?module=option_career">Setting Option Lowongan</a></li>
+															<li><a href="?module=karir" <?php echo ($_GET['module']=='karir') ? 'class="bg-info"' : NULL ; ?> >Lowongan</a></li>
+															<li><a href="?module=option_career" <?php echo ($_GET['module']=='option_career') ? 'class="bg-info"' : NULL ; ?> >Setting Option Lowongan</a></li>
 														</ul>
 													</div>
 												</div>

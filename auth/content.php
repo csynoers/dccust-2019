@@ -107,12 +107,13 @@ switch ($_GET['module']) {
   }
   break;
 
-  // Bagian Home
-  case 'halaman_home':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_home/home.php";
-    }
-    break;
+	// Bagian Home
+	case 'halaman_home':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_home/ModelHome.php";
+			include_once "modul/mod_home/ControllerHome.php";
+		}
+    	break;
 
 
   // Bagian profile
