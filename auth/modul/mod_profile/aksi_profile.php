@@ -31,7 +31,6 @@ if ($module=='profile' AND $act=='update'){
 	UploadProfile($nama_file_unik);
   
     mysql_query("UPDATE profile SET nama_profile_en 		= '$_POST[judul_en]',
-								    nama_profile_ina 		= '$_POST[judul_ina]',
 									seo_en 					= '$judul_seo_en',
 									seo_ina 				= '$judul_seo_ina',
 									isi_profile_en 			= '".mysql_real_escape_string($_POST['isi_en'])."',

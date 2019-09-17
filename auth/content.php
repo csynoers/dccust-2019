@@ -109,19 +109,27 @@ switch ($_GET['module']) {
 
 	// Bagian Home
 	case 'halaman_home':
-		if ($_SESSION['leveluser']=='admin'){
+		if ($_SESSION['leveluser']=='admin'){			
 			include_once "modul/mod_home/ModelHome.php";
 			include_once "modul/mod_home/ControllerHome.php";
 		}
     	break;
 
 
-  // Bagian profile
-  case 'profile':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_profile/profile.php";
-    }
-    break;
+	// Bagian profile
+	case 'profile':
+		if ($_SESSION['leveluser']=='admin'){
+			// class Helper
+			// {
+				function jancuk()
+				{
+					return 'jancuk';
+				}
+			// }
+			include_once "modul/mod_profile/ModelProfile.php";
+			include_once "modul/mod_profile/ControllerProfile.php";
+		}
+		break;
 
 
   // Bagian profile
