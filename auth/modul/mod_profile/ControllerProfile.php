@@ -3,7 +3,6 @@
     {
         public function __construct($db_config){
 			$this->Model 	= new ModelProfile($db_config);
-			// $this->Helper 	= new Helper();
 			$this->aksi		= 'modul/mod_profile/ControllerProfile.php';
             $this->module 	= 'profile';
 
@@ -17,12 +16,30 @@
 						# update
                         $this->Model->post= $_POST;
                         if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                            echo jancuk();
-                            echo '<pre>';
-                            var_dump($_FILES['gambar']['tmp_name']);
-                            // print_r($this->Model->post);
-                            echo '</pre>';
-                            die();
+							$this->Model->post['gambar'] = img_resize($_FILES['gambar'],1300,'../joimg/profile/'); 
+							if ( $this->Model->post['gambar'] != 'error' ) {
+								$row= $this->Model->get_profile()[0];
+								if( ($row->gambar != '') && file_exists("../joimg/profile/{$row->gambar}") ){
+									unlink("../joimg/profile/{$row->gambar}");
+								}
+
+								if ( $this->Model->update_profile() ) {
+									# TRUE
+									# location header
+									echo "<script>alert('Data berhasil diubah'); window.history.go(-1);</script>";
+									
+								} else {
+									# FALSE
+									# location header
+									echo "<script>alert('Data gagal diubah'); window.history.back();</script>";
+	
+								}
+
+							} else {
+								# FALSE
+                                # location header
+                                echo "<script>alert('Data gagal diupload'); window.history.back();</script>";
+							}
 
                         } else {
                             if ( $this->Model->update_profile() ) {

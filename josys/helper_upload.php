@@ -21,43 +21,37 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
-    # return file_name (string) 
     */
-    function img_resize($files,$config){
-        // set default
-        $config['max-width']= 1024;
-        $config['path_destination']= ''; 
+    function img_resize($files,$maxDim,$path_destination){
         // $maxDim = 800;
-        $tmp_name = $files['tmp_name'];
-        $info = getimagesize($tmp_name);
-        $mime = $info['mime'];
+        $tmp_name   = $files['tmp_name'];
+        $info     = getimagesize($tmp_name);
+        $mime     = $info['mime'];
         
         switch ($mime) {
             case 'image/jpeg':
-                $image_create_func = 'imagecreatefromjpeg';
-                $image_create = 'imagecreatetruecolor';
-                $image_save_func = 'imagejpeg';
-                $new_image_ext = 'jpg';
+                $image_create_func  = 'imagecreatefromjpeg';
+                $image_create     = 'imagecreatetruecolor';
+                $image_save_func  = 'imagejpeg';
+                $new_image_ext    = 'jpg';
                 break;
 
             case 'image/png':
-                $image_create_func = 'imagecreatefrompng';
-                $image_create = 'imagecreate';
-                $image_save_func = 'imagepng';
-                $new_image_ext = 'png';
+                $image_create_func  = 'imagecreatefrompng';
+                $image_create     = 'imagecreate';
+                $image_save_func  = 'imagepng';
+                $new_image_ext    = 'png';
                 break;
 
             case 'image/gif':
-                $image_create_func = 'imagecreatefromgif';
-                $image_create = 'imagecreatetruecolor ';
-                $image_save_func = 'imagegif';
-                $new_image_ext = 'gif';
+                $image_create_func  = 'imagecreatefromgif';
+                $image_create     = 'imagecreate';
+                $image_save_func  = 'imagegif';
+                $new_image_ext    = 'gif';
                 break;
 
             default: 
-                throw new Exception('Unknown Image Type.');
-                echo "<script type='text/javascript'>window.alert('Unknown Image Type.');window.history.go(-1)</script>";
-                break;
+              throw new Exception('Unknown image type.');
         }
         
         list($width, $height)   = $info;

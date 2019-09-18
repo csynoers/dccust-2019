@@ -119,14 +119,8 @@ switch ($_GET['module']) {
 	// Bagian profile
 	case 'profile':
 		if ($_SESSION['leveluser']=='admin'){
-			// class Helper
-			// {
-				function jancuk()
-				{
-					return 'jancuk';
-				}
-			// }
-			include_once "modul/mod_profile/ModelProfile.php";
+			include_once "../josys/helper_upload.php";
+      include_once "modul/mod_profile/ModelProfile.php";
 			include_once "modul/mod_profile/ControllerProfile.php";
 		}
 		break;
