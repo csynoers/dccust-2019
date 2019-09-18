@@ -431,12 +431,15 @@ switch ($_GET['module']) {
     
   }
 
-  // Bagian jaii
-  case 'artikel':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_artikel/artikel.php";
-    }
-    break;
+	// Bagian jaii
+	case 'artikel':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_artikel/ModelArtikel.php";
+			include_once "modul/mod_artikel/ControllerArtikel.php";
+		}
+		break;
 
 
   // Bagian jaringan

@@ -281,34 +281,18 @@ $(function () {
 					<!-- Main Menu -->
 					<div class="side-menu-container">
 						<ul class="nav navbar-nav">
-							<!-- <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li> -->
-
-							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl1">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Main Menu <span class="caret"></span>
-								</a>
-
-								<!-- Dropdown level 1 -->
-								<div id="dropdown-lvl1" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content') ? 'in' : NULL ; ?>">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-											<li><a href="?module=halaman_home" <?php echo ($_GET['module']=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
-											<li><a href="?module=profile" <?php echo ($_GET['module']=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
-											<li><a href="?module=static_content&id=7" <?php echo ($_GET['module']=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
-
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl2">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Utama <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='sajian' ) ? 'in' : NULL ; ?>">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content' || $_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='sajian' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
+										<li><a href="?module=halaman_home" <?php echo ($_GET['module']=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
+											<li><a href="?module=profile" <?php echo ($_GET['module']=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
+											<li><a href="?module=static_content&id=7" <?php echo ($_GET['module']=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
 											<li><a href="?module=artikel" <?php echo ($_GET['module']=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
 											<li><a href="?module=program" <?php echo ($_GET['module']=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
 											<li><a href="?module=beasiswa" <?php echo ($_GET['module']=='beasiswa') ? 'class="bg-info"' : NULL ; ?> >Beasiswa</a></li>
