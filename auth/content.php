@@ -125,13 +125,25 @@ switch ($_GET['module']) {
 		}
 		break;
 
+	// Bagian Artikel
+	case 'artikel':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_artikel/ModelArtikel.php";
+			include_once "modul/mod_artikel/ControllerArtikel.php";
+		}
+		break;
 
-  // Bagian profile
-  case 'program':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_program/program.php";
-    }
-    break;
+	// Bagian program
+	case 'program':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_program/ModelProgram.php";
+			include_once "modul/mod_program/ControllerProgram.php";
+		}
+		break;
 
 
   // Bagian profile
@@ -430,17 +442,6 @@ switch ($_GET['module']) {
   break;
     
   }
-
-	// Bagian jaii
-	case 'artikel':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_artikel/ModelArtikel.php";
-			include_once "modul/mod_artikel/ControllerArtikel.php";
-		}
-		break;
-
 
   // Bagian jaringan
   case 'jaringan':
