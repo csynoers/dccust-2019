@@ -115,7 +115,6 @@ switch ($_GET['module']) {
 		}
     	break;
 
-
 	// Bagian profile
 	case 'profile':
 		if ($_SESSION['leveluser']=='admin'){
@@ -146,12 +145,15 @@ switch ($_GET['module']) {
 		break;
 
 
-  // Bagian profile
-  case 'beasiswa':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_beasiswa/beasiswa.php";
-    }
-    break;
+	// Bagian beasiswa
+	case 'beasiswa':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_beasiswa/ModelBeasiswa.php";
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_beasiswa/ControllerBeasiswa.php";
+		}
+		break;
 
 
 
