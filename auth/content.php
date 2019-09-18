@@ -120,7 +120,7 @@ switch ($_GET['module']) {
 	case 'profile':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
-      include_once "modul/mod_profile/ModelProfile.php";
+			include_once "modul/mod_profile/ModelProfile.php";
 			include_once "modul/mod_profile/ControllerProfile.php";
 		}
 		break;
@@ -688,12 +688,14 @@ switch ($_GET['module']) {
     break;
 
 
-  // Bagian static_content
-  case 'static_content':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_static_content/static_content.php";
-    }
-    break;
+    // Bagian static_content
+	case 'static_content':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_static_content/ModelStaticContent.php";
+			include_once "modul/mod_static_content/ControllerStaticContent.php";
+		}
+		break;
 
 
   // Bagian download
