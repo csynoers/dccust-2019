@@ -163,6 +163,17 @@ switch ($_GET['module']) {
 			include_once "modul/mod_agenda/ControllerAgenda.php";
 		}
 		break;
+
+	// Bagian informasi lowongan karir
+	case 'karir':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_karir/ModelKarir.php";
+			include_once "modul/mod_karir/ControllerKarir.php";
+			// include_once "modul/mod_karir/controller_career.php";
+		}
+		break;
 	
 	// Bagian informasi kerjasama
 	case 'kerjasama':
@@ -437,32 +448,14 @@ switch ($_GET['module']) {
     }
     break;
 
-
-  // Bagian karir
-  // case 'karir'){
-  //   if ($_SESSION['leveluser']=='admin'){
-  //     include_once "modul/mod_karir/karir.php";
-  //   }
-  // break;
-  // 
-
-  // Bagian karir
-  case 'karir':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_karir/controller_career.php";
-
-  break;
-    
-  }
-
   // Bagian Option Career
   case 'option_career':
     if ($_SESSION['leveluser']=='admin'){
       include_once "modul/mod_option_career/controller_option_career.php";
 
+	}
   break;
     
-  }
 
   // Bagian jaringan
   case 'jaringan':
