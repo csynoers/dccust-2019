@@ -177,7 +177,7 @@ $(function () {
 		'testimoni'		=> 'Edit Testimoni',
 		'download'		=> 'Edit download',
 		'buku'			=> 'Edit buku',
-		'sajian'		=> 'Edit Kerjasama',
+		'kerjasama'		=> 'Edit Informasi Kerjasama',
 		'partner'		=> 'Edit Partner',
 		'preorder'		=> 'Edit Preorder',
 		'karir'			=> 'Edit Karir',
@@ -287,7 +287,7 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content' || $_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='sajian' ) ? 'in' : NULL ; ?>">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content' || $_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='kerjasama' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
 										<li><a href="?module=halaman_home" <?php echo ($_GET['module']=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
@@ -312,7 +312,7 @@ $(function () {
 													</div>
 												</div>
 											</li>
-											<li><a href="?module=sajian">Kerjasama</a></li>
+											<li><a href="?module=kerjasama">Kerjasama</a></li>
 										</ul>
 									</div>
 								</div>

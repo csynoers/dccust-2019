@@ -1,84 +1,33 @@
 <?php
-    class ControllerAgenda
+    class ControllerKerjasama
     {
         public function __construct($db_config){
-			$this->Model 	= new ModelAgenda($db_config);
-			$this->aksi		= 'modul/mod_agenda/ControllerAgenda.php';
-			$this->module 	= 'agenda';
+			$this->Model 	= new ModelKerjasama($db_config);
+			$this->aksi		= 'modul/mod_kerjasama/ControllerKerjasama.php';
+			$this->module 	= 'kerjasama';
 
 			# get parameter $_GET['act']
 			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
 				case 'add':
 					# view add form
-					include_once("modul/mod_agenda/view_add.php");
+					include_once("modul/mod_kerjasama/view_add.php");
 					break;
 
 				case 'edit':
 					# view edit form
-					$rows= $this->Model->get_agenda($_GET['id']);
-					include_once("modul/mod_agenda/view_edit_agenda.php");
+					$rows= $this->Model->get_kerjasama($_GET['id']);
+					include_once("modul/mod_kerjasama/view_edit_kerjasama.php");
                     break;
-                    
-				case 'update_header':
-					# view edit header
-					$rows= $this->Model->get_header();
-					include_once("modul/mod_agenda/view_edit_header.php");
-					break;
-                
-                case 'store_header':
-                    # update header
-                    $this->Model->post= $_POST;
-                    if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                        $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1300,'../joimg/header_image/'); 
-                        if ( $this->Model->post['gambar'] != 'error' ) {
-                            $row= $this->Model->get_header()[0];
-                            if( ($row->gambar != '') && file_exists("../joimg/header_image/{$row->gambar}") ){
-                                unlink("../joimg/header_image/{$row->gambar}");
-                            }
-
-                            if ( $this->Model->update_header() ) {
-                                # TRUE
-                                # location header
-                                echo "<script>alert('Data berhasil diubah'); window.history.go(-1);</script>";
-                                
-                            } else {
-                                # FALSE
-                                # location header
-                                echo "<script>alert('Data gagal diubah'); window.history.back();</script>";
-
-                            }
-
-                        } else {
-                            # FALSE
-                            # location header
-                            echo "<script>alert('Data gagal diupload'); window.history.back();</script>";
-                        }
-
-                    } else {
-                        if ( $this->Model->update_header() ) {
-                            # TRUE
-                            # location header
-                            echo "<script>alert('Data berhasil diubah'); window.history.go(-1);</script>";
-                            
-                        } else {
-                            # FALSE
-                            # location header
-                            echo "<script>alert('Data gagal diubah'); window.history.back();</script>";
-
-                        }
-
-                    }
-					break;
 
 				case 'store':
                     $this->Model->post= $_POST;
 					if ( $_POST['operation']=='insert' ) {
 						# insert
 						if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/event/'); 
+                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],200,'../joimg/ourclient/'); 
                             if ( $this->Model->post['gambar'] != 'error' ) {
     
-                                if ( $this->Model->insert_agenda() ) {
+                                if ( $this->Model->insert_kerjasama() ) {
                                     # TRUE
                                     # location header
                                     echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
@@ -97,7 +46,7 @@
                             }
     
                         } else {
-                            if ( $this->Model->insert_agenda() ) {
+                            if ( $this->Model->insert_kerjasama() ) {
                                 # TRUE
                                 # location header
                                 echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
@@ -114,14 +63,14 @@
 					} else {
 						# update
 						if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/event/'); 
+                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],200,'../joimg/ourclient/'); 
                             if ( $this->Model->post['gambar'] != 'error' ) {
-                                $row= $this->Model->get_beasiswa($_POST['id_agenda'])[0];
-                                if( ($row->gambar != '') && file_exists("../joimg/event/{$row->gambar}") ){
-                                    unlink("../joimg/event/{$row->gambar}");
+                                $row= $this->Model->get_kerjasama($_POST['id_agenda'])[0];
+                                if( ($row->gambar != '') && file_exists("../joimg/ourclient/{$row->gambar}") ){
+                                    unlink("../joimg/ourclient/{$row->gambar}");
                                 }
     
-                                if ( $this->Model->update_agenda() ) {
+                                if ( $this->Model->update_kerjasama() ) {
                                     # TRUE
                                     # location header
                                     echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -140,7 +89,7 @@
                             }
     
                         } else {
-                            if ( $this->Model->update_agenda() ) {
+                            if ( $this->Model->update_kerjasama() ) {
                                 # TRUE
                                 # location header
                                 echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -160,12 +109,12 @@
 
 				case 'delete':
                     # delete this
-                    $row= $this->Model->get_beasiswa($_GET['id'])[0];
-                    if( ($row->gambar != '') && file_exists("../joimg/beasiswa/{$row->gambar}") ){
-                        unlink("../joimg/beasiswa/{$row->gambar}");
+                    $row= $this->Model->get_kerjasama($_GET['id'])[0];
+                    if( ($row->gambar != '') && file_exists("../joimg/ourclient/{$row->gambar}") ){
+                        unlink("../joimg/ourclient/{$row->gambar}");
                     }
 
-                    if ( $this->Model->delete_beasiswa($_GET['id']) ) {
+                    if ( $this->Model->delete_kerjasama($_GET['id']) ) {
                         # TRUE
                         # location header
                         echo "<script>alert('Data berhasil dihapus'); window.history.go(-1);</script>";
@@ -180,8 +129,8 @@
 				
 				default:
 					# if action is null load view index 
-					$rows= $this->Model->get_agenda();
-					include_once("modul/mod_agenda/view_index.php");
+					$rows= $this->Model->get_kerjasama();
+					include_once("modul/mod_kerjasama/view_index.php");
 					break;
 			}
 		}
@@ -193,6 +142,6 @@
 		}
 	}
 	
-	$load= new ControllerAgenda($db_config);
+	$load= new ControllerKerjasama($db_config);
     
 ?>

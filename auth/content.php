@@ -107,7 +107,7 @@ switch ($_GET['module']) {
   }
   break;
 
-	// Bagian Home
+	// Bagian informasi Home
 	case 'halaman_home':
 		if ($_SESSION['leveluser']=='admin'){			
 			include_once "modul/mod_home/ModelHome.php";
@@ -115,7 +115,7 @@ switch ($_GET['module']) {
 		}
     	break;
 
-	// Bagian profile
+	// Bagian informasi profile
 	case 'profile':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
@@ -124,7 +124,7 @@ switch ($_GET['module']) {
 		}
 		break;
 
-	// Bagian Artikel
+	// Bagian informassi Artikel
 	case 'artikel':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
@@ -134,7 +134,7 @@ switch ($_GET['module']) {
 		}
 		break;
 
-	// Bagian program
+	// Bagian informasi program
 	case 'program':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
@@ -144,7 +144,7 @@ switch ($_GET['module']) {
 		}
 		break;
 
-	// Bagian beasiswa
+	// Bagian informasi beasiswa
 	case 'beasiswa':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
@@ -154,13 +154,23 @@ switch ($_GET['module']) {
 		}
 		break;
 	
-	// Bagian Agenda
+	// Bagian informasi agenda
 	case 'agenda':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
 			include_once "../josys/fungsi_seo.php";
 			include_once "modul/mod_agenda/ModelAgenda.php";
 			include_once "modul/mod_agenda/ControllerAgenda.php";
+		}
+		break;
+	
+	// Bagian informasi kerjasama
+	case 'kerjasama':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_kerjasama/ModelKerjasama.php";
+			include_once "modul/mod_kerjasama/ControllerKerjasama.php";
+			// include_once "modul/mod_sajian/sajian.php";
 		}
 		break;
 
@@ -648,12 +658,7 @@ switch ($_GET['module']) {
     break;
 
 
-  // Bagian Sajian utama
-  case 'sajian':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_sajian/sajian.php";
-    }
-    break;
+
 
 
   // Bagian subimages
