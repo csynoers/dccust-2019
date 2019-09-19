@@ -175,6 +175,15 @@ switch ($_GET['module']) {
 		}
 		break;
 	
+	// Bagian Option Career
+	case 'option_career':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_option_career/ModelOptionCareer.php";
+			include_once "modul/mod_option_career/ControllerOptionCareer.php";
+			// include_once "modul/mod_option_career/controller_option_career.php";
+		}
+		break;
+	
 	// Bagian informasi kerjasama
 	case 'kerjasama':
 		if ($_SESSION['leveluser']=='admin'){
@@ -448,13 +457,7 @@ switch ($_GET['module']) {
     }
     break;
 
-  // Bagian Option Career
-  case 'option_career':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_option_career/controller_option_career.php";
-
-	}
-  break;
+  
     
 
   // Bagian jaringan

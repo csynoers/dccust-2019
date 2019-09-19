@@ -9,10 +9,7 @@
 
 <script>
 $(document).ready(function(){
-    $('#example1').DataTable();
-    $('#example2').DataTable();
-    $('#example3').DataTable();
-    $('#example4').DataTable();
+    $('table').DataTable();
 });
 </script>
 <style>.ui-widget-header{background:none;border:none;}</style>
