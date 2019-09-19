@@ -4,7 +4,7 @@
             <div class='col-sm-12'>
                 <div class='panel panel-primary'>
                     <div class='panel-heading'>
-                        <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Edit Header Beasiswa</h4>
+                        <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Edit Header Agenda</h4>
                     </div>
                     <div class='panel-body'>
                         <form method='POST' enctype='multipart/form-data' action='?module={$this->module}&act=store_header'>

@@ -1,28 +1,28 @@
 <?php
-    class ControllerBeasiswa
+    class ControllerAgenda
     {
         public function __construct($db_config){
-			$this->Model 	= new ModelBeasiswa($db_config);
-			$this->aksi		= 'modul/mod_beasiswa/ControllerBeasiswa.php';
-			$this->module 	= 'beasiswa';
+			$this->Model 	= new ModelAgenda($db_config);
+			$this->aksi		= 'modul/mod_Agenda/ControllerAgenda.php';
+			$this->module 	= 'agenda';
 
 			# get parameter $_GET['act']
 			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
 				case 'add':
 					# view add form
-					include_once("modul/mod_beasiswa/view_add.php");
+					include_once("modul/mod_agenda/view_add.php");
 					break;
 
 				case 'edit':
 					# view edit form
-					$rows= $this->Model->get_beasiswa($_GET['id']);
-					include_once("modul/mod_beasiswa/view_edit_beasiswa.php");
+					$rows= $this->Model->get_agenda($_GET['id']);
+					include_once("modul/mod_agenda/view_edit_agenda.php");
                     break;
                     
 				case 'update_header':
 					# view edit header
 					$rows= $this->Model->get_header();
-					include_once("modul/mod_beasiswa/view_edit_header.php");
+					include_once("modul/mod_agenda/view_edit_header.php");
 					break;
                 
                 case 'store_header':
@@ -75,10 +75,10 @@
 					if ( $_POST['operation']=='insert' ) {
 						# insert
 						if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/beasiswa/'); 
+                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/event/'); 
                             if ( $this->Model->post['gambar'] != 'error' ) {
     
-                                if ( $this->Model->insert_beasiswa() ) {
+                                if ( $this->Model->insert_agenda() ) {
                                     # TRUE
                                     # location header
                                     echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
@@ -97,7 +97,7 @@
                             }
     
                         } else {
-                            if ( $this->Model->insert_beasiswa() ) {
+                            if ( $this->Model->insert_agenda() ) {
                                 # TRUE
                                 # location header
                                 echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
@@ -114,14 +114,14 @@
 					} else {
 						# update
 						if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/beasiswa/'); 
+                            $this->Model->post['gambar'] = img_resize($_FILES['gambar'],1024,'../joimg/event/'); 
                             if ( $this->Model->post['gambar'] != 'error' ) {
-                                $row= $this->Model->get_beasiswa($_POST['id_beasiswa'])[0];
-                                if( ($row->gambar != '') && file_exists("../joimg/beasiswa/{$row->gambar}") ){
-                                    unlink("../joimg/beasiswa/{$row->gambar}");
+                                $row= $this->Model->get_beasiswa($_POST['id_agenda'])[0];
+                                if( ($row->gambar != '') && file_exists("../joimg/event/{$row->gambar}") ){
+                                    unlink("../joimg/event/{$row->gambar}");
                                 }
     
-                                if ( $this->Model->update_beasiswa() ) {
+                                if ( $this->Model->update_agenda() ) {
                                     # TRUE
                                     # location header
                                     echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -140,7 +140,7 @@
                             }
     
                         } else {
-                            if ( $this->Model->update_beasiswa() ) {
+                            if ( $this->Model->update_agenda() ) {
                                 # TRUE
                                 # location header
                                 echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -180,8 +180,8 @@
 				
 				default:
 					# if action is null load view index 
-					$rows= $this->Model->get_beasiswa();
-					include_once("modul/mod_beasiswa/view_index.php");
+					$rows= $this->Model->get_agenda();
+					include_once("modul/mod_agenda/view_index.php");
 					break;
 			}
 		}
@@ -193,6 +193,6 @@
 		}
 	}
 	
-	$load= new ControllerBeasiswa($db_config);
+	$load= new ControllerAgenda($db_config);
     
 ?>

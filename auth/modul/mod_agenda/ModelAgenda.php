@@ -1,17 +1,17 @@
 <?php
-    class ModelBeasiswa extends dbHelper
+    class ModelAgenda extends dbHelper
     {
         public function __construct($db_config){
             $this->db= new dbHelper($db_config);
         }
         
-        public function get_beasiswa($id=NULL)
+        public function get_agenda($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT *,DATE_FORMAT(beasiswa.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM beasiswa ORDER BY id_beasiswa DESC")['data'];
+                return $this->db->get_select("SELECT *,DATE_FORMAT(agenda.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM agenda ORDER BY id_agenda DESC")['data'];
                 
             } else {
-                return $this->db->get_select("SELECT * FROM beasiswa WHERE id_beasiswa='{$id}' ")['data'];
+                return $this->db->get_select("SELECT * FROM agenda WHERE id_agenda='{$id}' ")['data'];
 
             }
             
@@ -19,7 +19,7 @@
         
         public function get_header()
         {
-            return $this->db->get_select("SELECT * FROM header WHERE id_header='15' AND aktif='Y'")['data'];
+            return $this->db->get_select("SELECT * FROM header WHERE id_header='4' AND aktif='Y'")['data'];
             
         }
 
@@ -39,19 +39,23 @@
             ];
             $requiredColumnsArray   = array_keys($columnsArray);
             
-            # update set beasiswa
+            # update set agenda
             $update= $this->db->update($table, $columnsArray, $where, $requiredColumnsArray)['status'];
 
             return ($update=='success') ? TRUE : FALSE ;
         }
 
-        public function insert_beasiswa()
+        public function insert_agenda()
         {
-            $table                  = 'beasiswa';
+            $table                  = 'agenda';
             $columnsArray           = [
-                'nama_beasiswa'=> $this->post['nama_beasiswa'],
-                'seo_beasiswa'=> seo_title($this->post['nama_beasiswa']),
-                'isi_beasiswa'=> $this->post['isi_beasiswa'],
+                'nama_agenda_ina'=> $this->post['nama_agenda_ina'],
+                'seo_ina'=> seo_title($this->post['nama_agenda_ina']),
+                'tema_agenda_ina'=> $this->post['tema_agenda_ina'],
+                'waktu'=> $this->post['waktu'],
+                'peserta'=> $this->post['peserta'],
+                'lokasi'=> $this->post['lokasi'],
+                'isi_agenda_ina'=> $this->post['isi_agenda_ina'],
                 'tanggal'=> date('Y-m-d'),
             ];
             if ( ! empty($this->post['gambar']) ) {
@@ -59,42 +63,46 @@
             }
             $requiredColumnsArray   = array_keys($columnsArray);
             
-            # insert into beasiswa
+            # insert into agenda
             $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
 
             return ($insert=='success') ? TRUE : FALSE ;
         }
 
-        public function update_beasiswa()
+        public function update_agenda()
         {
-            $table                  = 'beasiswa';
+            $table                  = 'agenda';
             $columnsArray           = [
-                'nama_beasiswa'=> $this->post['nama_beasiswa'],
-                'seo_beasiswa'=> seo_title($this->post['nama_beasiswa']),
-                'isi_beasiswa'=> $this->post['isi_beasiswa'],
+                'nama_agenda_ina'=> $this->post['nama_agenda_ina'],
+                'seo_ina'=> seo_title($this->post['nama_agenda_ina']),
+                'tema_agenda_ina'=> $this->post['tema_agenda_ina'],
+                'waktu'=> $this->post['waktu'],
+                'peserta'=> $this->post['peserta'],
+                'lokasi'=> $this->post['lokasi'],
+                'isi_agenda_ina'=> $this->post['isi_agenda_ina'],
                 'tanggal'=> date('Y-m-d'),
             ];
             if ( ! empty($this->post['gambar']) ) {
                 $columnsArray['gambar'] = $this->post['gambar']; 
             }
             $where                  = [
-                'id_beasiswa'=> $this->post['id_beasiswa']
+                'id_agenda'=> $this->post['id_agenda']
             ];
             $requiredColumnsArray   = array_keys($columnsArray);
             
-            # update set beasiswa
+            # update set agenda
             $update= $this->db->update($table, $columnsArray, $where, $requiredColumnsArray)['status'];
 
             return ($update=='success') ? TRUE : FALSE ;
         }
         
-        public function delete_beasiswa($id)
+        public function delete_agenda($id)
         {
-            $table                  = 'beasiswa';
+            $table                  = 'agenda';
             $where                  = [
-                'id_beasiswa'=> $id
+                'id_agenda'=> $id
             ];
-            # delete set beasiswa
+            # delete set agenda
             $delete= $this->db->delete($table, $where)['status'];
     
             return ($delete=='success') ? TRUE : FALSE ;

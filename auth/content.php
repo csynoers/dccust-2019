@@ -144,14 +144,23 @@ switch ($_GET['module']) {
 		}
 		break;
 
-
 	// Bagian beasiswa
 	case 'beasiswa':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_beasiswa/ModelBeasiswa.php";
 			include_once "../josys/helper_upload.php";
 			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_beasiswa/ModelBeasiswa.php";
 			include_once "modul/mod_beasiswa/ControllerBeasiswa.php";
+		}
+		break;
+	
+	// Bagian Agenda
+	case 'agenda':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_agenda/ModelAgenda.php";
+			include_once "modul/mod_agenda/ControllerAgenda.php";
 		}
 		break;
 
@@ -477,12 +486,7 @@ switch ($_GET['module']) {
     break;
 
 
-  // Bagian Agenda
-  case 'agenda':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_agenda/agenda.php";
-    }
-    break;
+  
 
 
   // Bagian Newsletter

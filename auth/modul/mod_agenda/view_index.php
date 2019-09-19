@@ -8,7 +8,7 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Beasiswa</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Agenda</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">s
                     <li><a href="?module=<?php echo $this->module ?>&act=update_header"><button type="button" class="btn btn-primary"> Update Header</button></a></li>
@@ -36,13 +36,13 @@
                             echo "
                                 <tr>
                                     <td>{$no}</td>
-                                    <td>{$value->nama_beasiswa}</td>
+                                    <td>{$value->nama_agenda_ina}</td>
                                     <td>{$value->tanggal_mod}</td>
                                     <td>
-                                        <a href='?module={$this->module}&act=edit&id={$value->id_beasiswa}'>
+                                        <a href='?module={$this->module}&act=edit&id={$value->id_agenda}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href='?module={$this->module}&act=delete&id={$value->id_beasiswa}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                        <a href='?module={$this->module}&act=delete&id={$value->id_agenda}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                             <input type='image' src='images/icn_trash.png' title='Trash'>
                                         </a>
                                     </td>
