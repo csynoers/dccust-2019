@@ -16,7 +16,7 @@
 									<a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Jenis Lowongan</a>
 								</div>
 								<ul class="nav navbar-nav navbar-right">
-                                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                                    <li><a href="?module=<?php echo $this->module ?>&act=add_jenis_lowongan"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
 								</ul>
 							</div>
 						</nav>
@@ -40,10 +40,10 @@
                                                 <td>{$no}</td>
                                                 <td>{$value->name}</td>
                                                 <td>
-                                                    <a href='?module={$this->module}&act=edit&id={$value->id}'>
+                                                    <a href='?module={$this->module}&act=edit_jenis_lowongan&id={$value->id}'>
                                                         <input type='image' src='images/icn_edit.png' title='Edit'>
                                                     </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href='?module={$this->module}&act=delete&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                                    <a href='?module={$this->module}&act=delete_jenis_lowongan&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                                         <input type='image' src='images/icn_trash.png' title='Trash'>
                                                     </a>
                                                 </td>
@@ -67,7 +67,7 @@
 									<a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Spesialisasi pekerjaan</a>
 								</div>
 								<ul class="nav navbar-nav navbar-right">
-                                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                                    <li><a href="?module=<?php echo $this->module ?>&act=add_spesialisasi_pekerjaan"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
 								</ul>
 							</div>
 						</nav>
@@ -91,10 +91,10 @@
                                                 <td>{$no}</td>
                                                 <td>{$value->nama_spes}</td>
                                                 <td>
-                                                    <a href='?module={$this->module}&act=edit&id={$value->id_spes}'>
+                                                    <a href='?module={$this->module}&act=edit_spesialisasi_pekerjaan&id={$value->id_spes}'>
                                                         <input type='image' src='images/icn_edit.png' title='Edit'>
                                                     </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href='?module={$this->module}&act=delete&id={$value->id_spes}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                                    <a href='?module={$this->module}&act=delete_spesialisasi_pekerjaan&id={$value->id_spes}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                                         <input type='image' src='images/icn_trash.png' title='Trash'>
                                                     </a>
                                                 </td>
@@ -123,7 +123,7 @@
 									<a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Tingkat Jabatan</a>
 								</div>
 								<ul class="nav navbar-nav navbar-right">
-                                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                                    <li><a href="?module=<?php echo $this->module ?>&act=add_tingkat_jabatan"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
 								</ul>
 							</div>
 						</nav>
@@ -147,10 +147,10 @@
                                                 <td>{$no}</td>
                                                 <td>{$value->name}</td>
                                                 <td>
-                                                    <a href='?module={$this->module}&act=edit&id={$value->id}'>
+                                                    <a href='?module={$this->module}&act=edit_tingkat_jabatan&id={$value->id}'>
                                                         <input type='image' src='images/icn_edit.png' title='Edit'>
                                                     </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href='?module={$this->module}&act=delete&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                                    <a href='?module={$this->module}&act=delete_tingkat_jabatan&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                                         <input type='image' src='images/icn_trash.png' title='Trash'>
                                                     </a>
                                                 </td>
@@ -174,7 +174,7 @@
 									<a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Penempatan</a>
 								</div>
 								<ul class="nav navbar-nav navbar-right">
-                                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                                    <li><a href="?module=<?php echo $this->module ?>&act=add_penempatan"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
 								</ul>
 							</div>
 						</nav>
@@ -198,10 +198,10 @@
                                                 <td>{$no}</td>
                                                 <td>{$value->propinsi_name}</td>
                                                 <td>
-                                                    <a href='?module={$this->module}&act=edit&id={$value->propinsi_id}'>
+                                                    <a href='?module={$this->module}&act=edit_penempatan&id={$value->propinsi_id}'>
                                                         <input type='image' src='images/icn_edit.png' title='Edit'>
                                                     </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href='?module={$this->module}&act=delete&id={$value->propinsi_id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                                    <a href='?module={$this->module}&act=delete_penempatan&id={$value->propinsi_id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                                         <input type='image' src='images/icn_trash.png' title='Trash'>
                                                     </a>
                                                 </td>

@@ -1,10 +1,10 @@
 <br>
 <div class="container-fluid">
 	<div class="col-sm-12">
-		<form method='POST' enctype='multipart/form-data' action='<?php echo "$aksi"; ?>?module=option_career&act=insert&opt=jenis&saving=1'>
+		<form method='POST' enctype='multipart/form-data' action='<?php echo "?module={$this->module}&act=store_spesialisasi_pekerjaan"; ?>'>
 	        <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3><b><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Tambah Jenis Lowongan</b></h3>
+					<h3><b><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Tambah Spesialisasi Pekerjaan</b></h3>
 				</div>
 	            <div class="panel-body">
 					<div class="form-group">

@@ -1,15 +1,15 @@
 <br>
 <div class="container-fluid">
 	<div class="col-sm-12">
-		<form method='POST' enctype='multipart/form-data'  action="?module=option_career&act=edit&opt=jabatan&id=<?php echo $id ?>&saving=1">
+		<form method='POST' enctype='multipart/form-data' action='<?php echo "?module={$this->module}&act=store_penempatan"; ?>'>
 	        <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3><b><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Tingkat Jabatan</b></h3>
+					<h3><b><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Tambah Penempatan</b></h3>
 				</div>
 	            <div class="panel-body">
 					<div class="form-group">
 						<label>Description :</label>
-						<input value="<?php echo $description ?>" class="form-control" name="desc" type="text" required="">
+						<input class="form-control" name="desc" type="text" required="">
 					</div>
 	            </div>
 
