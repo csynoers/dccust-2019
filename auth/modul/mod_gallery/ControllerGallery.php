@@ -3,11 +3,15 @@
     {
         public function __construct($db_config){
 			$this->Model 	= new ModelKerjasama($db_config);
-			$this->aksi		= 'modul/mod_kerjasama/ControllerKerjasama.php';
-			$this->module 	= 'kerjasama';
+            $this->aksi		= 'modul/mod_gallery/ControllerGallery.php';
+            
+            $this->url          = new stdClass(); 
+			$this->url->module 	= $_GET['module'];
+            $this->url->data 	= $_GET['data'];
+            $this->url->act     = empty($_GET['act']) ? NULL : $_GET['act'] ; 
 
 			# get parameter $_GET['act']
-			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
+			switch ( $this->url->act ) {
 				case 'add':
 					# view add form
 					include_once("modul/mod_kerjasama/view_add.php");
@@ -128,12 +132,43 @@
 					break;
 				
 				default:
-					# if action is null load view index 
-					$rows= $this->Model->get_kerjasama();
+                    # if action is null load view index 
+                    $this->index();
 					include_once("modul/mod_kerjasama/view_index.php");
 					break;
 			}
 		}
+
+        /* index method */
+        public function index_album()
+        {
+            
+        }
+        public function index_foto()
+        {
+
+        }
+        public function index_video()
+        {
+
+        }
+
+        /* filter store method */
+        public function store($namespace)
+        {
+            $function = $namespace;
+            return ($_POST['operation']=='insert') ? $this->insert_album() : $this->update_album() ;
+        }
+        public function store_foto()
+        {
+            return ($_POST['operation']=='insert') ? $this->insert_foto() : $this->update_foto() ;
+        }
+        public function store_video()
+        {
+            return ($_POST['operation']=='insert') ? $this->insert_foto() : $this->update_foto() ;
+        }
+
+        /* insert method */
 
 		// fake "extends C" using magic function
 		public function __call($method, $args)
