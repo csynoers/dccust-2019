@@ -194,6 +194,15 @@ switch ($_GET['module']) {
 		}
 		break;
 
+	// Bagian informasi Galeri
+	case 'gallery':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_gallery/ModelGallery.php";
+			include_once "modul/mod_gallery/ControllerGallery.php";
+		}
+		break;
+
 
 
   // Bagian profile
@@ -209,8 +218,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_spesialis/spesialis.php";
     }
     break;
-
-
 
   //Grafik
   case 'statis_respon':

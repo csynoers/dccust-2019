@@ -10,6 +10,8 @@ else{
 	require_once "../josys/koneksi.php";
 	require_once "../josys/dbHelper.php";
 	$db = new dbHelper($db_config);
+	$module= ! empty($_GET['module']) ? $_GET['module'] : NULL ;
+	$data= ! empty($_GET['data']) ? $_GET['data'] : NULL ;
 
 	//load model navbar
 	$navbar_grafik= $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
@@ -178,6 +180,7 @@ $(function () {
 		'download'		=> 'Edit download',
 		'buku'			=> 'Edit buku',
 		'kerjasama'		=> 'Edit Informasi Kerjasama',
+		'gallery'		=> 'Edit Informasi Galeri',
 		'partner'		=> 'Edit Partner',
 		'preorder'		=> 'Edit Preorder',
 		'karir'			=> 'Edit Karir',
@@ -287,32 +290,44 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($_GET['module']=='halaman_home' || $_GET['module']=='profile' || $_GET['module']=='static_content' || $_GET['module']=='artikel' || $_GET['module']=='program' || $_GET['module']=='beasiswa' || $_GET['module']=='agenda' || $_GET['module']=='karir' || $_GET['module']=='option_career' || $_GET['module']=='kerjasama' ) ? 'in' : NULL ; ?>">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($module=='halaman_home' || $module=='profile' || $module=='static_content' || $module=='artikel' || $module=='program' || $module=='beasiswa' || $module=='agenda' || $module=='karir' || $module=='option_career' || $module=='kerjasama' || $module=='gallery' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-										<li><a href="?module=halaman_home" <?php echo ($_GET['module']=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
-											<li><a href="?module=profile" <?php echo ($_GET['module']=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
-											<li><a href="?module=static_content&id=7" <?php echo ($_GET['module']=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
-											<li><a href="?module=artikel" <?php echo ($_GET['module']=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
-											<li><a href="?module=program" <?php echo ($_GET['module']=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
-											<li><a href="?module=beasiswa" <?php echo ($_GET['module']=='beasiswa') ? 'class="bg-info"' : NULL ; ?> >Beasiswa</a></li>
-											<li><a href="?module=agenda" <?php echo ($_GET['module']=='agenda') ? 'class="bg-info"' : NULL ; ?> >Agenda</a></li>
+										<li><a href="?module=halaman_home" <?php echo ($module=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
+											<li><a href="?module=profile" <?php echo ($module=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
+											<li><a href="?module=static_content&id=7" <?php echo ($module=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
+											<li><a href="?module=program" <?php echo ($module=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
 											
 
 											<!-- Dropdown level 21 -->
 											<li class="panel panel-default" id="dropdown">
 												<a data-toggle="collapse" href="#dropdown-lvl21">Lowongan <span class="caret"></span>
 												</a>
-												<div id="dropdown-lvl21" class="panel-collapse collapse <?php echo ($_GET['module']=='karir' || $_GET['module']=='option_career') ? 'in' : NULL ; ?>">
+												<div id="dropdown-lvl21" class="panel-collapse collapse <?php echo ($module=='karir' || $module=='option_career') ? 'in' : NULL ; ?>">
 													<div class="panel-body">
 														<ul class="nav navbar-nav">
-															<li><a href="?module=karir" <?php echo ($_GET['module']=='karir') ? 'class="bg-info"' : NULL ; ?> >Lowongan</a></li>
-															<li><a href="?module=option_career" <?php echo ($_GET['module']=='option_career') ? 'class="bg-info"' : NULL ; ?> >Setting Option Lowongan</a></li>
+															<li><a href="?module=karir" <?php echo ($module=='karir') ? 'class="bg-info"' : NULL ; ?> >Lowongan</a></li>
+															<li><a href="?module=option_career" <?php echo ($module=='option_career') ? 'class="bg-info"' : NULL ; ?> >Setting Option Lowongan</a></li>
 														</ul>
 													</div>
 												</div>
 											</li>
 											<li><a href="?module=kerjasama">Kerjasama</a></li>
+											<li><a href="?module=agenda" <?php echo ($module=='agenda') ? 'class="bg-info"' : NULL ; ?> >Agenda</a></li>
+											<li><a href="?module=artikel" <?php echo ($module=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
+											<li><a href="?module=beasiswa" <?php echo ($module=='beasiswa') ? 'class="bg-info"' : NULL ; ?> >Beasiswa</a></li>
+											<li class="panel panel-default" id="dropdown">
+												<a data-toggle="collapse" href="#dropdown-gallery">Galeri <span class="caret"></span>
+												</a>
+												<div id="dropdown-gallery" class="panel-collapse collapse <?php echo ($module=='gallery') ? 'in' : NULL ; ?>">
+													<div class="panel-body">
+														<ul class="nav navbar-nav">
+															<li><a href="?module=gallery&data=album" <?php echo ($data=='album') ? 'class="bg-info"' : NULL ; ?> >Foto</a></li>
+															<li><a href="?module=gallery&data=video" <?php echo ($data=='video') ? 'class="bg-info"' : NULL ; ?> >Video</a></li>
+														</ul>
+													</div>
+												</div>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -637,7 +652,7 @@ $(function () {
 			      <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
 			      <strong><i class="fa fa-home"></i> Website Admin</strong>
 			      <i class="fa fa-chevron-right" aria-hidden="true"></i>
-			      <?php echo $header[$_GET['module']];  ?>.
+			      <?php echo $header[$module];  ?>.
 			    </div>
 			</div>
 
@@ -648,7 +663,7 @@ $(function () {
 	<footer class="pull-left footer">
 		<p class="col-md-12">
 			<hr class="divider">
-			<p style="margin-bottom:10px;"><strong>Copyright &copy; 2016 dcc.ustjogja.ac.id</strong></p>
+			<p style="margin-bottom:10px;"><strong>Copyright &copy; 2016-<?php echo date('Y') ?> dcc.ustjogja.ac.id</strong></p>
 		</p>
 	</footer>
 </div>
