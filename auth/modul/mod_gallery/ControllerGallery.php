@@ -14,17 +14,17 @@
 			switch ( $this->url->act ) {
 				case 'add':
 					# view add form
-					$this->add($this->url->data);
+					$this->add();
 					break;
 
 				case 'edit':
 					# view edit form
-					$this->edit($this->url->data);
+					$this->edit();
                     break;
 
 				case 'store':
                     # store data
-                    $this->store($this->url->data);
+                    $this->store();
 					break;
 
 				case 'delete':
@@ -34,68 +34,29 @@
 				
 				default:
                     # if action is null load view index 
-                    $this->index($this->url->data);
+                    $this->index();
 					break;
 			}
 		}
 
         /* index method */
-        public function index($namespace)
+        public function index()
         {
-            $function= 'index_'.$namespace;
-            return $this->$function();
-        }
-        public function index_album()
-        {
-            include_once("modul/mod_gallery/view_index_album.php");
-        }
-        public function index_foto()
-        {
-            include_once("modul/mod_gallery/view_index_foto.php");
-        }
-        public function index_video()
-        {
-            $rows= $this->Model->get_video();
-            include_once("modul/mod_gallery/view_index_video.php");
+            $rows= $this->Model->{'get_'.$this->url->data}();
+            include_once("modul/mod_gallery/view_index_{$this->url->data}.php");
         }
 
         /* form add */
-        public function add($namespace)
+        public function add()
         {
-            $function= 'add_'.$namespace;
-            return $this->$function();
-        }
-        public function add_album()
-        {
-            include_once("modul/mod_gallery/view_add_album.php");
-        }
-        public function add_foto()
-        {
-            include_once("modul/mod_gallery/view_add_foto.php");
-        }
-        public function add_video()
-        {
-            include_once("modul/mod_gallery/view_add_video.php");
+            include_once("modul/mod_gallery/view_add_{$this->url->data}.php");
         }
         
         /* form edit */
-        public function edit($namespace)
+        public function edit()
         {
-            $function= 'edit_'.$namespace;
-            return $this->$function();
-        }
-        public function edit_album()
-        {
-            include_once("modul/mod_gallery/view_edit_album.php");
-        }
-        public function edit_foto()
-        {
-            include_once("modul/mod_gallery/view_edit_foto.php");
-        }
-        public function edit_video()
-        {
-            $rows= $this->Model->get_video($_GET['id']);
-            include_once("modul/mod_gallery/view_edit_video.php");
+            $rows= $this->Model->{'get_'.$this->url->data}($_GET['id']);
+            include_once("modul/mod_gallery/view_edit_{$this->url->data}.php");
         }
 
         /* filter store method */
@@ -108,13 +69,12 @@
         public function insert()
         {
             $this->Model->post= $_POST;
-            $function= 'insert_'.$this->url->data;
 
             if ( ! empty($_FILES['gambar']['tmp_name']) ) {
                 $this->Model->post['gambar'] = img_resize($_FILES['gambar'],200,'../joimg/ourclient/'); 
                 if ( $this->Model->post['gambar'] != 'error' ) {
 
-                    if ( $this->Model->$function() ) {
+                    if ( $this->Model->{'insert_'.$this->url->data}() ) {
                         # TRUE
                         # location header
                         echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
@@ -133,7 +93,7 @@
                 }
 
             } else {
-                if ( $this->Model->$function() ) {
+                if ( $this->Model->{'insert_'.$this->url->data}() ) {
                     # TRUE
                     # location header
                     echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";

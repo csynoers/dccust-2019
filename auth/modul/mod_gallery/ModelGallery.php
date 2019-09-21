@@ -5,6 +5,28 @@
             $this->db= new dbHelper($db_config);
         }
 
+        public function get_album($id=NULL)
+        {
+            if ( empty($id) ) {
+                return $this->db->get_select("SELECT *,(SELECT COUNT(galeri.id_galeri) FROM galeri WHERE galeri.id_album=album.id_album) AS counts FROM album ORDER BY id_album DESC")['data'];
+                
+            } else {
+                return $this->db->get_select("SELECT * FROM album WHERE id_album='{$id}' ")['data'];
+
+            }
+            
+        }
+        public function get_foto($id=NULL)
+        {
+            if ( empty($id) ) {
+                return $this->db->get_select("SELECT * FROM album ORDER BY id_album DESC")['data'];
+                
+            } else {
+                return $this->db->get_select("SELECT * FROM album WHERE id_album='{$id}' ")['data'];
+
+            }
+            
+        }
         public function get_video($id=NULL)
         {
             if ( empty($id) ) {
