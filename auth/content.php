@@ -558,11 +558,7 @@ switch ($_GET['module']) {
 
 
 
-  case 'prodi':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_prodi/prodi.php";
-    }
-    break;
+
 
 
 
@@ -661,6 +657,18 @@ switch ($_GET['module']) {
 			include_once "modul/mod_kerjasama/ControllerKerjasama.php";
 		}
 		break;
+
+	case 'pesan':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_pesan/pesan.php";
+		}
+		break;
+	
+	case 'prodi':
+		if ($_SESSION['leveluser']=='admin'){
+		  include_once "modul/mod_prodi/prodi.php";
+		}
+		break;
 	/* ==================== END MENU SUPPORT ==================== */
 
   // Bagian subimages
@@ -723,12 +731,7 @@ switch ($_GET['module']) {
     break;
 
 
-  // Bagian pesan
-  case 'pesan':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_pesan/pesan.php";
-    }
-    break;
+
 
 
   // Bagian sosial
