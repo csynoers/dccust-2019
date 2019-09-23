@@ -313,8 +313,18 @@ $(function () {
 												</div>
 											</li>
 											<li><a href="?module=kerjasama">Kerjasama</a></li>
-											<li><a href="?module=agenda" <?php echo ($module=='agenda') ? 'class="bg-info"' : NULL ; ?> >Agenda</a></li>
-											<li><a href="?module=artikel" <?php echo ($module=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
+											<li class="panel panel-default" id="dropdown">
+												<a data-toggle="collapse" href="#dropdown-info">Info <span class="caret"></span>
+												</a>
+												<div id="dropdown-info" class="panel-collapse collapse <?php echo ($module=='agenda' || $module=='artikel') ? 'in' : NULL ; ?>">
+													<div class="panel-body">
+														<ul class="nav navbar-nav">
+															<li><a href="?module=agenda" <?php echo ($module=='agenda') ? 'class="bg-info"' : NULL ; ?> >Agenda</a></li>
+															<li><a href="?module=artikel" <?php echo ($module=='artikel') ? 'class="bg-info"' : NULL ; ?> >Artikel</a></li>
+														</ul>
+													</div>
+												</div>
+											</li>
 											<li><a href="?module=beasiswa" <?php echo ($module=='beasiswa') ? 'class="bg-info"' : NULL ; ?> >Beasiswa</a></li>
 											<li class="panel panel-default" id="dropdown">
 												<a data-toggle="collapse" href="#dropdown-gallery">Galeri <span class="caret"></span>
