@@ -8,11 +8,11 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Galeri Video</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Fakultas</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- <li><a href="?module=<?php echo $this->module ?>&act=update_header"><button type="button" class="btn btn-primary"> Update Header</button></a></li> -->
-                    <li><a href="<?php echo "?module={$this->url->module}&data={$this->url->data}&act=add" ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                    <li><a href="<?php echo "?module={$this->url->module}&act=add" ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
                 </ul>
             </div>
         </nav>

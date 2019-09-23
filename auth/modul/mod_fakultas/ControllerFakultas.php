@@ -20,6 +20,11 @@
 
 			# get parameter $_GET['act']
 			switch ( $this->url->act ) {
+				case 'add':
+                    # view add form
+                    $this->add();
+                    break;
+
 				case 'edit':
                     # view edit form
                     $this->edit();
@@ -41,6 +46,12 @@
 					include_once("modul/mod_{$this->url->module}/view_index.php");
 					break;
 			}
+        }
+
+        /* form add */
+        public function add()
+        {
+            include_once("modul/mod_{$this->url->module}/view_{$this->url->act}".(empty($this->url->data) ? NULL : "_{$this->url->data}" ).".php");
         }
 
         /* form edit */
@@ -68,7 +79,7 @@
                     if ( $this->Model->{'insert_'.(empty($this->url->data)? $this->url->module : $this->url->data )}() ) {
                         # TRUE
                         # location header
-                        echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-1);</script>";
+                        echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
                         
                     } else {
                         # FALSE
@@ -87,7 +98,7 @@
                 if ( $this->Model->{'insert_'.(empty($this->url->data)? $this->url->module : $this->url->data )}() ) {
                     # TRUE
                     # location header
-                    echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-1);</script>";
+                    echo "<script>alert('Data berhasil ditambahkan'); window.history.go(-2);</script>";
                     
                 } else {
                     # FALSE

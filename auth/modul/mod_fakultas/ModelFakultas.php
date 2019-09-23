@@ -19,10 +19,9 @@
 
         public function insert_fakultas()
         {
-            $table                  = 'banner';
+            $table                  = 'fakultas';
             $columnsArray           = [
-                'judul'=> $this->post['judul'],
-                'link'=> $this->post['link'],
+                'fakultas'=> $this->post['fakultas'],
             ];
             if ( ! empty($this->post['gambar']) ) {
                 $columnsArray['gambar'] = $this->post['gambar']; 
@@ -37,16 +36,15 @@
 
         public function update_fakultas()
         {
-            $table                  = 'banner';
+            $table                  = 'fakultas';
             $columnsArray           = [
-                'judul'=> $this->post['judul'],
-                'link'=> $this->post['link'],
+                'fakultas'=> $this->post['fakultas'],
             ];
             if ( ! empty($this->post['gambar']) ) {
                 $columnsArray['gambar'] = $this->post['gambar']; 
             }
             $where                  = [
-                'id'=> $this->post['id']
+                'id_fakultas'=> $this->post['id']
             ];
             $requiredColumnsArray   = array_keys($columnsArray);
             
@@ -58,9 +56,9 @@
         
         public function delete_fakultas($id)
         {
-            $table                  = 'banner';
+            $table                  = 'fakultas';
             $where                  = [
-                'id'=> $id
+                'id_fakultas'=> $id
             ];
             # delete set gbanneruest_book
             $delete= $this->db->delete($table, $where)['status'];
