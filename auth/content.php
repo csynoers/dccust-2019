@@ -124,16 +124,6 @@ switch ($_GET['module']) {
 		}
 		break;
 
-	// Bagian informassi Artikel
-	case 'artikel':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_artikel/ModelArtikel.php";
-			include_once "modul/mod_artikel/ControllerArtikel.php";
-		}
-		break;
-
 	// Bagian informasi program
 	case 'program':
 		if ($_SESSION['leveluser']=='admin'){
@@ -164,23 +154,13 @@ switch ($_GET['module']) {
 		}
 		break;
 
-	// Bagian informasi lowongan karir
-	case 'karir':
+	// Bagian informassi Artikel
+	case 'artikel':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
 			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_karir/ModelKarir.php";
-			include_once "modul/mod_karir/ControllerKarir.php";
-			// include_once "modul/mod_karir/controller_career.php";
-		}
-		break;
-	
-	// Bagian Option Career
-	case 'option_career':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_option_career/ModelOptionCareer.php";
-			include_once "modul/mod_option_career/ControllerOptionCareer.php";
-			// include_once "modul/mod_option_career/controller_option_career.php";
+			include_once "modul/mod_artikel/ModelArtikel.php";
+			include_once "modul/mod_artikel/ControllerArtikel.php";
 		}
 		break;
 	
@@ -190,7 +170,24 @@ switch ($_GET['module']) {
 			include_once "../josys/helper_upload.php";
 			include_once "modul/mod_kerjasama/ModelKerjasama.php";
 			include_once "modul/mod_kerjasama/ControllerKerjasama.php";
-			// include_once "modul/mod_sajian/sajian.php";
+		}
+		break;		
+
+	// Bagian informasi lowongan karir
+	case 'karir':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_karir/ModelKarir.php";
+			include_once "modul/mod_karir/ControllerKarir.php";
+		}
+		break;
+	
+	// Bagian Option Career
+	case 'option_career':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_option_career/ModelOptionCareer.php";
+			include_once "modul/mod_option_career/ControllerOptionCareer.php";
 		}
 		break;
 
@@ -201,6 +198,14 @@ switch ($_GET['module']) {
 			include_once "../josys/helper_upload.php";
 			include_once "modul/mod_gallery/ModelGallery.php";
 			include_once "modul/mod_gallery/ControllerGallery.php";
+		}
+		break;
+	
+	// Bagian informasi buku tamu
+	case 'buku_tamu':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_buku_tamu/ModelBukuTamu.php";
+			include_once "modul/mod_buku_tamu/ControllerBukuTamu.php";
 		}
 		break;
 
@@ -652,18 +657,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_banner/banner.php";
     }
     break;
-
-
-  // Bagian buku tamu
-  case 'buku_tamu':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_buku_tamu/controller_buku_tamu.php";
-    }
-    break;
-
-
-
-
 
   // Bagian subimages
   case 'subimages':

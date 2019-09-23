@@ -290,7 +290,7 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($module=='halaman_home' || $module=='profile' || $module=='static_content' || $module=='artikel' || $module=='program' || $module=='beasiswa' || $module=='agenda' || $module=='karir' || $module=='option_career' || $module=='kerjasama' || $module=='gallery' ) ? 'in' : NULL ; ?>">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($module=='halaman_home' || $module=='profile' || $module=='static_content' || $module=='artikel' || $module=='program' || $module=='beasiswa' || $module=='agenda' || $module=='karir' || $module=='option_career' || $module=='kerjasama' || $module=='gallery' || $module=='buku_tamu' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
 										<li><a href="?module=halaman_home" <?php echo ($module=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
@@ -340,7 +340,7 @@ $(function () {
 											<li class="panel panel-default" id="dropdown">
 												<a data-toggle="collapse" href="#dropdown-kontak">Kontak <span class="caret"></span>
 												</a>
-												<div id="dropdown-kontak" class="panel-collapse collapse <?php echo ($module=='buku_tamu' || ($module=='static_content' && $_GET['id']=='7' ) ) ? 'in' : NULL ; ?>">
+												<div id="dropdown-kontak" class="panel-collapse collapse <?php echo ( ($module=='buku_tamu') || ($module=='static_content' && $_GET['id']=='7' ) ) ? 'in' : NULL ; ?>">
 													<div class="panel-body">
 														<ul class="nav navbar-nav">
 															<li><a href="?module=buku_tamu" <?php echo ($module=='buku_tamu') ? 'class="bg-info"' : NULL ; ?>>Buku Tamu</a></li>
