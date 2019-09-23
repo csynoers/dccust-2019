@@ -555,11 +555,7 @@ switch ($_GET['module']) {
     break;
 
 
-  case 'fakultas':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_fakultas/fakultas.php";
-    }
-    break;
+
 
 
   case 'prodi':
@@ -647,6 +643,14 @@ switch ($_GET['module']) {
 			include_once "../josys/helper_upload.php";
 			include_once "modul/mod_banner/ModelBanner.php";
 			include_once "modul/mod_banner/ControllerBanner.php";
+		}
+		break;
+
+	case 'fakultas':
+		if ($_SESSION['leveluser']=='admin'){
+			// include_once "../josys/helper_upload.php";
+			include_once "modul/mod_fakultas/ModelFakultas.php";
+			include_once "modul/mod_fakultas/ControllerFakultas.php";
 		}
 		break;
 
