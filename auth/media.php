@@ -559,23 +559,23 @@ $(function () {
 									</div>
 								</div>
 							</li>
-							
+
 							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl7">
+								<a data-toggle="collapse" href="#dropdown-support">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Support <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 7 -->
-								<div id="dropdown-lvl7" class="panel-collapse collapse">
+								<div id="dropdown-support" class="panel-collapse collapse <?php echo ($module=='banner' || $module=='fakultas' || $module=='kerjasama' || $module=='pesan' || $module=='prodi' || $module=='slideshow' || $module=='sosial' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="?module=banner">Banner</a></li>
-											<li><a href="?module=fakultas">Fakultas</a></li>
-											<li><a href="?module=kerjasama">Kerjasama</a></li>
-											<li><a href="?module=pesan">Message</a></li>
-											<li><a href="?module=prodi">Prodi</a></li>
-											<li><a href="?module=slideshow">Slideshow</a></li>
-											<li><a href="?module=sosial">Social Media</a></li>
+											<li><a href="?module=banner" <?php echo ($module=='banner') ? 'class="bg-info"' : NULL ; ?>>Banner</a></li>
+											<li><a href="?module=fakultas" <?php echo ($module=='fakultas') ? 'class="bg-info"' : NULL ; ?>>Fakultas</a></li>
+											<li><a href="?module=kerjasama" <?php echo ($module=='kerjasama') ? 'class="bg-info"' : NULL ; ?>>Kerjasama</a></li>
+											<li><a href="?module=pesan" <?php echo ($module=='pesan') ? 'class="bg-info"' : NULL ; ?>>Message</a></li>
+											<li><a href="?module=prodi" <?php echo ($module=='prodi') ? 'class="bg-info"' : NULL ; ?>>Prodi</a></li>
+											<li><a href="?module=slideshow" <?php echo ($module=='slideshow') ? 'class="bg-info"' : NULL ; ?>>Slideshow</a></li>
+											<li><a href="?module=sosial" <?php echo ($module=='sosial') ? 'class="bg-info"' : NULL ; ?>>Social Media</a></li>
 										</ul>
 									</div>
 								</div>

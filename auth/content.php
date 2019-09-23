@@ -162,15 +162,6 @@ switch ($_GET['module']) {
 			include_once "modul/mod_artikel/ModelArtikel.php";
 			include_once "modul/mod_artikel/ControllerArtikel.php";
 		}
-		break;
-	
-	// Bagian informasi kerjasama
-	case 'kerjasama':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "modul/mod_kerjasama/ModelKerjasama.php";
-			include_once "modul/mod_kerjasama/ControllerKerjasama.php";
-		}
 		break;		
 
 	// Bagian informasi lowongan karir
@@ -650,13 +641,23 @@ switch ($_GET['module']) {
     }
     break;
 
+	/* ==================== START MENU SUPPORT ==================== */
+	case 'banner':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_banner/ModelBanner.php";
+			include_once "modul/mod_banner/ControllerBanner.php";
+		}
+		break;
 
-  // Bagian banner
-  case 'banner':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_banner/banner.php";
-    }
-    break;
+	case 'kerjasama':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_kerjasama/ModelKerjasama.php";
+			include_once "modul/mod_kerjasama/ControllerKerjasama.php";
+		}
+		break;
+	/* ==================== END MENU SUPPORT ==================== */
 
   // Bagian subimages
   case 'subimages':
