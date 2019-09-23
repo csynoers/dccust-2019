@@ -290,7 +290,7 @@ $(function () {
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($module=='halaman_home' || $module=='profile' || $module=='static_content' || $module=='artikel' || $module=='program' || $module=='beasiswa' || $module=='agenda' || $module=='karir' || $module=='option_career' || $module=='kerjasama' || $module=='gallery' || $module=='buku_tamu' ) ? 'in' : NULL ; ?>">
+								<div id="dropdown-lvl2" class="panel-collapse collapse <?php echo ($module=='halaman_home' || $module=='profile' || $module=='static_content' || $module=='artikel' || $module=='program' || $module=='beasiswa' || $module=='agenda' || $module=='karir' || $module=='option_career' || $module=='gallery' || $module=='buku_tamu' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
 										<li><a href="?module=halaman_home" <?php echo ($module=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
@@ -311,7 +311,6 @@ $(function () {
 													</div>
 												</div>
 											</li>
-											<li><a href="?module=kerjasama">Kerjasama</a></li>
 											<li class="panel panel-default" id="dropdown">
 												<a data-toggle="collapse" href="#dropdown-info">Info <span class="caret"></span>
 												</a>
@@ -560,24 +559,7 @@ $(function () {
 									</div>
 								</div>
 							</li>
-
-							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl5">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Galeri Foto Album <span class="caret"></span>
-								</a>
-
-								<!-- Dropdown level 5 -->
-								<div id="dropdown-lvl5" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-											<li><a href="?module=album">Album foto</a></li>
-											<li><a href="?module=video">Koleksi Video</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
-
-
+							
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl7">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Support <span class="caret"></span>
@@ -587,11 +569,12 @@ $(function () {
 								<div id="dropdown-lvl7" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
+											<li><a href="?module=banner">Banner</a></li>
 											<li><a href="?module=fakultas">Fakultas</a></li>
+											<li><a href="?module=kerjasama">Kerjasama</a></li>
+											<li><a href="?module=pesan">Message</a></li>
 											<li><a href="?module=prodi">Prodi</a></li>
 											<li><a href="?module=slideshow">Slideshow</a></li>
-											<li><a href="?module=banner">Banner</a></li>
-											<li><a href="?module=pesan">Message</a></li>
 											<li><a href="?module=sosial">Social Media</a></li>
 										</ul>
 									</div>
