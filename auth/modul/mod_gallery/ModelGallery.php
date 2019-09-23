@@ -19,10 +19,10 @@
         public function get_foto($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT * FROM album ORDER BY id_album DESC")['data'];
+                return $this->db->get_select("SELECT * FROM galeri WHERE id_album='{$_GET['parent']}' ORDER BY id_galeri DESC")['data'];
                 
             } else {
-                return $this->db->get_select("SELECT * FROM album WHERE id_album='{$id}' ")['data'];
+                return $this->db->get_select("SELECT * FROM galeri WHERE id_galeri='{$id}' ")['data'];
 
             }
             
@@ -52,6 +52,23 @@
             $requiredColumnsArray   = array_keys($columnsArray);
             
             # insert into album
+            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
+
+            return ($insert=='success') ? TRUE : FALSE ;
+        }
+        public function insert_foto()
+        {
+            $table                  = 'galeri';
+            $columnsArray           = [
+                'nama'=> $this->post['nama'],
+                'id_album'=> $this->post['id_album'],
+            ];
+            if ( ! empty($this->post['gambar']) ) {
+                $columnsArray['gambar'] = $this->post['gambar']; 
+            }
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # insert into galeri
             $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
 
             return ($insert=='success') ? TRUE : FALSE ;
@@ -92,6 +109,25 @@
 
             return ($update=='success') ? TRUE : FALSE ;
         }
+        public function update_foto()
+        {
+            $table                  = 'galeri';
+            $columnsArray           = [
+                'nama'=> $this->post['nama'],
+            ];
+            if ( ! empty($this->post['gambar']) ) {
+                $columnsArray['gambar'] = $this->post['gambar']; 
+            }
+            $where                  = [
+                'id_galeri'=> $this->post['id']
+            ];
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # update set galeri
+            $update= $this->db->update($table, $columnsArray, $where, $requiredColumnsArray)['status'];
+
+            return ($update=='success') ? TRUE : FALSE ;
+        }
         public function update_video()
         {
             $table                  = 'video';
@@ -113,11 +149,29 @@
 
         public function delete_album($id)
         {
-            $table                  = 'album';
+            # cek count rows of foto with this id album
+            $row_count_foto = count($this->db->select('galeri',['id_album'=>$id])['data']);
+            if ( $row_count_foto > 0 ) {
+                return FALSE ;
+            } else {
+                $table                  = 'album';
+                $where                  = [
+                    'id_album'=> $id
+                ];
+                # delete set album
+                $delete= $this->db->delete($table, $where)['status'];
+        
+                return ($delete=='success') ? TRUE : FALSE ;
+            }
+            
+        }
+        public function delete_foto($id)
+        {
+            $table                  = 'galeri';
             $where                  = [
-                'id_album'=> $id
+                'id_galeri'=> $id
             ];
-            # delete set album
+            # delete set galeri
             $delete= $this->db->delete($table, $where)['status'];
     
             return ($delete=='success') ? TRUE : FALSE ;
@@ -132,57 +186,6 @@
             $delete= $this->db->delete($table, $where)['status'];
     
             return ($delete=='success') ? TRUE : FALSE ;
-        }
-        
-        public function get_kerjasama($id=NULL)
-        {
-            if ( empty($id) ) {
-                return $this->db->get_select("SELECT *,DATE_FORMAT(sajian.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM sajian ORDER BY id_sajian DESC")['data'];
-                
-            } else {
-                return $this->db->get_select("SELECT * FROM sajian WHERE id_sajian='{$id}' ")['data'];
-
-            }
-            
-        }
-
-        public function insert_kerjasama()
-        {
-            $table                  = 'sajian';
-            $columnsArray           = [
-                'nama_sajian_ina'=> $this->post['nama_sajian_ina'],
-                'tanggal'=> date('Y-m-d'),
-            ];
-            if ( ! empty($this->post['gambar']) ) {
-                $columnsArray['gambar'] = $this->post['gambar']; 
-            }
-            $requiredColumnsArray   = array_keys($columnsArray);
-            
-            # insert into sajian
-            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
-
-            return ($insert=='success') ? TRUE : FALSE ;
-        }
-
-        public function update_kerjasama()
-        {
-            $table                  = 'sajian';
-            $columnsArray           = [
-                'nama_sajian_ina'=> $this->post['nama_sajian_ina'],
-                'tanggal'=> date('Y-m-d'),
-            ];
-            if ( ! empty($this->post['gambar']) ) {
-                $columnsArray['gambar'] = $this->post['gambar']; 
-            }
-            $where                  = [
-                'id_sajian'=> $this->post['id_sajian']
-            ];
-            $requiredColumnsArray   = array_keys($columnsArray);
-            
-            # update set sajian
-            $update= $this->db->update($table, $columnsArray, $where, $requiredColumnsArray)['status'];
-
-            return ($update=='success') ? TRUE : FALSE ;
         }
     }
     

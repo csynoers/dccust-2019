@@ -16,6 +16,10 @@
                     'max-width'=> 200,
                     'dir'=> '../joimg/album/',
                 ],
+                'foto'=> [
+                    'max-width'=> 1024,
+                    'dir'=> '../joimg/galeri/',
+                ],
             ];
 
 			# get parameter $_GET['act']
@@ -166,15 +170,16 @@
         public function delete()
         {
             if ( in_array($this->url->data,array_keys($this->config->img)) ) {
-                $row= $this->Model->{'get_'.$this->url->data}($_GET['id'])[0];
-                if( ($row->gambar != '') && file_exists($this->config->img[$this->url->data]['dir'].$row->gambar) ){
-                    unlink($this->config->img[$this->url->data]['dir'].$row->gambar);
-                }
-                
+                $row= $this->Model->{'get_'.$this->url->data}($_GET['id'])[0];                
             }
 
-            $function= 'delete_'.$this->url->data;
-            if ( $this->Model->$function($_GET['id']) ) {
+            if ( $this->Model->{'delete_'.$this->url->data}($_GET['id']) ) {
+                if ( in_array($this->url->data,array_keys($this->config->img)) ) {
+                    if( ($row->gambar != '') && file_exists($this->config->img[$this->url->data]['dir'].$row->gambar) ){
+                        unlink($this->config->img[$this->url->data]['dir'].$row->gambar);
+                    }
+                    
+                }
                 # TRUE
                 # location header
                 echo "<script>alert('Data berhasil dihapus'); window.history.go(-1);</script>";
