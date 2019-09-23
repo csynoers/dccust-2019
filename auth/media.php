@@ -295,7 +295,6 @@ $(function () {
 										<ul class="nav navbar-nav">
 										<li><a href="?module=halaman_home" <?php echo ($module=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
 											<li><a href="?module=profile" <?php echo ($module=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
-											<li><a href="?module=static_content&id=7" <?php echo ($module=='static_content') ? 'class="bg-info"' : NULL ; ?> >Contact Us</a></li>
 											<li><a href="?module=program" <?php echo ($module=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
 											
 
@@ -334,6 +333,18 @@ $(function () {
 														<ul class="nav navbar-nav">
 															<li><a href="?module=gallery&data=album" <?php echo ($data=='album') ? 'class="bg-info"' : NULL ; ?> >Foto</a></li>
 															<li><a href="?module=gallery&data=video" <?php echo ($data=='video') ? 'class="bg-info"' : NULL ; ?> >Video</a></li>
+														</ul>
+													</div>
+												</div>
+											</li>
+											<li class="panel panel-default" id="dropdown">
+												<a data-toggle="collapse" href="#dropdown-kontak">Kontak <span class="caret"></span>
+												</a>
+												<div id="dropdown-kontak" class="panel-collapse collapse <?php echo ($module=='buku_tamu' || ($module=='static_content' && $_GET['id']=='7' ) ) ? 'in' : NULL ; ?>">
+													<div class="panel-body">
+														<ul class="nav navbar-nav">
+															<li><a href="?module=buku_tamu" <?php echo ($module=='buku_tamu') ? 'class="bg-info"' : NULL ; ?>>Buku Tamu</a></li>
+															<li><a href="?module=static_content&id=7" <?php echo ($module=='static_content' && $_GET['id']=='7') ? 'class="bg-info"' : NULL ; ?> >Kontak</a></li>
 														</ul>
 													</div>
 												</div>
@@ -580,7 +591,6 @@ $(function () {
 											<li><a href="?module=prodi">Prodi</a></li>
 											<li><a href="?module=slideshow">Slideshow</a></li>
 											<li><a href="?module=banner">Banner</a></li>
-											<li><a href="?module=buku_tamu">Buku Tamu</a></li>
 											<li><a href="?module=pesan">Message</a></li>
 											<li><a href="?module=sosial">Social Media</a></li>
 										</ul>
