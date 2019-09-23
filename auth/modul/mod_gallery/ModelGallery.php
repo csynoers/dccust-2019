@@ -39,6 +39,23 @@
             
         }
 
+        public function insert_album()
+        {
+            $table                  = 'album';
+            $columnsArray           = [
+                'nama'=> $this->post['nama'],
+                'seo'=> seo_title($this->post['nama']),
+            ];
+            if ( ! empty($this->post['gambar']) ) {
+                $columnsArray['gambar'] = $this->post['gambar']; 
+            }
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # insert into album
+            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
+
+            return ($insert=='success') ? TRUE : FALSE ;
+        }
         public function insert_video()
         {
             $table                  = 'video';
@@ -55,6 +72,26 @@
             return ($insert=='success') ? TRUE : FALSE ;
         }
 
+        public function update_album()
+        {
+            $table                  = 'album';
+            $columnsArray           = [
+                'nama'=> $this->post['nama'],
+                'seo'=> seo_title($this->post['nama']),
+            ];
+            if ( ! empty($this->post['gambar']) ) {
+                $columnsArray['gambar'] = $this->post['gambar']; 
+            }
+            $where                  = [
+                'id_album'=> $this->post['id']
+            ];
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # update set album
+            $update= $this->db->update($table, $columnsArray, $where, $requiredColumnsArray)['status'];
+
+            return ($update=='success') ? TRUE : FALSE ;
+        }
         public function update_video()
         {
             $table                  = 'video';
@@ -74,6 +111,17 @@
             return ($update=='success') ? TRUE : FALSE ;
         }
 
+        public function delete_album($id)
+        {
+            $table                  = 'album';
+            $where                  = [
+                'id_album'=> $id
+            ];
+            # delete set album
+            $delete= $this->db->delete($table, $where)['status'];
+    
+            return ($delete=='success') ? TRUE : FALSE ;
+        }
         public function delete_video($id)
         {
             $table                  = 'video';

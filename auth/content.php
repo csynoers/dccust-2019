@@ -197,6 +197,7 @@ switch ($_GET['module']) {
 	// Bagian informasi Galeri
 	case 'gallery':
 		if ($_SESSION['leveluser']=='admin'){
+      include_once "../josys/fungsi_seo.php";
 			include_once "../josys/helper_upload.php";
 			include_once "modul/mod_gallery/ModelGallery.php";
 			include_once "modul/mod_gallery/ControllerGallery.php";

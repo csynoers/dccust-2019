@@ -9,6 +9,14 @@
 			$this->url->module 	= $_GET['module'];
             $this->url->data 	= $_GET['data'];
             $this->url->act     = empty($_GET['act']) ? NULL : $_GET['act'] ; 
+            
+            $this->config       = new stdClass();
+            $this->config->img  = [
+                'album'=> [
+                    'max-width'=> 200,
+                    'dir'=> '../joimg/album/',
+                ],
+            ];
 
 			# get parameter $_GET['act']
 			switch ( $this->url->act ) {
@@ -71,7 +79,7 @@
             $this->Model->post= $_POST;
 
             if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                $this->Model->post['gambar'] = img_resize($_FILES['gambar'],200,'../joimg/ourclient/'); 
+                $this->Model->post['gambar'] = img_resize($_FILES['gambar'],$this->config->img[$this->url->data]['max-width'],$this->config->img[$this->url->data]['dir']); 
                 if ( $this->Model->post['gambar'] != 'error' ) {
 
                     if ( $this->Model->{'insert_'.$this->url->data}() ) {
@@ -112,16 +120,16 @@
         public function update()
         {
             $this->Model->post= $_POST;
-            $function= 'update_'.$this->url->data;
+            
             if ( ! empty($_FILES['gambar']['tmp_name']) ) {
-                $this->Model->post['gambar'] = img_resize($_FILES['gambar'],200,'../joimg/ourclient/'); 
+                $this->Model->post['gambar'] = img_resize($_FILES['gambar'],$this->config->img[$this->url->data]['max-width'],$this->config->img[$this->url->data]['dir']); 
                 if ( $this->Model->post['gambar'] != 'error' ) {
-                    $row= $this->Model->get_kerjasama($_POST['id_agenda'])[0];
-                    if( ($row->gambar != '') && file_exists("../joimg/ourclient/{$row->gambar}") ){
-                        unlink("../joimg/ourclient/{$row->gambar}");
+                    $row= $this->Model->{'get_'.$this->url->data}($_POST['id'])[0];
+                    if( ($row->gambar != '') && file_exists($this->config->img[$this->url->data]['dir'].$row->gambar) ){
+                        unlink($this->config->img[$this->url->data]['dir'].$row->gambar);
                     }
 
-                    if ( $this->Model->$function() ) {
+                    if ( $this->Model->{'update_'.$this->url->data}() ) {
                         # TRUE
                         # location header
                         echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -140,7 +148,7 @@
                 }
 
             } else {
-                if ( $this->Model->$function() ) {
+                if ( $this->Model->{'update_'.$this->url->data}() ) {
                     # TRUE
                     # location header
                     echo "<script>alert('Data berhasil diubah'); window.history.go(-2);</script>";
@@ -157,10 +165,13 @@
 
         public function delete()
         {
-            // $row= $this->Model->get_kerjasama($_GET['id'])[0];
-            // if( ($row->gambar != '') && file_exists("../joimg/ourclient/{$row->gambar}") ){
-            //     unlink("../joimg/ourclient/{$row->gambar}");
-            // }
+            if ( in_array($this->url->data,array_keys($this->config->img)) ) {
+                $row= $this->Model->{'get_'.$this->url->data}($_GET['id'])[0];
+                if( ($row->gambar != '') && file_exists($this->config->img[$this->url->data]['dir'].$row->gambar) ){
+                    unlink($this->config->img[$this->url->data]['dir'].$row->gambar);
+                }
+                
+            }
 
             $function= 'delete_'.$this->url->data;
             if ( $this->Model->$function($_GET['id']) ) {

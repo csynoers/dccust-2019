@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>{$no}</td>
                                     <td>{$value->nama}</td>
-                                    <td>{$value->counts}</td>
+                                    <td><a href='?module={$this->url->module}&data=foto&parent={$value->id_album}' title='View foto this album'>{$value->counts}</a></td>
                                     <td>
                                         <a href='?module={$this->url->module}&data={$this->url->data}&act=edit&id={$value->id_album}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
