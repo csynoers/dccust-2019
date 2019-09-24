@@ -586,11 +586,7 @@ switch ($_GET['module']) {
 
 
   // Bagian slideshow
-  case 'slideshow':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_slideshow/slideshow.php";
-    }
-    break;
+
 
 
   // Bagian Album
@@ -644,7 +640,6 @@ switch ($_GET['module']) {
 
 	case 'fakultas':
 		if ($_SESSION['leveluser']=='admin'){
-			// include_once "../josys/helper_upload.php";
 			include_once "modul/mod_fakultas/ModelFakultas.php";
 			include_once "modul/mod_fakultas/ControllerFakultas.php";
 		}
@@ -660,16 +655,34 @@ switch ($_GET['module']) {
 
 	case 'pesan':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_pesan/pesan.php";
+			include_once "modul/mod_pesan/ModelPesan.php";
+			include_once "modul/mod_pesan/ControllerPesan.php";
 		}
 		break;
 	
 	case 'prodi':
 		if ($_SESSION['leveluser']=='admin'){
-		  include_once "modul/mod_prodi/prodi.php";
+			include_once "modul/mod_prodi/prodi.php";
+		}
+		break;
+
+	case 'slideshow':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_slideshow/slideshow.php";
+		}
+		break;
+	case 'sosial':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_sosial/sosial.php";
 		}
 		break;
 	/* ==================== END MENU SUPPORT ==================== */
+
+	/* ==================== START MENU SEO ==================== */
+	/* ==================== END MENU SEO ==================== */
+
+	/* ==================== START MENU ADMIN ==================== */
+	/* ==================== END MENU ADMIN ==================== */
 
   // Bagian subimages
   case 'subimages':
@@ -735,11 +748,7 @@ switch ($_GET['module']) {
 
 
   // Bagian sosial
-  case 'sosial':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_sosial/sosial.php";
-    }
-    break;
+  
 
 
   // Bagian overview
