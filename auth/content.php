@@ -669,7 +669,9 @@ switch ($_GET['module']) {
 
 	case 'slideshow':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_slideshow/slideshow.php";
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_slideshow/ModelSlideshow.php";
+			include_once "modul/mod_slideshow/ControllerSlideshow.php";
 		}
 		break;
 	case 'sosial':
