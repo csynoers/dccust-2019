@@ -56,15 +56,9 @@
 
                 # set column field database for datatable searchable 
                 $column_search  = [
-                    's.nama',
-                    's.tmpt_lahir',
-                    's.tgl_lahir',
-                    'k.nama',
-                    'p.nama',
-                    'asl.nama',
-                    'j.nama',
-                    's.tb',
-                    'stats.stat_name',
+                    'tanggal',
+                    'nama',
+                    'email',
                 ]; 
 
                 # generate like condition for search
@@ -110,6 +104,9 @@
                     $data[]= array(
                         $no,
                         $value->tanggal_mod,
+                        $value->nama,
+                        $value->email,
+                        $value->dibaca_mod,
                         "
                         <a href='?module={$_GET['data']}&act=edit&id={$value->id}'>
                             <i class='fa fa-eye-slash' aria-hidden='true' title='View this message'></i>

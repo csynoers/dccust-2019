@@ -31,29 +31,7 @@
 				</thead> 
 
                 <tbody>
-                    <?php
-                        $no=1;
-                        foreach ($rows as $key => $value) {
-                            echo "
-                                <tr>
-                                    <td>{$no}</td>
-                                    <td>{$value->tanggal_mod}</td>
-                                    <td>{$value->nama_mod}</td>
-                                    <td>{$value->email}</td>
-                                    <td>{$value->dibaca_mod}</td>
-                                    <td>
-                                        <a href='?module={$this->url->module}&act=edit&id={$value->id}'>
-                                            <i class='fa fa-eye-slash' aria-hidden='true' title='View this message'></i>
-                                        </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href='?module={$this->url->module}&act=delete&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
-                                        <i class='fa fa-trash' aria-hidden='true' title='Delete this message'></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            ";
-                            $no++;
-                        }
-                    ?>
+                    
                 </tbody>
 
                 <tfoot>
@@ -76,6 +54,25 @@
 
 <script>
     $(document).ready(function() {
-        $('table').DataTable()
+        var table = $('table').DataTable({ 
+            "processing": true, //Feature control the processing indicator.
+            "serverSide": true, //Feature control DataTables' server-side processing mode.
+            "order": [], //Initial no order.
+    
+            // Load data for the table's content from an Ajax source
+            "ajax": {
+                "url": "ajax_data.php?data=<?php echo $this->url->module ?>",
+                "type": "POST",
+            },
+    
+            //Set column definition initialisation properties.
+            "columnDefs": [
+            { 
+                "targets": [ 4,5 ], //first column / numbering column
+                "orderable": false, //set not orderable
+            },
+            ],
+    
+        });
     })
 </script>
