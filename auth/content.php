@@ -662,7 +662,8 @@ switch ($_GET['module']) {
 	
 	case 'prodi':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_prodi/prodi.php";
+			include_once "modul/mod_prodi/ModelProdi.php";
+			include_once "modul/mod_prodi/ControllerProdi.php";
 		}
 		break;
 
