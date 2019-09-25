@@ -8,7 +8,7 @@
         public function get_pesan($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT *,DATE_FORMAT(contact.tanggal, '%W,  %d %b %Y') AS tanggal_mod,SUBSTRING(contact.nama, 1, 50) AS nama_mod,IF(contact.dibaca='Yes','Sudah dibaca','Belum diabac') AS dibaca_mod FROM contact ORDER BY id DESC")['data'];
+                return $this->db->get_select("SELECT *,DATE_FORMAT(contact.tanggal, '%W,  %d %b %Y') AS tanggal_mod,SUBSTRING(contact.nama, 1, 50) AS nama_mod,IF(contact.dibaca='Yes','<span class=\"label label-default\">Sudah dibaca</span>','<span class=\'label label-info\'>Belum dibaca</span>') AS dibaca_mod FROM contact ORDER BY id DESC")['data'];
                 
             } else {
                 $this->read_pesan($id);

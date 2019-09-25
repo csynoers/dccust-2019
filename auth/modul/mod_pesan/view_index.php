@@ -11,7 +11,7 @@
                     <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Pesan Masuk</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="?module=<?php echo $this->url->module ?>&data=header&act=edit&id=16"><button type="button" class="btn btn-primary"> Update Header</button></a></li>
+                    <!-- <li><a href="?module=<?php echo $this->url->module ?>&data=header&act=edit&id=16"><button type="button" class="btn btn-primary"> Update Header</button></a></li> -->
                 </ul>
             </div>
         </nav>
