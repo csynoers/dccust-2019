@@ -676,7 +676,9 @@ switch ($_GET['module']) {
 		break;
 	case 'sosial':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_sosial/sosial.php";
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_sosial/ModelSosial.php";
+			include_once "modul/mod_sosial/ControllerSosial.php";
 		}
 		break;
 	/* ==================== END MENU SUPPORT ==================== */
