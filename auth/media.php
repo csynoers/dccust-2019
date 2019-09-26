@@ -171,7 +171,6 @@ $(function () {
 		'review'		=> 'Edit Review Product',
 		'comment'		=> 'Edit Comment',
 		'confirmation'	=> 'Edit Payment Confirmation',
-		'member'		=> 'Edit Memberarea',
 		'testimoni'		=> 'Edit Testimoni',
 		'download'		=> 'Edit download',
 		'buku'			=> 'Edit buku',

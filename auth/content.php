@@ -310,15 +310,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_kuise/kuise.php";
     }
 	break;
-	
-
-
-  // Bagian kategori album
-  case 'katalbum':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_katalbum/katalbum.php";
-    }
-    break;
 
 
 
@@ -338,16 +329,6 @@ switch ($_GET['module']) {
     }
     break;
 
-  
-    
-
-  // Bagian jaringan
-  case 'jaringan':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_jaringan/jaringan.php";
-    }
-    break;
-
 
   // Bagian provinsi
   case 'provinsi':
@@ -355,124 +336,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_provinsi/provinsi.php";
     }
     break;
-
-
-  // Bagian Sektor kegiatan jaringan
-  case 'sektor_kegiatan':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_sektor_kegiatan/sektor.php";
-    }
-    break;
-
-
-  // Bagian kegiatan
-  case 'kegiatan':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kegiatan/kegiatan.php";
-    }
-    break;
-
-
-  
-
-
-  // Bagian Newsletter
-  case 'newsletter':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_newsletter/newsletter.php";
-    }
-    break;
-
-
-  // Bagian Guru merdeka
-  case 'merdeka':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_gurumerdeka/merdeka.php";
-    }
-    break;
-
-
-  // Bagian comment
-  case 'comment':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_comment/comment.php";
-    }
-    break;
-  // Bagian File Alumni
-  case 'file_alumni':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_file_alumni/file_alumni.php";
-    }
-    break;
-
-
-
-  // Jasa ongkos kirim
-  case 'jasa':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_jasa/jasa.php";
-    }
-    break;
-
-
-  case 'negara':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_negara/negara.php";
-    }
-    break;
-
-
-
-
-
-
-
-
-
-  case 'kota':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kota/kota.php";
-    }
-    break;
-
-  // Bagian ongkos
-  case 'ongkir':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_ongkir/ongkir.php";
-    }
-    break;
-
-
-  // Bagian subcribe
-  case 'subcribe':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_subcribe/subcribe.php";
-    }
-    break;
-
-
-
-  // Bagian slideshow
-
-
-
-  // Bagian Album
-  case 'album':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_album/album.php";
-    }
-    break;
-
-
-  // Bagian kaos
-  case 'kaos':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kaos/kaos.php";
-    }
-    break;
-
-
-
 
   // Bagian confirmation
   case 'confirmation':
@@ -671,13 +534,6 @@ switch ($_GET['module']) {
 		break;
 /* ==================== END MENU ADMIN ==================== */
 
-  // Bagian subimages
-  case 'subimages':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_subimages/subimages.php";
-    }
-    break;
-
     // Bagian static_content
 	case 'static_content':
 		if ($_SESSION['leveluser']=='admin'){
@@ -686,42 +542,6 @@ switch ($_GET['module']) {
 			include_once "modul/mod_static_content/ControllerStaticContent.php";
 		}
 		break;
-
-
-  // Bagian download
-  case 'download':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_download/download.php";
-    }
-    break;
-
-  // Bagian overview
-  case 'overview':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_overview/overview.php";
-    }
-    break;
-
-  // Bagian order
-  case 'member':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_member/member.php";
-    }
-    break;
-
-  // Bagian Testimoni
-  case 'testimoni':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_testimoni/testimoni.php";
-    }
-    break;
-
-  // Bagian Partner
-  case 'partner':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_partner/partner.php";
-    }
-    break;
   
   default:
     # Apabila modul tidak ditemukan
