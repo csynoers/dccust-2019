@@ -209,14 +209,25 @@ $(function () {
 		'tingkat_pendidikan'=> 'Tingkat Pendidikan Yang Paling Sesuai Untuk Pekerjaan', 
 		'kompetensi'		=> 'Kompetensi Statistik',
 
-		// tracer-pengguna
-		'tracer-pengguna'=> 'Hasil Tracer Pengguna',
-		'users-tracer-pengguna'=> 'Informasi Users Tracer Pengguna',
-		// tracer-pengguna
-		
-		// tracer-studi
+		/* ==================== START TRACER STUDI ==================== */
 		'tracer-study-category'=> 'Informasi Kategori Tracer Studi',
 		'tracer-study-detail'=> 'Informasi Detail Tracer Studi',
+		/* ==================== START TRACER STUDI ==================== */
+
+		/* ==================== START TRACER PENGGUNA ==================== */
+		'tracer-pengguna'=> 'Hasil Tracer Pengguna',
+		'users-tracer-pengguna'=> 'Informasi Users Tracer Pengguna',
+		/* ==================== END TRACER PENGGUNA ==================== */
+
+		/* ==================== START MENU SUPPORT ==================== */
+		/* ==================== END MENU SUPPORT ==================== */
+
+		/* ==================== START MENU SEO ==================== */
+		'seo'=> 'Informasi SEO(search engine optimization)',
+		/* ==================== END MENU SEO ==================== */
+
+		/* ==================== START MENU ADMIN ==================== */
+		/* ==================== END MENU ADMIN ==================== */
 
 	);
 ?>
@@ -559,13 +570,11 @@ $(function () {
 									</div>
 								</div>
 							</li>
-
+							<!-- ==================== START MENU SUPPORT ==================== -->
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-support">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Support <span class="caret"></span>
 								</a>
-
-								<!-- Dropdown level 7 -->
 								<div id="dropdown-support" class="panel-collapse collapse <?php echo ($module=='banner' || $module=='fakultas' || $module=='kerjasama' || $module=='pesan' || $module=='prodi' || $module=='slideshow' || $module=='sosial' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
@@ -580,39 +589,40 @@ $(function () {
 									</div>
 								</div>
 							</li>
-
+							<!-- ==================== END MENU SUPPORT ==================== -->
+							
+							<!-- ==================== START MENU SEO ==================== -->
 							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl8">
+								<a data-toggle="collapse" href="#dropdown-seo">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Seo <span class="caret"></span>
 								</a>
-
-								<!-- Dropdown level 8 -->
-								<div id="dropdown-lvl8" class="panel-collapse collapse">
+								<div id="dropdown-seo" class="panel-collapse collapse <?php echo ($module=='seo') ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="?module=title">Title</a></li>
-											<li><a href="?module=description">Description</a></li>
-											<li><a href="?module=keyword">Keyword</a></li>
+											<li><a href="?module=seo&data=title&id=90" <?php echo ($data=='title') ? 'class="bg-info"' : NULL ; ?>>Title</a></li>
+											<li><a href="?module=seo&data=description&id=92" <?php echo ($data=='description') ? 'class="bg-info"' : NULL ; ?>>Description</a></li>
+											<li><a href="?module=seo&data=keyword&id=91" <?php echo ($data=='keyword') ? 'class="bg-info"' : NULL ; ?>>Keyword</a></li>
 										</ul>
 									</div>
 								</div>
 							</li>
+							<!-- ==================== END MENU SEO ==================== -->
 
+							<!-- ==================== END MENU ADMIN ==================== -->
 							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl9">
+								<a data-toggle="collapse" href="#dropdown-admin">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Admin <span class="caret"></span>
 								</a>
-
-								<!-- Dropdown level 9 -->
-								<div id="dropdown-lvl9" class="panel-collapse collapse">
+								<div id="dropdown-admin" class="panel-collapse collapse <?php echo ($module=='user') ? 'in' : NULL ; ?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="?module=user">Change Password</a></li>
+											<li><a href="?module=user" <?php echo ($module=='user') ? 'class="bg-info"' : NULL ; ?>>Change Password</a></li>
 											<li><a href="logout.php">Logout</a></li>
 										</ul>
 									</div>
 								</div>
 							</li>
+							<!-- ==================== END MENU ADMIN ==================== -->
 
 							<li>
 								<div class="alert alert-info">

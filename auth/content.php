@@ -107,101 +107,6 @@ switch ($_GET['module']) {
   }
   break;
 
-	// Bagian informasi Home
-	case 'halaman_home':
-		if ($_SESSION['leveluser']=='admin'){			
-			include_once "modul/mod_home/ModelHome.php";
-			include_once "modul/mod_home/ControllerHome.php";
-		}
-    	break;
-
-	// Bagian informasi profile
-	case 'profile':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "modul/mod_profile/ModelProfile.php";
-			include_once "modul/mod_profile/ControllerProfile.php";
-		}
-		break;
-
-	// Bagian informasi program
-	case 'program':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_program/ModelProgram.php";
-			include_once "modul/mod_program/ControllerProgram.php";
-		}
-		break;
-
-	// Bagian informasi beasiswa
-	case 'beasiswa':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_beasiswa/ModelBeasiswa.php";
-			include_once "modul/mod_beasiswa/ControllerBeasiswa.php";
-		}
-		break;
-	
-	// Bagian informasi agenda
-	case 'agenda':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_agenda/ModelAgenda.php";
-			include_once "modul/mod_agenda/ControllerAgenda.php";
-		}
-		break;
-
-	// Bagian informassi Artikel
-	case 'artikel':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_artikel/ModelArtikel.php";
-			include_once "modul/mod_artikel/ControllerArtikel.php";
-		}
-		break;		
-
-	// Bagian informasi lowongan karir
-	case 'karir':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "../josys/helper_upload.php";
-			include_once "../josys/fungsi_seo.php";
-			include_once "modul/mod_karir/ModelKarir.php";
-			include_once "modul/mod_karir/ControllerKarir.php";
-		}
-		break;
-	
-	// Bagian Option Career
-	case 'option_career':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_option_career/ModelOptionCareer.php";
-			include_once "modul/mod_option_career/ControllerOptionCareer.php";
-		}
-		break;
-
-	// Bagian informasi Galeri
-	case 'gallery':
-		if ($_SESSION['leveluser']=='admin'){
-      include_once "../josys/fungsi_seo.php";
-			include_once "../josys/helper_upload.php";
-			include_once "modul/mod_gallery/ModelGallery.php";
-			include_once "modul/mod_gallery/ControllerGallery.php";
-		}
-		break;
-	
-	// Bagian informasi buku tamu
-	case 'buku_tamu':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_buku_tamu/ModelBukuTamu.php";
-			include_once "modul/mod_buku_tamu/ControllerBukuTamu.php";
-		}
-		break;
-
-
-
   // Bagian profile
   case 'proyek':
     if ($_SESSION['leveluser']=='admin'){
@@ -406,34 +311,6 @@ switch ($_GET['module']) {
     }
 	break;
 	
-	# Tracer Studi Category
-	case 'tracer-study-category':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_tracer_study_category/ModelTracerStudyCategory.php";
-			include_once "modul/mod_tracer_study_category/ControllerTracerStudyCategory.php";
-		}
-	break;
-	
-	# Tracer Studi Detail
-	case 'tracer-study-detail':
-		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
-			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
-		}
-	break;
-
-  // Bagian Tracer Pengguna
-  case 'tracer-pengguna':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_tracer_pengguna/tracer_pengguna.php";
-    }
-    break;
-  // Users Tracer Pengguna
-  case 'users-tracer-pengguna':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_users_tracer_pengguna/users_tracer_pengguna.php";
-    }
-    break;
 
 
   // Bagian kategori album
@@ -521,16 +398,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_comment/comment.php";
     }
     break;
-
-
-  // Bagian Alumni
-  case 'alumni':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_alumni/alumni.php";
-    }
-    break;
-
-
   // Bagian File Alumni
   case 'file_alumni':
     if ($_SESSION['leveluser']=='admin'){
@@ -597,14 +464,6 @@ switch ($_GET['module']) {
     break;
 
 
-  // Bagian Galeri
-  case 'galeri':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_galeri/galeri.php";
-    }
-    break;
-
-
   // Bagian kaos
   case 'kaos':
     if ($_SESSION['leveluser']=='admin'){
@@ -612,13 +471,6 @@ switch ($_GET['module']) {
     }
     break;
 
-
-  // Bagian video
-  case 'video':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_video/video.php";
-    }
-    break;
 
 
 
@@ -629,7 +481,125 @@ switch ($_GET['module']) {
     }
     break;
 
-	/* ==================== START MENU SUPPORT ==================== */
+/* ==================== START MENU UTAMA ==================== */
+	case 'halaman_home':
+		if ($_SESSION['leveluser']=='admin'){			
+			include_once "modul/mod_home/ModelHome.php";
+			include_once "modul/mod_home/ControllerHome.php";
+		}
+		break;
+	case 'profile':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_profile/ModelProfile.php";
+			include_once "modul/mod_profile/ControllerProfile.php";
+		}
+		break;
+	case 'program':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_program/ModelProgram.php";
+			include_once "modul/mod_program/ControllerProgram.php";
+		}
+		break;
+	case 'karir':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_karir/ModelKarir.php";
+			include_once "modul/mod_karir/ControllerKarir.php";
+		}
+		break;
+	case 'option_career':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_option_career/ModelOptionCareer.php";
+			include_once "modul/mod_option_career/ControllerOptionCareer.php";
+		}
+		break;
+	case 'agenda':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_agenda/ModelAgenda.php";
+			include_once "modul/mod_agenda/ControllerAgenda.php";
+		}
+		break;
+	case 'artikel':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_artikel/ModelArtikel.php";
+			include_once "modul/mod_artikel/ControllerArtikel.php";
+		}
+		break;
+	case 'beasiswa':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/helper_upload.php";
+			include_once "../josys/fungsi_seo.php";
+			include_once "modul/mod_beasiswa/ModelBeasiswa.php";
+			include_once "modul/mod_beasiswa/ControllerBeasiswa.php";
+		}
+		break;
+	case 'gallery':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "../josys/fungsi_seo.php";
+			include_once "../josys/helper_upload.php";
+			include_once "modul/mod_gallery/ModelGallery.php";
+			include_once "modul/mod_gallery/ControllerGallery.php";
+		}
+		break;
+	case 'buku_tamu':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_buku_tamu/ModelBukuTamu.php";
+			include_once "modul/mod_buku_tamu/ControllerBukuTamu.php";
+		}
+		break;
+/* ==================== END MENU UTAMA ==================== */
+
+/* ==================== START MENU ALUMNI ==================== */
+	case 'alumni':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_alumni/alumni.php";
+		}
+		break;
+/* ==================== END MENU ALUMNI ==================== */
+
+/* ==================== START MENU HASIL TRACER ==================== */
+/* ==================== END MENU HASIL TRACER ==================== */
+
+/* ==================== START MENU GRAFIK TRACER ==================== */
+/* ==================== END MENU GRAFIK TRACER ==================== */
+
+/* ==================== START MENU TRACER STUDI ==================== */
+	case 'tracer-study-category':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_tracer_study_category/ModelTracerStudyCategory.php";
+			include_once "modul/mod_tracer_study_category/ControllerTracerStudyCategory.php";
+		}
+		break;
+	case 'tracer-study-detail':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
+			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
+		}
+		break;
+/* ==================== END MENU TRACER STUDI ==================== */
+
+/* ==================== START MENU TRACER PENGGUNA ==================== */
+	case 'tracer-pengguna':
+		if ($_SESSION['leveluser']=='admin'){
+		include_once "modul/mod_tracer_pengguna/tracer_pengguna.php";
+		}
+		break;
+	case 'users-tracer-pengguna':
+		if ($_SESSION['leveluser']=='admin'){
+		include_once "modul/mod_users_tracer_pengguna/users_tracer_pengguna.php";
+		}
+		break;
+/* ==================== END MENU TRACER PENGGUNA ==================== */
+
+/* ==================== START MENU SUPPORT ==================== */
 	case 'banner':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "../josys/helper_upload.php";
@@ -681,13 +651,24 @@ switch ($_GET['module']) {
 			include_once "modul/mod_sosial/ControllerSosial.php";
 		}
 		break;
-	/* ==================== END MENU SUPPORT ==================== */
+/* ==================== END MENU SUPPORT ==================== */
 
-	/* ==================== START MENU SEO ==================== */
-	/* ==================== END MENU SEO ==================== */
+/* ==================== START MENU SEO ==================== */
+	case 'seo':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_seo/ModelSeo.php";
+			include_once "modul/mod_seo/ControllerSeo.php";
+		}
+		break;
+/* ==================== END MENU SEO ==================== */
 
-	/* ==================== START MENU ADMIN ==================== */
-	/* ==================== END MENU ADMIN ==================== */
+/* ==================== START MENU ADMIN ==================== */
+	case 'user':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_user/user.php";
+		}
+		break;
+/* ==================== END MENU ADMIN ==================== */
 
   // Bagian subimages
   case 'subimages':
@@ -695,41 +676,6 @@ switch ($_GET['module']) {
       include_once "modul/mod_subimages/subimages.php";
     }
     break;
-
-
-
-
-  // Bagian Title
-  case 'title':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_title/title.php";
-    }
-    break;
-
-
-  // Bagian Description
-  case 'description':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_description/description.php";
-    }
-    break;
-
-
-  // Bagian Keyword
-  case 'keyword':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_keyword/keyword.php";
-    }
-    break;
-
-
-  // Bagian User
-  case 'user':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_user/user.php";
-    }
-    break;
-
 
     // Bagian static_content
 	case 'static_content':
@@ -748,22 +694,12 @@ switch ($_GET['module']) {
     }
     break;
 
-
-
-
-
-  // Bagian sosial
-  
-
-
   // Bagian overview
   case 'overview':
     if ($_SESSION['leveluser']=='admin'){
       include_once "modul/mod_overview/overview.php";
     }
     break;
-
-
 
   // Bagian order
   case 'member':
@@ -772,15 +708,12 @@ switch ($_GET['module']) {
     }
     break;
 
-
   // Bagian Testimoni
   case 'testimoni':
     if ($_SESSION['leveluser']=='admin'){
       include_once "modul/mod_testimoni/testimoni.php";
     }
     break;
-
-
 
   // Bagian Partner
   case 'partner':
