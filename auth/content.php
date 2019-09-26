@@ -665,7 +665,8 @@ switch ($_GET['module']) {
 /* ==================== START MENU ADMIN ==================== */
 	case 'user':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_user/user.php";
+			include_once "modul/mod_user/ModelUser.php";
+			include_once "modul/mod_user/ControllerUser.php";
 		}
 		break;
 /* ==================== END MENU ADMIN ==================== */

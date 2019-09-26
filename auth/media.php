@@ -149,10 +149,6 @@ $(function () {
 		'buku_tamu'		=> 'Edit Buku Tamu',
 		'static_content'=> 'Edit Content Website',
 		'pesan'			=>	'Read Message',
-		'title'			=> 'Edit Title Website',
-		'description'	=> 'Edit Description Website',
-		'keyword'		=> 'Edit Keyword Website',
-		'user'			=> 'Edit Change Password',
 		'subcategory'	=> 'Edit Subkategori',
 		'brand'			=> 'Edit brand',
 		'berita'		=> 'Edit Materi',
@@ -209,6 +205,9 @@ $(function () {
 		'tingkat_pendidikan'=> 'Tingkat Pendidikan Yang Paling Sesuai Untuk Pekerjaan', 
 		'kompetensi'		=> 'Kompetensi Statistik',
 
+		/* ==================== START MENU UTAMA ==================== */
+		/* ==================== END MENU UTAMA ==================== */
+
 		/* ==================== START TRACER STUDI ==================== */
 		'tracer-study-category'=> 'Informasi Kategori Tracer Studi',
 		'tracer-study-detail'=> 'Informasi Detail Tracer Studi',
@@ -227,6 +226,7 @@ $(function () {
 		/* ==================== END MENU SEO ==================== */
 
 		/* ==================== START MENU ADMIN ==================== */
+		'user'=> 'Edit Change Password',
 		/* ==================== END MENU ADMIN ==================== */
 
 	);
@@ -253,29 +253,8 @@ $(function () {
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<!-- <form class="navbar-form navbar-left" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" name="q" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-			</form> -->
-
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="../index.php" target='_BLANK'>Visit Site</a></li>
-				<!-- <li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-header">SETTINGS</li>
-						<li class=""><a href="#">Other Link</a></li>
-						<li class=""><a href="#">Other Link</a></li>
-						<li class=""><a href="#">Other Link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Logout</a></li>
-					</ul>
-				</li> -->
 			</ul>
 
 		</div><!-- /.navbar-collapse -->
