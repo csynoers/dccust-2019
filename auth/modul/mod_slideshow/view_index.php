@@ -8,7 +8,7 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Program Studi</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Slideshow</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- <li><a href="?module=<?php echo $this->module ?>&act=update_header"><button type="button" class="btn btn-primary"> Update Header</button></a></li> -->
@@ -38,15 +38,15 @@
                             echo "
                                 <tr>
                                     <td>{$no}</td>
-                                    <td>{$value->fakultas}</td>
-                                    <td>{$value->prodi}</td>
-                                    <td>{$value->prodi}</td>
-                                    <td>{$value->prodi}</td>
+                                    <td><img style='height:5rem' class='img-responsive' src='{$this->config->img[$this->url->module]['dir']}{$value->gambar}'></td>
+                                    <td>{$value->judul_ina_mod}</td>
+                                    <td>{$value->link_mod}</td>
+                                    <td>{$value->tanggal_mod}</td>
                                     <td>
-                                        <a href='?module={$this->url->module}&act=edit&id={$value->id_prodi}'>
+                                        <a href='?module={$this->url->module}&act=edit&id={$value->id}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href='?module={$this->url->module}&act=delete&id={$value->id_prodi}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
+                                        <a href='?module={$this->url->module}&act=delete&id={$value->id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
                                             <input type='image' src='images/icn_trash.png' title='Trash'>
                                         </a>
                                     </td>

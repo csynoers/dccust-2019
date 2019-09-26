@@ -1,9 +1,9 @@
 <?php
-    class ControllerProdi
+    class ControllerSlideshow
     {
         public function __construct($db_config){
-			$this->Model 	= new ModelProdi($db_config);
-			$this->aksi		= 'modul/mod_prodi/ControllerProdi.php';
+			$this->Model 	= new ModelSlideshow($db_config);
+			$this->aksi		= 'modul/mod_slideshow/ControllerSlideshow.php';
             
             $this->url          = new stdClass(); 
             $this->url->module 	= $_GET['module'];
@@ -12,10 +12,10 @@
             
             $this->config       = new stdClass();
             $this->config->img  = [
-                // 'banner'=> [
-                //     'max-width'=> 512,
-                //     'dir'=> '../joimg/banner/',
-                // ],
+                'slideshow'=> [
+                    'max-width'=> 1300,
+                    'dir'=> '../joimg/slide/',
+                ],
             ];
 
 			# get parameter $_GET['act']
@@ -205,6 +205,6 @@
 		}
 	}
 	
-	$load= new ControllerProdi($db_config);
+	$load= new ControllerSlideshow($db_config);
     
 ?>
