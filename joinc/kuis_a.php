@@ -91,21 +91,20 @@
 	}
 	function checkbox($rows){
 		$html= '';
-
-				foreach ($rows as $key => $value) {
-					$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
-					$html .= '
-					<div class="col-sm-12">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'">
-								'.strip_tags($value->tracer_study_detail_title).'
-								'.$add_input_text.'
-							</label>
-						</div>
-					</div>
-					';
-				}
+		foreach ($rows as $key => $value) {
+			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
+			$html .= '
+			<div class="col-sm-12">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'" '.($key==0? 'required autofocus' : NULL).'>
+						'.strip_tags($value->tracer_study_detail_title).'
+						'.$add_input_text.'
+					</label>
+				</div>
+			</div>
+			';
+		}
 		return $html;
 	}
 	function none($rows)
