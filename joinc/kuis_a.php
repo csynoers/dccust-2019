@@ -1,17 +1,33 @@
 <?php
-  require_once('form_helper.php');
-  // check last kuis
-  // get id alumni
-  $id_alumni= $_SESSION['idnya'];
+	require_once('form_helper.php');
+	// check last kuis
+	// get id alumni
+	$id_alumni= $_SESSION['idnya'];
 
-  // cek data from last fill kuisioner
-  $rows= $db->get_select("SELECT id_alumni FROM tb_a WHERE id_alumni='{$id_alumni}' ");
+	// cek data from last fill kuisioner
+	$rows= $db->get_select("SELECT id_alumni FROM tb_a WHERE id_alumni='{$id_alumni}' ");
 
-  if ( count($rows['data']) > 0) {
-    # code...
-    header('Location:kuis_b.html');
+	if ( count($rows['data']) > 0) {
+	# code...
+	header('Location:kuis_b.html');
 
-  }
+	}
+
+	/* function minify_html($html=NULL)
+	{
+		return preg_replace(
+			array(
+				'/ {2,}/',
+				'/<!--.*?-->|\t|(?:\r?\n[ \t]*)+/s'
+			),
+			array(
+				' ',
+				''
+			),
+			$html
+		);
+	
+	} */
 
 	function multiple_radio_button($rows){
 		$html= '';
@@ -101,19 +117,22 @@
 	{
 		return '<input type="text" class="form-control" placeholder="Masukan lainnya ..." >';
 	}
-?>
-<section id="featured">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-md-12">
-				<div class="row" style="margin-bottom: 46px;">
-					<div class="bawah">
-						<center><h3><span style="color: #009a54;" data-mce-mark="1">Kuesioner</span></h3></center>
+
+	$html= "";
+
+	$html .= '
+	<section id="featured">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="row" style="margin-bottom: 46px;">
+						<div class="bawah">
+							<center><h3><span style="color: #009a54;" data-mce-mark="1">Kuesioner</span></h3></center>
+						</div>
 					</div>
-				</div>
-				<form action="">
-					<div class="panel-group" id="accordion">
-						<?php
+					<form action="">
+						<div class="panel-group" id="accordion">';
+
 							# get rows from tracer_study without parent
 							$rows= $db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0")['data'];
 
@@ -155,7 +174,7 @@
 								}
 								
 
-								echo '
+								$html .= '
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title" style="color: #009a54;">
@@ -172,14 +191,17 @@
 								';
 								
 							}
-						?>
-					</div>
-					<!-- /.panel-group -->
 
-					<button type="submit" class="btn btn-block btn-large btn-primary">SUBMIT</button>
-				</form>
+						$html .= '
+						</div>
+						<!-- /.panel-group -->
 
+						<button type="submit" class="btn btn-block btn-large btn-primary">SUBMIT</button>
+					</form>
+
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>';
+
+	echo $html;

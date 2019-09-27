@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title><?php $row= $db->get_select("select static_content_en from modul where id_modul='90' ")['data'][0];  echo $row->static_content_en ?></title>
-<!-- Description, Keywords and Author -->
-<meta name="description" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='92' ")['data'][0]; echo $row->static_content_en ?>">
-<meta name="keywords" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='91' ")['data'][0];	echo $row->static_content_en ?>">
-<meta name="author" content="https://github.com/csynoers" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="img/favicon.png" />
-<!-- css -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<!-- <link href="css/jcarousel.css" rel="stylesheet" /> -->
-<link href="css/flexslider.css" rel="stylesheet" />
-<link href="css/style.css?v=0.1" rel="stylesheet" />
+	<meta charset="utf-8">
+	<title><?php $row= $db->get_select("select static_content_en from modul where id_modul='90' ")['data'][0];  echo $row->static_content_en ?></title>
+	<!-- Description, Keywords and Author -->
+	<meta name="description" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='92' ")['data'][0]; echo $row->static_content_en ?>">
+	<meta name="keywords" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='91' ")['data'][0];	echo $row->static_content_en ?>">
+	<meta name="author" content="https://github.com/csynoers" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.png" />
+	<!-- css -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<!-- <link href="css/jcarousel.css" rel="stylesheet" /> -->
+	<link href="css/flexslider.css" rel="stylesheet" />
+	<link href="css/style.css?v=0.1" rel="stylesheet" />
 
-<!-- font awesome -->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- end font awesome -->
+	<!-- font awesome -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- end font awesome -->
 
 
-<!-- Theme skin -->
-<link href="skins/default.css" rel="stylesheet" />
+	<!-- Theme skin -->
+	<link href="skins/default.css" rel="stylesheet" />
 
-<!-- Theme popup -->
-<link rel="stylesheet" href="modal_login/css/style.css" />
-<style type="text/css">
-	div .scroll{
-		width: 100%;
-	    height: 50%;
-	    overflow-y: auto;
-	}
-</style>
+	<!-- Theme popup -->
+	<link rel="stylesheet" href="modal_login/css/style.css" />
+	<style type="text/css">
+		div .scroll{
+			width: 100%;
+			height: 50%;
+			overflow-y: auto;
+		}
+	</style>
 </head>
 
 <body>
