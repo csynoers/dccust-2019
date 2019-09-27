@@ -1,5 +1,7 @@
 <?php
-session_start();
+	session_start();
+	include_once "../josys/minify_helper.php";
+    ob_start('minify_html');
 // error_reporting(0);
 if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
   echo "<link href='css/screen.css' rel='stylesheet' type='text/css'><link href='css/reset.css' rel='stylesheet' type='text/css'>
@@ -113,19 +115,19 @@ else{
 		});
 	</script>
 	<script type="text/javascript">
-$(function () {
-  	$('.navbar-toggle-sidebar').click(function () {
-  		$('.navbar-nav').toggleClass('slide-in');
-  		$('.side-body').toggleClass('body-slide-in');
-  		$('#search').removeClass('in').addClass('collapse').slideUp(200);
-  	});
+	$(function () {
+		$('.navbar-toggle-sidebar').click(function () {
+			$('.navbar-nav').toggleClass('slide-in');
+			$('.side-body').toggleClass('body-slide-in');
+			$('#search').removeClass('in').addClass('collapse').slideUp(200);
+		});
 
-  	$('#search-trigger').click(function () {
-  		$('.navbar-nav').removeClass('slide-in');
-  		$('.side-body').removeClass('body-slide-in');
-  		$('.search-input').focus();
-  	});
-  });
+		$('#search-trigger').click(function () {
+			$('.navbar-nav').removeClass('slide-in');
+			$('.side-body').removeClass('body-slide-in');
+			$('.search-input').focus();
+		});
+	});
 	</script>
 	<!-- /TinyMCE -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
