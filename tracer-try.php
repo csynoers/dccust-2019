@@ -1,2 +1,6 @@
-dini-cilik@ymail.com
-hc)qjL2
+[
+    {
+        "email"     : "dini-cilik@ymail.com",
+        "password"  : "hc)qjL2"
+    }
+]
