@@ -6,8 +6,7 @@
                 <div id="main-slider" class="flexslider">
                     <ul class="slides">
                     <?php
-                        $rows= $db->get_select("SELECT * FROM slide order by id DESC");
-                        foreach ($rows['data'] as $key => $sh){
+                        foreach ($rows['slide'] as $key => $sh){
                             echo "
                                 <li>
                                     <a href='{$sh->link}' target='_blank'>
@@ -30,17 +29,16 @@
 
 <section id="featured">
 	<div class="container">
-		<?php
-			$row= $db->get_select("SELECT nama_modul_ina,static_content_ina FROM modul where id_modul = '94'")['data'][0];	
-		?>
 		<div class="row">
 			<div class="col-lg-9 col-md-9 ">
 				<div class="col-lg-12 col-md-12">
 					<div class="foooter">
-						<center><h5><span style="color: #009a54;"><?php echo $row->nama_modul_ina ?></span></h5></center>
-						<?php echo $row->static_content_ina ?>
+						<center><h5><span style="color: #009a54;"><?php echo $rows['welcome']->nama_modul_ina ?></span></h5></center>
+						<?php echo $rows['welcome']->static_content_ina ?>
 					</div>
 				</div>
+				<!-- /.col -->
+
 				<div class="col-lg-6 col-md-6">
 					<div class="bawah">
 						<center><h5><span style="color: #009a54;   font-size: 14px;padding-top: 10px" data-mce-mark="1">Lowongan Kerja Terbaru</span></h5></center>
@@ -48,9 +46,7 @@
 					<div class="panel panel-default" style="height: 750px;overflow: auto;">
 						<div class="panel-body">
 							<?php
-								$rows= $db->get_select("SELECT *,IFNULL(karir.gambar,'karir_00.jpg') FROM karir LEFT JOIN propinsi ON propinsi.propinsi_id=karir.lokasi ORDER BY karir.id_karir DESC LIMIT 5");
-								foreach ($rows['data'] as $key => $k){ ?>
-
+								foreach ($rows['karir'] as $key => $k){ ?>
 									<div class="bawah">
 										<article class="">
 										<h4 style="font-weight: 200;text-transform: capitalize;"><a href="detailkarir-<?php echo $k->id_karir.'-'.$k->seo_ina ?>.html" rel="" title="<?php echo $k->judul_karir ?>"><?php echo $k->judul_karir ?></a></h4>              
@@ -71,7 +67,7 @@
 											<div class="alert alert-info">
 												<ul class="marginX">
 												<li class="text-capitalize"><strong>Perusahaan :  </strong><?php echo $k->perusahaan_karir ?></li>
-												<li><strong>Batas Akhir : </strong><?php echo tanggal_indo($k->deadline,TRUE) ?></li>
+												<li><strong>Batas Akhir : </strong><?php echo tanggal_indo(date('Y-m-d', strtotime($k->deadline)),TRUE) ?></li>
 												<li><strong>Penempatan :</strong> <?php echo $k->propinsi_name ?></li>
 												</ul>
 											</div>
@@ -84,6 +80,8 @@
 						</div>
 					</div>
 				</div>
+				<!-- /.col -->
+
 				<div class="col-lg-6 col-md-6">
 					<div class="bawah">
 						<center><h5><span style="color: #009a54;   font-size: 14px;padding-top: 10px" data-mce-mark="1">Agenda DCC UST</span></h5></center>
@@ -91,8 +89,7 @@
 					<div class="panel panel-default" style="height: 750px;overflow: auto;">
 						<div class="panel-body">
 							<?php
-								$agendaa = $db->get_select("SELECT * FROM agenda order by id_agenda DESC");
-								foreach($agendaa['data'] AS $key => $s){
+								foreach($rows['agenda'] AS $key => $s){
 							?>
 							<div class="bawah">
 								<article class="">
@@ -128,6 +125,8 @@
 						</div>
 					</div>
 				</div>
+				<!-- /.col -->
+
 				<div class="col-lg-12 col-md-12">
 					<div class="foooter">
 						<div class="bawah">
@@ -137,8 +136,7 @@
 						<section id="projects">
 						<ul id="thumbss" class="portfolio">
 						<?php
-							$rows= $db->get_select("SELECT * FROM sajian order by id_sajian DESC LIMIT 12");
-							foreach ($rows['data'] as $key => $value) {
+							foreach ($rows['kerjasama'] as $key => $value) {
 						?>
 							<li class="item-thumbss col-lg-3 design" data-id="id-0" data-type="web">
 								<img src="<?php echo "https://via.placeholder.com/256x128.png?text={$value->nama_sajian_ina}" ?>" style="max-height:150px;max-width: 200px;  box-shadow: 0 0 2px #009a54;" data-src="joimg/ourclient/<?php echo $value->gambar ?>" alt="<?php echo $value->nama_sajian_ina ?>">
@@ -153,7 +151,7 @@
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<?php
-				require_once "joinc/sidebar_home.php";
+					$this->home_sidebar();
 				?>
 			</div>
 		</div>

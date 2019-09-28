@@ -10,9 +10,7 @@
 	<div class="thum">
 		<div style="margin-left:10px;">
     			<?php 
-    			$sid = session_id();
-    			$rows = $db->get_select("SELECT * FROM alumni_daftar WHERE id_session = '$sid'");
-    			if (count($rows['data']) > 0) {
+    			if (count($rows['user']) > 0) {
     				?>
     			<h5 class="widgetheading">Menu Alumni</h5>
     				<p>
@@ -42,23 +40,14 @@
 	<div class="thum">
 		<div style="margin-left:10px;   ">
 			<h5 class="widgetheading">Alamat</h5>
-				<?php
-				$row= $db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'][0];
-				// $time_in_12_hour_format = date("l, d/m/Y ||H:i:s" , strtotime($row->tanggal));
-				// $jam					= strtoupper($time_in_12_hour_format);
-				?>
-			
-					<p style="margin-top: -19px;"><?php echo $row->static_content_ina ?></p>
-				
-					
+            <p style="margin-top: -19px;"><?php echo $rows['alamat']->static_content_ina ?></p>					
 		</div>
 	</div>
 	<div class="thum">
 		<div style="margin-left:10px;">
 			<h5 class="widgetheading">Banner</h5>
 				<?php
-					$rows= $db->get_select("SELECT * FROM banner order by id DESC");
-					foreach ($rows['data'] as $key => $value) {
+					foreach ($rows['banner'] as $key => $value) {
 						echo '<a href="'.$value->link.'"><img src="https://via.placeholder.com/300x100.png?text='.$value->judul.'" style="width:100%; margin-top: -19px;" data-src="joimg/banner/'.$value->gambar.'"></a>';
 					}
 				?>
@@ -68,19 +57,16 @@
 		<div style="margin-left:10px;">
 			<h5 class="widgetheading">Social media</h5>
 			<?php
-					$rows= $db->get_select("SELECT * FROM sosial order by nama DESC");
-					foreach ($rows['data'] as $key => $value) {
-			?>
-				<a href="<?php echo $value->link ?>"><img id="left_banner" src="joimg/sosial/<?php echo $value->gambar ?>"></a>
-			<?php } ?>
-				
-				
+                foreach ($rows['sosmed'] as $key => $value) {
+                    echo '<a href="'.$value->link.'"><img id="left_banner" src="joimg/sosial/'.$value->gambar.'"></a>';
+                }
+            ?>	
 		</div>
 	</div>
 	<div class="thum">
 		<div style="margin-left:10px;">
 			<h5 class="widgetheading">Hit counter</h5>
-			<?php require_once "statistik.php"; ?>
+			<?php $this->statistik() ?>
 		</div>
 	</div>
 </aside>
