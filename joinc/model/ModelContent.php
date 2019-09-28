@@ -98,9 +98,21 @@
     /* ==================== END PAGE : HOME ==================== */
 
     /* ==================== START PAGE : PROFIL ==================== */
+        public function profile()
+        {
+            return $this->db->get_select("SELECT * FROM profile WHERE id_profile='9' ")['data'];
+        }
     /* ==================== END PAGE : PROFIL ==================== */
 
     /* ==================== START PAGE : PROGRAM ==================== */
+        public function program_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='14' ")['data'];
+        }
+        public function program($id)
+        {
+            return $this->db->get_select("SELECT * FROM program where id_program='$id' ")['data'];
+        }
     /* ==================== END PAGE : PROGRAM ==================== */
 
     /* ==================== START PAGE : KARIR ==================== */

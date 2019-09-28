@@ -43,12 +43,76 @@ class ControllerContent
 		echo $this->Model->statistik();
 	}
 	/* ==================== END PAGE : HOME ==================== */
+	
+	/* ==================== START PAGE : PROFIL ==================== */
+	public function profile()
+	{
+		$row= $this->Model->profile()[0];
+		include_once 'joinc/view/view_profile.php';
+	}
+	/* ==================== END PAGE : PROFIL ==================== */
+	
+	/* ==================== START PAGE : TRACER STUDY ==================== */
+	public function kuesioner()
+	{
+		include_once 'joinc/view/tracer_study/view_biodata.php';
+	}
+	/* ==================== END PAGE : TRACER STUDY ==================== */
+
+	/* ==================== START PAGE : INFO ==================== */
+	public function event()
+	{
+		
+	}
+	public function publication()
+	{
+
+	}
+	/* ==================== END PAGE : INFO ==================== */
+
+	/* ==================== START PAGE : BEASISWA ==================== */
+	public function beasiswa()
+	{
+
+	}
+	/* ==================== END PAGE : BEASISWA ==================== */
+
+	/* ==================== START PAGE : PROGRAM ==================== */
+	public function program()
+	{
+		$header= $this->Model->program_header()[0];
+		$row= $this->Model->program($_GET['id'])[0];
+		include_once 'joinc/view/view_program.php';
+	}
+	/* ==================== END PAGE : PROGRAM ==================== */
+
+	/* ==================== START PAGE : PROFIL ==================== */
+	/* ==================== END PAGE : PROFIL ==================== */
+
+	/* ==================== START PAGE : GALERI ==================== */
+	public function album()
+	{
+		
+	}
+	public function video()
+	{
+
+	}
+	/* ==================== END PAGE : GALERI ==================== */
+
+	/* ==================== START PAGE : CONTACT ==================== */
+	public function buku_tamu()
+	{
+
+	}
+	public function contact()
+	{
+
+	}
+	/* ==================== END PAGE : CONTACT ==================== */
+
 
 	/* switch (empty($_GET['mod'])? '': $_GET['mod']) {
-
-			case 'profile':
-				include_once 'joinc/profile.php';
-				break;
 
 			case 'service': 
 				include_once 'joinc/service.php';
@@ -137,10 +201,6 @@ class ControllerContent
 
 			case 'beasiswa': 
 				include_once 'joinc/beasiswa.php';
-				break;
-
-			case 'program': 
-				include_once 'joinc/program.php';
 				break;
 
 			case 'fasilitator': 
