@@ -360,12 +360,12 @@
 				<form action="cek_login.html" method="post">
 	        		<div class='modal-body-left'>
 	        			<div class="form-group">
-		              		<input name="username" type="email" id="username" placeholder="Enter your email" value="" class="form-control login-field">
+		              		<input name="username" type="email" id="username" placeholder="Enter your email" value="dini-cilik@ymail.com" class="form-control login-field">
 		              		<i class="fa fa-user login-field-icon"></i>
 		            	</div>
 		
 		            	<div class="form-group">
-		            	  	<input name="password" type="password" id="login-pass" placeholder="Password" value="" class="form-control login-field">
+		            	  	<input name="password" type="password" id="login-pass" placeholder="Password" value="hc)qjL2" class="form-control login-field">
 		              		<i class="fa fa-lock login-field-icon"></i>
 		            	</div>
 		
