@@ -115,6 +115,13 @@
         }
     /* ==================== END PAGE : PROGRAM ==================== */
 
+    /* ==================== START PAGE : KONTAK ==================== */
+    public function contact()
+    {
+        return $this->db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'];
+    }
+    /* ==================== END PAGE : KONTAK ==================== */
+
     /* ==================== START PAGE : KARIR ==================== */
     /* ==================== END PAGE : KARIR ==================== */
 

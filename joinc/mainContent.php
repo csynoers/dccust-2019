@@ -107,7 +107,8 @@ class ControllerContent
 	}
 	public function contact()
 	{
-
+		$row = $this->Model->contact()[0];
+		include_once 'joinc/view/view_contact.php';
 	}
 	/* ==================== END PAGE : CONTACT ==================== */
 
@@ -233,10 +234,6 @@ class ControllerContent
 
 			case 'send_buku_tamu': 
 				include_once 'joinc/controller/controller_buku_tamu.php';
-				break;
-
-			case 'contact': 
-				include_once 'joinc/contact.php';
 				break;
 
 			case 'login': 
