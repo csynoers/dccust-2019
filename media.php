@@ -3,7 +3,7 @@
     session_start();
 
     include_once "josys/minify_helper.php";
-    ob_start('minify_html');
+    // ob_start('minify_html');
 
     include_once "josys/koneksi.php"; #include config connection
     include_once "josys/class_paging.php";

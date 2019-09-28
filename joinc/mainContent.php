@@ -1,6 +1,8 @@
 <?php
-$mod = empty($_GET['mod'])? '': $_GET['mod'];
-switch ($mod) {
+switch (empty($_GET['mod'])? '': $_GET['mod']) {
+	case 'home':
+		include_once 'joinc/view/view_home.php';
+		break;
 	case 'profile':
 		include_once 'joinc/profile.php';
 		break;
@@ -193,7 +195,14 @@ switch ($mod) {
 	// 	break;	
 	default:
 		# code...
-		echo "<div class='alert alert-info'>Error 404</div>";
+		echo "
+		<div class='container'>
+			<div class='col-sm-12'>
+				<div class='col-sm-12'>
+					<center><div class='alert alert-info' style='margin:15rem'>Error 404</div></center>
+				</div>
+			</div>
+		</div>";
 		break;
 }
 

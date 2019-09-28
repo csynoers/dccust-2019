@@ -2,82 +2,82 @@ RewriteEngine on
 Options -Indexes
 RewriteRule ^home-dccustjogja\.html$ media.php?mod=home [L]
 
-RewriteRule ^selesai.html$ media2.php?mod=selesai [L]
+RewriteRule ^selesai.html$ media.php?mod=selesai [L]
 
 #page-halaman statis
-RewriteRule ^profile-dccustjogja.html$ media2.php?mod=profile [L]
-RewriteRule ^services-dccustjogja.html$ media2.php?mod=service [L]
-RewriteRule ^event-dccustjogja.html$ media2.php?mod=event [L]
-RewriteRule ^karir-dccustjogja.html$ media2.php?mod=karir [L]
-RewriteRule ^ourclients-dccustjogja.html$ media2.php?mod=client [L]
-RewriteRule ^artikel-dccustjogja.html$ media2.php?mod=publication [L]
-RewriteRule ^beasiswa-dccustjogja.html$ media2.php?mod=beasiswa [L]
-RewriteRule ^fasilitator-dccustjogja.html$ media2.php?mod=fasilitator [L]
-RewriteRule ^ourpartners-dccustjogja.html$ media2.php?mod=partner [L]
-RewriteRule ^galeri-dccustjogja-(.*)\.html$ media2.php?mod=galeri&id=$1 [L]
-RewriteRule ^album-dccustjogja.html$ media2.php?mod=album [L]
-RewriteRule ^video-dccustjogja.html$ media2.php?mod=video [L]
-RewriteRule ^alumni-dccustjogja.html$ media2.php?mod=alumni [L]
-RewriteRule ^buku-tamu-dccustjogja.html$ media2.php?mod=buku_tamu [L]
-RewriteRule ^send-guest-book.html$ media2.php?mod=send_buku_tamu [L]
-RewriteRule ^contact-us-dccustjogja.html$ media2.php?mod=contact [L]
-RewriteRule ^login-dccustjogja.html$ media2.php?mod=login [L]
-RewriteRule ^daftar-dccustjogja.html$ media2.php?mod=daftar [L]
-RewriteRule ^kuesioner.html$ media2.php?mod=kuesioner [L]
-RewriteRule ^aksi_biodata.html$ media2.php?mod=aksi_biodata [L]
-RewriteRule ^kuis_a.html$ media2.php?mod=kuesioner_a [L]
-RewriteRule ^kuis_b.html$ media2.php?mod=kuesioner_b [L]
-RewriteRule ^kuis_c.html$ media2.php?mod=kuesioner_c [L]
-RewriteRule ^kuis_d.html$ media2.php?mod=kuesioner_d [L]
-RewriteRule ^kuis_e.html$ media2.php?mod=kuesioner_e [L]
+RewriteRule ^profile-dccustjogja.html$ media.php?mod=profile [L]
+RewriteRule ^services-dccustjogja.html$ media.php?mod=service [L]
+RewriteRule ^event-dccustjogja.html$ media.php?mod=event [L]
+RewriteRule ^karir-dccustjogja.html$ media.php?mod=karir [L]
+RewriteRule ^ourclients-dccustjogja.html$ media.php?mod=client [L]
+RewriteRule ^artikel-dccustjogja.html$ media.php?mod=publication [L]
+RewriteRule ^beasiswa-dccustjogja.html$ media.php?mod=beasiswa [L]
+RewriteRule ^fasilitator-dccustjogja.html$ media.php?mod=fasilitator [L]
+RewriteRule ^ourpartners-dccustjogja.html$ media.php?mod=partner [L]
+RewriteRule ^galeri-dccustjogja-(.*)\.html$ media.php?mod=galeri&id=$1 [L]
+RewriteRule ^album-dccustjogja.html$ media.php?mod=album [L]
+RewriteRule ^video-dccustjogja.html$ media.php?mod=video [L]
+RewriteRule ^alumni-dccustjogja.html$ media.php?mod=alumni [L]
+RewriteRule ^buku-tamu-dccustjogja.html$ media.php?mod=buku_tamu [L]
+RewriteRule ^send-guest-book.html$ media.php?mod=send_buku_tamu [L]
+RewriteRule ^contact-us-dccustjogja.html$ media.php?mod=contact [L]
+RewriteRule ^login-dccustjogja.html$ media.php?mod=login [L]
+RewriteRule ^daftar-dccustjogja.html$ media.php?mod=daftar [L]
+RewriteRule ^kuesioner.html$ media.php?mod=kuesioner [L]
+RewriteRule ^aksi_biodata.html$ media.php?mod=aksi_biodata [L]
+RewriteRule ^kuis_a.html$ media.php?mod=kuesioner_a [L]
+RewriteRule ^kuis_b.html$ media.php?mod=kuesioner_b [L]
+RewriteRule ^kuis_c.html$ media.php?mod=kuesioner_c [L]
+RewriteRule ^kuis_d.html$ media.php?mod=kuesioner_d [L]
+RewriteRule ^kuis_e.html$ media.php?mod=kuesioner_e [L]
 
-RewriteRule ^emailpass.html$ media2.php?mod=emailpass [L]
+RewriteRule ^emailpass.html$ media.php?mod=emailpass [L]
 
-RewriteRule ^aksi_kuis_a.html$ media2.php?mod=aksi_kuis_a [L]
-RewriteRule ^aksi_kuis_b.html$ media2.php?mod=aksi_kuis_b [L]
-RewriteRule ^aksi_kuis_c.html$ media2.php?mod=aksi_kuis_c [L]
-RewriteRule ^aksi_kuis_d.html$ media2.php?mod=aksi_kuis_d [L]
-RewriteRule ^aksi_kuis_e.html$ media2.php?mod=aksi_kuis_e [L]
+RewriteRule ^aksi_kuis_a.html$ media.php?mod=aksi_kuis_a [L]
+RewriteRule ^aksi_kuis_b.html$ media.php?mod=aksi_kuis_b [L]
+RewriteRule ^aksi_kuis_c.html$ media.php?mod=aksi_kuis_c [L]
+RewriteRule ^aksi_kuis_d.html$ media.php?mod=aksi_kuis_d [L]
+RewriteRule ^aksi_kuis_e.html$ media.php?mod=aksi_kuis_e [L]
 
 #tracer pengguna
-RewriteRule ^tracer-(.*)\.html$ media2.php?mod=tracer_pengguna&act=$1 [L]
+RewriteRule ^tracer-(.*)\.html$ media.php?mod=tracer_pengguna&act=$1 [L]
 RewriteRule ^proses-tracer-pengguna\.html$ joinc/controller/proses_tracer_pengguna.php
 #tracer pengguna
 
 #album galeri
-RewriteRule ^album-galeri-dccustjogja-(.*)\.html$ media2.php?mod=album&id=$1 [L]
-RewriteRule ^program-(.*)\.html$ media2.php?mod=program&id=$1 [L]
+RewriteRule ^album-galeri-dccustjogja-(.*)\.html$ media.php?mod=album&id=$1 [L]
+RewriteRule ^program-(.*)\.html$ media.php?mod=program&id=$1 [L]
 
 #halaman menu
-RewriteRule ^sajian-utama-interfidei\.html$ media2.php?mod=sajian-utama-interfidei [L]
-RewriteRule ^kegiatan-interfidei\.html$ media2.php?mod=kegiatan-interfidei [L]
-RewriteRule ^berita-interfidei\.html$ media2.php?mod=berita-interfidei [L]
-RewriteRule ^jaii-interfidei\.html$ media2.php?mod=jaii-interfidei [L]
-RewriteRule ^buku-interfidei\.html$ media2.php?mod=buku-interfidei [L]
-RewriteRule ^newsletter-interfidei\.html$ media2.php?mod=newsletter-interfidei [L]
-RewriteRule ^kaos-interfidei\.html$ media2.php?mod=kaos-interfidei [L]
-RewriteRule ^guru-merdeka-interfidei\.html$ media2.php?mod=guru-merdeka-interfidei [L]
+RewriteRule ^sajian-utama-interfidei\.html$ media.php?mod=sajian-utama-interfidei [L]
+RewriteRule ^kegiatan-interfidei\.html$ media.php?mod=kegiatan-interfidei [L]
+RewriteRule ^berita-interfidei\.html$ media.php?mod=berita-interfidei [L]
+RewriteRule ^jaii-interfidei\.html$ media.php?mod=jaii-interfidei [L]
+RewriteRule ^buku-interfidei\.html$ media.php?mod=buku-interfidei [L]
+RewriteRule ^newsletter-interfidei\.html$ media.php?mod=newsletter-interfidei [L]
+RewriteRule ^kaos-interfidei\.html$ media.php?mod=kaos-interfidei [L]
+RewriteRule ^guru-merdeka-interfidei\.html$ media.php?mod=guru-merdeka-interfidei [L]
 RewriteRule ^pustaka-interfidei\.html$ perpus/index.php [L]
-RewriteRule ^jaringan-interfidei\.html$ media2.php?mod=jaringan-interfidei [L]
-RewriteRule ^album-galeri-interfidei\.html$ media2.php?mod=album-galeri-interfidei [L]
-RewriteRule ^agenda-interfidei\.html$ media2.php?mod=agenda-interfidei [L]
-RewriteRule ^detail-album-foto-(.*)\.html$ media2.php?mod=detail-album-foto&id=$1 [L]
-RewriteRule ^detail-(.*)\.html$ media2.php?mod=detailberita&id=$1 [L]
+RewriteRule ^jaringan-interfidei\.html$ media.php?mod=jaringan-interfidei [L]
+RewriteRule ^album-galeri-interfidei\.html$ media.php?mod=album-galeri-interfidei [L]
+RewriteRule ^agenda-interfidei\.html$ media.php?mod=agenda-interfidei [L]
+RewriteRule ^detail-album-foto-(.*)\.html$ media.php?mod=detail-album-foto&id=$1 [L]
+RewriteRule ^detail-(.*)\.html$ media.php?mod=detailberita&id=$1 [L]
 
-RewriteRule ^detailpublikasi-(.*)\.html$ media2.php?mod=detailpublikasi&id=$1 [L]
-RewriteRule ^detailbeasiswa-(.*)\.html$ media2.php?mod=detailbeasiswa&id=$1 [L]
-RewriteRule ^detailkarir-([0-9]+)-(.*)\.html$ media2.php?mod=detailkarir&id=$1 [L]
-RewriteRule ^detailevent-([0-9]+)-(.*)\.html$ media2.php?mod=detailevent&id=$1 [L]
+RewriteRule ^detailpublikasi-(.*)\.html$ media.php?mod=detailpublikasi&id=$1 [L]
+RewriteRule ^detailbeasiswa-(.*)\.html$ media.php?mod=detailbeasiswa&id=$1 [L]
+RewriteRule ^detailkarir-([0-9]+)-(.*)\.html$ media.php?mod=detailkarir&id=$1 [L]
+RewriteRule ^detailevent-([0-9]+)-(.*)\.html$ media.php?mod=detailevent&id=$1 [L]
 
-RewriteRule ^simpancontactus$ media2.php?mod=simpancontactus [L]
-RewriteRule ^daftaralumni$ media2.php?mod=daftaralumni [L]
-RewriteRule ^kirim-pass-(.*).html$ media2.php?mod=kirim-pass&nim=$1 [L]
+RewriteRule ^simpancontactus$ media.php?mod=simpancontactus [L]
+RewriteRule ^daftaralumni$ media.php?mod=daftaralumni [L]
+RewriteRule ^kirim-pass-(.*).html$ media.php?mod=kirim-pass&nim=$1 [L]
 RewriteRule ^subcribe$ joinc/subcribe.php [L]
 RewriteRule ^logout.html$ joinc/aksi/logout.php [L]
 RewriteRule ^cek_login.html$ joinc/aksi/cek_login.php [L]
 
 #pencarian top
-RewriteRule ^pencarian$ media2.php?mod=pencarian [L]
+RewriteRule ^pencarian$ media.php?mod=pencarian [L]
 
 
 #album
@@ -90,15 +90,6 @@ RewriteRule ^halgallery-([0-9]+)-(.*)\.html$ media.php?mod=detailalbum&id=$1&hal
 #form
 RewriteRule ^Reservation\.html$ media.php?mod=pesan [L]
 RewriteRule ^Special-Offer\.html$ media.php?mod=specialoffer [L]
-
-#download
-RewriteRule ^Merapi-Merbabu-Hotel-Downloads$ media.php?mod=download [QSA,L]
-RewriteRule ^Merapi-Merbabu-Hotel-Room-Type\.html$ media.php?mod=roomtype [QSA,L]
-RewriteRule ^Merapi-Merbabu-Hotel-Room-Reservation-Person\.html$ media.php?mod=reservationperson [QSA,L]
-
-#RewriteCond %{HTTP_HOST} ^mmhotel\.co\.id$ [OR]
-#RewriteCond %{HTTP_HOST} ^www\.mmhotel\.co\.id$
-#RewriteRule ^/?$ "https\:\/\/www\.mmhotel\-resorts\.com" [R=301,L]
 
 #ErrorDocument 404 joinc/view/error/404.php
 
