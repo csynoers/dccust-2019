@@ -182,8 +182,7 @@
 			
 </div>
 
-<!-- informasi kontak login -->
-
+<!-- start modal tracer study login -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content">
@@ -198,12 +197,12 @@
 				<form action="cek_login.html" method="post">
 	        		<div class='modal-body-left'>
 	        			<div class="form-group">
-		              		<input name="username" type="email" id="username" placeholder="Enter your email" value="dini-cilik@ymail.com" class="form-control login-field">
+		              		<input name="username" type="email" id="username4" placeholder="Enter your email" value="dini-cilik@ymail.com" class="form-control login-field">
 		              		<i class="fa fa-user login-field-icon"></i>
 		            	</div>
 		
 		            	<div class="form-group">
-		            	  	<input name="password" type="password" id="login-pass" placeholder="Password" value="hc)qjL2" class="form-control login-field">
+		            	  	<input name="password" type="password" id="login-pass4" placeholder="Password" value="hc)qjL2" class="form-control login-field">
 		              		<i class="fa fa-lock login-field-icon"></i>
 		            	</div>
 		
@@ -215,7 +214,7 @@
 	        			<p>Silahkan hubungi administrator untuk dapat <b>log in</b> sebagai alumni Universitas Sarjanawiyata Tamansiswa </p><hr>
 	        			<p>Daftar Alumni?, <a href="daftar-dccustjogja.html">Daftar</a></p>
 	        			</div> 
-	        		</div>		
+	        		</div>
 	        		
 	        	</div>																												
         		<div class="clearfix"></div>
@@ -225,8 +224,10 @@
       		</div>
     	</div>
   	</div>
-</div>			
+</div>
+<!-- end modal tracer study login -->
 
+<!-- end modal tracer pengguna login -->
 <div class="modal fade" id="login-tracer-pengguna-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content">
@@ -269,9 +270,7 @@
     	</div>
   	</div>
 </div>			
-			
-		
-
+<!-- end modal tracer pengguna login -->
 
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
