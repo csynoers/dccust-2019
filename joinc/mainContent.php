@@ -52,6 +52,33 @@ class ControllerContent
 	}
 	/* ==================== END PAGE : PROFIL ==================== */
 	
+	/* ==================== START PAGE : KARIR ==================== */
+	public function karir()
+	{
+		# get data slide
+		$slide= $this->Model->db->get_select("SELECT nama_header_ina AS name_header_ina,gambar AS img_src FROM header where id_header='7'")['data'][0];
+		#  get data tingkat jabatan
+		$jabatan= $this->Model->db->get_select("SELECT id,name FROM tingkat_jabatan ORDER BY name ASC")['data'];
+		#  get data spesiailisasi pekerjaan
+		$spesialis= $this->Model->db->get_select("SELECT id_spes,nama_spes FROM spesialis ORDER BY nama_spes ASC")['data'];
+		# get data jenis lowongan
+		$jenis= $this->Model->db->get_select("SELECT id,name FROM jenis_lowongan ORDER BY name ASC")['data'];
+		# get data penempatan
+		$penempatan= $this->Model->db->get_select("SELECT propinsi_id,propinsi_name FROM propinsi ORDER BY propinsi_name ASC")['data'];
+		# get data karir
+		$karir= $this->Model->db->get_select("SELECT *,DATE_FORMAT(karir.deadline, '%W,  %d %b %Y') AS deadline_mod FROM karir ORDER BY id_karir DESC LIMIT 5")['data'];
+
+		# load view karir
+		require 'joinc/view/karir/view_karir.php';
+	}
+	public function detailkarir()
+	{
+		$header = $this->Model->karir_detail_header()[0];
+		$row = $this->Model->karir_detail($_GET['id'])[0];
+		include_once 'joinc/view/karir/view_detail_karir.php';
+	}
+	/* ==================== END PAGE : KARIR ==================== */
+	
 	/* ==================== START PAGE : TRACER STUDY ==================== */
 	public function kuesioner()
 	{
@@ -62,18 +89,42 @@ class ControllerContent
 	/* ==================== START PAGE : INFO ==================== */
 	public function event()
 	{
-		
+		$header = $this->Model->event_header()[0];
+		$rows = $this->Model->event();
+		include_once 'joinc/view/view_event.php';
+	}
+	public function detailevent()
+	{
+		$header = $this->Model->event_header()[0];
+		$row = $this->Model->event_detail($_GET['id'])[0];
+		include_once 'joinc/view/view_event_detail.php';
 	}
 	public function publication()
 	{
-
+		$header= $this->Model->publication_header()[0];
+		$rows= $this->Model->publication();
+		include_once 'joinc/view/view_publication.php';
+	}
+	public function detailpublikasi()
+	{
+		$header= $this->Model->publication_header()[0];
+		$row= $this->Model->publication_detail($_GET['id'])[0];
+		include_once 'joinc/view/view_publication_detail.php';
 	}
 	/* ==================== END PAGE : INFO ==================== */
 
 	/* ==================== START PAGE : BEASISWA ==================== */
 	public function beasiswa()
 	{
-
+		$header = $this->Model->beasiswa_header()[0];
+		$rows = $this->Model->beasiswa(); 
+		include_once 'joinc/view/view_beasiswa.php';
+	}
+	public function detailbeasiswa()
+	{
+		$header = $this->Model->beasiswa_header()[0];
+		$row = $this->Model->beasiswa_detail($_GET['id'])[0];
+		include_once 'joinc/view/view_beasiswa_detail.php';
 	}
 	/* ==================== END PAGE : BEASISWA ==================== */
 
@@ -86,29 +137,62 @@ class ControllerContent
 	}
 	/* ==================== END PAGE : PROGRAM ==================== */
 
-	/* ==================== START PAGE : PROFIL ==================== */
-	/* ==================== END PAGE : PROFIL ==================== */
-
 	/* ==================== START PAGE : GALERI ==================== */
 	public function album()
 	{
-		
+		$row = $this->Model->album_header()[0];
+		$rows = $this->Model->album();
+		include_once 'joinc/view/view_album.php';
+	}
+	public function galeri()
+	{
+		$row = $this->Model->galeri_header()[0];
+		$rows = $this->Model->galeri($_GET['id']);
+		include_once 'joinc/view/view_galeri.php';
 	}
 	public function video()
 	{
-
+		$row = $this->Model->video_header()[0];
+		$rows = $this->Model->video();
+		include_once 'joinc/view/view_video.php';
 	}
 	/* ==================== END PAGE : GALERI ==================== */
 
 	/* ==================== START PAGE : CONTACT ==================== */
 	public function buku_tamu()
 	{
+		$row= $this->Model->buku_tamu_header();
+		$rows= $this->Model->buku_tamu();
+		include_once 'joinc/view/view_buku_tamu.php';
+	}
+	public function send_buku_tamu()
+	{
+		$this->Model->post= $_POST;
+		if ($this->Model->buku_tamu_insert()) {
+			echo "<script>confirm('Data Berhasil Dikirim')</script>";
 
+		}else{
+			echo "<script>confirm('Data Gagal Dikirim')</script>";
+
+		}
+		echo "<script>window.location = 'buku-tamu-dccustjogja.html';</script>";
 	}
 	public function contact()
 	{
 		$row = $this->Model->contact()[0];
 		include_once 'joinc/view/view_contact.php';
+	}
+	public function simpancontactus()
+	{
+		$this->Model->post = $_POST;
+		$admin = $this->Model->db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'][0];
+		//pengiriman email akan berfungsi jika sudah online	
+		if ($this->Model->contact_insert()) {
+			mail($admin->link,$this->Model->post['nama'],$this->Model->post['message'],"From: {$this->Model->post['email']}\n"); 
+			echo "<script type='text/javascript'>alert('Your message was succesfull!.'); window.location.href='contact-us-dccustjogja.html'</script>";
+		}else{
+			echo "<script type='text/javascript'>alert('Your message was failed!.'); window.location.href='contact-us-dccustjogja.html'</script>";
+		}
 	}
 	/* ==================== END PAGE : CONTACT ==================== */
 
@@ -129,14 +213,6 @@ class ControllerContent
 
 			case 'emailpass': 
 				include_once 'joinc/aksi/aksikirim.php';
-				break;
-
-			case 'event': 
-				include_once 'joinc/event.php';
-				break;
-
-			case 'karir':
-				require 'joinc/controller/controller_karir.php';
 				break;
 
 			case 'kuesioner': 
@@ -196,14 +272,6 @@ class ControllerContent
 				include_once 'joinc/client.php';
 				break;
 
-			case 'publication': 
-				include_once 'joinc/publication.php';
-				break;
-
-			case 'beasiswa': 
-				include_once 'joinc/beasiswa.php';
-				break;
-
 			case 'fasilitator': 
 				include_once 'joinc/fasilitator.php';
 				break;
@@ -212,73 +280,16 @@ class ControllerContent
 				include_once 'joinc/partner.php';
 				break;
 
-			case 'galeri': 
-				include_once 'joinc/galeri.php';
-				break;
-
-			case 'album': 
-				include_once 'joinc/album.php';
-				break;
-
-			case 'video': 
-				include_once 'joinc/video.php';
-				break;
-
 			case 'foto': 
 				include_once 'joinc/foto.php';
-				break;
-
-			case 'buku_tamu':
-				include_once 'joinc/controller/controller_buku_tamu.php';
-				break;
-
-			case 'send_buku_tamu': 
-				include_once 'joinc/controller/controller_buku_tamu.php';
 				break;
 
 			case 'login': 
 				include_once 'joinc/login_sukses.php';
 				break;
 
-			case 'simpancontactus':
-					
-				$email = mysql_query("SELECT * FROM modul WHERE id_modul='7' ");
-				$temail=mysql_fetch_array($email);
-
-				$nama 		= trim($_POST['nama']);
-				$email 		= trim($_POST['email']);
-				$phone	 	= trim($_POST['phone']);
-				$subject	= trim($_POST['subject']);
-				$message	= trim($_POST['message']);
-
-				//pengiriman email akan berfungsi jika sudah online	
-				mail("$temail[link]",$nama,$pesan,"From: $email\n"); 
-
-				mysql_query("INSERT INTO contact(nama, email, phone, subject, message, tanggal ) 
-								VALUES('$nama','$email', '$phone', '$subject', '$message', now() )");
-				
-				echo "<script type='text/javascript'>alert('Your message was succesfull!.'); window.location.href='contact-us-dccustjogja.html'</script>";
-
-				break;
-				
-			case 'detailpublikasi': 
-				include_once 'joinc/detail/detail_publikasi.php';
-				break;
-
-			case 'detailbeasiswa': 
-				include_once 'joinc/detail/detail_beasiswa.php';
-				break;
-
 			case 'daftaralumni': 
 				include_once 'joinc/aksi/daftaralumni.php';
-				break;
-
-			case 'detailkarir': 
-				include_once 'joinc/detail/detail_karir.php';
-				break;
-
-			case 'detailevent': 
-				include_once 'joinc/detail/detail_event.php';
 				break;
 
 			case 'daftar': 

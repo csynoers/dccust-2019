@@ -104,26 +104,145 @@
         }
     /* ==================== END PAGE : PROFIL ==================== */
 
+    /* ==================== START PAGE : KARIR ==================== */
+        public function karir_detail_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='7'")['data'];
+        }
+        public function karir_detail($id)
+        {
+            return $this->db->get_select("SELECT *,DATE_FORMAT(karir.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM karir LEFT JOIN propinsi ON propinsi.propinsi_id=karir.lokasi WHERE id_karir='{$id}'")['data'];
+        }
+    /* ==================== END PAGE : KARIR ==================== */
+
     /* ==================== START PAGE : PROGRAM ==================== */
         public function program_header()
         {
-            return $this->db->get_select("SELECT * FROM header where id_header='14' ")['data'];
+            return $this->db->get_select("SELECT * FROM header WHERE id_header='14' ")['data'];
         }
         public function program($id)
         {
-            return $this->db->get_select("SELECT * FROM program where id_program='$id' ")['data'];
+            return $this->db->get_select("SELECT * FROM program WHERE id_program='$id' ")['data'];
         }
     /* ==================== END PAGE : PROGRAM ==================== */
+        public function event_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='4'")['data'];
+        }
+        public function event()
+        {
+            return $this->db->get_select("SELECT *,DATE_FORMAT(agenda.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM agenda order by id_agenda DESC")['data'];
+        }
+        public function event_detail($id)
+        {
+            return $this->db->get_select("SELECT *,DATE_FORMAT(agenda.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM agenda where id_agenda='{$id}'")['data'];
+        }
+        public function publication_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='6'")['data'];
+        }
+        public function publication()
+        {
+            return $this->db->get_select("SELECT *,DATE_FORMAT(artikel.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM artikel order by id_artikel DESC")['data'];
+        }
+        public function publication_detail($id)
+        {
+            return $this->db->get_select("SELECT *,DATE_FORMAT(artikel.tanggal, '%W,  %d %b %Y') AS tanggal_mod FROM artikel where id_artikel='{$id}'")['data'];
+        }
+    /* ==================== START PAGE : INFO ==================== */
+    
+    /* ==================== END PAGE : INFO ==================== */
+
+    /* ==================== START PAGE : BEASISWA ==================== */
+        public function beasiswa_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='15'")['data'];
+        }
+        public function beasiswa()
+        {
+            return $this->db->get_select("SELECT *,SUBSTRING(beasiswa.isi_beasiswa, 1, 250) AS isi_beasiswa_mod FROM beasiswa order by id_beasiswa DESC")['data'];
+        }
+        public function beasiswa_detail($id)
+        {
+            return $this->db->get_select("SELECT * FROM beasiswa where id_beasiswa='{$id}'")['data'];
+        }
+    /* ==================== END PAGE : BEASISWA ==================== */
+
+    /* ==================== START PAGE : GALERI ==================== */
+        public function album_header()
+        {
+            return $this->db->get_select("SELECT * FROM header WHERE id_header='9' ")['data'];
+        }
+        public function album()
+        {
+            return $this->db->get_select("SELECT * FROM album order by id_album DESC")['data'];
+        }
+        public function video_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='9'")['data'];
+        }
+        public function video()
+        {
+            return $this->db->get_select("SELECT * FROM video order by id DESC")['data'];
+        }
+        public function galeri_header()
+        {
+            return $this->db->get_select("SELECT * FROM header where id_header='9'")['data'];
+        }
+        public function galeri($id)
+        {
+            return $this->db->get_select("SELECT * FROM galeri WHERE id_album = '{$id}' order by id_album DESC")['data'];
+        }
+    /* ==================== END PAGE : GALERI ==================== */
 
     /* ==================== START PAGE : KONTAK ==================== */
-    public function contact()
-    {
-        return $this->db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'];
-    }
-    /* ==================== END PAGE : KONTAK ==================== */
+        public function buku_tamu_header()
+        {
+            return $this->db->select('header',array('id_header'=> '16'))['data'][0];
+        }
+        public function buku_tamu()
+        {
+            return $this->db->select('guest_book',array('status'=> '1'))['data'];
+        }
+        public function buku_tamu_insert()
+        {
+            $table                  = 'guest_book';
+            $columnsArray           = [
+                'name'=> htmlspecialchars($_POST['name']),
+                'email'=> strip_tags($_POST['email']),
+                'message_fill'=> htmlspecialchars($_POST['message_fill']),
+                'status' => '0'
+            ];
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # insert into guest_book
+            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
 
-    /* ==================== START PAGE : KARIR ==================== */
-    /* ==================== END PAGE : KARIR ==================== */
+            return ($insert=='success') ? TRUE : FALSE ;
+        }
+        public function contact()
+        {
+            return $this->db->get_select("SELECT * FROM modul WHERE id_modul='7'")['data'];
+        }
+        public function contact_insert()
+        {
+            $table                  = 'contact';
+            $columnsArray           = [
+                'nama'=> trim($_POST['nama']),
+                'email'=> trim($_POST['email']),
+                'phone'=> trim($_POST['phone']),
+                'subject' => trim($_POST['subject']),
+                'message' => trim($_POST['message']),
+                'tanggal' => date('Y-m-d h:i:s'),
+            ];
+            $requiredColumnsArray   = array_keys($columnsArray);
+            
+            # insert into contact
+            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray)['status'];
+
+            return ($insert=='success') ? TRUE : FALSE ;
+        }
+    /* ==================== END PAGE : KONTAK ==================== */
 
         public function insert_tracer_studies()
         {

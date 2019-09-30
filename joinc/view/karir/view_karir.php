@@ -249,7 +249,7 @@ $(document).ready(function(){
 
 			<!-- sidebar -->
 			<div class="col-lg-3">
-				<?php require 'joinc/sidebar.php' ?>
+				<?php $this->home_sidebar() ?>
 			</div>
 			<!-- end side bar -->
 		</div>
