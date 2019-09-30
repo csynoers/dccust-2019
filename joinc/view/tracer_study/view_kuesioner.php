@@ -1,17 +1,6 @@
 <?php
-	require_once('form_helper.php');
+	// require_once('form_helper.php');
 	// check last kuis
-	// get id alumni
-	$id_alumni= $_SESSION['idnya'];
-
-	// cek data from last fill kuisioner
-	$rows= $db->get_select("SELECT id_alumni FROM tb_a WHERE id_alumni='{$id_alumni}' ");
-
-	if ( count($rows['data']) > 0) {
-	# code...
-	header('Location:kuis_b.html');
-
-	}
 
 	/* function minify_html($html=NULL)
 	{
@@ -133,21 +122,21 @@
 						<div class="panel-group" id="accordion">';
 
 							# get rows from tracer_study without parent
-							$rows= $db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0")['data'];
+							$rows= $this->Model->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0")['data'];
 
 							# loop rows tracer_study without parent
 							foreach ($rows as $key => $value) {
 								$sub_html = strip_tags($value->tracer_study_desc).'<br>';
 								if ( $value->child_count == 0 ) { # if this row have not a childs
-									$rows_sub= $db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value->tracer_study_id}' ")['data'];
+									$rows_sub= $this->Model->db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value->tracer_study_id}' ")['data'];
 									$varFunction = $value->tracer_study_form_type;
 									$sub_html .= $varFunction($rows_sub);
 
 								} else { # if this row have a childs
-									$rows_child= $db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_parent='{$value->tracer_study_id}' ")['data'];
+									$rows_child= $this->Model->db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_parent='{$value->tracer_study_id}' ")['data'];
 									foreach ($rows_child as $key_rows_child => $value_rows_child) {
 										$rows_sub_child_html = strip_tags($value_rows_child->tracer_study_desc).'<br>';
-										$rows_child_sub = $db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value_rows_child->tracer_study_id}' ")['data'];
+										$rows_child_sub = $this->Model->db->get_select("SELECT * FROM tracer_studies_detail WHERE tracer_study_id='{$value_rows_child->tracer_study_id}' ")['data'];
 										$varFunction = $value_rows_child->tracer_study_form_type;
 										$rows_sub_child_html .= $varFunction($rows_child_sub);
 										$sub_html .= '

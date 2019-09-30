@@ -26,13 +26,16 @@
 
 	<!-- Theme popup -->
 	<link rel="stylesheet" href="modal_login/css/style.css" />
-	<style type="text/css">
-		div .scroll{
-			width: 100%;
-			height: 50%;
-			overflow-y: auto;
-		}
-	</style>
+	<?php echo minify_css('
+		<style type="text/css">
+			div .scroll{
+				width: 100%;
+				height: 50%;
+				overflow-y: auto;
+			}
+		</style>
+	
+	') ?>
 	<!-- jQuery loaded -->
 	<script src="js/jquery.js"></script>
 </head>
@@ -289,12 +292,17 @@
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
-<script>
-$(window).load(function () {
-    $('img').each(function(){
-        $(this).attr('src',$(this).data('src'));
-    });
-});
-</script>
-</body>
+<?php 
+	echo minify_js(
+		"
+		<script>
+			$(window).load(function () {
+				$('img').each(function(){
+					$(this).attr('src',$(this).data('src'))
+				})
+			})
+		</script>
+		"
+	)
+?>
 </html>

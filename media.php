@@ -6,7 +6,9 @@
     error_reporting(E_ALL);
 
     include_once "josys/minify_helper.php";
-    // ob_start('minify_html');
+    ob_start('minify_html');
+    // ob_start('minify_css');
+    // ob_start('minify_js');
 
     include_once "josys/koneksi.php"; #include config connection
     include_once "josys/class_paging.php";

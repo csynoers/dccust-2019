@@ -1,8 +1,10 @@
 <?php
 class ControllerContent
 {
+	public $db_config;
 	public function __construct($db_config){
-		$this->Model 	= new ModelContent($db_config);
+		$this->db_config= $db_config;
+		$this->Model 	= new ModelContent($this->db_config);
 		$this->aksi		= 'joinc/model/ModelContent.php';
 		$this->mod 	= empty($_GET['mod'])? NULL : $_GET['mod'];
 
@@ -82,7 +84,26 @@ class ControllerContent
 	/* ==================== START PAGE : TRACER STUDY ==================== */
 	public function kuesioner()
 	{
+		if ( count($this->Model->cek_biodata($_SESSION['idnya'])) == 0 ) { # if empty 
+			$this->kuesioner_biodata();
+		} else {
+			include_once 'joinc/view/tracer_study/view_kuesioner.php';
+		}
+		
+	}
+	public function kuesioner_biodata()
+	{
+		$a= $this->Model->get_biodata($_SESSION['idnya'])[0];
 		include_once 'joinc/view/tracer_study/view_biodata.php';
+	}
+	public function aksi_biodata()
+	{
+		$this->Model->post = $_POST;
+		if ( $this->Model->biodata_insert() ) {
+			header('Location:kuesioner.html');
+		} else {
+			echo "<script>alert('Maaf biodata anda gagal disimpan'); window.history.back();</script>";
+		}
 	}
 	/* ==================== END PAGE : TRACER STUDY ==================== */
 

@@ -115,6 +115,53 @@
         }
     /* ==================== END PAGE : KARIR ==================== */
 
+    /* ==================== START PAGE : TRACER STUDY ==================== */
+        public function cek_biodata($id)
+        {
+            return $this->db->get_select("SELECT id_alumni FROM biodata WHERE id_alumni='{$id}'")['data'];
+        }
+        public function get_biodata($id)
+        {
+            return $this->db->get_select("SELECT a.nama_alumni, a.nim, a.tahun_lulus, a.email, p.prodi,p.id_prodi
+                FROM alumni_daftar a LEFT JOIN prodi p
+                ON  a.prodi = p.id_prodi
+            WHERE a.id_alumni = '{$id}'")['data'];
+        }
+        public function biodata_insert()
+        {
+            // create validation if string there a single quote
+            $string			= ($this->post['nama']);
+            $cek 			= strpos($string, '\'');
+            if ( $cek != '' ) {
+                $nama_alumni= str_replace('\'', "\'", $string);
+            }else{
+                $nama_alumni= $string;
+            }
+            // end validation if string there a single quote
+            $domisili	= htmlentities($this->post['almt_domisili']);
+            $ktp		= htmlentities($this->post['almt_ktp']);
+
+            # initialize parameter insert biodata
+            $table = 'biodata';
+            $columnsArray = [
+                'id_alumni' => $_SESSION['idnya'],
+                'nama' => $nama_alumni,
+                'nim' => $this->post['nim'],
+                'th_lulus' => $this->post['th_lulus'],
+                'prodi' => $this->post['prodi_id'],
+                'no_hp' => $this->post['no_hp'],
+                'email' => $this->post['email'],
+                'almt_domisili' => $domisili,
+                'almt_ktp' => $ktp,
+            ];
+            $requiredColumnsArray= array_keys($columnsArray);
+
+            # insert
+            $insert= $this->db->insert($table, $columnsArray, $requiredColumnsArray);
+            return ($insert=='success') ? TRUE : FALSE ;
+        }
+    /* ==================== END PAGE : TRACER STUDY ==================== */
+
     /* ==================== START PAGE : PROGRAM ==================== */
         public function program_header()
         {
