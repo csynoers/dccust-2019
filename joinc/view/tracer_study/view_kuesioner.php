@@ -79,21 +79,27 @@
 		return $html;
 	}
 	function checkbox($rows){
-		$html= '';
+		$html= '
+			<div class="col-sm-12">
+				<div class="wrap_checkbox">';
+		
 		foreach ($rows as $key => $value) {
 			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
+			$add_wrapper_class= (empty($value->rules) ? NULL : 'wrap_other' );
 			$html .= '
-			<div class="col-sm-12">
-				<div class="checkbox">
+				<div class="checkbox '.$add_wrapper_class.'">
 					<label>
-						<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'" '.($key==0? 'required autofocus' : NULL).'>
+						<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'" >
 						'.strip_tags($value->tracer_study_detail_title).'
 						'.$add_input_text.'
 					</label>
-				</div>
-			</div>
-			';
+				</div>';
 		}
+
+		$html .= '
+				</div>
+			</div>';
+
 		return $html;
 	}
 	function none($rows)
@@ -103,7 +109,7 @@
 	}
 	function input_text($row)
 	{
-		return '<input type="text" class="form-control" placeholder="Masukan lainnya ..." >';
+		return '<input type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
 	}
 
 	$html= "";
@@ -191,5 +197,40 @@
 			</div>
 		</div>
 	</section>';
+
+	
+	$html .= minify_js("
+	<script>
+		$(document).ready(function(j){
+			var conf= {
+				'checkbox' : j('input[type=checkbox]').prop('required',!0)
+			};
+			$('input[type=checkbox]').on('change',function(){
+				var wrap= {
+					'checkbox' : j(this).closest('.wrap_checkbox'),
+					'other' : j(this).closest('.wrap_other')
+				};
+				if ( j(this).is(':checked') ) {
+					alert('true');
+					if ( wrap.other.length > 0 ) {
+						wrap.other.find('.other').prop('required',!0)
+					}
+					/* set false required input checkbox */
+					wrap.checkbox.find('input[type=checkbox]').prop('required',!1)
+
+				}else {
+					if( wrap.checkbox.find('input[type=checkbox]:checked').length == 0 ){
+						wrap.checkbox.find('input[type=checkbox]').prop('required',!0)
+					}
+					alert('false');
+					if ( wrap.other.length > 0 ) {
+						wrap.other.find('.other').prop('required',!1)
+					}
+
+				}
+			})
+		})
+	</script>
+	");
 
 	echo $html;

@@ -236,34 +236,6 @@ class ControllerContent
 				include_once 'joinc/aksi/aksikirim.php';
 				break;
 
-			case 'kuesioner': 
-				include_once 'joinc/biodata.php';
-				break;
-
-			case 'aksi_biodata': 
-				include_once 'joinc/aksi/aksi_biodata.php';
-				break;
-
-			case 'kuesioner_a': 
-				include_once 'joinc/kuis_a.php';
-				break;
-
-			case 'kuesioner_b': 
-				include_once 'joinc/kuis_b.php';
-				break;
-
-			case 'kuesioner_c': 
-				include_once 'joinc/kuis_c.php';
-				break;
-
-			case 'kuesioner_d': 
-				include_once 'joinc/kuis_d.php';
-				break;
-
-			case 'kuesioner_e': 
-				include_once 'joinc/kuis_e.php';
-				break;
-
 			case 'aksi_kuis_a': 
 				include_once 'joinc/aksi/aksi_a.php';
 				break;

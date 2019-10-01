@@ -295,14 +295,15 @@
 <?php 
 	echo minify_js(
 		"
-		<script>
-			$(window).load(function () {
-				$('img').each(function(){
-					$(this).attr('src',$(this).data('src'))
-				})
-			})
-		</script>
+			<script>
+				$(window).load(function () {
+					$('img').each(function(){
+						$(this).attr('src',$(this).data('src'))
+					})
+				});
+				$('body').append('</bo'+'dy>')
+			</script>
 		"
-	)
+		);	
 ?>
 </html>
