@@ -64,25 +64,27 @@
 		$html= '';
 		foreach ($rows as $key => $value) {
 			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
+			$add_wrapper_class= (empty($value->rules) ? NULL : 'wrap_other' );
 			$html .= '
-			<div class="col-sm-12">
-				<div class="radio">
+				<div class="radio '.$add_wrapper_class.'">
 					<label>
 						<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
 						'.strip_tags($value->tracer_study_detail_title).'
 						'.$add_input_text.'
 					</label>
 				</div>
-			</div>
 			';
 		}
-		return $html;
+		return "
+			<div class='col-sm-12'>
+				<div class='wrap_single_radio'>
+					{$html}
+				</div>
+			</div>
+		";
 	}
 	function checkbox($rows){
-		$html= '
-			<div class="col-sm-12">
-				<div class="wrap_checkbox">';
-		
+		$html= '';		
 		foreach ($rows as $key => $value) {
 			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
 			$add_wrapper_class= (empty($value->rules) ? NULL : 'wrap_other' );
@@ -96,11 +98,13 @@
 				</div>';
 		}
 
-		$html .= '
+		return "
+			<div clas='col-sm-12'>
+				<div class='wrap_checkbox'>
+					{$html}	
 				</div>
-			</div>';
-
-		return $html;
+			</div>
+		";
 	}
 	function none($rows)
 	{
@@ -224,7 +228,7 @@
 					'other' : j(this).closest('.wrap_other')
 				};
 				if ( j(this).is(':checked') ) {
-					alert('true');
+					// alert('true');
 					if ( wrap.other.length > 0 ) {
 						wrap.other.find('.other').prop('required',!0)
 					}
@@ -235,12 +239,18 @@
 					if( wrap.checkbox.find('input[type=checkbox]:checked').length == 0 ){
 						wrap.checkbox.find('input[type=checkbox]').prop('required',!0)
 					}
-					alert('false');
+					// alert('false');
 					if ( wrap.other.length > 0 ) {
 						wrap.other.find('.other').prop('required',!1)
 					}
 
 				}
+			});
+			j('.wrap_single_radio .wrap_other input[type=radio]').on('change',function(){
+				var radio ={
+					'is' : j(this).is(':checked')
+				};
+				console.log(radio)
 			})
 		})
 	</script>
