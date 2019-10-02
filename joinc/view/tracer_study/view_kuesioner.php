@@ -248,7 +248,10 @@
 			});
 			j('.wrap_single_radio .wrap_other input[type=radio]').on('change',function(){
 				var radio ={
-					'is' : j(this).is(':checked')
+					'is' : j(this),
+					'isval' : function(){
+						return this.is(':checked')
+					}
 				};
 				console.log(radio)
 			})
