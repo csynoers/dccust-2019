@@ -111,6 +111,19 @@
 	{
 		return '<input type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
 	}
+	function input_number($rows)
+	{
+		$html = "";
+		foreach ($rows as $key => $value) {
+			$html .= '
+				<tr class="form-inline">
+					<td><input min="1" type="number" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" class="form-control" placeholder="Masukan angka min 1..." required></td>
+					<td>&nbsp;&nbsp;'.strip_tags($value->tracer_study_detail_title).'</td
+				</tr>
+			';
+		}
+		return "<table>{$html}</table>";
+	}
 
 	$html= "";
 
@@ -124,7 +137,7 @@
 							<center><h3><span style="color: #009a54;" data-mce-mark="1">Kuesioner</span></h3></center>
 						</div>
 					</div>
-					<form action="">
+					<form action="store-kuesioner.html" method="POST">
 						<div class="panel-group" id="accordion">';
 
 							# get rows from tracer_study without parent

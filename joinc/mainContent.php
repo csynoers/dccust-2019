@@ -105,6 +105,12 @@ class ControllerContent
 			echo "<script>alert('Maaf biodata anda gagal disimpan'); window.history.back();</script>";
 		}
 	}
+	public function store_kuesioner()
+	{
+		echo '<pre>';
+		print_r($_POST);
+		echo '</pre>';
+	}
 	/* ==================== END PAGE : TRACER STUDY ==================== */
 
 	/* ==================== START PAGE : INFO ==================== */
@@ -234,26 +240,6 @@ class ControllerContent
 
 			case 'emailpass': 
 				include_once 'joinc/aksi/aksikirim.php';
-				break;
-
-			case 'aksi_kuis_a': 
-				include_once 'joinc/aksi/aksi_a.php';
-				break;
-
-			case 'aksi_kuis_b': 
-				include_once 'joinc/aksi/aksi_b.php';
-				break;
-
-			case 'aksi_kuis_c': 
-				include_once 'joinc/aksi/aksi_c.php';
-				break;
-
-			case 'aksi_kuis_d': 
-				include_once 'joinc/aksi/aksi_d.php';
-				break;
-
-			case 'aksi_kuis_e': 
-				include_once 'joinc/aksi/aksi_e.php';
 				break;
 
 			case 'tracer_pengguna':
