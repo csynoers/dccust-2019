@@ -1,0 +1,24 @@
+	$(document).ready(function(){
+		var conf= {
+			'checkbox' : $('input[type=checkbox]').prop('required',true)
+		}
+		$('input[type=checkbox]').on('change',function(){
+			var wrap= {
+				'checkbox' : $(this).closest('.wrap_checkbox'),
+				'other' : $(this).closest('.wrap_other')
+			}
+			if ( $(this).is(':checked') ) {
+				if ( wrap.other.length > 0 ) {
+					wrap.other.find('.other').prop('required',true)
+				}
+				/* set false required input checkbox */
+				wrap.checkbox.find('input[type=checkbox]').prop('required',false)
+
+			}else {
+				if ( wrap.other.length > 0 ) {
+					wrap.other.find('.other').prop('required',false)
+				}
+
+			}
+		})
+	})

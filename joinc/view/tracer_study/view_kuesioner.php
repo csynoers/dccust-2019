@@ -246,15 +246,25 @@
 
 				}
 			});
-			j('.wrap_single_radio .wrap_other input[type=radio]').on('change',function(){
-				var radio ={
-					'is' : j(this),
-					'isval' : function(){
-						return this.is(':checked')
-					}
-				};
-				console.log(radio)
-			})
+			var radio= {
+				'single' : '.wrap_single_radio',
+				'singleOther' : '.wrap_single_radio .wrap_other input[type=radio]',
+				'singleOtherInput' : '.wrap_single_radio .wrap_other input[type=radio]',
+				// 'multiple' : j('.wrap_multiple_radio'),
+			};
+			console.log(j(radio.single))
+			// j('.wrap_single_radio .wrap_other input[type=radio]').on('change',function(){
+			// 	var radio ={
+			// 		'is' : function(){
+			// 			return j(this)
+			// 		},
+			// 		'isval' : function(){
+			// 			return this.is(':checked')
+			// 		},
+			// 		'status' : (this.isval===1)? true : false 
+			// 	};
+			// 	console.log(radio.is())
+			// })
 		})
 	</script>
 	");
