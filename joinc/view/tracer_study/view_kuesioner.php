@@ -68,7 +68,7 @@
 			$html .= '
 				<div class="radio '.$add_wrapper_class.'">
 					<label>
-						<input type="radio" name="tracer_study['.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'" required="">
+						<input type="radio" data-name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']" value="'.$value->tracer_study_detail_id.'">
 						'.strip_tags($value->tracer_study_detail_title).'
 						'.$add_input_text.'
 					</label>
@@ -91,7 +91,7 @@
 			$html .= '
 				<div class="checkbox '.$add_wrapper_class.'">
 					<label>
-						<input type="checkbox" name="'.$value->tracer_study_detail_id.'" value="'.$value->tracer_study_detail_id.'" >
+						<input type="checkbox" data-name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']" value="'.$value->tracer_study_detail_id.'" >
 						'.strip_tags($value->tracer_study_detail_title).'
 						'.$add_input_text.'
 					</label>
@@ -113,7 +113,7 @@
 	}
 	function input_text($row)
 	{
-		return '<input type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
+		return '<input data-name="tracer_study[0]['.$row->tracer_study_detail_id.']" name="tracer_study[0]['.$row->tracer_study_detail_id.']" type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
 	}
 	function input_number($rows)
 	{
@@ -220,51 +220,63 @@
 	<script>
 		$(document).ready(function(j){
 			var conf= {
-				'checkbox' : j('input[type=checkbox]').prop('required',!0)
+				'checkbox' 	: j('.wrap_checkbox input[type=checkbox]').prop('required',!0),
+				'radio'		: j('.wrap_single_radio input[type=radio]').prop('required',!0)
 			};
-			$('input[type=checkbox]').on('change',function(){
+
+			j('.wrap_checkbox input[type=checkbox]').on('change',function(){
 				var wrap= {
 					'checkbox' : j(this).closest('.wrap_checkbox'),
 					'other' : j(this).closest('.wrap_other')
+				},
+				input= {
+					'checkbox' : 'input[type=checkbox]',
+					'checkboxChecked' : 'input[type=checkbox]:checked',
+					'other' : '.other',
 				};
+	
 				if ( j(this).is(':checked') ) {
-					// alert('true');
 					if ( wrap.other.length > 0 ) {
-						wrap.other.find('.other').prop('required',!0)
+						wrap.other.find(input.other).attr({'required' : !0, 'name' : wrap.other.find(input.other).data('name') })
 					}
-					/* set false required input checkbox */
-					wrap.checkbox.find('input[type=checkbox]').prop('required',!1)
-
+					/* set name */
+					j(this).attr('name',j(this).data('name'));
+	
+					/* set false all required input checkbox */
+					wrap.checkbox.find(input.checkbox).prop('required',!1)
+	
 				}else {
-					if( wrap.checkbox.find('input[type=checkbox]:checked').length == 0 ){
-						wrap.checkbox.find('input[type=checkbox]').prop('required',!0)
+					if( wrap.checkbox.find(input.checkboxChecked).length == 0 ){
+						wrap.checkbox.find(input.checkbox).prop('required',!0);
 					}
-					// alert('false');
+					/* set false require name and value input other */
 					if ( wrap.other.length > 0 ) {
-						wrap.other.find('.other').prop('required',!1)
+						wrap.other.find(input.other).prop({'required' : !1, 'name' : ''}).val('');
 					}
-
+					j(this).prop('name','');
 				}
 			});
-			var radio= {
-				'single' : '.wrap_single_radio',
-				'singleOther' : '.wrap_single_radio .wrap_other input[type=radio]',
-				'singleOtherInput' : '.wrap_single_radio .wrap_other input[type=radio]',
-				// 'multiple' : j('.wrap_multiple_radio'),
-			};
-			console.log(j(radio.single))
-			// j('.wrap_single_radio .wrap_other input[type=radio]').on('change',function(){
-			// 	var radio ={
-			// 		'is' : function(){
-			// 			return j(this)
-			// 		},
-			// 		'isval' : function(){
-			// 			return this.is(':checked')
-			// 		},
-			// 		'status' : (this.isval===1)? true : false 
-			// 	};
-			// 	console.log(radio.is())
-			// })
+	
+			j('.wrap_single_radio input[type=radio]').on('change',function(){
+				var wrap= {
+					'radio' : j(this).closest('.wrap_single_radio'),
+					'other' : j(this).closest('.wrap_other'),
+				},
+				input= {
+					'radio' : 'input[type=radio]',
+					'other' : '.other',
+				};
+				/* set false required input radio */
+				wrap.radio.find(input.radio).prop('required',!1);
+	
+				/* set required input other */
+				if ( wrap.other.length > 0 ) {
+					wrap.other.find(input.other).attr({'required' : !0, 'name' : wrap.other.find(input.other).data('name') });
+				}else {
+					wrap.radio.find(input.other).attr({'required' : !1, 'name' : ''}).val('');
+				}
+	
+			});
 		})
 	</script>
 	");
