@@ -44,11 +44,11 @@
 					$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
 					$html .= '<tr>';
 						$html .= '<td style="padding:1em">'.($key+1).'</td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" value="2" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" value="3" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" value="4" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" value="5" required=""></label></div></td>';
+							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
+							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="2" required=""></label></div></td>';
+							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="3" required=""></label></div></td>';
+							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="4" required=""></label></div></td>';
+							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="5" required=""></label></div></td>';
 						$html .= '<td style="padding:1em 0em">'.strip_tags($value->tracer_study_detail_title).$add_input_text.'</td>';
 					$html .= '</tr>';
 				}
