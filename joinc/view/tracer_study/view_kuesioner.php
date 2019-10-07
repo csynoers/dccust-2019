@@ -17,60 +17,63 @@
 		);
 	
 	} */
+	// $array= ['add_text'=>TRUE,'add_input'=>'TRUE'];
+	// echo json_encode($array);
+	// var_dump(array_key_exists('add_text',$array));
 
 	function multiple_radio_button($rows){
-		$html= '';
-		$html .= '
-		<table class="table table-striped table-condensed table-hover">
-			<thead>
+		$html= '';	
+
+		foreach ($rows as $key => $value) {
+			$label= label($value);
+			$add_wrapper_class= ($label['status']===FALSE ? NULL : 'wrap_other' );
+			$html .= "
 				<tr>
-					<th colspan="4">Tidak sama sekali</th>
-					<th colspan="4">Sangat besar</th>
+					<td style='padding:1em'>".($key+1)."</td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
+					<td style='padding:1em 0em'>{$label['html']}</td>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style="width: 45px;padding:1em">No</td>
-					<td style="width: 45px;padding:1em 0.5em">1</td>
-					<td style="width: 45px;padding:1em 0.5em">2</td>
-					<td style="width: 45px;padding:1em 0.5em">3</td>
-					<td style="width: 45px;padding:1em 0.5em">4</td>
-					<td style="width: 45px;padding:1em 0.5em">5</td>
-					<td style="padding:1em 0em">Pertanyaan</td>
-				</tr>';
+			";
+		}
 
-				foreach ($rows as $key => $value) {
-					// print_r($value);
-					$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
-					$html .= '<tr>';
-						$html .= '<td style="padding:1em">'.($key+1).'</td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="1" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="2" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="3" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="4" required=""></label></div></td>';
-							$html .= '<td><div class="radio"><label><input type="radio" name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']['.$value->tracer_study_detail_id.']" value="5" required=""></label></div></td>';
-						$html .= '<td style="padding:1em 0em">'.strip_tags($value->tracer_study_detail_title).$add_input_text.'</td>';
-					$html .= '</tr>';
-				}
-
-		$html .= '
-			</tbody>
-		</table>
-		';
-		return $html;
+		return "
+			<table class='table table-striped table-condensed table-hover'>
+				<thead>
+					<tr>
+						<th colspan='4'>Tidak sama sekali</th>
+						<th colspan='4'>Sangat besar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style='width: 45px;padding:1em'>No</td>
+						<td style='width: 45px;padding:1em 0.5em'>1</td>
+						<td style='width: 45px;padding:1em 0.5em'>2</td>
+						<td style='width: 45px;padding:1em 0.5em'>3</td>
+						<td style='width: 45px;padding:1em 0.5em'>4</td>
+						<td style='width: 45px;padding:1em 0.5em'>5</td>
+						<td style='padding:1em 0em'>Pertanyaan</td>
+					</tr>
+					{$html}
+				</tbody>
+			</table>
+		";
 	}
 
 	function single_radio_button($rows){
 		$html= '';
 		foreach ($rows as $key => $value) {
-			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
-			$add_wrapper_class= (empty($value->rules) ? NULL : 'wrap_other' );
+			$label= label($value);
+			$add_wrapper_class= ($label['status']===FALSE ? NULL : 'wrap_other' );
 			$html .= '
 				<div class="radio '.$add_wrapper_class.'">
 					<label>
-						<input type="radio" data-name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']" value="'.$value->tracer_study_detail_id.'">
-						'.strip_tags($value->tracer_study_detail_title).'
-						'.$add_input_text.'
+						<input type="radio" name="tracer_study[0'.$value->tracer_study_id.']" value="'.$value->tracer_study_detail_id.'">
+						'.$label['html'].'
 					</label>
 				</div>
 			';
@@ -86,14 +89,13 @@
 	function checkbox($rows){
 		$html= '';		
 		foreach ($rows as $key => $value) {
-			$add_input_text= (empty($value->rules) ? NULL : input_text($value) );
-			$add_wrapper_class= (empty($value->rules) ? NULL : 'wrap_other' );
+			$label = label($value);
+			$add_wrapper_class= ($label['status']===FALSE ? NULL : 'wrap_other' );
 			$html .= '
 				<div class="checkbox '.$add_wrapper_class.'">
 					<label>
 						<input type="checkbox" data-name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']" value="'.$value->tracer_study_detail_id.'" >
-						'.strip_tags($value->tracer_study_detail_title).'
-						'.$add_input_text.'
+						'.$label['html'].'
 					</label>
 				</div>';
 		}
@@ -111,6 +113,46 @@
 		// return print_r($rows);
 		return NULL;
 	}
+	function label($row){
+		$output = [];
+		$decode_json= json_decode($row->rules);
+		if ($decode_json->optional) { # optional is true
+			switch ($decode_json->method) {
+				case 'input_number':
+					$output['status'] = TRUE;
+					$output['html'] = "<td><input min='1' type='number' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Masukan angka min 1...' ></td>";
+					$output['html'] .= '<td>&nbsp;&nbsp;'.strip_tags($row->tracer_study_detail_title).'</td>';
+					$output['html'] = "<table><tr class='form-inline'>{$output['html']}</tr></table>";
+					break;
+
+				case 'input_currency':
+					$output['status'] = TRUE;
+					$output['html'] = "<td><input min='1' type='number' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Ex: 3000000' ></td>";
+					$output['html'] .= '<td>&nbsp;&nbsp;'.strip_tags($row->tracer_study_detail_title).'</td>';
+					$output['html'] = "<table><tr class='form-inline'>{$output['html']}</tr></table>";
+					break;
+				
+				case 'input_text':
+					$output['status'] = TRUE;
+					$output['html'] = '<td>'.strip_tags($row->tracer_study_detail_title).'&nbsp;&nbsp;</td>';
+					$output['html'] .= "<td><input type='text' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Masukan lainnya ...' ></td>";
+					$output['html'] = "{$output['html']}";
+					break;
+				
+				default:
+					# code...
+					$output['status'] = FALSE;
+					$output['html'] = json_encode(['input'=>'not found']);
+					
+					break;
+			}
+		} else {
+			$output['status'] = FALSE;
+			// $output['html'] = strip_tags($row->tracer_study_detail_title);
+			$output['html'] = strip_tags(json_encode($row));
+		}
+		return $output;
+	}
 	function input_text($row)
 	{
 		return '<input data-name="tracer_study[0]['.$row->tracer_study_detail_id.']" name="tracer_study[0]['.$row->tracer_study_detail_id.']" type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
@@ -121,7 +163,7 @@
 		foreach ($rows as $key => $value) {
 			$html .= '
 				<tr class="form-inline">
-					<td><input min="1" type="number" name="tracer_study['.$value->tracer_study_id.']['.$value->tracer_study_detail_id.']" class="form-control" placeholder="Masukan angka min 1..." required></td>
+					<td><input min="1" type="number" name="tracer_study[0]['.$value->tracer_study_detail_id.']" class="form-control" placeholder="Masukan angka min 1..." required></td>
 					<td>&nbsp;&nbsp;'.strip_tags($value->tracer_study_detail_title).'</td
 				</tr>
 			';
@@ -130,7 +172,6 @@
 	}
 
 	$html= "";
-
 	$html .= '
 	<section id="featured">
 		<div class="container">
@@ -145,7 +186,8 @@
 						<div class="panel-group" id="accordion">';
 
 							# get rows from tracer_study without parent
-							$rows= $this->Model->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0")['data'];
+							// $rows= $this->Model->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0 ")['data'];
+							$rows= $this->Model->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0 AND t.tracer_study_sort=14")['data'];
 
 							# loop rows tracer_study without parent
 							foreach ($rows as $key => $value) {
@@ -266,12 +308,18 @@
 					'radio' : 'input[type=radio]',
 					'other' : '.other',
 				};
-				/* set false required input radio */
-				wrap.radio.find(input.radio).prop('required',!1);
 	
 				/* set required input other */
 				if ( wrap.other.length > 0 ) {
-					wrap.other.find(input.other).attr({'required' : !0, 'name' : wrap.other.find(input.other).data('name') });
+					var data_name= wrap.other.find(input.other).data('name');
+					j.each(wrap.radio.find(input.other),function(i,item){
+						if( j(item).data('name') == data_name ) {
+							wrap.other.find(input.other).attr({'required' : !0, 'name' : wrap.other.find(input.other).data('name') });
+						}else{
+							j(item).attr({'required' : !1, 'name' : ''}).val('');
+						}
+					});
+					
 				}else {
 					wrap.radio.find(input.other).attr({'required' : !1, 'name' : ''}).val('');
 				}
