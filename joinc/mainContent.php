@@ -113,6 +113,185 @@ class ControllerContent
 	}
 	/* ==================== END PAGE : TRACER STUDY ==================== */
 
+	/* ==================== START PAGE : TRACER STUDY HELPER ==================== */
+	protected function tracer_study($id=NULL)
+	{
+		return $this->Model->get_tracer_study();
+		// return ( $id===NULL? $this->Model->get_tracer_study() : $this->Model->get_tracer_study($id) );
+	}
+	protected function tracer_study_detail($id)
+	{
+		return $this->Model->get_tracer_study_detail($id);
+	}
+	protected function multiple_radio_button($rows){
+		$html= '';	
+
+		foreach ($rows as $key => $value) {
+			$label= $this->methods($value);
+			$add_wrapper_class= ($label['status']===FALSE ? NULL : 'wrap_other' );
+			$html .= "
+				<tr>
+					<td style='padding:1em'>".($key+1)."</td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
+					<td style='padding:1em 0em'>{$label['html']}</td>
+				</tr>
+			";
+		}
+
+		return "
+			<table class='table table-striped table-condensed table-hover'>
+				<thead>
+					<tr>
+						<th colspan='4'>Tidak sama sekali</th>
+						<th colspan='4'>Sangat besar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style='width: 45px;padding:1em'>No</td>
+						<td style='width: 45px;padding:1em 0.5em'>1</td>
+						<td style='width: 45px;padding:1em 0.5em'>2</td>
+						<td style='width: 45px;padding:1em 0.5em'>3</td>
+						<td style='width: 45px;padding:1em 0.5em'>4</td>
+						<td style='width: 45px;padding:1em 0.5em'>5</td>
+						<td style='padding:1em 0em'>Pertanyaan</td>
+					</tr>
+					{$html}
+				</tbody>
+			</table>
+		";
+	}
+
+	protected function single_radio_button($rows){
+		$html= '';
+		foreach ($rows as $key => $value) {
+			$label= $this->methods($value);
+			$add_wrapper_class= ($value->method=='false' ? NULL : 'wrap_other' );
+			$eventsAddData = ($value->event=='false'? NULL: $this->add_events($value));
+			$eventsAddClass = ($value->event=='false'? NULL: 'tracer-detail-event');
+			$html .= "
+				<div class='radio {$add_wrapper_class}'>
+					<label>
+						<input {$eventsAddData} class='{$eventsAddClass}' type='radio' name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
+						{$label['html']}
+					</label>
+				</div>
+			";
+		}
+		// echo '<pre>';
+		print_r($html);
+		// echo '</pre>';
+		return "
+			<div class='col-sm-12'>
+				<div class='wrap_single_radio'>
+					{$html}
+				</div>
+			</div>
+		";
+	}
+	protected function checkbox($rows){
+		$html= '';		
+		foreach ($rows as $key => $value) {
+			$label = $this->methods($value);
+			$add_wrapper_class= ($label['status']===FALSE ? NULL : 'wrap_other' );
+			$html .= '
+				<div class="checkbox '.$add_wrapper_class.'">
+					<label>
+						<input type="checkbox" data-name="tracer_study['.$value->tracer_study_id.$value->tracer_study_detail_id.']" value="'.$value->tracer_study_detail_id.'" >
+						'.$label['html'].'
+					</label>
+				</div>';
+		}
+
+		return "
+			<div clas='col-sm-12'>
+				<div class='wrap_checkbox'>
+					{$html}	
+				</div>
+			</div>
+		";
+	}
+	protected function none($rows)
+	{
+		// return print_r($rows);
+		return NULL;
+	}
+	protected function methods($row){
+		$output = [];
+		switch ($row->method) {
+			case 'input_number':
+				$output['status'] = TRUE;
+				$output['html'] = "<td><input min='1' type='number' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Masukan angka min 1...' ></td>";
+				$output['html'] .= '<td>&nbsp;&nbsp;'.strip_tags($row->tracer_study_detail_title).'</td>';
+				$output['html'] = "<table><tr class='form-inline'>{$output['html']}</tr></table>";
+				break;
+
+			case 'input_currency':
+				$output['status'] = TRUE;
+				$output['html'] = "<td><input min='1' type='number' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Ex: 3000000' ></td>";
+				$output['html'] .= '<td>&nbsp;&nbsp;'.strip_tags($row->tracer_study_detail_title).'</td>';
+				$output['html'] = "<table><tr class='form-inline'>{$output['html']}</tr></table>";
+				break;
+			
+			case 'input_text':
+				$output['status'] = TRUE;
+				$output['html'] = '<td>'.strip_tags($row->tracer_study_detail_title).'&nbsp;&nbsp;</td>';
+				$output['html'] .= "<td><input type='text' data-name='tracer_study[0][{$row->tracer_study_detail_id}]' class='other form-control' placeholder='Masukan lainnya ...' ></td>";
+				$output['html'] = "{$output['html']}";
+				break;
+			
+			default:
+				# code...
+				$output['status'] = FALSE;
+				// $output['html'] = strip_tags($row->tracer_study_detail_title);
+				$output['html'] = strip_tags(json_encode($row));
+				
+				break;
+		}
+		return $output;
+	}
+	protected function add_events($row)
+	{
+		$output= [];
+		// switch ($row->event) {
+		// 	case 'onselect':
+		// 		# code...
+		// 		$output['attr'] = 'data-event="onselect" ';
+		// 		foreach ($this->Model->get_tracer_events($row->tracer_study_detail_id) as $key => $value) {
+		// 			$output['attr'] .= "data-action='{$value->action}' "; 
+		// 			$output['attr'] .= "data-target-{$value->action}='{$value->json_desc}'"; 
+		// 		} 
+		// 		break;
+			
+		// 	default:
+		// 		# code...
+		// 		break;
+		// }
+		// return $output['attr'];
+	}
+	protected function input_text($row)
+	{
+		return '<input data-name="tracer_study[0]['.$row->tracer_study_detail_id.']" name="tracer_study[0]['.$row->tracer_study_detail_id.']" type="text" class="other form-control" placeholder="Masukan lainnya ..." >';
+	}
+	protected function input_number($rows)
+	{
+		$html = "";
+		foreach ($rows as $key => $value) {
+			$html .= '
+				<tr class="form-inline">
+					<td><input min="1" type="number" name="tracer_study[0]['.$value->tracer_study_detail_id.']" class="form-control" placeholder="Masukan angka min 1..." required></td>
+					<td>&nbsp;&nbsp;'.strip_tags($value->tracer_study_detail_title).'</td
+				</tr>
+			';
+		}
+		return "<table>{$html}</table>";
+	}
+	/* ==================== END PAGE : TRACER STUDY HELPER==================== */
+
 	/* ==================== START PAGE : INFO ==================== */
 	public function event()
 	{
