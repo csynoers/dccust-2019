@@ -116,10 +116,9 @@ class ControllerContent
 	/* ==================== START PAGE : TRACER STUDY HELPER ==================== */
 	protected function tracer_study($id=NULL)
 	{
-		return $this->Model->get_tracer_study();
-		// return ( $id===NULL? $this->Model->get_tracer_study() : $this->Model->get_tracer_study($id) );
+		return $this->Model->get_tracer_study($id);
 	}
-	protected function tracer_study_detail($id)
+	protected function tracer_study_detail($id=NULL)
 	{
 		return $this->Model->get_tracer_study_detail($id);
 	}
@@ -170,21 +169,22 @@ class ControllerContent
 		$html= '';
 		foreach ($rows as $key => $value) {
 			$label= $this->methods($value);
-			$add_wrapper_class= ($value->method=='false' ? NULL : 'wrap_other' );
-			$eventsAddData = ($value->event=='false'? NULL: $this->add_events($value));
-			$eventsAddClass = ($value->event=='false'? NULL: 'tracer-detail-event');
+			$adds = [
+				'wrapper_class' => ($value->method=='false' ? NULL : 'wrap_other' ),
+				'events'		=> [
+					'AddData' 	=> ($value->event=='false'? '' : $this->add_events($value)),
+					'AddClass' 	=> ($value->event=='false'? '' : 'tracer-detail-event'),
+				],
+			];
 			$html .= "
-				<div class='radio {$add_wrapper_class}'>
+				<div class='radio {$adds['wrapper_class']}'>
 					<label>
-						<input {$eventsAddData} class='{$eventsAddClass}' type='radio' name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
+						<input {$adds['events']['AddData']} class='{$adds['events']['AddClass']}' type='radio' name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
 						{$label['html']}
 					</label>
 				</div>
 			";
 		}
-		// echo '<pre>';
-		print_r($html);
-		// echo '</pre>';
 		return "
 			<div class='col-sm-12'>
 				<div class='wrap_single_radio'>
@@ -257,21 +257,21 @@ class ControllerContent
 	protected function add_events($row)
 	{
 		$output= [];
-		// switch ($row->event) {
-		// 	case 'onselect':
-		// 		# code...
-		// 		$output['attr'] = 'data-event="onselect" ';
-		// 		foreach ($this->Model->get_tracer_events($row->tracer_study_detail_id) as $key => $value) {
-		// 			$output['attr'] .= "data-action='{$value->action}' "; 
-		// 			$output['attr'] .= "data-target-{$value->action}='{$value->json_desc}'"; 
-		// 		} 
-		// 		break;
+		switch ($row->event) {
+			case 'onselect':
+				# code...
+				$output['attr'] = 'data-event="onselect" ';
+				foreach ($this->Model->get_tracer_events($row->tracer_study_detail_id) as $key => $value) {
+					$output['attr'] .= "data-action='{$value->action}' "; 
+					$output['attr'] .= "data-target-{$value->action}='{$value->json_desc}'"; 
+				} 
+				break;
 			
-		// 	default:
-		// 		# code...
-		// 		break;
-		// }
-		// return $output['attr'];
+			default:
+				# code...
+				break;
+		}
+		return $output['attr'];
 	}
 	protected function input_text($row)
 	{

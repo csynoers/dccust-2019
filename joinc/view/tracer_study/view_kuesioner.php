@@ -1,11 +1,23 @@
 <?php
 
-	// $array= [1,2,3,4,5,6,7];
-	// echo '<pre>';
-	// echo json_encode($array);
-	// print_r($array);
-	// echo '</pre>';
-	// var_dump(array_key_exists('add_text',$array));
+/* 	echo '<pre>'; #for debuging view
+	foreach ($this->tracer_study() as $key => $value) { #for debuging view
+		if ( $value->child_count == '0' ) { #for debuging view
+			echo strip_tags(json_encode($value)).'<br>'; #for debuging view
+			foreach($this->tracer_study_detail($value->tracer_study_id) as $keyd => $valued) { #for debuging view
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;'.strip_tags(json_encode( $valued )).'<br>'; #for debuging view
+			} #for debuging view
+		} else { #for debuging view
+			echo strip_tags(json_encode($value)).'<br>'; #for debuging view
+			foreach ( $this->tracer_study($value->tracer_study_id) as $key_rows_child => $value_rows_child) { #for debuging view
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;'.strip_tags(json_encode($value_rows_child)).'<br>'; #for debuging view
+				foreach($this->tracer_study_detail($value_rows_child->tracer_study_id) as $keyd => $valued) { #for debuging view
+					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.strip_tags(json_encode( $valued )).'<br>'; #for debuging view
+				} #for debuging view
+			} #for debuging view
+		} #for debuging view
+	} #for debuging view
+	echo '</pre>'; #for debuging view */
 
 	$html= "";
 	$html .= '
@@ -24,7 +36,7 @@
 							# loop rows tracer_study without parent
 							foreach ($this->tracer_study() as $key => $value) {
 								$sub_html = strip_tags($value->tracer_study_desc).'<br>';
-								if ( $value->child_count == 0 ) { # if this row have not a childs
+								if ( $value->child_count == '0' ) { # if this row have not a childs
 									$sub_html .= $this->{$value->tracer_study_form_type}( $this->tracer_study_detail($value->tracer_study_id) );
 
 								} else { # if this row have a childs
@@ -74,6 +86,7 @@
 								';
 								
 							}
+							echo '</pre>';
 
 						$html .= '
 						</div>
@@ -157,12 +170,68 @@
 			});
 
 			
-			// if ( j('.tracer-detail-event').length > 0) {
+			if ( j('.tracer-detail-event').length > 0) {
+				function saveChildOfWrap()
+				{
+					var data=[];
+					j.each(j('.wrap-tracer-block'),function(i,v){
+						data[j(v).data('id')]= j(v).html();
+					});
+					localStorage.setItem('_eut734ytj', JSON.stringify(data));
+				};
+
+				function removeLocalStorage()
+				{
+					localStorage.removeItem('_eut734ytj');
+				}
+
+				// saveChildOfWrap();
+				// removeLocalStorage();
+
+				if( localStorage.getItem('_eut734ytj') ){
+
+				}else{
+					saveChildOfWrap();
+					console.log('storage kosong bos');
+				};
+
+				function events(row)
+				{
+					row.on('click',function(){
+						switch( j(this).prop('tagName') ) {
+							case 'INPUT':
+								switch( j(this).prop('type') ) {
+									case 'radio':
+										console.log(j(this).closest('.wrap-tracer-block').find('input[type=radio]'));
+										j.each(j(this).data( 'target-'+j(this).data('action') ), function(i, v) {
+											j('.wrap-tracer-block[data-id='+v+']').empty();
+										});
+										break;
+
+									default:
+										console.log('belum terdefinisi, silahkan hubungi jogjasite.com');
+										break;
+								}
+								break;
+
+							default:
+								console.log('belum terdefinisi, silahkan hubungi jogjasite.com');
+								break;
+						}
+					})
+
+				};
+
 				j.each(j('.tracer-detail-event'),function(i,item){
-					console.log(this)
+					// console.log(j(item));
+					events(j(item))
+
 				});
-			// }
-		})
+
+			};
+
+		});
+		
 	</script>
 	");
 

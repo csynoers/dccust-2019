@@ -163,7 +163,7 @@
 
         public function get_tracer_study($id=NULL)
         {
-            if ( $id===NULL ) {
+            if ( empty($id) ) {
                 return $this->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent=0 ")['data'];
             } else {
                 return $this->db->get_select("SELECT *,(SELECT COUNT(t_mod.tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS child_count FROM tracer_studies AS t WHERE t.tracer_study_parent='{$id}' ")['data'];
@@ -177,7 +177,7 @@
         }
         public function get_tracer_events($id=NULL)
         {
-            if ( $id===NULL ) {
+            if ( empty($id) ) {
                 return $this->db->get_select("SELECT * FROM tracer_events")['data'];
             } else {
                 return $this->db->get_select("SELECT * FROM tracer_events WHERE tracer_study_detail_id='{$id}' ")['data'];
