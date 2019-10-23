@@ -189,10 +189,10 @@
 				// removeLocalStorage();
 
 				if( localStorage.getItem('_eut734ytj') ){
-
+					// alert('storage is ready');
 				}else{
 					saveChildOfWrap();
-					console.log('storage kosong bos');
+					// alert('storage kosong bos');
 				};
 
 				function events(row)
@@ -223,8 +223,8 @@
 				};
 
 				j.each(j('.tracer-detail-event'),function(i,item){
-					// console.log(j(item));
-					events(j(item))
+					console.log(this);
+					// events(j(item))
 
 				});
 
