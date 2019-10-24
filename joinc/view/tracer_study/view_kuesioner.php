@@ -197,37 +197,85 @@
 
 				function events(row)
 				{
+					console.log(this);
 					row.on('click',function(){
 						switch( j(this).prop('tagName') ) {
 							case 'INPUT':
 								switch( j(this).prop('type') ) {
 									case 'radio':
-										console.log(j(this).closest('.wrap-tracer-block').find('input[type=radio]'));
+										// j.each(j(this).closest('.wrap-tracer-block').find('input[type=radio]'),function(a,b){
+										// 	console.log(j(b).is(':checked'))
+										// });
+
 										j.each(j(this).data( 'target-'+j(this).data('action') ), function(i, v) {
 											j('.wrap-tracer-block[data-id='+v+']').empty();
 										});
 										break;
 
 									default:
-										console.log('belum terdefinisi, silahkan hubungi jogjasite.com');
+										console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
 										break;
 								}
 								break;
 
 							default:
-								console.log('belum terdefinisi, silahkan hubungi jogjasite.com');
+								console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
 								break;
 						}
 					})
 
 				};
 
-				j.each(j('.tracer-detail-event'),function(i,item){
-					console.log(this);
-					// events(j(item))
+				function displayWrapperBlock(d){
+					switch(d.type) {
+						case 'radio':
+							j.each(d.block.find('input[type=radio]'),function(a,b){
+								if ( ! j(b).is(':checked') ) {
+									console.log(b)
+								}
+							});
+							break;
+						default :
+							break;
+					}
+				};
 
-				});
+				function getWrapperBlockId(){
+					var temp= [];
+					j.each(j('.tracer-detail-event'),function(a,b){
+						var id = j(this).closest('.wrap-tracer-block').data('id');
+						if ( temp.indexOf( id ) == -1 ) {
+							temp.push( id );
+						}
+					});
+					return temp;
+				};
+				
+				j.each(getWrapperBlockId(),function(a,b){
+					var wrapBlock= j(document).find('.wrap-tracer-block[data-id='+b+']');
+					wrapBlock.find('input').on('click',function(){
+						switch( j(this).prop('tagName') ) {
+							case 'INPUT':
+								switch( j(this).prop('type') ) {
+									case 'radio':
+										displayWrapperBlock({
+											'type' : j(this).prop('type'),
+											'block' : wrapBlock 
+										});
+										break;
 
+									default:
+										console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
+										break;
+								}
+								break;
+
+							default:
+								console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
+								break;
+						}
+					})
+				})
 			};
 
 		});
