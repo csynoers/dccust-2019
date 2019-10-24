@@ -231,7 +231,7 @@
 						case 'radio':
 							j.each(d.block.find('input[type=radio]'),function(a,b){
 								if ( ! j(b).is(':checked') ) {
-									console.log(b)
+									console.log(getAttrDetailEvent(this));
 								}
 							});
 							break;
@@ -239,6 +239,13 @@
 							break;
 					}
 				};
+
+				function getAttrDetailEvent(row)
+				{
+					return {
+						'event' : row
+					};
+				}
 
 				function getWrapperBlockId(){
 					var temp= [];
