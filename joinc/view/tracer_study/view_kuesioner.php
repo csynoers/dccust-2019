@@ -181,7 +181,7 @@
 									hideWrapperBlock( target );
 									tempActive = target;
 								}else{
-									showWrapperBlock( target );
+									showWrapperBlock( target, getAttrDetailEvent(j(this)).type );
 								}
 							});
 							hideWrapperBlock( tempActive );
@@ -193,13 +193,14 @@
 				};
 
 				/* start show and hide wrapper block */
-				function showWrapperBlock(d)
+				function showWrapperBlock(d,t)
 				{
 					if ( d ) {
 						j.each(d,function(a,b){
 							$('.wrap-tracer-block[data-id='+b+']')
 								.css('display','block')
-								.find('input').prop({ 'name' : '' , 'required' : !0 });
+								.find('input[type='+t+']').prop({ 'name' : '' , 'required' : !0 });
+
 						})
 					}
 				}
