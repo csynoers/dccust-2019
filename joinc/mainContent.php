@@ -107,6 +107,7 @@ class ControllerContent
 	}
 	public function store_kuesioner()
 	{
+		$post = [];
 		echo '<pre>';
 		print_r($_POST);
 		echo '</pre>';
