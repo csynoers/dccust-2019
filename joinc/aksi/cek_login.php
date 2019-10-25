@@ -18,6 +18,7 @@ $rows= $db->get_select("SELECT * FROM alumni_daftar WHERE email='$email' AND pas
 if ( count($rows['data']) > 0){
 	session_start();
 	$_SESSION['idnya']= $rows['data'][0]->id_alumni;
+	$_SESSION['rowuser']= $rows['data'][0];
 
 	# initialize parameters update 
 	$table="alumni_daftar";

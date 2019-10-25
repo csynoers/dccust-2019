@@ -1,5 +1,7 @@
 <?php
-print_r($_SESSION);
+echo '<pre>';
+print_r($_SESSION['rowuser']);
+echo '</pre>';
 /* 	echo '<pre>'; #for debuging view
 	foreach ($this->tracer_study() as $key => $value) { #for debuging view
 		if ( $value->child_count == '0' ) { #for debuging view
