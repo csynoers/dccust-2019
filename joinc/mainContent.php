@@ -247,8 +247,8 @@ class ControllerContent
 			default:
 				# code...
 				$output['status'] = FALSE;
-				// $output['html'] = strip_tags($row->tracer_study_detail_title);
-				$output['html'] = strip_tags(json_encode($row));
+				$output['html'] = strip_tags($row->tracer_study_detail_title);
+				// $output['html'] = strip_tags(json_encode($row));
 				
 				break;
 		}

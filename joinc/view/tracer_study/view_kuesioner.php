@@ -35,13 +35,13 @@
 
 							# loop rows tracer_study without parent
 							foreach ($this->tracer_study() as $key => $value) {
-								$sub_html = strip_tags($value->tracer_study_desc).'<br>';
+								$sub_html = strip_tags($value->tracer_study_desc) === NULL ? NULL : strip_tags($value->tracer_study_desc).'<br>';
 								if ( $value->child_count == '0' ) { # if this row have not a childs
 									$sub_html .= $this->{$value->tracer_study_form_type}( $this->tracer_study_detail($value->tracer_study_id) );
 
 								} else { # if this row have a childs
 									foreach ( $this->tracer_study($value->tracer_study_id) as $key_rows_child => $value_rows_child) {
-										$rows_sub_child_html = strip_tags($value_rows_child->tracer_study_desc).'<br>';
+										$rows_sub_child_html = strip_tags($value_rows_child->tracer_study_desc) === NULL ? NULL : strip_tags($value_rows_child->tracer_study_desc).'<br>';
 										$rows_sub_child_html .= $this->{$value_rows_child->tracer_study_form_type}( $this->tracer_study_detail($value_rows_child->tracer_study_id) );
 										$sub_html .= '
 										<div class="wrap-tracer-block" data-id="'.$value_rows_child->tracer_study_id.'">
@@ -171,83 +171,63 @@
 
 			
 			if ( j('.tracer-detail-event').length > 0) {
-				function saveChildOfWrap()
-				{
-					var data=[];
-					j.each(j('.wrap-tracer-block'),function(i,v){
-						data[j(v).data('id')]= j(v).html();
-					});
-					localStorage.setItem('_eut734ytj', JSON.stringify(data));
-				};
-
-				function removeLocalStorage()
-				{
-					localStorage.removeItem('_eut734ytj');
-				}
-
-				// saveChildOfWrap();
-				// removeLocalStorage();
-
-				if( localStorage.getItem('_eut734ytj') ){
-					// alert('storage is ready');
-				}else{
-					saveChildOfWrap();
-					// alert('storage kosong bos');
-				};
-
-				function events(row)
-				{
-					console.log(this);
-					row.on('click',function(){
-						switch( j(this).prop('tagName') ) {
-							case 'INPUT':
-								switch( j(this).prop('type') ) {
-									case 'radio':
-										// j.each(j(this).closest('.wrap-tracer-block').find('input[type=radio]'),function(a,b){
-										// 	console.log(j(b).is(':checked'))
-										// });
-
-										j.each(j(this).data( 'target-'+j(this).data('action') ), function(i, v) {
-											j('.wrap-tracer-block[data-id='+v+']').empty();
-										});
-										break;
-
-									default:
-										console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
-										break;
-								}
-								break;
-
-							default:
-								console.log('belum terdefinisi, silahkan hubungi www.jogjasite.com');
-								break;
-						}
-					})
-
-				};
-
 				function displayWrapperBlock(d){
 					switch(d.type) {
 						case 'radio':
+							var tempActive;
 							j.each(d.block.find('input[type=radio]'),function(a,b){
-								if ( ! j(b).is(':checked') ) {
-									console.log(getAttrDetailEvent(this));
+								var target = getAttrDetailEvent(j(this)).target;
+								if ( j(b).is(':checked') ) {
+									hideWrapperBlock( target );
+									tempActive = target;
+								}else{
+									showWrapperBlock( target );
 								}
 							});
+							hideWrapperBlock( tempActive );
+
 							break;
 						default :
 							break;
 					}
 				};
 
+				/* start show and hide wrapper block */
+				function showWrapperBlock(d)
+				{
+					if ( d ) {
+						j.each(d,function(a,b){
+							$('.wrap-tracer-block[data-id='+b+']')
+								.css('display','block')
+								.find('input').prop({ 'name' : '' , 'required' : !0 });
+						})
+					}
+				}
+				function hideWrapperBlock(d)
+				{
+					if ( d ) {
+						j.each(d,function(a,b){
+							$('.wrap-tracer-block[data-id='+b+']')
+								.css('display','none')
+								.find('input').prop({ 'name' : '' , 'required' : !1 });
+						})
+					}
+				}
+				/* start show and hide wrapper block */
+
+
 				function getAttrDetailEvent(row)
 				{
 					return {
-						'event' : row
+						'event'		: row.data('event'),
+						'type'		: row.prop('type'), 
+						'action'	: row.data('action'), 
+						'target'	: row.data('target-' + row.data('action')) 
 					};
 				}
 
-				function getWrapperBlockId(){
+				function getWrapperBlockId()
+				{
 					var temp= [];
 					j.each(j('.tracer-detail-event'),function(a,b){
 						var id = j(this).closest('.wrap-tracer-block').data('id');
