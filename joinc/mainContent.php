@@ -132,11 +132,11 @@ class ControllerContent
 			$html .= "
 				<tr>
 					<td style='padding:1em'>".($key+1)."</td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
 					<td style='padding:1em 0em'>{$label['html']}</td>
 				</tr>
 			";
@@ -180,7 +180,7 @@ class ControllerContent
 			$html .= "
 				<div class='radio {$adds['wrapper_class']}'>
 					<label>
-						<input {$adds['events']['AddData']} class='{$adds['events']['AddClass']}' type='radio' name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
+						<input {$adds['events']['AddData']} class='{$adds['events']['AddClass']}' type='radio' data-name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
 						{$label['html']}
 					</label>
 				</div>
