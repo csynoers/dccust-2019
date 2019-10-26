@@ -72,7 +72,7 @@ RewriteRule ^detailevent-([0-9]+)-(.*)\.html$ media.php?mod=detailevent&id=$1 [L
 
 RewriteRule ^simpancontactus$ media.php?mod=simpancontactus [L]
 RewriteRule ^daftaralumni$ media.php?mod=daftaralumni [L]
-RewriteRule ^kirim-pass-(.*).html$ media.php?mod=kirim-pass&nim=$1 [L]
+RewriteRule ^kirim-pass-(.*).html$ media.php?mod=kirim_pass&nim=$1 [L]
 RewriteRule ^subcribe$ joinc/subcribe.php [L]
 RewriteRule ^logout.html$ joinc/aksi/logout.php [L]
 RewriteRule ^cek_login.html$ joinc/aksi/cek_login.php [L]

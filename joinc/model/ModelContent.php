@@ -184,6 +184,20 @@
             }
             
         }
+        public function kuesioner_insert()
+        {
+            # initialize parameter insert tracer_answers
+            $table = 'tracer_answers';
+            foreach ($this->post as $key => $value) {    
+                $this->db->insert($table, $value, array_keys($value) );
+            }
+            // return ($insert=='success') ? TRUE : FALSE ;
+            return TRUE ;
+        }
+        public function get_tracer_answers($nim,$type)
+        {
+            return $this->db->get_select("SELECT * FROM `tracer_answers` WHERE nim='{$nim}' AND tracer_type='{$type}' GROUP BY nim ")['data'];
+        }
     /* ==================== END PAGE : TRACER STUDY ==================== */
 
     /* ==================== START PAGE : PROGRAM ==================== */
