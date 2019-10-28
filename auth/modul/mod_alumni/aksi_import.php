@@ -1,12 +1,13 @@
 <?php
 session_start();
-error_reporting(0);
+// error_reporting(0);
 if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
 	echo "<link href='style.css' rel='stylesheet' type='text/css'>
 	<center>Untuk mengakses modul, Anda harus login <br>";
 	echo "<a href=../../index.php><b>LOGIN</b></a></center>";
 }
 else{
+	include_once "../../../josys/koneksi.php";
 	include_once "../../../josys/dbHelper.php";
 	include_once "../../../josys/library.php";
 	include_once "../../../josys/fungsi_seo.php";
@@ -14,7 +15,7 @@ else{
 	include_once "../../../josys/rand_uspas.php";
 	include_once "../../../josys/excel_reader2.php";
 	
-	$db= new dbHelper();
+	$db= new dbHelper($db_config);
 
 	$tipe_file = $_FILES['fileexcel']['type'];
 	if ($tipe_file != "application/vnd.ms-excel")
@@ -49,44 +50,30 @@ else{
 					}
 					// end validation if string there a single quote
 
-					$tahun_lulus 	= $value_cells[3];
-					$email 			= $value_cells[4];
-					$pones 			= $value_cells[5];
-
-					$pass_alumni = generateRandomPass(7, 1);
-					$password = md5($pass_alumni);
-
+					$randompass= generateRandomPass(7, 1);
+					
 					$table = 'alumni_daftar';
 					$columnsArray = [
 						'nim' => $nim,
 						'nama_alumni' => $nama_alumni,
-						'tahun_lulus' => $tahun_lulus,
 						'fakultas' => $fakultas,
 						'prodi' => $_POST["prodi"],
-						'phone' => $pones,
-						'email' => $email,
-						'password' => $password,
-						're_password' => $pass_alumni,
+						'password' => md5($randompass),
+						're_password' => $randompass
 					];
-					$requiredColumnsArray = [
-						'nim',
-						'nama_alumni',
-						'tahun_lulus',
-						'fakultas',
-						'prodi', 
-						'phone',
-						'email',
-						'password',
-						're_password',
-					];
-					$db->insert($table, $columnsArray, $requiredColumnsArray);
+					if ( ! empty($value_cells[3]) ) $columnsArray['tahun_lulus']=$value_cells[3];
+					if ( ! empty($value_cells[4]) ) $columnsArray['email']=$value_cells[4];
+					if ( ! empty($value_cells[5]) ) $columnsArray['phone']=$value_cells[5];
+					// print_r(json_encode($value_cells));
+
+					$db->insert($table, $columnsArray, array_keys($columnsArray));
 																
 				}
 			}
 		}
 	}
-	// die();
-		  header('location:../../media.php?module=alumni&j='.$_POST['jenjang']);
+	
+	header('location:../../media.php?module=alumni&j='.$_POST['jenjang']);
 
 }
 ?>
