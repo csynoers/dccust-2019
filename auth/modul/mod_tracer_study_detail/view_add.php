@@ -1,4 +1,5 @@
 <?php
+
     $option_kategori= '';
     foreach ($kategori as $key => $value) {
         $option_kategori .= "<option value='{$value->tracer_study_id}'>{$value->tracer_study_title}</option>";
@@ -17,7 +18,7 @@ echo "
                     <div class='container-fluid'>
                         <div class='form-group'>
                             <label for='judul'>Title :</label>
-                            <textarea name='tracer_study_detail_title' class='form-control'></textarea>
+                            <textarea name='tracer_study_detail_title' placeholder='Input title here ...' required='' class='form-control'></textarea>
                         </div>
                         <div class='form-group'>
                             <label for='deskripsi'>Kategori :</label>
@@ -25,13 +26,40 @@ echo "
                                 {$option_kategori};
                             </select>
                         </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class='form-group'>
+                                    <label for='addInputType'>Add Input Type <small>(Optional)</small> :</label>
+                                    <select name='method' class='form-control'>".$this->options_input_type()."</select>
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class='form-group'>
+                                    <label for='addEvent'>Add Event <small>(Optional)</small> :</label>
+                                    <select name='event' class='form-control'>".$this->options_add_events()."</select>
+                                </div>
+                            </div>
+                            <div id='actionEvent' class='col-sm-12'>
+                                <label for='addEvent'>Action Event :</label>
+                                <div class='form-group'>
+                                    ".$this->radio_event()."
+                                </div>
+                            </div>
+                            <div id='targetEvent' class='col-sm-12'>
+                                <label for='addEvent'>Select Target Event :</label>
+                                <div class='form-group'>
+                                    ".$this->checkbox_category()."
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <!-- /.panel-body -->
 
                 <div class='panel-footer'>
                     <input type='hidden' name='operation' value='insert'>
-                    <button type='submit' class='btn btn-primary'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
+                    <button type='submit' class='btn btn-primary' style='margin-right:1rem'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
                     <button type='button' onclick='self.history.back()' class='btn btn-info'><i class='fa fa-backward' aria-hidden='true'></i> Back</button>
                 </div>
                 <!-- /.panel-footer -->

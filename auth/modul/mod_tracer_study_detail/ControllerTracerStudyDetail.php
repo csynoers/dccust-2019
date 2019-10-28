@@ -16,7 +16,6 @@
 
 				case 'edit':
 					# view edit form
-					$kategori= $this->Model->get_tracer_studies();
 					$rows= $this->Model->get_tracer_studies_detail($_GET['id']);
 					include_once("modul/mod_tracer_study_detail/view_edit.php");
 					break;
@@ -64,6 +63,66 @@
 					include_once("modul/mod_tracer_study_detail/view_index.php");
 					break;
 			}
+		}
+
+		public function options_category($selectedvalue=NULL){
+			$options= '';
+			foreach ($this->Model->get_tracer_studies() as $key => $value) {
+				$active_selected= ($value->tracer_study_id==$selectedvalue) ? 'selected' : NULL ;
+				$options .= "<option value='{$value->tracer_study_id}' '{$active_selected}' required=''>{$value->tracer_study_title}</option>";
+			}
+			return $options;
+		}
+		public function options_input_type($selectedvalue=NULL)
+		{
+			$rows= [
+				'false'=> '-- Please select one --',
+				'input_number'=> 'Input number',
+				'input_currency'=> 'Input currency',
+				'input_text'=> 'Input text',
+			];
+			$options = '';
+			foreach ($rows as $key => $value) {
+				$active_selected= ($key==$selectedvalue) ? 'selected' : NULL ;
+				$options .= "<option value='{$key}' {$active_selected}> {$value} </option>";
+			}
+			return $options;
+		}
+		public function options_add_events($selectedvalue=NULL)
+		{
+			$rows= [
+				'false'=> '-- Please select one --',
+				'onselect'=> 'On Selected',
+			];
+			$options = '';
+			foreach ($rows as $key => $value) {
+				$active_selected= ($key==$selectedvalue) ? 'selected' : NULL ;
+				$options .= "<option value='{$key}' {$active_selected}> {$value} </option>";
+			}
+			return $options;
+		}
+		public function radio_event()
+		{
+			$rows = [
+				'hide' => 'Hide'
+			];
+			$radio = '';
+			foreach ($rows as $key => $value) {
+				$radio .= "<label class='radio-inline'><input type='radio' name='optradio' required=''>{$value}</label>";
+			}
+			return $radio;
+		}
+		public function checkbox_category()
+		{
+			$checkbox = '';
+			foreach ($this->Model->get_tracer_studies() as $key => $value) {
+				$checkbox .= "
+					<div class='checkbox'>
+						<label><input type='checkbox' value='{$value->tracer_study_id}'>".strip_tags($value->tracer_study_title)."</label>
+					</div>
+				";
+			}
+			return $checkbox;
 		}
 
 		// fake "extends C" using magic function
