@@ -23,9 +23,15 @@
             $columnsArray           = [
                 'tracer_study_sort'=> $this->post['tracer_study_sort'],
                 'tracer_study_title'=> $this->post['tracer_study_title'],
-                'tracer_study_desc'=> $this->post['tracer_study_desc'],
-                'tracer_study_parent'=> $this->post['tracer_study_parent']
+                'tracer_study_parent'=> $this->post['tracer_study_parent'],
+                'tracer_study_form_type'=> $this->post['tracer_study_form_type']
             ];
+            
+            # start optional fields default is empty
+            if ( $this->post['tracer_study_desc'] ) 
+                $columnsArray['tracer_study_desc'] = $this->post['tracer_study_desc'];            
+            # end optional fields default is empty
+
             $requiredColumnsArray   = array_keys($columnsArray);
             
             # insert into tracer_studies
@@ -40,9 +46,13 @@
             $columnsArray           = [
                 'tracer_study_sort'=> $this->post['tracer_study_sort'],
                 'tracer_study_title'=> $this->post['tracer_study_title'],
-                'tracer_study_desc'=> $this->post['tracer_study_desc'],
-                'tracer_study_parent'=> $this->post['tracer_study_parent']
+                'tracer_study_parent'=> $this->post['tracer_study_parent'],
+                'tracer_study_form_type'=> $this->post['tracer_study_form_type']
             ];
+            # start optional fields default is empty
+            if ( $this->post['tracer_study_desc'] ) 
+                $columnsArray['tracer_study_desc'] = $this->post['tracer_study_desc'];            
+            # end optional fields default is empty
             $where                  = [
                 'tracer_study_id'=> $this->post['tracer_study_id']
             ];

@@ -493,7 +493,7 @@ else{
 								</a>
 
 								<!-- Dropdown level 2 -->
-								<div id="dropdown-tracer-study" class="panel-collapse collapse">
+								<div id="dropdown-tracer-study" class="panel-collapse collapse <?php echo ( $module=='tracer-study-category' || $module='tracer-study-detail' ) ? 'in' : NULL ;?>">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
 											<li><a href="?module=tracer-study-category">Kategori</a></li>
@@ -513,8 +513,8 @@ else{
 													</div>
 												</div>
 											</li>
-											<li><a href="?module=sajian">Kerjasama</a></li>
- -->									</ul>
+											<li><a href="?module=sajian">Kerjasama</a></li>-->
+ 										</ul>
 									</div>
 								</div>
 							</li>

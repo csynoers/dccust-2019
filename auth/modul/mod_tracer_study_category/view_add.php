@@ -16,12 +16,23 @@ echo "
                         </div>
                         <div class='form-group'>
                             <label for='judul'>Title :</label>
-                            <textarea name='tracer_study_title' class='form-control myTextareaXXX'></textarea>
+                            <textarea name='tracer_study_title' required='' class='form-control myTextareaXXX'></textarea>
                         </div>
                         <div class='form-group'>
-                            <label for='deskripsi'>Deskripsi :</label>
+                            <label for='deskripsi'>Deskripsi <small>(optional)</small> :</label>
                             <textarea name='tracer_study_desc' class='form-control myTextareaXXX'></textarea>
                         </div>
+                        <div class='form-group'>
+                            <label for='tracerStudyFormType'>Form Type <small>(optional)</small> :</label>
+                            <select name='tracer_study_form_type' class='form-control'>
+                                <option value='none'> -- Please select one -- </option>
+                                <option value='single_radio_button'> Radio button </option>
+                                <option value='multiple_radio_button'> Multiple radio button </option>
+                                <option value='checkbox'> Checkbox </option>
+                                <option value='input_number'> Input number </option>
+                            </select>
+                        </div>
+
                     </div>
                 </div>
                 <!-- /.panel-body -->
@@ -29,7 +40,7 @@ echo "
                 <div class='panel-footer'>
                     <input type='hidden' name='operation' value='insert'>
                     <input type='hidden' name='tracer_study_parent' value='{$this->parent}'>
-                    <button type='submit' class='btn btn-primary'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
+                    <button type='submit' class='btn btn-primary' style='margin-right:1rem'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
                     <button type='button' onclick='self.history.back()' class='btn btn-info'><i class='fa fa-backward' aria-hidden='true'></i> Back</button>
                 </div>
                 <!-- /.panel-footer -->
