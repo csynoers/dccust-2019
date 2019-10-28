@@ -82,12 +82,34 @@ class ControllerContent
 	/* ==================== END PAGE : KARIR ==================== */
 	
 	/* ==================== START PAGE : TRACER STUDY ==================== */
+	public function daftar()
+	{
+		include_once 'joinc/daftar.php';
+	}
+	public function daftaralumni()
+	{
+		include_once 'joinc/aksi/daftaralumni.php';
+	}
+	public function kirim_pass(){
+		include_once 'joinc/kirim_pass.php';
+	}
+	public function emailpass()
+	{ 
+		include_once 'joinc/aksi/aksikirim.php';
+	}
+	# end daftar alumni
+
 	public function kuesioner()
 	{
 		if ( count($this->Model->cek_biodata($_SESSION['idnya'])) == 0 ) { # if empty 
 			$this->kuesioner_biodata();
 		} else {
-			include_once 'joinc/view/tracer_study/view_kuesioner.php';
+			if ( count($this->Model->get_tracer_answers($_SESSION['rowuser']->nim,'tracer_study')) > 0 ) {
+				echo "<script>alert('Maaf halaman ini sudah tidak tersedia'); window.history.back();</script>";
+			} else {
+				include_once 'joinc/view/tracer_study/view_kuesioner.php';
+			}
+			
 		}
 		
 	}
@@ -107,10 +129,65 @@ class ControllerContent
 	}
 	public function store_kuesioner()
 	{
+		$nim = $_SESSION['rowuser']->nim;
+		$other_temp = [];
 		$post = [];
-		echo '<pre>';
-		print_r($_POST);
-		echo '</pre>';
+
+		# start create other temp
+		if ( $_POST['tracer_study'][0] ) {
+			foreach ( $_POST['tracer_study'][0] as $a => $b ) {
+				array_push($other_temp,$a);
+			}
+		}
+		# end create other temp
+
+		foreach ($_POST['tracer_study'] as $a => $b) {
+			if ( $a == 0 ) {
+				foreach ( $b as $c => $d ) {
+					$answer = [
+						'question_id' => $c,
+						'nim' => $nim,
+						'answer' => $d,
+						'tracer_type' => 'tracer_study'
+					];
+					array_push($post,$answer);
+				}
+				
+			} else {
+				if ( is_array($b) ) {
+					foreach ($b as $c => $d) {
+						if ( ! in_array($c,$other_temp) ) {
+							$answer = [
+								'question_id' => $c,
+								'nim' => $nim,
+								'answer' => $d,
+								'tracer_type' => 'tracer_study'
+							];
+							array_push($post,$answer);
+						}
+					}
+
+				} else {
+					if ( ! in_array($b,$other_temp) ) {
+						$answer = [
+							'question_id' => $b,
+							'nim' => $nim,
+							'answer' => $b,
+							'tracer_type' => 'tracer_study'
+						];
+						array_push($post,$answer);
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		$this->Model->post= $post;
+		if ( $this->Model->kuesioner_insert() ) {
+			echo "<script>alert('jawaban anda berhasil dikirim, terimakasih telah meluangkan waktunya '); window.location.assign('home-dccustjogja.html');</script>";
+		}
 	}
 	/* ==================== END PAGE : TRACER STUDY ==================== */
 
@@ -132,11 +209,11 @@ class ControllerContent
 			$html .= "
 				<tr>
 					<td style='padding:1em'>".($key+1)."</td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
-					<td><div class='radio'><label><input type='radio' name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='1' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='2' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='3' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='4' required=''></label></div></td>
+					<td><div class='radio'><label><input type='radio' data-name='tracer_study[{$value->tracer_study_id}{$value->tracer_study_detail_id}][{$value->tracer_study_detail_id}]' value='5' required=''></label></div></td>
 					<td style='padding:1em 0em'>{$label['html']}</td>
 				</tr>
 			";
@@ -180,7 +257,7 @@ class ControllerContent
 			$html .= "
 				<div class='radio {$adds['wrapper_class']}'>
 					<label>
-						<input {$adds['events']['AddData']} class='{$adds['events']['AddClass']}' type='radio' name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
+						<input {$adds['events']['AddData']} class='{$adds['events']['AddClass']}' type='radio' data-name='tracer_study[0{$value->tracer_study_id}]' value='{$value->tracer_study_detail_id}'>
 						{$label['html']}
 					</label>
 				</div>
@@ -414,14 +491,6 @@ class ControllerContent
 				include_once 'joinc/selesai.php';
 				break;
 
-			case 'kirim-pass': 
-				include_once 'joinc/kirim_pass.php';
-				break;
-
-			case 'emailpass': 
-				include_once 'joinc/aksi/aksikirim.php';
-				break;
-
 			case 'tracer_pengguna':
 				# code...
 				include_once('joinc/controller/tracer_pengguna.php');
@@ -445,14 +514,6 @@ class ControllerContent
 
 			case 'login': 
 				include_once 'joinc/login_sukses.php';
-				break;
-
-			case 'daftaralumni': 
-				include_once 'joinc/aksi/daftaralumni.php';
-				break;
-
-			case 'daftar': 
-				include_once 'joinc/daftar.php';
 				break;
 
 			case 'pencarian': 

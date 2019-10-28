@@ -1,6 +1,5 @@
 <?php
-print_r($db);
-$rows = $db->get_select("SELECT nim FROM alumni_daftar WHERE nim = '$_POST[nim]'");
+$rows = $this->Model->db->get_select("SELECT nim FROM alumni_daftar WHERE nim = '$_POST[nim]'");
 if ( count($rows['data']) > 0) {
 	$nim = $_POST['nim'];
 	header('Location:kirim-pass-'.$nim.'.html');

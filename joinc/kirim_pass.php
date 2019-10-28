@@ -1,5 +1,5 @@
 <?php 
-    $row = $db->get_select("SELECT *
+    $row = $this->Model->db->get_select("SELECT *
         FROM
             `alumni_daftar`
             INNER JOIN `fakultas` 

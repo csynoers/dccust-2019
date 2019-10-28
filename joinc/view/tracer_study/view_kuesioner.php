@@ -29,7 +29,7 @@
 							<center><h3><span style="color: #009a54;" data-mce-mark="1">Kuesioner</span></h3></center>
 						</div>
 					</div>
-					<form action="store-kuesioner.html" method="POST">
+					<form id="formKuesioner" action="store-kuesioner.html" method="POST">
 						<div class="panel-group" id="accordion">';
 
 							# loop rows tracer_study without parent
@@ -103,6 +103,22 @@
 	$html .= minify_js("
 	<script>
 		$(document).ready(function(j){
+			/* start set data name input type expect other class */
+			function setName(d)
+			{
+				if ( d ) {
+					j.each(d,function(a,b){
+						j(b).prop({ 'name' : j(b).data('name') , 'required' : !0 })
+					});
+				} else {
+					j.each(j('#formKuesioner input').not('.other'),function(a,b){
+						j(b).prop({ 'name' : j(b).data('name') , 'required' : !0 })
+					});
+				}
+			}
+			setName();
+			/* end set data name input type expect other class */
+
 			var conf= {
 				'checkbox' 	: j('.wrap_checkbox input[type=checkbox]').prop('required',!0),
 				'radio'		: j('.wrap_single_radio input[type=radio]').prop('required',!0)
@@ -180,7 +196,7 @@
 									hideWrapperBlock( target );
 									tempActive = target;
 								}else{
-									showWrapperBlock( target, getAttrDetailEvent(j(this)).type );
+									showWrapperBlock( target );
 								}
 							});
 							hideWrapperBlock( tempActive );
@@ -192,13 +208,16 @@
 				};
 
 				/* start show and hide wrapper block */
-				function showWrapperBlock(d,t)
+				function showWrapperBlock(d)
 				{
 					if ( d ) {
 						j.each(d,function(a,b){
-							$('.wrap-tracer-block[data-id='+b+']')
-								.css('display','block')
-								.find('input[type='+t+']').prop({ 'name' : '' , 'required' : !0 });
+							var w = j('.wrap-tracer-block[data-id='+b+']');
+							
+							/* display block this element */
+							w.css('display','block');
+							/* set name from data name and required is true */
+							setName( j(w).find('input').not('.other') );
 
 						})
 					}
@@ -207,7 +226,7 @@
 				{
 					if ( d ) {
 						j.each(d,function(a,b){
-							$('.wrap-tracer-block[data-id='+b+']')
+							j('.wrap-tracer-block[data-id='+b+']')
 								.css('display','none')
 								.find('input').prop({ 'name' : '' , 'required' : !1 });
 						})
@@ -220,6 +239,7 @@
 				{
 					return {
 						'event'		: row.data('event'),
+						'name'		: row.data('name'), 
 						'type'		: row.prop('type'), 
 						'action'	: row.data('action'), 
 						'target'	: row.data('target-' + row.data('action')) 

