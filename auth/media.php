@@ -26,7 +26,7 @@ else{
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 	<title>Dashboard Admin Panel DCC UST JOGJA</title>
-	
+
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
 
@@ -45,13 +45,13 @@ else{
 	<script src="js/hideshow.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
-	
+
 
 	<script type="text/javascript">
-		// $(document).ready(function() 
-	 //    	{ 
-	 //      		$(".tablesorter").tablesorter(); 
-	 //   	 	} 
+		// $(document).ready(function()
+	 //    	{
+	 //      		$(".tablesorter").tablesorter();
+	 //   	 	}
 		// );
 		$(document).ready(function() {
 
@@ -80,7 +80,7 @@ else{
     //     $('.column').equalHeight();
     // });
 	</script>
-	
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<!-- TinyMCE 4.x -->
@@ -89,29 +89,29 @@ else{
 	<script type="text/javascript">
 		tinymce.init({
 		  selector: "textarea",
-		  
+
 		  // ===========================================
 		  // INCLUDE THE PLUGIN
 		  // ===========================================
-			
+
 		  plugins: [
 		    "advlist autolink lists link image charmap print preview anchor spellchecker",
 		    "searchreplace visualblocks code fullscreen",
 		    "insertdatetime media table contextmenu paste jbimages"
 		  ],
-			
+
 		  // ===========================================
 		  // PUT PLUGIN'S BUTTON on the toolbar
 		  // ===========================================
-			
+
 		  toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect |  bullist numlist outdent indent | link image jbimages",
-			
+
 		  // ===========================================
 		  // SET RELATIVE_URLS to FALSE (This is required for images to display properly)
 		  // ===========================================
-			
+
 		  relative_urls: false
-			
+
 		});
 	</script>
 	<script type="text/javascript">
@@ -157,7 +157,7 @@ else{
 		'artikel'		=> 'Edit Artikel',
 		'jaii'			=> 'Edit jaii',
 		'provinsi'		=> 'Edit provinsi',
-		'program'		=> 'Edit Program', 
+		'program'		=> 'Edit Program',
 		'beasiswa'		=> 'Edit Beasiswa',
 	    'jaringan'		=> 'Edit jaringan',
 		'kegiatan'		=> 'Edit Services (DCC UST)',
@@ -194,16 +194,16 @@ else{
 		'prodi'		 	=> 'Edit Program Studi',
 		//
 		'statis_respon' 	=> 'Statistik Respons',
-		'respon_rate'		=> 'Respoone Rate', 
-		'respon_perempuan'	=> 'Proporsi Responden', 
-		'aspek_pembelajaran'=> 'Penekanan Aspek Pembelajaran (Mean)', 
-		'jumlah_perusahaan'=> 'Jumlah Perusahaan', 
-		'cari_kerja_pertamas1'=> 'Cara Mencari Pekerjaan Pertama', 
-		'status_kerjasemua'=> 'Status Kerja Saat Ini', 
-		'jenis_pekerjaan'=> 'Jenis Organisasi Tempat Bekerja Saat Ini', 
-		'pendapatan_alumni'=> 'Pendapatan Alumni Setiap Bulan', 
-		'hubungan_studi_pekerjaan'=> 'Hubungan Antara Bidang Studi Dengan Pekerjaan', 
-		'tingkat_pendidikan'=> 'Tingkat Pendidikan Yang Paling Sesuai Untuk Pekerjaan', 
+		'respon_rate'		=> 'Respoone Rate',
+		'respon_perempuan'	=> 'Proporsi Responden',
+		'aspek_pembelajaran'=> 'Penekanan Aspek Pembelajaran (Mean)',
+		'jumlah_perusahaan'=> 'Jumlah Perusahaan',
+		'cari_kerja_pertamas1'=> 'Cara Mencari Pekerjaan Pertama',
+		'status_kerjasemua'=> 'Status Kerja Saat Ini',
+		'jenis_pekerjaan'=> 'Jenis Organisasi Tempat Bekerja Saat Ini',
+		'pendapatan_alumni'=> 'Pendapatan Alumni Setiap Bulan',
+		'hubungan_studi_pekerjaan'=> 'Hubungan Antara Bidang Studi Dengan Pekerjaan',
+		'tingkat_pendidikan'=> 'Tingkat Pendidikan Yang Paling Sesuai Untuk Pekerjaan',
 		'kompetensi'		=> 'Kompetensi Statistik',
 
 		/* ==================== START MENU UTAMA ==================== */
@@ -287,7 +287,7 @@ else{
 										<li><a href="?module=halaman_home" <?php echo ($module=='halaman_home') ? 'class="bg-info"' : NULL ; ?> >Home</a></li>
 											<li><a href="?module=profile" <?php echo ($module=='profile') ? 'class="bg-info"' : NULL ; ?>>Profile</a></li>
 											<li><a href="?module=program" <?php echo ($module=='program') ? 'class="bg-info"' : NULL ; ?> >Program</a></li>
-											
+
 
 											<!-- Dropdown level 21 -->
 											<li class="panel panel-default" id="dropdown">
@@ -358,7 +358,7 @@ else{
 									</div>
 								</div>
 							</li>
-							
+
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl3">
 									<i class="fa fa-list-ul" aria-hidden="true"></i> Hasil Tracer <span class="caret"></span>
@@ -498,7 +498,7 @@ else{
 										<ul class="nav navbar-nav">
 											<li><a href="?module=tracer-study-category">Kategori</a></li>
 											<li><a href="?module=tracer-study-detail">Detail</a></li>
-											
+
 
 											<!-- Dropdown level 21 -->
 											<!-- <li class="panel panel-default" id="dropdown">
@@ -530,7 +530,7 @@ else{
 										<ul class="nav navbar-nav">
 											<li><a href="?module=tracer-pengguna">Hasil Tracer</a></li>
 											<li><a href="?module=users-tracer-pengguna">Users</a></li>
-											
+
 
 											<!-- Dropdown level 21 -->
 											<!-- <li class="panel panel-default" id="dropdown">
@@ -570,7 +570,7 @@ else{
 								</div>
 							</li>
 							<!-- ==================== END MENU SUPPORT ==================== -->
-							
+
 							<!-- ==================== START MENU SEO ==================== -->
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-seo">
@@ -591,7 +591,7 @@ else{
 							<!-- ==================== END MENU ADMIN ==================== -->
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-admin">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Admin <span class="caret"></span>
+									<i class="fa fa-user-circle-o" aria-hidden="true"></i> Admin <span class="caret"></span>
 								</a>
 								<div id="dropdown-admin" class="panel-collapse collapse <?php echo ($module=='user') ? 'in' : NULL ; ?>">
 									<div class="panel-body">
