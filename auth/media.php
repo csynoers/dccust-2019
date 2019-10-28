@@ -277,7 +277,7 @@ else{
 						<ul class="nav navbar-nav">
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl2">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Utama <span class="caret"></span>
+									<i class="fa fa-home" aria-hidden="true"></i> Menu Utama <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 2 -->
@@ -346,7 +346,7 @@ else{
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl6">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Alumni <span class="caret"></span>
+									<i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumni <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 6 -->
@@ -361,7 +361,7 @@ else{
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl3">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Hasil Tracer <span class="caret"></span>
+									<i class="fa fa-check-square-o" aria-hidden="true"></i> Hasil Tracer <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 3 -->
@@ -393,7 +393,7 @@ else{
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl4">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Grafik Tracer <span class="caret"></span>
+									<i class="fa fa-bar-chart-o" aria-hidden="true"></i> Grafik Tracer <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 4 -->
@@ -489,7 +489,7 @@ else{
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-tracer-study">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Tracer Studi <span class="caret"></span>
+									<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Studi <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 2 -->
@@ -521,7 +521,7 @@ else{
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lv20">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Tracer Pengguna <span class="caret"></span>
+									<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Pengguna <span class="caret"></span>
 								</a>
 
 								<!-- Dropdown level 2 -->
@@ -553,7 +553,7 @@ else{
 							<!-- ==================== START MENU SUPPORT ==================== -->
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-support">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Menu Support <span class="caret"></span>
+									<i class="fa fa-support" aria-hidden="true"></i> Menu Support <span class="caret"></span>
 								</a>
 								<div id="dropdown-support" class="panel-collapse collapse <?php echo ($module=='banner' || $module=='fakultas' || $module=='kerjasama' || $module=='pesan' || $module=='prodi' || $module=='slideshow' || $module=='sosial' ) ? 'in' : NULL ; ?>">
 									<div class="panel-body">
@@ -574,7 +574,7 @@ else{
 							<!-- ==================== START MENU SEO ==================== -->
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-seo">
-									<i class="fa fa-list-ul" aria-hidden="true"></i> Seo <span class="caret"></span>
+									<i class="fa fa-globe" aria-hidden="true"></i> Seo <span class="caret"></span>
 								</a>
 								<div id="dropdown-seo" class="panel-collapse collapse <?php echo ($module=='seo') ? 'in' : NULL ; ?>">
 									<div class="panel-body">
