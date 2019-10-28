@@ -82,7 +82,7 @@
                             </div>
                             <div class='form-group'>
                                 <label>Deskripsi</label>
-                                <textarea name='isi_karir'></textarea>
+                                <textarea name='isi_karir' class='myTextarea'></textarea>
                             </div>
                             <div class='form-group'>
                                 <label for='change_thumbnail'>Thumbnail :</label>

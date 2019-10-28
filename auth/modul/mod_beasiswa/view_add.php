@@ -14,7 +14,7 @@
                             </div>
                             <div class='form-group'>
                                 <label for='deskripsi'>Deskripsi :</label>
-                                <textarea name='isi_beasiswa' id='jogmce' class='form-control'></textarea>
+                                <textarea name='isi_beasiswa' class='form-control myTextarea'></textarea>
                             </div>
                             <div class='form-group'>
                                 <label for='change_thumbnail'>Thumbnail :</label>

@@ -15,7 +15,7 @@
                                 </div>
                                 <div class='form-group'>
                                     <label for='deskripsi'>Deskripsi :</label>
-                                    <textarea name='isi_beasiswa' id='jogmce' class='form-control'>{$value->isi_beasiswa}</textarea>
+                                    <textarea name='isi_beasiswa' class='form-control myTextarea'>{$value->isi_beasiswa}</textarea>
                                 </div>
                                 <div class='form-group'>
                                     <label for='thumbnail'>Thumbnail :</label>

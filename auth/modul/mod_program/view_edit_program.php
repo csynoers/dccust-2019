@@ -15,7 +15,7 @@
                                 </div>
                                 <div class='form-group'>
                                     <label for='deskripsi'>Deskripsi :</label>
-                                    <textarea name='isi_program' id='jogmce' class='form-control'>{$value->isi_program}</textarea>
+                                    <textarea name='isi_program' class='form-control myTextarea'>{$value->isi_program}</textarea>
                                 </div>
                                 <div class='form-group'>
                                     <label for='thumbnail'>Thumbnail :</label>

@@ -16,11 +16,11 @@ echo "
                         </div>
                         <div class='form-group'>
                             <label for='judul'>Title :</label>
-                            <textarea name='tracer_study_title' class='form-control'></textarea>
+                            <textarea name='tracer_study_title' class='form-control myTextareaXXX'></textarea>
                         </div>
                         <div class='form-group'>
                             <label for='deskripsi'>Deskripsi :</label>
-                            <textarea name='tracer_study_desc' class='form-control'></textarea>
+                            <textarea name='tracer_study_desc' class='form-control myTextareaXXX'></textarea>
                         </div>
                     </div>
                 </div>

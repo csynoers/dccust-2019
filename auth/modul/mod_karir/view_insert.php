@@ -84,7 +84,7 @@
 				<div class="form-group">
 					<label>Deskripsi</label>
 					<div class="col-sm-12">
-						<textarea name="isi_karir" id="jogmceX"></textarea>
+						<textarea name="isi_karir" class="myTextarea"></textarea>
 					</div>
 				</div>
 

@@ -88,7 +88,7 @@ else{
 	<!-- <script type="text/javascript" src="../tinymce_4.6.5/js/tinymce/tinymce.min.js"></script> -->
 	<script type="text/javascript">
 		tinymce.init({
-		  selector: "textarea",
+		  selector: "textarea.myTextarea",
 
 		  // ===========================================
 		  // INCLUDE THE PLUGIN

@@ -83,7 +83,7 @@
 								</div>
 								<div class='form-group'>
 									<label>Deskripsi</label>
-									<textarea name='isi_karir'>{$value->isi_karir}</textarea>
+									<textarea name='isi_karir' class='myTextarea'>{$value->isi_karir}</textarea>
 								</div>
                                 <div class='form-group'>
                                     <label for='thumbnail'>Thumbnail :</label>

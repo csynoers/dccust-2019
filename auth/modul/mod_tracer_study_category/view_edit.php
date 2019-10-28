@@ -17,11 +17,11 @@
                                 </div>
                                 <div class='form-group'>
                                     <label for='judul'>Title :</label>
-                                    <textarea name='tracer_study_title' class='form-control'>{$value->tracer_study_title}</textarea>
+                                    <textarea name='tracer_study_title' class='form-control myTextareaXXX'>{$value->tracer_study_title}</textarea>
                                 </div>
                                 <div class='form-group'>
                                     <label for='deskripsi'>Deskripsi :</label>
-                                    <textarea name='tracer_study_desc' class='form-control'>{$value->tracer_study_desc}</textarea>
+                                    <textarea name='tracer_study_desc' class='form-control myTextareaXXX'>{$value->tracer_study_desc}</textarea>
                                 </div>
                             </div>
                         </div>
