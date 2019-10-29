@@ -124,7 +124,8 @@ class ControllerContent
 		if ( $this->Model->biodata_insert() ) {
 			header('Location:kuesioner.html');
 		} else {
-			echo "<script>alert('Maaf biodata anda berhasil disimpan'); window.history.back();</script>";
+			echo "<script>alert('Biodata anda berhasil disimpan'); window.history.back();</script>";
+			// echo "<script>alert('Biodata anda berhasil disimpan'); window.history.back();</script>";
 		}
 	}
 	public function store_kuesioner()
