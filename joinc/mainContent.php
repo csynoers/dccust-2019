@@ -7,7 +7,7 @@ class ControllerContent
 		$this->Model 	= new ModelContent($this->db_config);
 		$this->aksi		= 'joinc/model/ModelContent.php';
 		$this->mod 	= empty($_GET['mod'])? NULL : $_GET['mod'];
-
+		
 		$this->load_mod();
 	}
 

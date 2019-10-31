@@ -20,6 +20,8 @@
     $db = new dbHelper($db_config);
 
     include_once "joinc/model/ModelContent.php";# include Model Content
+    
+    $seo = new ModelContent($db_config);
     include_once "template_home.php";# include template
 
     ob_end_flush();

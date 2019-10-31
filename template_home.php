@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title><?php $row= $db->get_select("select static_content_en from modul where id_modul='90' ")['data'][0];  echo $row->static_content_en ?></title>
+	<title><?php echo $seo->seo()['title'] ?></title>
 	<!-- Description, Keywords and Author -->
-	<meta name="description" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='92' ")['data'][0]; echo $row->static_content_en ?>">
-	<meta name="keywords" content="<?php $row= $db->get_select("select static_content_en from modul where id_modul='91' ")['data'][0];	echo $row->static_content_en ?>">
+	<meta name="description" content="<?php $seo->seo()['description'] ?>">
+	<meta name="keywords" content="<?php $seo->seo()['keywords'] ?>">
 	<meta name="author" content="https://github.com/csynoers" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="img/favicon.png" />

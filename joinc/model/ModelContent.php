@@ -4,7 +4,18 @@
         public function __construct($db_config){
             $this->db= new dbHelper($db_config);
         }
-        
+    
+    /* ==================== START SEO (Search Engine Optimization) ==================== */
+        public function seo()
+        {
+            return [
+                'title'         => $this->db->get_select("SELECT static_content_en FROM modul WHERE id_modul='90' ")['data'][0]->static_content_en,
+                'description'   => $this->db->get_select("SELECT static_content_en FROM modul WHERE id_modul='92' ")['data'][0]->static_content_en,
+                'keywords'      => $this->db->get_select("SELECT static_content_en FROM modul WHERE id_modul='91' ")['data'][0]->static_content_en
+            ];
+        }
+    /* ==================== START SEO (Search Engine Optimization) ==================== */
+
     /* ==================== START PAGE : HOME ==================== */
         public function home_slide()
         {
