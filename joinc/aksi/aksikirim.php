@@ -29,8 +29,14 @@ mail($dalumni->email,$subjek,$isi,$headers);
 
 
 
-echo '<div class="alert alert-warning alert-dismissable">
-			Username dan Password anda telah dikirim ke email '.$dalumni->email.'.<br>Klik <a class="alert-link" href="javascript:history.go(-1)
-			"><b>Kirim Ulang</b></a> Apabila anda belum menerima email dari kami.
-</div>';
+echo '
+	<div class="alert alert-warning alert-dismissable">
+		Username dan Password anda telah dikirim ke email '.$dalumni->email.' jika tidak ada email di kotak masuk coba lihat di spam.<br>
+		Klik
+		<a class="alert-link" href="javascript:history.go(-1) ">
+			<b>Kirim Ulang</b>
+		</a>
+		Apabila anda belum menerima email dari kami.
+	</div>
+';
 ?>
