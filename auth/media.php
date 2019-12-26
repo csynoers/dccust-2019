@@ -348,7 +348,7 @@ else{
 								/* ==================== START MENU ALUMNI ==================== */
 								echo generate_nav([
 									"title" 		=> '<i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumni',
-									"href" 			=> 'alumni',
+									"href" 			=> 'sidealumni',
 									"collapse"		=> ( $module=='alumni' ) ? 'in' : NULL ,
 									"child_data" 	=> generate_nav([
 										"title"	=> 'Data Alumni',

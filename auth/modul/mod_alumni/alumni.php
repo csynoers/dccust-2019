@@ -5,14 +5,11 @@
 	</script>
 
 	<script>
- 
-	var table;
 	 
 	$(document).ready(function() {
 	 
 	    //datatables
-	    // table = $('#table').DataTable({ 
-	    table = $('#alumni').DataTable({ 
+	    let table = $('#alumni').DataTable({ 
 	 
 	        "processing": true, //Feature control the processing indicator.
 	        "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -26,10 +23,10 @@
 	 
 	        //Set column definition initialisation properties.
 	        "columnDefs": [
-	        { 
-	            "targets": [ 5 ], //first column / numbering column
-	            "orderable": false, //set not orderable
-	        },
+				{ 
+					"targets": [ 5 ], //first column / numbering column
+					"orderable": false, //set not orderable
+				},
 	        ],
 	 
 	    });
@@ -56,7 +53,7 @@
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
-					  <a class="navbar-brand" href="#">Daftar alumni</a>
+					  <a class="navbar-brand" href="#">Daftar informasi alumni</a>
 					</div>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
