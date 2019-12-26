@@ -51,19 +51,13 @@
 						</div>
 
 						<div class="form-group">
-							<p>*Mohon pilih Prodi terlebih dahulu</p>
+							<p>*Mohon pilih Prodi terlebih dahulu untuk melakukan export data</p>
 						</div>
 
 						<div class="form-group">
 							<?php 
-							if (empty($_POST['prodi'])) {
-								?>
-								<a href="#">Export ke Excel</a>
-								<?php
-							}else{
-								?>
-								<a href="<?php echo $print ?>?module&prodi=<?php echo $_POST['prodi'] ?>">Export ke Excel</a>
-								<?php
+							if ( ! empty($_POST['prodi'])) {
+								echo '<a href="'.$print.'?module&prodi='.$_POST['prodi'].'&tahun='.$_GET['tahun'].'" class="btn btn-default">Export ke Excel</a>';
 							}
 							?>
 						</div>
@@ -78,12 +72,11 @@
 			    				<th>NIM</th>
 			    				<th>Nama Alumni</th> 
 			    				<th>Prodi</th>
-			    				<th>Tahun Lulus</th>
 			    				<th>No HP</th>
 			    				<th>Email</th>
 			    				<th>Alamat Domisli</th>
 			    				<th>Alamat KTP</th>
-			    				<th>Action</th> 
+			    				<!-- <th>Action</th> --> 
 							</tr> 
 						</thead> 
 						
@@ -105,7 +98,9 @@
 												FROM biodata
 												    INNER JOIN prodi 
 												        ON (biodata.prodi = prodi.id_prodi)
-												WHERE biodata.prodi = '$_POST[prodi]'
+												WHERE
+													biodata.th_lulus = '{$_GET['tahun']}'
+													AND biodata.prodi = '$_POST[prodi]'
 												ORDER BY biodata.nim ASC
 												");
 							}else{
@@ -123,8 +118,10 @@
 
 													FROM biodata
 													    INNER JOIN prodi 
-													        ON (biodata.prodi = prodi.id_prodi)
-													ORDER BY biodata.nim ASC
+															ON (biodata.prodi = prodi.id_prodi)
+													WHERE
+														biodata.th_lulus = '{$_GET['tahun']}'
+														ORDER BY biodata.nim ASC
 													");
 							}
 							
@@ -135,19 +132,16 @@
 			    				<td align="center"><?php echo "$b->nim" ?></td> 
 			    				<td><?php echo "$b->nama" ?></td>
 			    				<td><?php echo "$b->prodi" ?></td> 
-								<td><?php echo "$b->th_lulus" ?></td>
 								<td><?php echo "$b->no_hp" ?></td>
 								<td><?php echo "$b->email" ?></td>
 								<td><?php echo "$b->almt_domisili" ?></td>
 								<td><?php echo "$b->almt_ktp" ?></td>
-			    				<td align="center">
-			    					<a href="<?php echo "$aksi?module=$module&act=hapus&id=$b->id_alumni";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>
-								</td> 
+			    				<!-- <td align="center">
+			    					<a href="<?php // echo "$aksi?module=$module&act=hapus&id=$b->id_alumni";?>" onclick="return confirm('Apakah anda yakin menghapus data ini?');"><input type="image" src="images/icn_trash.png" title="Trash"></a>
+								</td>  -->
 							</tr>
 
-						<?php $no++; } ?>
-							
-							
+						<?php $no++; } ?>							
 						</tbody> 
 					</table>
 					

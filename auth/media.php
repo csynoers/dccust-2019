@@ -11,9 +11,10 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
 else{
 	require_once "../josys/koneksi.php";
 	require_once "../josys/dbHelper.php";
-	$db = new dbHelper($db_config);
-	$module= ! empty($_GET['module']) ? $_GET['module'] : NULL ;
-	$data= ! empty($_GET['data']) ? $_GET['data'] : NULL ;
+	$db 			= new dbHelper($db_config);
+	$module			= ! empty($_GET['module']) ? $_GET['module'] : NULL ;
+	$data			= ! empty($_GET['data']) ? $_GET['data'] : NULL ;
+	$hasiltracer 	= ! empty($_GET['hasiltracer']) ? $_GET['hasiltracer'] : NULL;
 
 	//load model navbar
 	$navbar_grafik= $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
@@ -46,89 +47,60 @@ else{
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 
-
-	<script type="text/javascript">
-		// $(document).ready(function()
-	 //    	{
-	 //      		$(".tablesorter").tablesorter();
-	 //   	 	}
-		// );
-		$(document).ready(function() {
-
-		//When page loads...
-		$(".tab_content").hide(); //Hide all content
-		$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-		$(".tab_content:first").show(); //Show first tab content
-
-		//On Click Event
-		$("ul.tabs li").click(function() {
-
-			$("ul.tabs li").removeClass("active"); //Remove any "active" class
-			$(this).addClass("active"); //Add "active" class to selected tab
-			$(".tab_content").hide(); //Hide all tab content
-
-			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-			$(activeTab).fadeIn(); //Fade in the active ID content
-			return false;
-		});
-
-	});
-    </script>
-
-    <script type="text/javascript">
-    // $(function(){
-    //     $('.column').equalHeight();
-    // });
-	</script>
-
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<!-- TinyMCE 4.x -->
 	<script type="text/javascript" src="../tinymce/js/tinymce/tinymce.min.js"></script>
 	<!-- <script type="text/javascript" src="../tinymce_4.6.5/js/tinymce/tinymce.min.js"></script> -->
 	<script type="text/javascript">
-		tinymce.init({
-		  selector: "textarea.myTextarea",
-
-		  // ===========================================
-		  // INCLUDE THE PLUGIN
-		  // ===========================================
-
-		  plugins: [
-		    "advlist autolink lists link image charmap print preview anchor spellchecker",
-		    "searchreplace visualblocks code fullscreen",
-		    "insertdatetime media table contextmenu paste jbimages"
-		  ],
-
-		  // ===========================================
-		  // PUT PLUGIN'S BUTTON on the toolbar
-		  // ===========================================
-
-		  toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect |  bullist numlist outdent indent | link image jbimages",
-
-		  // ===========================================
-		  // SET RELATIVE_URLS to FALSE (This is required for images to display properly)
-		  // ===========================================
-
-		  relative_urls: false
-
-		});
 	</script>
-	<script type="text/javascript">
-	$(function () {
-		$('.navbar-toggle-sidebar').click(function () {
-			$('.navbar-nav').toggleClass('slide-in');
-			$('.side-body').toggleClass('body-slide-in');
-			$('#search').removeClass('in').addClass('collapse').slideUp(200);
-		});
+	<?=
+		minify_js("
+		<script type='text/javascript'>
+			$(document).ready(function() {
+				$('.tab_content').hide();
+				$('ul.tabs li:first').addClass('active').show();
+				$('.tab_content:first').show();
 
-		$('#search-trigger').click(function () {
-			$('.navbar-nav').removeClass('slide-in');
-			$('.side-body').removeClass('body-slide-in');
-			$('.search-input').focus();
-		});
-	});
-	</script>
+				$('ul.tabs li').click(function() {
+					$('ul.tabs li').removeClass('active');
+					$(this).addClass('active');
+					$('.tab_content').hide();
+
+					var activeTab = $(this).find('a').attr('href');
+					$(activeTab).fadeIn();
+					return false;
+				});
+
+			});
+
+			tinymce.init({
+				selector: 'textarea.myTextarea',	
+				plugins: [
+					'advlist autolink lists link image charmap print preview anchor spellchecker',
+					'searchreplace visualblocks code fullscreen',
+					'insertdatetime media table contextmenu paste jbimages'
+				],
+				toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect |  bullist numlist outdent indent | link image jbimages',
+				relative_urls: false
+			});
+
+			$(function () {
+				$('.navbar-toggle-sidebar').click(function () {
+					$('.navbar-nav').toggleClass('slide-in');
+					$('.side-body').toggleClass('body-slide-in');
+					$('#search').removeClass('in').addClass('collapse').slideUp(200);
+				});
+		
+				$('#search-trigger').click(function () {
+					$('.navbar-nav').removeClass('slide-in');
+					$('.side-body').removeClass('body-slide-in');
+					$('.search-input').focus();
+				});
+			});
+			</script>
+		");
+	?>
 	<!-- /TinyMCE -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -183,6 +155,7 @@ else{
 		'karir'			=> 'Edit Karir',
 		'option_career'	=> 'Edit Setting Lowongan',
 		'biodata'		=> 'Informasi Biodata Hasil Kuisioner',
+		'hasil-tracer'	=> 'Informasi Hasil Tracer',
 		'kuisa'			=> 'Informasi Hasil Metode Pembelajaran Kuis A',
 		'kuisb'			=> 'Informasi Hasil Masa Transisi Kuis B',
 		'kuisc'			=> 'Informasi Hasil Pekerjaan Sekarang Kuis C',
@@ -212,6 +185,8 @@ else{
 		/* ==================== START TRACER STUDI ==================== */
 		'tracer-study-category'=> 'Informasi Kategori Tracer Studi',
 		'tracer-study-detail'=> 'Informasi Detail Tracer Studi',
+		'setting-hasil-tracer'=> 'Informasi Pengaturan Hasil Tracer',
+		'setting-grafik-tracer'=> 'Informasi Pengaturan Grafik Tracer',
 		/* ==================== START TRACER STUDI ==================== */
 
 		/* ==================== START TRACER PENGGUNA ==================== */
@@ -344,52 +319,119 @@ else{
 								</div>
 							</li>
 
-							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl6">
-									<i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumni <span class="caret"></span>
-								</a>
+							<?php
+								function generate_nav($config,$module=NULL)
+								{
+									if ( ! empty($config['child_data']) ) {
+										return '
+											<li class="panel panel-default" id="dropdown">
+												<a data-toggle="collapse" href="#'.$config['href'].'"> '.$config['title'].' <span class="caret"></span></a>
+												<div id="'.$config['href'].'" class="panel-collapse collapse '.$config['collapse'].'">
+													<div class="panel-body">
+														<ul class="nav navbar-nav">
+															'.$config['child_data'].'
+														</ul>
+													</div>
+												</div>
+											</li>
+										';
+										
+									} else {
+										return '
+											<li>
+												<a href="'.$config['href'].'" '.$config['active'].'>'.$config['title'].'</a>
+											</li>
+										';
+									}
+								}
 
-								<!-- Dropdown level 6 -->
-								<div id="dropdown-lvl6" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-											<li><a href="?module=alumni&j=1">Data Alumni</a></li>
-										</ul>
-									</div>
-								</div>
-							</li>
+								/* ==================== START MENU ALUMNI ==================== */
+								echo generate_nav([
+									"title" 		=> '<i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumni',
+									"href" 			=> 'alumni',
+									"collapse"		=> ( $module=='alumni' ) ? 'in' : NULL ,
+									"child_data" 	=> generate_nav([
+										"title"	=> 'Data Alumni',
+										"href"	=> 'media.php?module=alumni&j=1',
+										"active"=> ( $module=='alumni' ) ? 'class="bg-info"' : NULL ,
+									])
+								]);
+								/* ==================== END MENU ALUMNI ==================== */
 
-							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl3">
-									<i class="fa fa-check-square-o" aria-hidden="true"></i> Hasil Tracer <span class="caret"></span>
-								</a>
+								/* ==================== START MENU HASIL TRACER ==================== */
+								$hasilTracerTahun = "";
+								foreach ($db->get_select("SELECT alumni_daftar.tahun_lulus FROM `alumni_daftar` GROUP BY alumni_daftar.tahun_lulus ORDER BY alumni_daftar.tahun_lulus DESC")['data'] as $key => $value) {
+									$dataLevel311 = "";
+									$dataLevel311 .= generate_nav([
+										"title" => 'Biodata',
+										"href"	=> "media.php?module=biodata&tahun={$value->tahun_lulus}&hasiltracer=Biodata",
+										"active" => ! empty($_GET['tahun']) ? ($_GET['tahun']==$value->tahun_lulus && $hasiltracer=='Biodata' ? 'class="bg-info"' : NULL) : NULL ,
+									]);
+									foreach ($db->get_select("SELECT * FROM settings WHERE category='setting-hasil-tracer' AND settings.setting_date='{$value->tahun_lulus}' ORDER BY settings.title ASC ")['data'] as $key_setting => $value_setting) {
+										$dataLevel311 .= generate_nav([
+											"title" => $value_setting->title,
+											"href"	=> "media.php?module=hasil-tracer&tahun={$value->tahun_lulus}&hasiltracer={$value_setting->title}&id={$value_setting->id}",
+											"active" => ! empty($_GET['tahun']) ? ($_GET['tahun']==$value->tahun_lulus  && $hasiltracer==$value_setting->title ? 'class="bg-info"' : NULL) : NULL ,
+										]);
+									}
 
-								<!-- Dropdown level 3 -->
-								<div id="dropdown-lvl3" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-											<li>
-												<a href="?module=biodata">Biodata</a>
-											</li>
-											<li>
-												<a href="?module=kuisa">A. Metode Pembelajaran</a>
-											</li>
-											<li>
-												<a href="?module=kuisb">B. Masa Transisi</a>
-											</li>
-											<li>
-												<a href="?module=kuisc">C. Pekerjaan Sekarang</a>
-											</li>
-											<li>
-												<a href="?module=kuisd">D. Keselarasan Vertikal dan Horizontal</a>
-											</li>
-											<li>
-												<a href="?module=kuise">E. Kompetensi</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
+									$hasilTracerTahun .= generate_nav([
+										"title" 		=> $value->tahun_lulus,
+										"href" 			=> "dataLevel31{$key}",
+										"collapse"		=> ! empty($_GET['tahun']) ? ($_GET['tahun']==$value->tahun_lulus ? 'in' : NULL) : NULL ,
+										"child_data" 	=> $dataLevel311
+									]);
+								}
+
+								echo generate_nav([
+									"title" 		=> '<i class="fa fa-check-square-o" aria-hidden="true"></i> Hasil Tracer',
+									"href" 			=> 'hasilTracer',
+									"collapse"		=> ( $module=='biodata' || $module=='hasil-tracer' ) ? 'in' : NULL ,
+									"child_data" 	=> $hasilTracerTahun
+								]);
+								/* ==================== END MENU HASIL TRACER ==================== */
+
+								/* ==================== START TRACER STUDI ==================== */
+								$settingHasilTracer = "";
+								foreach ($db->get_select("SELECT * FROM `tracer_studies` GROUP BY tracer_studies.tracer_study_date")['data'] as $key => $value) {
+									$settingHasilTracer .= generate_nav([
+										"title" 		=> $value->tracer_study_date,
+										"href" 			=> "media.php?module=setting-hasil-tracer&tahun={$value->tracer_study_date}",
+										"active" 		=> $_GET['module']=="setting-hasil-tracer" ? 'class="bg-info"' : NULL,
+										// "collapse"		=> ! empty($_GET['tahun']) ? ($_GET['tahun']==$value->tahun_lulus ? 'in' : NULL) : NULL ,
+										// "child_data" 	=> $dataLevel311
+									]);
+								}
+								echo generate_nav([
+									"title" 		=> '<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Studi',
+									"href" 			=> 'tracerStudy',
+									"collapse"		=> ( $module=='tracer-study-category' || $module=='tracer-study-detail' || $module=='setting-hasil-tracer' || $module=='setting-grafik-tracer' ) ? 'in' : NULL ,
+									"child_data" 	=> 
+										generate_nav([
+											"title" => 'Kategori',
+											"href" 	=> 'media.php?module=tracer-study-category',
+											'active'=> ( $module=='tracer-study-category' ) ? 'class="bg-info"' : NULL ,
+										])
+										.generate_nav([
+											"title" => 'Detail',
+											"href" 	=> 'media.php?module=tracer-study-detail',
+											'active'=> ( $module=='tracer-study-detail' ) ? 'class="bg-info"' : NULL ,
+										])
+										.generate_nav([
+											"title" => 'Setting Hasil Tracer',
+											"href" 	=> 'settingHasilTracer',
+											// 'active'=> ( $module=='setting-hasil-tracer' ) ? 'class="bg-info"' : NULL ,
+											"collapse"=> ( $module=='setting-hasil-tracer' ) ? 'in' : NULL ,
+											"child_data" => $settingHasilTracer
+										])
+										.generate_nav([
+											"title" => 'Setting Grafik Tracer',
+											"href" 	=> 'media.php?module=setting-grafik-tracer',
+											'active'=> ( $module=='setting-grafik-tracer' ) ? 'class="bg-info"' : NULL ,
+										])
+								]);
+								/* ==================== END TRACER STUDI ==================== */
+							?>
 
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl4">
@@ -483,38 +525,6 @@ else{
 											}
 										?>
 										</ul>
-									</div>
-								</div>
-							</li>
-
-							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-tracer-study">
-									<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Studi <span class="caret"></span>
-								</a>
-
-								<!-- Dropdown level 2 -->
-								<div id="dropdown-tracer-study" class="panel-collapse collapse <?php echo ( $module=='tracer-study-category' || $module='tracer-study-detail' ) ? 'in' : NULL ;?>">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-											<li><a href="?module=tracer-study-category">Kategori</a></li>
-											<li><a href="?module=tracer-study-detail">Detail</a></li>
-
-
-											<!-- Dropdown level 21 -->
-											<!-- <li class="panel panel-default" id="dropdown">
-												<a data-toggle="collapse" href="#dropdown-lvl21">Lowongan <span class="caret"></span>
-												</a>
-												<div id="dropdown-lvl21" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="nav navbar-nav">
-															<li><a href="?module=karir">Lowongan</a></li>
-															<li><a href="?module=option_career">Setting Option Lowongan</a></li>
-														</ul>
-													</div>
-												</div>
-											</li>
-											<li><a href="?module=sajian">Kerjasama</a></li>-->
- 										</ul>
 									</div>
 								</div>
 							</li>

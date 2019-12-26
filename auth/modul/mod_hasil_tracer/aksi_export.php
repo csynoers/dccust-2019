@@ -3,7 +3,7 @@
     header("Content-type: application/vnd-ms-excel;");
     
     // Mendefinisikan nama file ekspor "hasil-export.xls"
-    header("Content-Disposition: attachment; filename=Data Hasil Biodata.xls");
+    header("Content-Disposition: attachment; filename=Data Hasil Tracer {$_GET['title']}.xls");
     
     // Tambahkan table
     include 'data.php';

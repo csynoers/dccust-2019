@@ -276,9 +276,14 @@ switch ($_GET['module']) {
   case 'biodata':
     if ($_SESSION['leveluser']=='admin'){
 		include_once "modul/mod_biodata/biodata.php";
-
     }
-    break;
+	break;
+	
+	case 'hasil-tracer':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_hasil_tracer/hasil_tracer.php";
+		}
+		break;
 
 
   case 'kuisa':
@@ -442,6 +447,19 @@ switch ($_GET['module']) {
 		}
 		break;
 	case 'tracer-study-detail':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
+			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
+		}
+		break;
+
+	case 'setting-hasil-tracer':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_setting_hasil_tracer/ModelTracerStudyDetail.php";
+			include_once "modul/mod_setting_hasil_tracer/ControllerTracerStudyDetail.php";
+		}
+		break;
+	case 'setting-grafik-tracer':
 		if ($_SESSION['leveluser']=='admin'){
 			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
 			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
