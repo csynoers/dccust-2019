@@ -15,6 +15,7 @@ else{
 	$module			= ! empty($_GET['module']) ? $_GET['module'] : NULL ;
 	$data			= ! empty($_GET['data']) ? $_GET['data'] : NULL ;
 	$hasiltracer 	= ! empty($_GET['hasiltracer']) ? $_GET['hasiltracer'] : NULL;
+	$getTahunLulus 	= ! empty($_GET['tahun']) ? $_GET['tahun'] : NULL;
 
 	//load model navbar
 	$navbar_grafik= $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
@@ -392,6 +393,21 @@ else{
 								/* ==================== END MENU HASIL TRACER ==================== */
 
 								/* ==================== START TRACER STUDI ==================== */
+								$subTracerStudiKategori = "";
+								$subTracerStudiDetail = "";
+								foreach ($db->get_select("SELECT alumni_daftar.tahun_lulus FROM `alumni_daftar` GROUP BY alumni_daftar.tahun_lulus ORDER BY alumni_daftar.tahun_lulus DESC")['data'] as $key => $value) {
+									$subTracerStudiKategori .= generate_nav([
+										"title" => $value->tahun_lulus,
+										"href"	=> "media.php?module=tracer-study-category&tahun={$value->tahun_lulus}",
+										"active" => ($getTahunLulus==$value->tahun_lulus) ? 'class="bg-info"' : NULL ,
+									]);
+									$subTracerStudiDetail .= generate_nav([
+										"title" => $value->tahun_lulus,
+										"href"	=> "media.php?module=tracer-study-detail&tahun={$value->tahun_lulus}",
+										"active" => ($getTahunLulus==$value->tahun_lulus) ? 'class="bg-info"' : NULL ,
+									]);
+								}
+
 								$settingHasilTracer = "";
 								foreach ($db->get_select("SELECT * FROM `tracer_studies` GROUP BY tracer_studies.tracer_study_date")['data'] as $key => $value) {
 									$settingHasilTracer .= generate_nav([
@@ -403,19 +419,25 @@ else{
 									]);
 								}
 								echo generate_nav([
-									"title" 		=> '<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Studi',
-									"href" 			=> 'tracerStudy',
-									"collapse"		=> ( $module=='tracer-study-category' || $module=='tracer-study-detail' || $module=='setting-hasil-tracer' || $module=='setting-grafik-tracer' ) ? 'in' : NULL ,
-									"child_data" 	=> 
+									"title" 	=> '<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Studi',
+									"href" 		=> 'tracerStudy',
+									"collapse"	=> ( $module=='tracer-study-category' || $module=='tracer-study-detail' || $module=='setting-hasil-tracer' || $module=='setting-grafik-tracer' ) ? 'in' : NULL ,
+									"child_data"=> 
 										generate_nav([
-											"title" => 'Kategori',
-											"href" 	=> 'media.php?module=tracer-study-category',
-											'active'=> ( $module=='tracer-study-category' ) ? 'class="bg-info"' : NULL ,
+											"title" 	=> 'Kategori',
+											"href" 		=> 'subTracerStudiKategori',
+											"collapse"	=> ( $module=='tracer-study-category' ) ? 'in' : NULL ,
+											"child_data"=> $subTracerStudiKategori
+											// "href" 	=> 'media.php?module=tracer-study-category',
+											// 'active'=> ( $module=='tracer-study-category' ) ? 'class="bg-info"' : NULL ,
 										])
 										.generate_nav([
 											"title" => 'Detail',
-											"href" 	=> 'media.php?module=tracer-study-detail',
-											'active'=> ( $module=='tracer-study-detail' ) ? 'class="bg-info"' : NULL ,
+											"href" 		=> 'subTracerStudiDetail',
+											"collapse"	=> ( $module=='tracer-study-detail' ) ? 'in' : NULL ,
+											"child_data"=> $subTracerStudiDetail
+											// "href" 	=> 'media.php?module=tracer-study-detail',
+											// 'active'=> ( $module=='tracer-study-detail' ) ? 'class="bg-info"' : NULL ,
 										])
 										.generate_nav([
 											"title" => 'Setting Hasil Tracer',

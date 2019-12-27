@@ -8,10 +8,10 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Kategori Tracer Studi</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Kategori Tracer Studi Tahun <?= $_GET['tahun'] ?></a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="?module=<?php echo $this->module ?>&act=add&parent=<?php echo $this->parent ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                    <li><a href="?module=<?php echo $this->module ?>&act=add&parent=<?= $this->parent.'&tahun='.$_GET['tahun'] ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
                 </ul>
             </div>
         </nav>
@@ -35,7 +35,7 @@
                                 <tr>
                                     <td>{$value->tracer_study_sort}</td>
                                     <td>{$value->tracer_study_title}</td>
-                                    <td><a href='?module={$this->module}&parent={$value->tracer_study_id}' title='View childs of this title'>{$value->childs}</a></td>
+                                    <td><a href='?module={$this->module}&parent={$value->tracer_study_id}&tahun={$_GET['tahun']}' title='View childs of this title'>{$value->childs}</a></td>
                                     <td>
                                         <a href='?module={$this->module}&act=edit&id={$value->tracer_study_id}&parent={$this->parent}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>

@@ -10,10 +10,10 @@
         <nav class="navbar navbar-default" style="margin-bottom: 0px">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Detail Tracer Studi</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Daftar Informasi Detail Tracer Studi Tahun <?= $_GET['tahun'] ?></a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="?module=<?php echo $this->module ?>&act=add"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
+                    <li><a href="?module=<?= $this->module.'&act=add&tahun='.$_GET['tahun'] ?>"><button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add New</button></a></li>
                 </ul>
             </div>
         </nav>

@@ -8,7 +8,7 @@
         public function get_tracer_studies($id=NULL)
         {
             if ( empty($id) ) {
-                return $this->db->get_select("SELECT *,(SELECT COUNT(tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS childs FROM tracer_studies AS t WHERE t.tracer_study_parent={$this->parent_id} ORDER BY t.tracer_study_sort ASC")['data'];
+                return $this->db->get_select("SELECT *,(SELECT COUNT(tracer_study_id) FROM tracer_studies AS t_mod WHERE t_mod.tracer_study_parent=t.tracer_study_id) AS childs FROM tracer_studies AS t WHERE t.tracer_study_parent={$this->parent_id} AND t.tracer_study_date={$_GET['tahun']} ORDER BY t.tracer_study_sort ASC")['data'];
                 
             } else {
                 return $this->db->get_select("SELECT * FROM tracer_studies WHERE tracer_study_id='{$id}' ")['data'];
@@ -24,7 +24,8 @@
                 'tracer_study_sort'=> $this->post['tracer_study_sort'],
                 'tracer_study_title'=> $this->post['tracer_study_title'],
                 'tracer_study_parent'=> $this->post['tracer_study_parent'],
-                'tracer_study_form_type'=> $this->post['tracer_study_form_type']
+                'tracer_study_form_type'=> $this->post['tracer_study_form_type'],
+                'tracer_study_date'=> $this->post['tahun']
             ];
             
             # start optional fields default is empty

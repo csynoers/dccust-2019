@@ -2,9 +2,9 @@
 echo "
     <div class='col-sm-12'>
         <div class='panel panel-primary'>
-            <form method='POST' enctype='multipart/form-data' action='?module={$this->module}&act=store'>
+            <form method='POST' enctype='multipart/form-data' action='?module={$this->module}&act=store&tahun={$_GET['tahun']}'>
                 <div class='panel-heading bg-primary'>
-                    <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Add New Informasi Kategori Tracer Studi</h4>
+                    <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Add New Informasi Kategori Tracer Studi Tahun {$_GET['tahun']}</h4>
                 </div>
                 <!-- /.panel-heading -->
 
@@ -40,6 +40,7 @@ echo "
                 <div class='panel-footer'>
                     <input type='hidden' name='operation' value='insert'>
                     <input type='hidden' name='tracer_study_parent' value='{$this->parent}'>
+                    <input type='hidden' name='tahun' value='{$_GET['tahun']}'>
                     <button type='submit' class='btn btn-primary' style='margin-right:1rem'><i class='fa fa-floppy-o' aria-hidden='true'></i> Publish</button>
                     <button type='button' onclick='self.history.back()' class='btn btn-info'><i class='fa fa-backward' aria-hidden='true'></i> Back</button>
                 </div>

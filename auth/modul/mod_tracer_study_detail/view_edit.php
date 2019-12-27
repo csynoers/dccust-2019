@@ -7,7 +7,7 @@
                 <div class='panel panel-primary'>
                     <form method='POST' enctype='multipart/form-data' action='?module={$this->module}&act=store'>
                         <div class='panel-heading bg-primary'>
-                            <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Edit Informasi Detail Tracer Studi</h4>
+                            <h4><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Edit Informasi Detail Tracer Studi Tahun {$value->tracer_study_detail_date}</h4>
                         </div>
                         <!-- /.panel-heading -->
 
