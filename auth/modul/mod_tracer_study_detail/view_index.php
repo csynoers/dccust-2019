@@ -40,7 +40,7 @@
                                     <td>{$value->tracer_study_detail_title}</td>
                                     <td><a href='#' data-toggle='tooltip' data-placement='top' title='".strip_tags($value->tracer_study_title)."'>{$value->tracer_study_sort}</a></td>
                                     <td>
-                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_detail_id}'>
+                                        <a href='?module={$this->module}&act=edit&id={$value->tracer_study_detail_id}&tahun={$_GET['tahun']}'>
                                             <input type='image' src='images/icn_edit.png' title='Edit'>
                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <!--<a href='?module={$this->module}&act=hapus&id={$value->tracer_study_id}' onclick=\"return confirm('Apakah anda yakin menghapus data ini?')\">
