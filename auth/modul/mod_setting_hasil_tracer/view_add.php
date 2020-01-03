@@ -14,7 +14,7 @@ echo "
                 </div>
                 <!-- /.panel-heading -->
 
-                <div class='panel-body'>
+                <div class='panel-body' style='height:50rem;overflow:auto'>
                     <div class='container-fluid'>
                         <div class='form-group'>
                             <label for='judul'>Nama :</label>
