@@ -409,13 +409,17 @@ else{
 								}
 
 								$settingHasilTracer = "";
+								$settingGrafikTracer = "";
 								foreach ($db->get_select("SELECT * FROM `tracer_studies` GROUP BY tracer_studies.tracer_study_date")['data'] as $key => $value) {
 									$settingHasilTracer .= generate_nav([
 										"title" 		=> $value->tracer_study_date,
 										"href" 			=> "media.php?module=setting-hasil-tracer&tahun={$value->tracer_study_date}",
 										"active" 		=> $_GET['module']=="setting-hasil-tracer" ? 'class="bg-info"' : NULL,
-										// "collapse"		=> ! empty($_GET['tahun']) ? ($_GET['tahun']==$value->tahun_lulus ? 'in' : NULL) : NULL ,
-										// "child_data" 	=> $dataLevel311
+									]);
+									$settingGrafikTracer .= generate_nav([
+										"title" 		=> $value->tracer_study_date,
+										"href" 			=> "media.php?module=setting-grafik-tracer&tahun={$value->tracer_study_date}",
+										"active" 		=> $_GET['module']=="setting-grafik-tracer" ? 'class="bg-info"' : NULL,
 									]);
 								}
 								echo generate_nav([
@@ -448,8 +452,9 @@ else{
 										])
 										.generate_nav([
 											"title" => 'Setting Grafik Tracer',
-											"href" 	=> 'media.php?module=setting-grafik-tracer',
-											'active'=> ( $module=='setting-grafik-tracer' ) ? 'class="bg-info"' : NULL ,
+											"href" 	=> 'settingGrafikTracer',
+											"collapse"=> ( $module=='setting-grafik-tracer' ) ? 'in' : NULL ,
+											"child_data" => $settingGrafikTracer
 										])
 								]);
 								/* ==================== END TRACER STUDI ==================== */

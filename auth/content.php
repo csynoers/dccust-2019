@@ -461,8 +461,8 @@ switch ($_GET['module']) {
 		break;
 	case 'setting-grafik-tracer':
 		if ($_SESSION['leveluser']=='admin'){
-			include_once "modul/mod_tracer_study_detail/ModelTracerStudyDetail.php";
-			include_once "modul/mod_tracer_study_detail/ControllerTracerStudyDetail.php";
+			include_once "modul/mod_setting_grafik_tracer/Model.php";
+			include_once "modul/mod_setting_grafik_tracer/Controller.php";
 		}
 		break;
 /* ==================== END MENU TRACER STUDI ==================== */
