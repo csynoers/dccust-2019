@@ -16,6 +16,8 @@ else{
 	$data			= ! empty($_GET['data']) ? $_GET['data'] : NULL ;
 	$hasiltracer 	= ! empty($_GET['hasiltracer']) ? $_GET['hasiltracer'] : NULL;
 	$getTahunLulus 	= ! empty($_GET['tahun']) ? $_GET['tahun'] : NULL;
+	$getId			= ! empty($_GET['id']) ? $_GET['id'] : NULL;
+	$getProdiId		= ! empty($_GET['prodi']) ? $_GET['prodi'] : NULL;
 
 	//load model navbar
 	$navbar_grafik= $db->get_select("SELECT id_prodi,prodi FROM prodi")['data'];
@@ -157,6 +159,7 @@ else{
 		'option_career'	=> 'Edit Setting Lowongan',
 		'biodata'		=> 'Informasi Biodata Hasil Kuisioner',
 		'hasil-tracer'	=> 'Informasi Hasil Tracer',
+		'grafik-tracer'	=> 'Informasi Grafik Tracer',
 		'kuisa'			=> 'Informasi Hasil Metode Pembelajaran Kuis A',
 		'kuisb'			=> 'Informasi Hasil Masa Transisi Kuis B',
 		'kuisc'			=> 'Informasi Hasil Pekerjaan Sekarang Kuis C',
@@ -250,7 +253,7 @@ else{
 				<nav class="navbar navbar-default" role="navigation">
 					<!-- Main Menu -->
 					<div class="side-menu-container">
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav" style="height:65rem;overflow-x:auto">
 							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lvl2">
 									<i class="fa fa-home" aria-hidden="true"></i> Menu Utama <span class="caret"></span>
@@ -392,6 +395,67 @@ else{
 								]);
 								/* ==================== END MENU HASIL TRACER ==================== */
 
+								/* ==================== START MENU GRAFIK TRACER ==================== */
+								$grafikTracerTahun = "";
+								foreach ($db->get_select("SELECT setting_date AS tahun_lulus FROM settings WHERE 1 AND category='setting-hasil-tracer' GROUP BY setting_date DESC")['data'] as $key => $value) {
+									$grafikTracerTahunProdi = "";
+									
+									foreach ( $db->get_select("SELECT p.id_prodi AS id, p.prodi AS title,ad.tahun_lulus AS tahun FROM alumni_daftar AS ad LEFT JOIN prodi AS p ON p.id_prodi=ad.prodi WHERE ad.tahun_lulus='{$value->tahun_lulus}' GROUP BY ad.prodi ASC")['data'] as $key_prodi => $value_prodi) {
+										$grafikTracerSetting = "";
+										foreach ($db->get_select("SELECT * FROM settings WHERE category='setting-grafik-tracer' AND settings.setting_date='{$value->tahun_lulus}' ORDER BY settings.title ASC ")['data'] as $key_setting => $value_setting) {
+											$active= NULL;
+											if ( $module=='grafik-tracer' && !empty($getTahunLulus) && !empty($getProdiId) && !empty($getId) ) { # return TRUE
+												if ( $getTahunLulus==$value->tahun_lulus && $getProdiId==$value_prodi->id && $getId==$value_setting->id ) { # return TRUE
+													$active = 'class="bg-info"';
+												}
+											}
+
+											$grafikTracerSetting .= generate_nav([
+												"title" => $value_setting->title,
+												"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&prodi={$value_prodi->id}&hasiltracer={$value_setting->title}&id={$value_setting->id}",
+												"active" => $active
+											]);
+
+										}
+										
+										$collapse= NULL;
+										if ( $module=='grafik-tracer' && !empty($getTahunLulus) && !empty($getProdiId) ) { # return TRUE
+											if ( $getProdiId==$value_prodi->id ) { # return TRUE
+												$collapse = 'in';
+											}
+										}
+
+										$grafikTracerTahunProdi .= generate_nav([
+											"title" => $value_prodi->title,
+											"href"	=> "grafikTracerTahun{$value->tahun_lulus}Prodi{$value_prodi->id}",
+											"collapse"		=> $collapse,
+											"child_data" 	=> $grafikTracerSetting
+										]);
+									}
+
+									$collapse= NULL;
+									if ( $module=='grafik-tracer' && !empty($getTahunLulus) ) { # return TRUE
+										if ( $getTahunLulus==$value->tahun_lulus ) { # return TRUE
+											$collapse = 'in'; 
+										}
+									}
+
+									$grafikTracerTahun .= generate_nav([
+										"title" 		=> $value->tahun_lulus,
+										"href" 			=> "grafikTracerTahun{$value->tahun_lulus}",
+										"collapse"		=> $collapse,
+										"child_data" 	=> $grafikTracerTahunProdi
+									]);
+								}
+
+								echo generate_nav([
+									"title" 		=> '<i class="fa fa-bar-chart-o" aria-hidden="true"></i> Grafik Tracer',
+									"href" 			=> 'grafikTracer',
+									"collapse"		=> ( $module=='grafik-tracer' ) ? 'in' : NULL ,
+									"child_data" 	=> $grafikTracerTahun
+								]);
+								/* ==================== END MENU GRAFIK TRACER ==================== */
+
 								/* ==================== START TRACER STUDI ==================== */
 								$subTracerStudiKategori = "";
 								$subTracerStudiDetail = "";
@@ -432,21 +496,16 @@ else{
 											"href" 		=> 'subTracerStudiKategori',
 											"collapse"	=> ( $module=='tracer-study-category' ) ? 'in' : NULL ,
 											"child_data"=> $subTracerStudiKategori
-											// "href" 	=> 'media.php?module=tracer-study-category',
-											// 'active'=> ( $module=='tracer-study-category' ) ? 'class="bg-info"' : NULL ,
 										])
 										.generate_nav([
 											"title" => 'Detail',
 											"href" 		=> 'subTracerStudiDetail',
 											"collapse"	=> ( $module=='tracer-study-detail' ) ? 'in' : NULL ,
 											"child_data"=> $subTracerStudiDetail
-											// "href" 	=> 'media.php?module=tracer-study-detail',
-											// 'active'=> ( $module=='tracer-study-detail' ) ? 'class="bg-info"' : NULL ,
 										])
 										.generate_nav([
 											"title" => 'Setting Hasil Tracer',
 											"href" 	=> 'settingHasilTracer',
-											// 'active'=> ( $module=='setting-hasil-tracer' ) ? 'class="bg-info"' : NULL ,
 											"collapse"=> ( $module=='setting-hasil-tracer' ) ? 'in' : NULL ,
 											"child_data" => $settingHasilTracer
 										])
@@ -461,102 +520,6 @@ else{
 							?>
 
 							<li class="panel panel-default" id="dropdown">
-								<a data-toggle="collapse" href="#dropdown-lvl4">
-									<i class="fa fa-bar-chart-o" aria-hidden="true"></i> Grafik Tracer <span class="caret"></span>
-								</a>
-
-								<!-- Dropdown level 4 -->
-								<div id="dropdown-lvl4" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul class="nav navbar-nav">
-										<?php
-											foreach($navbar_grafik AS $key => $value){
-												echo "
-
-												<li class='panel panel-default' id='dropdown'>
-													<a data-toggle='collapse' href='#dropdown-lvl4$value->id_prodi'> $value->prodi <span class='caret'></span>
-													</a>
-													<div id='dropdown-lvl4$value->id_prodi' class='panel-collapse collapse'>
-														<div class='panel-body'>
-															<ul class='nav navbar-nav'>
-																<li>
-																	<a href='?module=statis_respon&prodi=$value->id_prodi'>Statik respon TSUST</a>
-																</li>
-																<li>
-																	<a href='?module=respon_rate&prodi=$value->id_prodi'>Respoone Rate TSUST</a>
-																</li>
-																<!--<li>
-																	<a href='?module=respon_perempuan&prodi=$value->id_prodi'>Biodata</a>
-																</li>-->
-																<!--<li>
-																	<a href='#'>Lama Studi S1</a>
-																</li>-->
-																<!--<li>
-																	<a href='#'>Lama Studi S2</a>
-																</li>-->
-																<!--<li>
-																	<a href='?module=alasan'>Alasan Yang Mempengaruhi Lamanya Masa Studi</a>
-																</li>-->
-																<li>
-																	<a href='?module=aspek_pembelajaran&prodi=$value->id_prodi'>Penekanan Aspek Pembelajaran</a>
-																</li>
-																<li>
-																	<a href='?module=cari_kerja_pertamas1&prodi=$value->id_prodi'>Cara Mencari Pekerjaan Pertama</a>
-																</li>
-																<!--<li>
-																	<a href='#'>Masa Tunggu S1</a>
-																</li>-->
-																<!--<li>
-																	<a href='#'>Masa Tunggu S2</a>
-																</li>-->
-																<li>
-																	<a href='?module=jumlah_perusahaan&prodi=$value->id_prodi'>Jumlah Perusahaan Yang Dilamar, Merespon, Dan Mengundang Wawancara</a>
-																</li>
-																<!--<li>
-																	<a href='?module=jumlah_perusahaans2'>Jumlah Perusahaan Yang Dilamar, Merespon, Dan Mengundang Wawancara (S2)</a>
-																</li>-->
-																<!--<li>
-																	<a href='?module=jumlah_perusahaans1s2'>Jumlah Perusahaan Yang Dilamar, Merespon, Dan Mengundang Wawancara (S1 & S2)</a>
-																</li>-->
-																<li>
-																	<a href='?module=status_kerjasemua&prodi=$value->id_prodi'>Status Kerja Saat Ini</a>
-																</li>
-																<!--<li>
-																	<a href='?module=status_kerjas1'>Status Kerja Saat Ini (S1)</a>
-																</li>-->
-																<!--<li>
-																	<a href='?module=status_kerjas2'>Status Kerja Saat Ini (S2)</a>
-																</li>-->
-																<li>
-																	<a href='?module=jenis_pekerjaan&prodi=$value->id_prodi'>Jenis Organisasi Tempat Bekerja Saat Ini</a>
-																</li>
-																<li>
-																	<a href='?module=pendapatan_alumni&prodi=$value->id_prodi'>Pendapatan Alumni</a>
-																</li>
-																<li>
-																	<a href='?module=hubungan_studi_pekerjaan&prodi=$value->id_prodi'>Hubungan Antara Bidang Studi dan Pekerjaan Saat Ini</a>
-																</li>
-																<li>
-																	<a href='?module=tingkat_pendidikan&prodi=$value->id_prodi'>Tingkat Pendidikan Yang Paling Sesuai Untuk Pekerjaan</a>
-																</li>
-																<li>
-																	<a href='?module=kompetensi&prodi=$value->id_prodi'>Kompetensi</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</li>
-
-
-												";
-											}
-										?>
-										</ul>
-									</div>
-								</div>
-							</li>
-
-							<li class="panel panel-default" id="dropdown">
 								<a data-toggle="collapse" href="#dropdown-lv20">
 									<i class="fa fa-check-square-o" aria-hidden="true"></i> Tracer Pengguna <span class="caret"></span>
 								</a>
@@ -567,23 +530,7 @@ else{
 										<ul class="nav navbar-nav">
 											<li><a href="?module=tracer-pengguna">Hasil Tracer</a></li>
 											<li><a href="?module=users-tracer-pengguna">Users</a></li>
-
-
-											<!-- Dropdown level 21 -->
-											<!-- <li class="panel panel-default" id="dropdown">
-												<a data-toggle="collapse" href="#dropdown-lvl21">Lowongan <span class="caret"></span>
-												</a>
-												<div id="dropdown-lvl21" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="nav navbar-nav">
-															<li><a href="?module=karir">Lowongan</a></li>
-															<li><a href="?module=option_career">Setting Option Lowongan</a></li>
-														</ul>
-													</div>
-												</div>
-											</li>
-											<li><a href="?module=sajian">Kerjasama</a></li>
- -->									</ul>
+										</ul>
 									</div>
 								</div>
 							</li>
@@ -660,21 +607,6 @@ else{
 		</div>
 	</div>
 
-	<!-- <div class="col-md-10 content">
-	  	<div class="panel panel-default">
-			<div class="panel-heading">
-				Dashboard
-			</div>
-			<div class="panel-body">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-		</div>
-	</div> -->
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 content">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

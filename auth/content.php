@@ -273,11 +273,11 @@ switch ($_GET['module']) {
     break;
 
 
-  case 'biodata':
-    if ($_SESSION['leveluser']=='admin'){
-		include_once "modul/mod_biodata/biodata.php";
-    }
-	break;
+	case 'biodata':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_biodata/biodata.php";
+		}
+		break;
 	
 	case 'hasil-tracer':
 		if ($_SESSION['leveluser']=='admin'){
@@ -285,39 +285,12 @@ switch ($_GET['module']) {
 		}
 		break;
 
-
-  case 'kuisa':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kuisa/kuisa.php";
-    }
-    break;
-
-  case 'kuisb':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kuisb/kuisb.php";
-    }
-    break;
-
-  case 'kuisc':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kuisc/kuisc.php";
-    }
-    break;
-
-  case 'kuisd':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kuisd/kuisd.php";
-    }
-    break;
-
-  case 'kuise':
-    if ($_SESSION['leveluser']=='admin'){
-      include_once "modul/mod_kuise/kuise.php";
-    }
-	break;
-
-
-
+	case 'grafik-tracer':
+		if ($_SESSION['leveluser']=='admin'){
+			include_once "modul/mod_grafik_tracer/Model.php";
+			include_once "modul/mod_grafik_tracer/Controller.php";
+		}
+		break;
 
   // Bagian review
   case 'review':
