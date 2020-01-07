@@ -23,7 +23,7 @@
 	$aksi="modul/mod_tracer_pengguna/aksi_mod_tracer_pengguna.php";
 	$print = "modul/mod_tracer_pengguna/aksi_export.php";
 	$module="tracer-pengguna";
-	$db= new dbHelper();
+	$db= new dbHelper($db_config	);
 
 	$data['bidang-usaha']=[
 		'1'=>'Pertanian, Perburuan dan Kehutanan',
@@ -87,6 +87,7 @@
 							</div>
 							<div class="col-lg-12">
 								<button type="button" class="btn btn-primary filter" title="Filter data">Filter</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
 								<button type="button" class="btn btn-primary export" title="Mohon pilih Prodi terlebih dahulu untuk lebih spesifik">Export ke Excel</button>
 							</div>
 						</div>

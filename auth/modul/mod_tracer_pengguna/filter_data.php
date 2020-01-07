@@ -1,8 +1,9 @@
 <?php
+	require_once "../../../josys/koneksi.php";
 	require_once "../../../josys/dbHelper.php";
 	require_once "../../../josys/fungsi_indotgl.php";
 	$data= array();
-	$db = new dbHelper();
+	$db = new dbHelper($db_config);
 	$data['bidang-usaha']=[
 	'1'=>'Pertanian, Perburuan dan Kehutanan',
 		'Perikanan',

@@ -8,7 +8,7 @@ if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
 	include "../../../josys/dbHelper.php";
 	include "../../../josys/fungsi_input.php";
 
-	$db= new dbHelper();
+	$db= new dbHelper($db_config);
 	$module = $_GET['module'];
 	$act 	= empty($_GET['act'])? 'null': $_GET['act'];
 
