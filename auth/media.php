@@ -50,7 +50,7 @@ else{
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 
 	<!-- TinyMCE 4.x -->
 	<script type="text/javascript" src="../tinymce/js/tinymce/tinymce.min.js"></script>
@@ -412,7 +412,7 @@ else{
 
 											$grafikTracerSetting .= generate_nav([
 												"title" => $value_setting->title,
-												"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&prodi={$value_prodi->id}&hasiltracer={$value_setting->title}&id={$value_setting->id}",
+												"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&prodi={$value_prodi->id}&title={$value_setting->title}&id={$value_setting->id}",
 												"active" => $active
 											]);
 
