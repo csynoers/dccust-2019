@@ -18,6 +18,7 @@
                                 <div class='row'>
                                     <div class='col-sm-12'>
                                         <label for='addEvent'>Pilih Detail Tracer :</label>
+                                        <div class='alert alert-info fade in alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close' title='close'>×</a><strong> !!! IMPORTANT</strong><p>Jika memilih lebih dari satu pastikan jenis(Form Type) kategori tracer harus sama misal => Radio Button,number dll </p></div>
                                         <div class='form-group'>
                                             ".$this->checkbox_category( json_decode($value->options) )."
                                         </div>
