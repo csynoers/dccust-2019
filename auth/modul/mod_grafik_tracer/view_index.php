@@ -1,4 +1,7 @@
 <?php
+    echo "<pre>";
+    print_r($this->statik_respons());
+    echo "</pre>";
     echo "
         <div class='col-sm-12'>
             <div class='panel panel-primary'>
@@ -21,7 +24,55 @@
                         </div>
                     </form>
                     <hr>
+                    <h3>Grafik respons TSUST</h3>
+                    <hr>
                     <div id='chartDiv' data-form-type='{$tracer_study_form_type}'></div>
+                    <hr>
+                    <h3>Statik respons TSUST</h3>
+                    <hr>
+                    <table class='table table-striped table-bordered table-hover'>
+                        <tbody>
+                            <tr>
+                            <td align='center'>Kriteria </td>
+                            <td colspan='2' align='center'>Program Studi Akuntansi</td>
+                            </tr>
+                            <tr>
+                            <td>Jumlah Populasi Target </td>
+                            <td colspan='2' align='center'>60</td>
+                            </tr>
+                            <tr>
+                            <td>Undelivered</td>
+                            <td align='center'>0</td>
+                            <td align='center'>0%</td>
+                            </tr>
+                            <tr>
+                            <td>Subjek</td>
+                            <td align='center'>60</td>
+                            <td align='center'>100%</td>
+                            
+                            </tr>
+                            <tr>
+                            <td>Responden</td>
+                            <td align='center' colspan='2'>15</td>
+                            </tr>
+                            <tr>
+                            <td>Grass Respone Rate</td>
+                            <td align='center'>(15/60)*100%</td>
+                            <td align='center'>
+                            25%			      </td>
+                            
+                            </tr>
+                            <tr>
+                            <td>Nett Respone Rate</td>
+                            <td align='center'>(15/60)*100%</td>
+                            <td align='center'>
+                            25%			      </td>
+                            
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h3>Informasi Pertanyaan TSUST</h3>
                     <hr>
                     <table class='table table-striped'>
                         <thead>
