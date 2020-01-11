@@ -412,7 +412,7 @@ else{
 
 											$grafikTracerSetting .= generate_nav([
 												"title" => $value_setting->title,
-												"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&prodi={$value_prodi->id}&title={$value_setting->title}&id={$value_setting->id}",
+												"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&prodi={$value_prodi->id}&title={$value_setting->title} {$value_prodi->title}&id={$value_setting->id}",
 												"active" => $active
 											]);
 

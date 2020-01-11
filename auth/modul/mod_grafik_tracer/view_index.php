@@ -12,16 +12,28 @@
                             <span class='input-group-addon'>Jenis Grafik</span>
                             <select class='form-control' id='selectChart'>
                                 <option selected disabled> -- Pilih Jenis Grafik -- </option>
-                                <option value='bar-chart'> Bar Chart </option>
-                                <option value='column-chart'> Column Chart </option>
-                                <option value='donut-chart'> Donut Chart </option>
-                                <option value='pie-chart'> Pie Chart </option>
+                                <option value='bar_chart'> Bar Chart </option>
+                                <option value='column_chart'> Column Chart </option>
+                                <option value='donut_chart'> Donut Chart </option>
+                                <option value='pie_chart'> Pie Chart </option>
                                 <option value='table'> Table </option>
                             </select>
                         </div>
                     </form>
                     <hr>
-                    <div id='chartDiv'></div>
+                    <div id='chartDiv' data-form-type='{$tracer_study_form_type}'></div>
+                    <hr>
+                    <table class='table table-striped'>
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Pertanyaan</th>
+                            <th>Jenis (Form Type)</th>
+                            <th>Keterangan Jawaban</th>
+                        </tr>
+                        </thead>
+                        <tbody>{$rows_tr_pertanyaan}</tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -29,13 +41,16 @@
 ?>
 <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 <script type='text/javascript'>
+    google.dataJSON = null;
+    google.getMethod = {};
     google.charts.load('current', {'packages':['bar','table','corechart']});
     google.charts.setOnLoadCallback(drawTable);
+
     (function(j){
         j('#selectChart').change(function(){
             j('#chartDiv').removeAttr('style');
             switch ( j(this).val() ) {
-                case 'bar-chart':
+                case 'bar_chart':
                     google.charts.setOnLoadCallback(drawChartBar);
                     j('#chartDiv').css({
                         "width"     : "900px",
@@ -43,7 +58,7 @@
                         // "padding"   : "0% 22%"
                     });
                     break;
-                case 'column-chart':
+                case 'column_chart':
                     google.charts.setOnLoadCallback(drawChartColumn);
                     j('#chartDiv').css({
                         "width"     : "900px",
@@ -51,7 +66,7 @@
                         // "padding"   : "0% 22%"
                     });
                     break;
-                case 'pie-chart':
+                case 'pie_chart':
                     google.charts.setOnLoadCallback(drawChartPie);
                     j('#chartDiv').css({
                         "width"     : "900px",
@@ -59,7 +74,7 @@
                         // "padding"   : "0% 22%"
                     });
                     break;
-                case 'donut-chart':
+                case 'donut_chart':
                     google.charts.setOnLoadCallback(drawChartDonut);
                     j('#chartDiv').css({
                         "width"     : "900px",
@@ -80,18 +95,24 @@
     })(jQuery)
 
     function drawChartBar() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales'],
-          ['2014', 1000],
-          ['2015', 1170],
-          ['2016', 660],
-          ['2017', 1030]
-        ]);
+        setParamFromUrl();
+        google.getMethod.cart = 'bar_chart';
+        let json = getDataJSON(google.getMethod);
+        console.log(json);
+
+        var data = google.visualization.arrayToDataTable( json.rows );
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Year', 'Sales'],
+        //   ['2014', 1000],
+        //   ['2015', 1170],
+        //   ['2016', 660],
+        //   ['2017', 1030]
+        // ]);
 
         var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: json.title,
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
           },
           bars: 'horizontal'
         };
@@ -101,18 +122,24 @@
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
     function drawChartColumn() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]);
+        setParamFromUrl();
+        google.getMethod.cart = 'column_chart';
+        let json = getDataJSON(google.getMethod);
+
+        var data = google.visualization.arrayToDataTable( json.rows );
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Year', 'Sales', 'Expenses', 'Profit'],
+        //   ['Mean', 1000, 400, 200],
+        //   ['2014', 1000, 400, 200],
+        //   ['2015', 1170, 460, 250],
+        //   ['2016', 660, 1120, 300],
+        //   ['2017', 1030, 540, 350]
+        // ]);
 
         var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: json.title,
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
           }
         };
 
@@ -122,33 +149,50 @@
     }
 
     function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name');
-        data.addColumn('number', 'Salary');
-        data.addColumn('boolean', 'Full Time Employee');
-        data.addRows([
-        ['Mike',  {v: 10000, f: '$10,000'}, true],
-        ['Jim',   {v:8000,   f: '$8,000'},  false],
-        ['Alice', {v: 12500, f: '$12,500'}, true],
-        ['Bob',   {v: 7000,  f: '$7,000'},  true]
-        ]);
+        setParamFromUrl();
+        google.getMethod.cart = 'table';
+        let json = getDataJSON(google.getMethod);
 
-        var table = new google.visualization.Table(document.getElementById('chartDiv'));
-
+        let data = new google.visualization.DataTable();
+        data.addColumn('string', 'Pertanyaan');
+        data.addColumn('number', 'Mean');
+        data.addRows( json );
+        // data.addRows([
+        //     ['Mike',  {v: 1, f: '1'}],
+        //     ['Jim',   {v: 2, f: '2'}],
+        //     ['Alice', {v: 3, f: '3'}],
+        //     ['Bob',   {v: 4, f: '4'}]
+        // ]);
+        let table = new google.visualization.Table(document.getElementById('chartDiv'));
+        
         table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
     }
+    function setParamFromUrl() {
+        google.getMethod.module     = getFromUrl('module');
+        google.getMethod.tahun      = getFromUrl('tahun');
+        google.getMethod.title      = getFromUrl('title');
+        google.getMethod.idProdi    = getFromUrl('prodi');
+        google.getMethod.idSetting  = getFromUrl('id');
+        google.getMethod.formType   = $('#chartDiv').data('form-type');
+    }
     function drawChartPie() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+        setParamFromUrl();
+        google.getMethod.cart = 'pie_chart';
+        let json = getDataJSON(google.getMethod);
+
+        console.log( json );
+        var data = google.visualization.arrayToDataTable( json.rows );
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Task', 'Hours per Day'],
+        //   ['Work',     11],
+        //   ['Eat',      2],
+        //   ['Commute',  2],
+        //   ['Watch TV', 2],
+        //   ['Sleep',    7]
+        // ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: json.title,
           is3D: true,
         };
 
@@ -156,22 +200,37 @@
         chart.draw(data, options);
     }
     function drawChartDonut() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+        setParamFromUrl();
+        google.getMethod.cart = 'donut_chart';
+        let json = getDataJSON(google.getMethod);
+
+        var data = google.visualization.arrayToDataTable( json.rows );
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Task', 'Hours per Day'],
+        //   ['Work',     11],
+        //   ['Eat',      2],
+        //   ['Commute',  2],
+        //   ['Watch TV', 2],
+        //   ['Sleep',    7]
+        // ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: json.title ,
         //   is3D: true,
           pieHole: 0.4,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
         chart.draw(data, options);
-      }
+    }
+    function getDataJSON( d ){
+        // return $.ajax({type: "GET", url: "modul/mod_grafik_tracer/get_json.php", async: false, data: d }).responseText;
+        return JSON.parse( $.ajax({type: "GET", url: "modul/mod_grafik_tracer/get_json.php", async: false, data: d }).responseText );
+    }
+    function getFromUrl(attr)
+    {
+        let url = new URL(location.href);
+        let c = url.searchParams.get( attr );
+        return c;
+    }
 </script>

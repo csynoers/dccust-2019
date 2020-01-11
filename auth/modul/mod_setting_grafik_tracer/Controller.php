@@ -66,7 +66,13 @@
 		}
 
 		public function checkbox_category($checked=NULL)
-		{			
+		{
+			$formType = [
+				'single_radio_button' => 'Radio button',
+				'multiple_radio_button' => 'Multiple radio button',
+				'checkbox' => 'Checkbox',
+				'input_number' => 'Input number',
+			];			
 			$checkbox = '';
 			$this->Model->where = "WHERE ts.tracer_study_date='{$_GET['tahun']}' AND ts.tracer_study_parent='0' ";
 			foreach ($this->Model->get_tracer_studies() as $key => $value) {
@@ -75,6 +81,7 @@
 					$child_html = "";
 					$this->Model->where = "WHERE ts.tracer_study_date='{$_GET['tahun']}' AND ts.tracer_study_parent='{$value->tracer_study_id}' ";
 					foreach ($this->Model->get_tracer_studies() as $key_child => $value_child) {
+						$value_child->tracer_study_title = strip_tags($value_child->tracer_study_title)." <span class='text-muted'>(Form Type : {$formType[ $value_child->tracer_study_form_type ]})</span>";
 						$child_html .= "
 							<li>
 								<label>{$value_child->tracer_study_title}</label>
@@ -89,6 +96,7 @@
 					</li>
 					";
 				} else {
+					$value->tracer_study_title = strip_tags($value->tracer_study_title)." <span class='text-muted'>(Form Type : {$formType[ $value->tracer_study_form_type ]})</span>";
 					$checkbox .= "
 					<li>
 						<label>{$value->tracer_study_title}</label>
