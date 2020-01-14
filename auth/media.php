@@ -399,6 +399,11 @@ else{
 								$grafikTracerTahun = "";
 								foreach ($db->get_select("SELECT setting_date AS tahun_lulus FROM settings WHERE 1 AND category='setting-hasil-tracer' GROUP BY setting_date DESC")['data'] as $key => $value) {
 									$grafikTracerTahunProdi = "";
+									$grafikTracerTahunProdi .= generate_nav([
+										"title" => 'Respone Rate TSUST',
+										"href"	=> "media.php?module=grafik-tracer&tahun={$value->tahun_lulus}&act=prodiAll",
+										"active" => ''
+									]);
 									
 									foreach ( $db->get_select("SELECT p.id_prodi AS id, p.prodi AS title,ad.tahun_lulus AS tahun FROM alumni_daftar AS ad LEFT JOIN prodi AS p ON p.id_prodi=ad.prodi WHERE ad.tahun_lulus='{$value->tahun_lulus}' GROUP BY ad.prodi ASC")['data'] as $key_prodi => $value_prodi) {
 										$grafikTracerSetting = "";

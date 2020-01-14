@@ -8,7 +8,11 @@
 
             # get parameter $_GET['act']
 			switch ( empty($_GET['act']) ? NULL : $_GET['act'] ) {
-                   	
+                case 'prodiAll':
+                    $rows = $this->respon_rate();
+                    include_once("modul/mod_grafik_tracer/view_respone_rate_tsust.php");
+                    break;
+
 				default:
                     # if action is null load view index
                     $this->Model->id= $_GET['id'];
@@ -76,6 +80,21 @@
             $rows['nett_respon_rate_value']     = $rows['grass_respon_rate_value'];
             
             return (object) $rows;
+        }
+        public function respon_rate()
+        {
+            $rows = [];
+            $rows['data'] = $this->Model->get_select("SELECT f.id_fakultas,ad.fakultas ,f.fakultas ,( SELECT COUNT(*) FROM alumni_daftar AS ad_1 WHERE ad_1.prodi=ad.prodi ) AS total_alumni_fakultas FROM alumni_daftar AS ad LEFT JOIN fakultas AS f ON f.id_fakultas=ad.fakultas WHERE ad.tahun_lulus='2017' GROUP BY ad.fakultas ORDER BY f.fakultas ASC")['data'];
+            foreach ($rows['data'] as $key => $value) {
+                $value->total_alumni_tracer = $this->count_alumni_fill($value->id_fakultas);
+                $value->respone_rate_value = round(($value->total_alumni_tracer/$value->total_alumni_fakultas)*100, 2);
+                $value->respone_rate_text = $value->respone_rate_value.'%';
+            }
+            return $rows['data'];
+        }
+        public function count_alumni_fill($fakultas)
+        {
+            return count($this->Model->get_select("SELECT ta.nim FROM tracer_answers AS ta LEFT JOIN alumni_daftar AS ad ON ad.nim=ta.nim WHERE ta.tracer_type='tracer_study' AND ad.tahun_lulus='{$_GET['tahun']}' AND ad.fakultas='{$fakultas}' GROUP BY ta.nim")['data']);
         }
     }
 
