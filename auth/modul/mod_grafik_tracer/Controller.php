@@ -58,7 +58,7 @@
                             </tr>
                         ";
                     }
-
+                    $statikRespon = $this->statik_respons();
 					include_once("modul/mod_grafik_tracer/view_index.php");
 					break;
 			}
@@ -69,7 +69,11 @@
             $rows['prodi'] = $this->Model->get_select("SELECT prodi FROM `prodi` WHERE `id_prodi`={$_GET['prodi']} ")['data'][0]->prodi;
             $rows['jumlah_populasi_target'] = $this->Model->get_select("SELECT COUNT(*) AS total FROM alumni_daftar WHERE alumni_daftar.prodi='{$_GET['prodi']}' AND alumni_daftar.tahun_lulus='{$_GET['tahun']}' ")['data'][0]->total;
             $rows['subjek'] = $rows['jumlah_populasi_target'];
-            $rows['responden'] = $this->Model->get_select("SELECT COUNT(alumni_daftar.nim) AS total FROM tracer_answers LEFT JOIN alumni_daftar ON alumni_daftar.nim=tracer_answers.nim WHERE tracer_answers.tracer_type='tracer_study' AND alumni_daftar.tahun_lulus='2017' AND alumni_daftar.prodi='27' GROUP BY alumni_daftar.nim ")['data'][0]->total;
+            $rows['responden'] = count( $this->Model->get_select("SELECT tracer_answers.nim FROM tracer_answers LEFT JOIN alumni_daftar ON alumni_daftar.nim=tracer_answers.nim WHERE tracer_answers.tracer_type='tracer_study' AND alumni_daftar.tahun_lulus='2017' AND alumni_daftar.prodi='27' GROUP BY alumni_daftar.nim ")['data'] );
+            $rows['grass_respon_rate_text']     = "({$rows['responden']}/{$rows['jumlah_populasi_target']})*100%";
+            $rows['grass_respon_rate_value']    = round( ($rows['responden']/$rows['jumlah_populasi_target'])*100 ,2);
+            $rows['nett_respon_rate_text']      = $rows['grass_respon_rate_text'];
+            $rows['nett_respon_rate_value']     = $rows['grass_respon_rate_value'];
             
             return (object) $rows;
         }

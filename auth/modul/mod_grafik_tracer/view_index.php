@@ -1,7 +1,4 @@
 <?php
-    echo "<pre>";
-    print_r($this->statik_respons());
-    echo "</pre>";
     echo "
         <div class='col-sm-12'>
             <div class='panel panel-primary'>
@@ -33,41 +30,36 @@
                     <table class='table table-striped table-bordered table-hover'>
                         <tbody>
                             <tr>
-                            <td align='center'>Kriteria </td>
-                            <td colspan='2' align='center'>Program Studi Akuntansi</td>
+                                <td align='center'>Kriteria </td>
+                                <td colspan='2' align='center'>Program Studi {$statikRespon->prodi}</td>
                             </tr>
                             <tr>
-                            <td>Jumlah Populasi Target </td>
-                            <td colspan='2' align='center'>60</td>
+                                <td>Jumlah Populasi Target </td>
+                                <td colspan='2' align='center'>{$statikRespon->jumlah_populasi_target}</td>
                             </tr>
                             <tr>
-                            <td>Undelivered</td>
-                            <td align='center'>0</td>
-                            <td align='center'>0%</td>
+                                <td>Undelivered</td>
+                                <td align='center'>0</td>
+                                <td align='center'>0%</td>
                             </tr>
                             <tr>
-                            <td>Subjek</td>
-                            <td align='center'>60</td>
-                            <td align='center'>100%</td>
-                            
+                                <td>Subjek</td>
+                                <td align='center'>{$statikRespon->subjek}</td>
+                                <td align='center'>100%</td>
                             </tr>
                             <tr>
-                            <td>Responden</td>
-                            <td align='center' colspan='2'>15</td>
+                                <td>Responden</td>
+                                <td align='center' colspan='2'>{$statikRespon->responden}</td>
                             </tr>
                             <tr>
-                            <td>Grass Respone Rate</td>
-                            <td align='center'>(15/60)*100%</td>
-                            <td align='center'>
-                            25%			      </td>
-                            
+                                <td>Grass Respone Rate</td>
+                                <td align='center'>{$statikRespon->grass_respon_rate_text}</td>
+                                <td align='center'>{$statikRespon->grass_respon_rate_value}%</td>
                             </tr>
                             <tr>
-                            <td>Nett Respone Rate</td>
-                            <td align='center'>(15/60)*100%</td>
-                            <td align='center'>
-                            25%			      </td>
-                            
+                                <td>Nett Respone Rate</td>
+                                <td align='center'>$statikRespon->nett_respon_rate_text</td>
+                                <td align='center'>{$statikRespon->nett_respon_rate_value}%</td>
                             </tr>
                         </tbody>
                     </table>
